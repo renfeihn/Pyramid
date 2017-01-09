@@ -1,0 +1,9 @@
+{
+  "name": "create_date",
+  "code": "create_date",
+  "dataType": "date",
+  "length": 8,
+  "precision": 0,
+  "comment": "创建时间",
+  "default": ""
+}

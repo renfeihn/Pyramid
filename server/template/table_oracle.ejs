@@ -1,0 +1,112 @@
+<%
+function isNotNull(str) {
+    if (str != null && str != undefined && str != '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function StringBuffer() {
+    this._strings = new Array();
+}
+StringBuffer.prototype.append = function (str) {
+    this._strings.push(str);
+    return this;// 字符串拼接
+}
+StringBuffer.prototype.toString = function () {
+    return this._strings.join("");
+}
+
+var sql = new StringBuffer();
+// 换行
+var nextLine = '\n';
+// 缩进（一个空格）
+var space = ' ';
+// 缩进tab（4个空格）
+var tab = '    ';
+if (isNotNull(table.code)) {
+    sql.append('drop table "')
+            .append(table.code + '" cascade constraints;')
+            .append(nextLine)
+            .append(nextLine)
+            .append('/*==============================================================*/')
+            .append(nextLine)
+            .append('/* Table: "' + table.code + '"                                           */')
+            .append(nextLine)
+            .append('/*==============================================================*/')
+            .append(nextLine)
+            .append(nextLine)
+            .append('create table "' + table.code + '"')
+            .append(nextLine)
+            .append('(')
+            .append(nextLine);
+
+    if (isNotNull(table.attr)) {
+        var primary_key;
+        var attrs = table.attr;
+        attrs.forEach(function (attr, index, array) {
+            // 列名，数据类型
+            sql.append(tab + attr.code + space + attr.dataType);
+            if (isNotNull(attr.lengths)) {
+                // 长度
+                sql.append('(' + attr.lengths);
+                if (isNotNull(attr.precision)) {
+                    // 精度
+                    sql.append(',' + attr.precision);
+                }
+                sql.append(')');
+
+                // 默认值
+                if (isNotNull(attr.default)) {
+                    sql.append(space + "default " + attr.default);
+                }
+
+                // 是否不为空
+                if (isNotNull(attr.M) && attr.M == 'Y') {
+                    sql.append(space + 'not null');
+                }
+
+                // 标记主键
+                if (isNotNull(attr.P) && attr.P == 'Y') {
+                    primary_key = attr.code;
+                }
+
+                if ((index + 1) != array.length) {
+                    sql.append(',' + nextLine);
+                } else {
+                    if (isNotNull(primary_key)) {
+                        sql.append(',' + nextLine)
+                                .append(tab)
+                                .append('constraint PK_' + (table.code).toUpperCase() + ' primary  key (' + primary_key + ')');
+                    }
+                }
+            }
+        });
+    }
+    // create end )
+    sql.append(nextLine)
+            .append(')');
+
+    // 表空间
+    if (isNotNull(table.table_space)) {
+        sql.append(' tablespace ' + table.table_space + ';');
+    }
+
+    // 表说明
+    if (isNotNull(table.comment)) {
+        sql.append(nextLine)
+                .append('comment on table "' + table.code + '" is \'' + table.comment + '\';');
+    }
+
+    // 列说明
+    attrs.forEach(function (attr, index, array) {
+        // 描述
+        if (isNotNull(attr.comment)) {
+            sql.append(nextLine)
+                    .append('comment on column "' + table.code + '".' + attr.code + ' is \'' + attr.comment + '\';');
+        }
+    });
+}
+%>
+<%- sql %>

@@ -1,0 +1,9 @@
+{
+  "name": "id",
+  "code": "id",
+  "dataType": "varchar",
+  "length": 32,
+  "precision": 0,
+  "comment": "主键ID",
+  "default": ""
+}

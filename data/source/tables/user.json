@@ -1,0 +1,44 @@
+{
+  "name": "user",
+  "code": "user",
+  "comment": "用户表",
+  "attr": [
+    {
+      "name": "id",
+      "code": "id",
+      "dataType": "varchar",
+      "lengths": 32,
+      "precision": 0,
+      "M": "Y",
+      "P": "Y",
+      "comment": "主键ID",
+      "default": "",
+      "domain": "id"
+    },
+    {
+      "name": "name",
+      "code": "name",
+      "dataType": "varchar",
+      "lengths": 40,
+      "precision": 0,
+      "M": "Y",
+      "P": "N",
+      "comment": "姓名",
+      "default": "",
+      "domain": ""
+    },
+    {
+      "name": "age",
+      "code": "age",
+      "dataType": "Double",
+      "lengths": 5,
+      "precision": 2,
+      "M": "Y",
+      "P": "N",
+      "comment": "年龄",
+      "default": "",
+      "domain": ""
+    }
+  ],
+  "table_space": "test01"
+}
