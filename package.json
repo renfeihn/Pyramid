@@ -9,7 +9,7 @@
     "supserver": "supervisor -w server ./server/server.js"
   },
   "author": "renfei",
-  "license": "ISC",
+  "license": "Apache License",
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
