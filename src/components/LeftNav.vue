@@ -1,11 +1,13 @@
 <template>
     <div>
         <ul class="nav nav-sidebar">
-            <li><a href="/tableList" @click="getAllTables()"><i class="fa fa-th-list"></i>&nbsp;tables</a>
+            <li><a href="/tableList"><i class="fa fa-th-list"></i>&nbsp;tables</a>
             </li>
 
             <li v-for="(table, index) in tables">
-                <a href="/index"><i class="fa fa-files-o"></i>&nbsp;{{table.name}}</a>
+                <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}">
+                    <a href="javascript:;"> {{table.name}}</a>
+                </router-link>
             </li>
 
             <li><a href="javascript:;" @click="getAllDomains()"><i class="fa fa-th-list"></i>&nbsp;domain</a>
@@ -39,39 +41,33 @@
         methods:{
             getAllTables(){
                 this.$http.get('/getAll/tables').then(function(res){
-                    console.log(res.status);
                     if(res.status == 200){
                        var re = res.body;
-                       //console.log('tables:  '+re);
                        this.tables = re;
                     }
                 },function(res){
-                    alert('请求table失败： '+ res.status);
+                    alert('LeftNav 页面 请求table失败： '+ res.status);
                 });
             },
             getAllDomains(){
                 this.$http.get('/getAll/domains').then(function(res){
-                    console.log(res.status);
                     if(res.status == 200){
                        var re = res.body;
-                       //console.log('domains:  '+re);
                        this.domains = re;
                     }
                 },function(res){
-                    alert('请求domain失败： '+ res.status);
+                    alert('LeftNav 页面 请求domain失败： '+ res.status);
                 });
             },
             getAllTableSpaces(){
                 this.$http.get('/getAll/table_spaces').then(function(res){
-                    console.log(res.status);
-                    console.log(res);
                     if(res.status == 200){
                        var re = res.body;
                        //console.log('tableSpaces:  '+re);
                        this.tableSpaces = re;
                     }
                 },function(res){
-                    alert('请求table space失败： '+ res.status);
+                    alert('LeftNav 页面 请求table space失败： '+ res.status);
                 });
             }
         },

@@ -12,7 +12,7 @@
       "M": "Y",
       "P": "Y",
       "comment": "主键ID",
-      "default": "",
+      "default": "'1'",
       "domain": "id"
     },
     {

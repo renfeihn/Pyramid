@@ -17,13 +17,27 @@ var n = 0;
 /**
  * 根据name(源文件目录名字)获取对象数据
  */
-router.get('/getAll/:name', function (req, res, next) {
+router.get('/getAll/:code', function (req, res, next) {
 
-    if (!req.params.name) {
+    if (!req.params.code) {
         return next(new Error('未提供查询条件'));
     }
 
-    var result = db.readFile(req.params.name);
+    var result = db.readFile(req.params.code);
+    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+    res.status(200).send(result).end();
+});
+
+/**
+ * 根据name(源文件目录名字)获取对象数据
+ */
+router.get('/getTable/:code', function (req, res, next) {
+
+    if (!req.params.code) {
+        return next(new Error('未提供查询条件'));
+    }
+
+    var result = db.getTable(req.params.code);
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
     res.status(200).send(result).end();
 });
@@ -34,6 +48,7 @@ router.get('/getAll/:name', function (req, res, next) {
  * 根据name获取数据
  */
 router.get('/test', function (req, res, next) {
+
     // 调用系统命令
     // exec('java -version', function (error, stdout, stderr) {
     //     console.log('标准输出： ' + stdout);
@@ -41,7 +56,7 @@ router.get('/test', function (req, res, next) {
     // });
 
     var result = db.getAllTables();
-    utils.generatorSql('ORACLE'.toLowerCase(), 'table'.toLowerCase());
+    utils.generatorSql('ORACLE', 'table');
     logger.writeDebug('JSON:   ' + JSON.stringify(result));
     res.status(200).send(result).end();
 });

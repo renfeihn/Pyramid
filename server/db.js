@@ -6,13 +6,19 @@ const table_name = "tables";
 const domain_name = "domains";
 const table_space_name = "table_spaces";
 
+// 源对象路径
+var sourcePath = 'data/source/';
+// 目标对象路径
+var targerPath = 'data/target/';
+
+
 /**
  * 读取目录下的所有文件
  * @param name 源文件目录
  * @returns {Array} 返回数组
  */
 const readFile = function (name) {
-    const path = 'data/source/' + name;
+    const path = sourcePath + name;
     logger.writeInfo('db 读取的 path:  ' + path);
     const objs = new Array();
     const files = fs.readdirSync(path);
@@ -40,7 +46,7 @@ const readFile = function (name) {
  * @param data 文件内容
  */
 const writeFile = function (type, name, data) {
-    const outPath = 'data/target/' + type + '/';
+    const outPath = targerPath + type + '/';
     checkAndCreateDir(outPath);
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
@@ -56,6 +62,10 @@ const writeFile = function (type, name, data) {
 
 };
 
+/**
+ * 检查文件夹路径是否存在，不存在则创建
+ * @param dir
+ */
 function checkAndCreateDir(dir) {
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
@@ -64,11 +74,25 @@ function checkAndCreateDir(dir) {
 
 
 /**
- * 获取所有表属性对象
+ * 获取根据code获取表对象
  */
-const getAllTables = function () {
-    const json = this.readFile(table_name);
-    return json;
+const getTable = function (code) {
+    const filePath = sourcePath + 'tables/' + code + '.json';
+
+    var table = {};
+    const statFile = fs.statSync(filePath);
+
+    logger.writeInfo(statFile.isFile())
+
+    if(statFile.isFile()){
+        logger.writeInfo(filePath + ' 文件存在');
+        table = JSON.parse(fs.readFileSync(filePath));
+    }else{
+        logger.writeErr(filePath + ' 文件不存在');
+    }
+
+
+    return table;
 };
 
 
@@ -103,7 +127,7 @@ const getDefaultTableSpace = function () {
 const Models = {
     readFile: readFile,
     writeFile: writeFile,
-    getAllTables: getAllTables,
+    getTable: getTable,
     getAllDomains: getAllDomains,
     getAllTableSpaces: getAllTableSpaces,
     getDefaultTableSpace: getDefaultTableSpace

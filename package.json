@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "node ./server/server",
-    "supserver": "supervisor -w server ./server/server.js"
+    "devc": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "dev": "supervisor -w server ./server/server.js",
+    "start": "node ./server/server"
   },
   "author": "renfei",
   "license": "Apache License",

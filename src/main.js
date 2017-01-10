@@ -3,7 +3,7 @@ import App from './App.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import frame from './components/Frame.vue';
-import index from './components/Index.vue';
+import tableInfo from './components/TableInfo.vue';
 import tableList from './components/TableList.vue';
 
 
@@ -15,8 +15,8 @@ const routes = [
     {path: '/', redirect: '/frame'},
     {path: '/frame', component:frame,
         children:[
-            {path:'/index', component:index, name:'index'},
-            {path:'/tableList', component:tableList, name:'tableList'}
+            {path:'/tableList', component:tableList, name:'tableList'},
+            {path:'/tableInfo', component:tableInfo, name:'tableInfo'}
         ]
     }
 ];

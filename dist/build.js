@@ -1159,7 +1159,7 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* template */
-var __vue_template__ = __webpack_require__(21)
+var __vue_template__ = __webpack_require__(20)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1200,13 +1200,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(15)
 
 /* script */
 __vue_exports__ = __webpack_require__(7)
 
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(21)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1248,13 +1248,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(15)
+__webpack_require__(16)
 
 /* script */
-__vue_exports__ = __webpack_require__(8)
+__vue_exports__ = __webpack_require__(9)
 
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(22)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1266,10 +1266,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\Index.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\TableInfo.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-5750e8d1"
+__vue_options__._scopeId = "data-v-d91185ca"
 
 /* hot reload */
 if (false) {(function () {
@@ -1278,12 +1278,12 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-5750e8d1", __vue_options__)
+    hotAPI.createRecord("data-v-d91185ca", __vue_options__)
   } else {
-    hotAPI.reload("data-v-5750e8d1", __vue_options__)
+    hotAPI.reload("data-v-d91185ca", __vue_options__)
   }
 })()}
-if (__vue_options__.functional) {console.error("[vue-loader] Index.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+if (__vue_options__.functional) {console.error("[vue-loader] TableInfo.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 
 module.exports = __vue_exports__
 
@@ -1427,52 +1427,56 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 exports.default = {
     data: function data() {
         return {
+            tables: [],
+            domains: [],
             tableSpaces: []
         };
     },
 
     methods: {
-        getAllTableSpaces: function getAllTableSpaces() {
-            this.$http.get('/getAll/table_space').then(function (res) {
-                console.log(res.status);
-                console.log(res);
+        getAllTables: function getAllTables() {
+            this.$http.get('/getAll/tables').then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
-                    this.tableSpaces = re.table_spaces;
+                    this.tables = re;
                 }
             }, function (res) {
-                alert('请求table space失败： ' + res.status);
+                alert('LeftNav 页面 请求table失败： ' + res.status);
+            });
+        },
+        getAllDomains: function getAllDomains() {
+            this.$http.get('/getAll/domains').then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.domains = re;
+                }
+            }, function (res) {
+                alert('LeftNav 页面 请求domain失败： ' + res.status);
+            });
+        },
+        getAllTableSpaces: function getAllTableSpaces() {
+            this.$http.get('/getAll/table_spaces').then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    //console.log('tableSpaces:  '+re);
+                    this.tableSpaces = re;
+                }
+            }, function (res) {
+                alert('LeftNav 页面 请求table space失败： ' + res.status);
             });
         }
     },
-    components: {},
     created: function created() {
+        this.getAllTables();
+        this.getAllDomains();
         this.getAllTableSpaces();
-    }
+    },
+
+    components: {}
 };
 
 /***/ },
@@ -1514,62 +1518,78 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 exports.default = {
     data: function data() {
         return {
             tables: [],
-            domains: [],
             tableSpaces: []
         };
     },
 
     methods: {
-        getAllTables: function getAllTables() {
-            this.$http.get('/getAll/tables').then(function (res) {
-                console.log(res.status);
+        getTable: function getTable(code) {
+            this.$http.get('/getTable/' + code).then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
-                    //console.log('tables:  '+re);
                     this.tables = re;
                 }
             }, function (res) {
-                alert('请求table失败： ' + res.status);
+                alert('请求 table ' + code + ' 失败： ' + res.status);
             });
         },
-        getAllDomains: function getAllDomains() {
-            this.$http.get('/getAll/domains').then(function (res) {
-                console.log(res.status);
-                if (res.status == 200) {
-                    var re = res.body;
-                    //console.log('domains:  '+re);
-                    this.domains = re;
-                }
-            }, function (res) {
-                alert('请求domain失败： ' + res.status);
-            });
-        },
-        getAllTableSpaces: function getAllTableSpaces() {
+        getTableSpaces: function getTableSpaces() {
             this.$http.get('/getAll/table_spaces').then(function (res) {
-                console.log(res.status);
-                console.log(res);
                 if (res.status == 200) {
                     var re = res.body;
-                    //console.log('tableSpaces:  '+re);
                     this.tableSpaces = re;
                 }
             }, function (res) {
-                alert('请求table space失败： ' + res.status);
+                alert('TableInfo 页面 请求 table space 失败： ' + res.status);
             });
         }
     },
+    components: {},
     created: function created() {
-        this.getAllTables();
-        this.getAllDomains();
-        this.getAllTableSpaces();
-    },
-
-    components: {}
+        this.tableCode = window.location.search.split('=')[1];
+        console.log('code:  ' + this.tableCode);
+        this.getTable(this.tableCode);
+        this.getTableSpaces();
+    }
 };
 
 /***/ },
@@ -1637,6 +1657,8 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
 
 
 exports.default = {
@@ -1649,14 +1671,12 @@ exports.default = {
     methods: {
         getAllTables: function getAllTables() {
             this.$http.get('/getAll/tables').then(function (res) {
-                console.log(res.status);
-                console.log(res);
                 if (res.status == 200) {
                     var re = res.body;
                     this.tables = re;
                 }
             }, function (res) {
-                alert('请求 table 失败： ' + res.status);
+                alert('TableList 页面 请求 table 失败： ' + res.status);
             });
         }
     },
@@ -1739,7 +1759,7 @@ var __vue_styles__ = {}
 __webpack_require__(14)
 
 /* script */
-__vue_exports__ = __webpack_require__(9)
+__vue_exports__ = __webpack_require__(8)
 
 /* template */
 var __vue_template__ = __webpack_require__(19)
@@ -1861,7 +1881,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       domProps: {
         "value": tableSpace.code.toString()
       }
-    }, [_vm._v(_vm._s(tableSpace.code))])
+    }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
   })], 2)]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
@@ -1903,25 +1923,21 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('ul', {
     staticClass: "nav nav-sidebar"
-  }, [_c('li', [_c('a', {
-    attrs: {
-      "href": "/tableList"
-    },
-    on: {
-      "click": function($event) {
-        _vm.getAllTables()
-      }
-    }
-  }, [_c('i', {
-    staticClass: "fa fa-th-list"
-  }), _vm._v(" tables")])]), _vm._v(" "), _vm._l((_vm.tables), function(table, index) {
-    return _c('li', [_c('a', {
+  }, [_vm._m(0), _vm._v(" "), _vm._l((_vm.tables), function(table, index) {
+    return _c('li', [_c('router-link', {
       attrs: {
-        "href": "/index"
+        "to": {
+          path: '/tableInfo',
+          query: {
+            tableCode: table.name
+          }
+        }
       }
-    }, [_c('i', {
-      staticClass: "fa fa-files-o"
-    }), _vm._v(" " + _vm._s(table.name))])])
+    }, [_c('a', {
+      attrs: {
+        "href": "javascript:;"
+      }
+    }, [_vm._v(" " + _vm._s(table.name))])])], 1)
   }), _vm._v(" "), _c('li', [_c('a', {
     attrs: {
       "href": "javascript:;"
@@ -1961,7 +1977,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "fa fa-files-o"
     }), _vm._v(" " + _vm._s(tableSpace.code))])])
   })], 2)])
-},staticRenderFns: []}
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('li', [_c('a', {
+    attrs: {
+      "href": "/tableList"
+    }
+  }, [_c('i', {
+    staticClass: "fa fa-th-list"
+  }), _vm._v(" tables")])])
+}]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -1971,112 +1995,6 @@ if (false) {
 
 /***/ },
 /* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', {
-    staticClass: "sub-header"
-  }, [_vm._v("工作区域 ")]), _vm._v(" "), _c('form', {
-    staticClass: "form-inline form-filter"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表空间")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.category),
-      expression: "category"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": function($event) {
-        _vm.category = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }
-    }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    },
-    domProps: {
-      "value": ""
-    }
-  }, [_vm._v("- 选择表空间 -")]), _vm._v(" "), _vm._l((_vm.tableSpaces), function(tableSpace, index) {
-    return _c('option', {
-      domProps: {
-        "value": tableSpace.code.toString()
-      }
-    }, [_vm._v(_vm._s(tableSpace.code))])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表中文名称")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.keyword),
-      expression: "keyword"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.keyword)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.keyword = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表英文名称")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.keyword),
-      expression: "keyword"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.keyword)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.keyword = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {}
-    }
-  }, [_vm._v("保存")])]), _vm._v(" "), _vm._m(0)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "table-responsive articleList"
-  }, [_c('table', {
-    staticClass: "table table-striped"
-  }, [_c('thead', [_c('tr', [_c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("defaule")]), _vm._v(" "), _c('th', [_vm._v("domain")]), _vm._v(" "), _c('th', [_vm._v("操作")])])]), _vm._v(" "), _c('tbody')])])
-}]}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-5750e8d1", module.exports)
-  }
-}
-
-/***/ },
-/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2094,7 +2012,7 @@ if (false) {
 }
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2150,12 +2068,120 @@ if (false) {
 }
 
 /***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', {
+    staticClass: "sub-header"
+  }, [_vm._v("工作区域 ")]), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表空间")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.category),
+      expression: "category"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        _vm.category = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, [_c('option', {
+    attrs: {
+      "value": ""
+    },
+    domProps: {
+      "value": ""
+    }
+  }, [_vm._v("- 选择表空间 -")]), _vm._v(" "), _vm._l((_vm.tableSpaces), function(tableSpace, index) {
+    return _c('option', {
+      domProps: {
+        "value": tableSpace.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表中文名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.comment),
+      expression: "comment"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.comment = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表英文名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.code),
+      expression: "code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {}
+    }
+  }, [_vm._v("保存")])]), _vm._v(" "), _c('div', {
+    staticClass: "table-responsive articleList"
+  }, [_c('table', {
+    staticClass: "table table-striped"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tables.attr), function(table, index) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(table.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.data_type))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.lengths))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.precision))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.M))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.P))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.default))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.domain))])])
+  }))])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
+}]}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-d91185ca", module.exports)
+  }
+}
+
+/***/ },
 /* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _Index=__webpack_require__(5);var _Index2=_interopRequireDefault(_Index);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);//routes config
-var routes=[{path:'/',redirect:'/frame'},{path:'/frame',component:_Frame2.default,children:[{path:'/index',component:_Index2.default,name:'index'},{path:'/tableList',component:_TableList2.default,name:'tableList'}]}];//genartor VueRouter object
+'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(5);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);//routes config
+var routes=[{path:'/',redirect:'/frame'},{path:'/frame',component:_Frame2.default,children:[{path:'/tableList',component:_TableList2.default,name:'tableList'},{path:'/tableInfo',component:_TableInfo2.default,name:'tableInfo'}]}];//genartor VueRouter object
 var router=new _vueRouter2.default({mode:'history',routes:routes});//bind and render
 var app=new _vue2.default({router:router,render:function render(h){return h(_App2.default);}}).$mount('#app');
 

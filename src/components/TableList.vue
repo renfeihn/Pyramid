@@ -5,17 +5,19 @@
 
             <div class="form-group">
                 <label>表中文名称</label>
-                <input class="form-control" v-model="keyword" type="text" />
+                <input class="form-control" v-model="keyword" type="text"/>
             </div>
             <div class="form-group">
                 <label>表英文名称</label>
-                <input class="form-control" v-model="keyword" type="text" />
+                <input class="form-control" v-model="keyword" type="text"/>
             </div>
             <div class="form-group">
                 <label>表空间</label>
                 <select class="form-control" v-model="category">
                     <option value="">- 选择表空间 -</option>
-                    <option v-for="(tableSpace, index) in tableSpaces" :value="tableSpace.code.toString()">{{tableSpace.code}}</option>
+                    <option v-for="(tableSpace, index) in tableSpaces" :value="tableSpace.code.toString()">
+                        {{tableSpace.code}}
+                    </option>
                 </select>
             </div>
             <a class="btn btn-info" @click="">查询</a>
@@ -39,8 +41,8 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <a class="btn btn-sm btn-success" >查看</a>
-                        <a class="btn btn-sm btn-info" >编辑</a>
+                        <a class="btn btn-sm btn-success">查看</a>
+                        <a class="btn btn-sm btn-info">编辑</a>
                         <a href="javascript:;" class="btn btn-sm btn-danger" @click="">删除</a>
                     </td>
                 </tr>
@@ -64,14 +66,12 @@ export default{
     methods:{
         getAllTables(){
             this.$http.get('/getAll/tables').then(function(res){
-                console.log(res.status);
-                console.log(res);
                 if(res.status == 200){
                    var re = res.body;
                    this.tables = re;
                 }
             },function(res){
-                alert('请求 table 失败： '+ res.status);
+                alert('TableList 页面 请求 table 失败： '+ res.status);
             });
         }
 
@@ -83,4 +83,5 @@ export default{
         this.getAllTables();
     }
 }
+
 </script>

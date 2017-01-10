@@ -14,6 +14,8 @@ const ejs = require('ejs');
  * @param type 脚本类型eg: table  domain  table_space
  */
 const generatorSql = function (db_type, type) {
+    db_type = db_type.toLowerCase();
+    type = type.toLowerCase();
     const path = 'server/template/table_' + db_type + '.ejs';
     const str = fs.readFileSync(path, 'utf8');
     const datas = db.readFile("tables");
