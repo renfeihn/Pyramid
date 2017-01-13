@@ -1,4 +1,23 @@
 <%
+function isNotNull(str) {
+    if (str != null && str != undefined && str != '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function StringBuffer() {
+    this._strings = new Array();
+}
+StringBuffer.prototype.append = function (str) {
+    this._strings.push(str);
+    return this;// 字符串拼接
+}
+StringBuffer.prototype.toString = function () {
+    return this._strings.join("");
+}
+
 var sql = new StringBuffer();
 // 换行
 var nextLine = '\n';
