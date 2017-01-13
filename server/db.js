@@ -54,10 +54,11 @@ const writeFile = function (type, name, data) {
     // appendFile，如果文件不存在，会自动创建新文件
     // 如果用writeFile，那么会删除旧文件，直接写新文件
     fs.writeFile(outFile, arr, function (err) {
-        if (err)
+        if (err) {
             logger.writeErr('写入 ' + type + '  ' + name + '.sql 文件错误:  ' + err);
-        else
+        } else {
             logger.writeInfo('写入 ' + type + '  ' + name + '.sql 文件成功');
+        }
     });
 
 };
@@ -84,10 +85,10 @@ const getTable = function (code) {
 
     logger.writeInfo(statFile.isFile())
 
-    if(statFile.isFile()){
+    if (statFile.isFile()) {
         logger.writeInfo(filePath + ' 文件存在');
         table = JSON.parse(fs.readFileSync(filePath));
-    }else{
+    } else {
         logger.writeErr(filePath + ' 文件不存在');
     }
 

@@ -1,7 +1,6 @@
 /**
  * 生成建表语句
  */
-
 const fs = require("fs");
 const logger = require("./../log/logHelper").helper;
 const db = require('./../db');
