@@ -15,7 +15,7 @@ var targerPath = 'data/target/';
 /**
  * 读取目录下的所有文件
  * @param name 源文件目录
- * @returns {Array} 返回数组
+ * @returns [Array] 返回数组
  */
 const readFile = function (name) {
     const path = sourcePath + name;
@@ -87,18 +87,18 @@ const writeSQLFile = function (type, name, data) {
 
 /**
  * 写文件
- * @param type 目标文件夹 (table、table_space)
- * @param name 文件名
+ * @param filePath 文件路径
  * @param suffix 后缀
  * @param data 写入的数据
  */
-function writeFile(type, name, suffix, data) {
+function writeFile(filePath, suffix, data) {
+    const arr = iconv.encode(data, 'gbk');
     // 如果用writeFile，那么会删除旧文件，直接写新文件
-    fs.writeFile(outFile, arr, function (err) {
+    fs.writeFile(filePath, arr, function (err) {
         if (err) {
-            logger.writeErr('写入 ' + type + '  ' + name + '.sql 文件错误:  ' + err);
+            logger.writeErr('写入 ' + filePath + ' 文件错误:  ' + err);
         } else {
-            logger.writeInfo('写入 ' + type + '  ' + name + '.sql 文件成功');
+            logger.writeInfo('写入 ' + filePath + ' 文件成功');
         }
     });
 }
