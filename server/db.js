@@ -50,7 +50,7 @@ const writeSourceFile = function (type, name, data) {
     checkAndCreateDir(outPath);
     const outFile = outPath + name + '.json';
     // 把中文转换成字节数组
-    var arr = iconv.encode(data, 'gbk');
+    const arr = iconv.encode(data, 'gbk');
     // 如果用writeFile，那么会删除旧文件，直接写新文件
     fs.writeFile(outFile, arr, function (err) {
         if (err) {
@@ -73,7 +73,7 @@ const writeSQLFile = function (type, name, data) {
     checkAndCreateDir(outPath);
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
-    var arr = iconv.encode(data, 'gbk');
+    const arr = iconv.encode(data, 'gbk');
     // 如果用writeFile，那么会删除旧文件，直接写新文件
     fs.writeFile(outFile, arr, function (err) {
         if (err) {
