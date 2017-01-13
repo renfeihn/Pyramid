@@ -74,6 +74,25 @@ const writeSQLFile = function (type, name, data) {
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
     const arr = iconv.encode(data, 'gbk');
+    // 异步写文件 writeFile，如果文件不存在，则创建；如果文件已存在，那么内容会被覆盖
+    // writeFileSync 文件同步写接口，是fs.writeFile的同步版本 fs.writeFileSync(filename, data, [options])
+    fs.writeFile(outFile, arr, function (err) {
+        if (err) {
+            logger.writeErr('写入 ' + type + '  ' + name + '.sql 文件错误:  ' + err);
+        } else {
+            logger.writeInfo('写入 ' + type + '  ' + name + '.sql 文件成功');
+        }
+    });
+};
+
+/**
+ * 写文件
+ * @param type 目标文件夹 (table、table_space)
+ * @param name 文件名
+ * @param suffix 后缀
+ * @param data 写入的数据
+ */
+function writeFile(type, name, suffix, data) {
     // 如果用writeFile，那么会删除旧文件，直接写新文件
     fs.writeFile(outFile, arr, function (err) {
         if (err) {
@@ -82,8 +101,8 @@ const writeSQLFile = function (type, name, data) {
             logger.writeInfo('写入 ' + type + '  ' + name + '.sql 文件成功');
         }
     });
+}
 
-};
 
 /**
  * 检查文件夹路径是否存在，不存在则创建
