@@ -33,7 +33,7 @@ const generatorSql = function (db_type, type) {
         });
 
         // 写入到指定路径
-        db.writeFile(type, data.code, ret);
+        db.writeSQLFile(type, data.code, ret);
         logger.writeInfo(data.code + ' sql： ' + ret)
     });
 };
