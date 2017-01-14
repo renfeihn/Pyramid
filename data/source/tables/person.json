@@ -6,25 +6,25 @@
     {
       "name": "id",
       "code": "id",
-      "dataType": "Variable characters (%n)",
+      "dataType": "Variable Characters",
       "lengths": 20,
       "precision": 0,
       "M": "Y",
       "P": "N",
       "comment": "人员ID",
-      "default": "",
+      "defaults": "",
       "domain": "person_id"
     },
     {
       "name": "name",
       "code": "name",
-      "dataType": "Variable characters (%n)",
+      "dataType": "Variable Characters",
       "lengths": 40,
       "precision": 0,
       "M": "Y",
       "P": "N",
       "comment": "姓名",
-      "default": "",
+      "defaults": "",
       "domain": ""
     },
     {
@@ -36,7 +36,7 @@
       "M": "Y",
       "P": "N",
       "comment": "年龄",
-      "default": "",
+      "defaults": "",
       "domain": ""
     }
   ],

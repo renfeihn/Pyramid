@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 23);
+/******/ 	return __webpack_require__(__webpack_require__.s = 25);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -319,7 +319,7 @@ if(fallback&&this.checkFallback()){return;}ensureSlash();}if(History)HashHistory
 // consistent across browsers - Firefox will pre-decode it!
 var href=window.location.href;var index=href.indexOf('#');return index===-1?'':href.slice(index+1);}function pushHash(path){window.location.hash=path;}function replaceHash(path){var i=window.location.href.indexOf('#');window.location.replace(window.location.href.slice(0,i>=0?i:0)+'#'+path);}/*  */var AbstractHistory=function(History){function AbstractHistory(router){History.call(this,router);this.stack=[];this.index=-1;}if(History)AbstractHistory.__proto__=History;AbstractHistory.prototype=Object.create(History&&History.prototype);AbstractHistory.prototype.constructor=AbstractHistory;AbstractHistory.prototype.push=function push(location){var this$1=this;this.transitionTo(location,function(route){this$1.stack=this$1.stack.slice(0,this$1.index+1).concat(route);this$1.index++;});};AbstractHistory.prototype.replace=function replace(location){var this$1=this;this.transitionTo(location,function(route){this$1.stack=this$1.stack.slice(0,this$1.index).concat(route);});};AbstractHistory.prototype.go=function go(n){var this$1=this;var targetIndex=this.index+n;if(targetIndex<0||targetIndex>=this.stack.length){return;}var route=this.stack[targetIndex];this.confirmTransition(route,function(){this$1.index=targetIndex;this$1.updateRoute(route);});};AbstractHistory.prototype.ensureURL=function ensureURL(){// noop
 };return AbstractHistory;}(History);/*  */var VueRouter=function VueRouter(options){if(options===void 0)options={};this.app=null;this.options=options;this.beforeHooks=[];this.afterHooks=[];this.match=createMatcher(options.routes||[]);var mode=options.mode||'hash';this.fallback=mode==='history'&&!supportsHistory;if(this.fallback){mode='hash';}if(!inBrowser){mode='abstract';}this.mode=mode;switch(mode){case'history':this.history=new HTML5History(this,options.base);break;case'hash':this.history=new HashHistory(this,options.base,this.fallback);break;case'abstract':this.history=new AbstractHistory(this);break;default:process.env.NODE_ENV!=='production'&&assert(false,"invalid mode: "+mode);}};var prototypeAccessors={currentRoute:{}};prototypeAccessors.currentRoute.get=function(){return this.history&&this.history.current;};VueRouter.prototype.init=function init(app/* Vue component instance */){var this$1=this;process.env.NODE_ENV!=='production'&&assert(install.installed,"not installed. Make sure to call `Vue.use(VueRouter)` "+"before creating root instance.");this.app=app;var history=this.history;if(history instanceof HTML5History){history.transitionTo(getLocation(history.base));}else if(history instanceof HashHistory){var setupHashListener=function setupHashListener(){window.addEventListener('hashchange',function(){history.onHashChange();});};history.transitionTo(getHash(),setupHashListener,setupHashListener);}history.listen(function(route){this$1.app._route=route;});};VueRouter.prototype.beforeEach=function beforeEach(fn){this.beforeHooks.push(fn);};VueRouter.prototype.afterEach=function afterEach(fn){this.afterHooks.push(fn);};VueRouter.prototype.push=function push(location){this.history.push(location);};VueRouter.prototype.replace=function replace(location){this.history.replace(location);};VueRouter.prototype.go=function go(n){this.history.go(n);};VueRouter.prototype.back=function back(){this.go(-1);};VueRouter.prototype.forward=function forward(){this.go(1);};VueRouter.prototype.getMatchedComponents=function getMatchedComponents(to){var route=to?this.resolve(to).resolved:this.currentRoute;if(!route){return[];}return[].concat.apply([],route.matched.map(function(m){return Object.keys(m.components).map(function(key){return m.components[key];});}));};VueRouter.prototype.resolve=function resolve(to,current,append){var normalizedTo=normalizeLocation(to,current||this.history.current,append);var resolved=this.match(normalizedTo,current);var fullPath=resolved.redirectedFrom||resolved.fullPath;var base=this.history.base;var href=createHref(base,fullPath,this.mode);return{normalizedTo:normalizedTo,resolved:resolved,href:href};};Object.defineProperties(VueRouter.prototype,prototypeAccessors);function createHref(base,fullPath,mode){var path=mode==='hash'?'#'+fullPath:fullPath;return base?cleanPath(base+'/'+path):path;}VueRouter.install=install;if(inBrowser&&window.Vue){window.Vue.use(VueRouter);}module.exports=VueRouter;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
 
 /***/ },
 /* 2 */
@@ -1149,17 +1149,24 @@ if(!options.render){var template=options.template;if(template){if(typeof templat
  * Get outerHTML of elements, taking care
  * of SVG elements in IE as well.
  */function getOuterHTML(el){if(el.outerHTML){return el.outerHTML;}else{var container=document.createElement('div');container.appendChild(el.cloneNode(true));return container.innerHTML;}}Vue$3.compile=compileToFunctions;return Vue$3;});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
 /* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};(function(){var VueEditable={install:function install(Vue){Vue.prototype.$editable=function(e,callback){var target=e.target,value=target.innerText;target.innerHTML="<input type='text' value='"+value+"' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);};}};if(( false?"undefined":_typeof(exports))=="object"){module.exports=VueEditable;}else if(true){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function(){return VueEditable;}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if(window.Vue){window.VueEditable=VueEditable;Vue.use(VueEditable);};})();
+
+/***/ },
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(22)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1193,20 +1200,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 4 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(15)
+__webpack_require__(17)
 
 /* script */
-__vue_exports__ = __webpack_require__(7)
+__vue_exports__ = __webpack_require__(8)
 
 /* template */
-var __vue_template__ = __webpack_require__(21)
+var __vue_template__ = __webpack_require__(23)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1241,20 +1248,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 5 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(18)
 
 /* script */
-__vue_exports__ = __webpack_require__(9)
+__vue_exports__ = __webpack_require__(10)
 
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(24)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1289,20 +1296,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(13)
+__webpack_require__(15)
 
 /* script */
-__vue_exports__ = __webpack_require__(10)
+__vue_exports__ = __webpack_require__(11)
 
 /* template */
-var __vue_template__ = __webpack_require__(18)
+var __vue_template__ = __webpack_require__(20)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1337,7 +1344,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1347,7 +1354,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _LeftNav = __webpack_require__(17);
+var _LeftNav = __webpack_require__(19);
 
 var _LeftNav2 = _interopRequireDefault(_LeftNav);
 
@@ -1387,7 +1394,7 @@ exports.default = {
 //
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1396,8 +1403,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
 //
 //
 //
@@ -1471,16 +1476,236 @@ exports.default = {
         }
     },
     created: function created() {
-        this.getAllTables();
-        this.getAllDomains();
-        this.getAllTableSpaces();
+        //this.getAllTables();
+        //this.getAllDomains();
+        //this.getAllTableSpaces();
     },
 
     components: {}
 };
 
 /***/ },
-/* 9 */
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _editable = __webpack_require__(14);
+
+var _editable2 = _interopRequireDefault(_editable);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'Date', 'Variable Characters', 'Double']; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+exports.default = {
+    data: function data() {
+        return {
+            table: [],
+            // table 中 attr 的属性
+            tableAttr: [],
+            // 所有domain域
+            domains: [],
+            // 所有表空间
+            tableSpaces: [],
+            // 选中行的索引
+            selectRowIndex: -1
+        };
+    },
+
+    methods: {
+        getTable: function getTable(code) {
+            this.$http.get('/getTable/' + code).then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.table = re;
+                    if (null != re && re.attr instanceof Array) {
+                        this.tableAttr = this.table.attr;
+                        this.selectRowIndex = this.tableAttr.length;
+                    } else {
+                        this.tableAttr = null;
+                    }
+                }
+            }, function (res) {
+                alert('TableInfo 页面 请求 table ' + code + ' 失败： ' + res.status);
+            });
+        },
+        getAllDomains: function getAllDomains() {
+            this.$http.get('/getAll/domains').then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.domains = re;
+                }
+            }, function (res) {
+                alert('TableInfo 页面 请求domain失败： ' + res.status);
+            });
+        },
+        getTableSpaces: function getTableSpaces() {
+            this.$http.get('/getAll/table_spaces').then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.tableSpaces = re;
+                }
+            }, function (res) {
+                alert('TableInfo 页面 请求 table space 失败： ' + res.status);
+            });
+        },
+        selectRow: function selectRow(e, index) {
+            // 设置高亮
+            //var tr = e.target;
+            //tr.setAttribute("style", "background-color: #f5f5f5");
+            this.selectRowIndex = index;
+        },
+        addRow: function addRow(i) {
+            if (this.selectRowIndex != -1) {
+                this.tableAttr.splice(this.selectRowIndex + i, 0, new Object());
+            } else {
+                this.tableAttr.push(new Object());
+            }
+        },
+        deleteRow: function deleteRow() {
+            if (this.selectRowIndex != -1) {
+                this.tableAttr.splice(this.selectRowIndex, 1);
+            }
+        },
+
+        // 普通的input
+        editInput: function editInput(e, field, data, index) {
+            var that = this;
+            _editable2.default.editInput(e, function (value) {
+                // 如果数据修改 更新到 model 中
+                that.tableAttr[index][field] = value;
+            });
+        },
+
+        // dataType
+        editDataType: function editDataType(e, field, data, index) {
+            var that = this;
+            _editable2.default.editSelect(e, data_types, function (value) {
+                //如果数据没有被修改这个回调方法不会执行
+                that.tableAttr[index][field] = value;
+            });
+        },
+
+        // domain
+        editDomain: function editDomain(e, field, data, index) {
+            var that = this;
+            if (null != that.domains && that.domains instanceof Array) {
+                var options = new Array();
+                for (var i in that.domains) {
+                    options.push(that.domains[i].code);
+                }
+                if (options.length > 0) {
+                    _editable2.default.editSelect(e, options, function (value) {
+                        // 如果数据没有被修改这个回调方法不会执行
+                        // 如果数据修改，则用domain的属性覆盖改行的数据
+                        for (var i in that.domains) {
+                            if (value == that.domains[i].code) {
+                                that.tableAttr[index].name = that.domains[i].name;
+                                that.tableAttr[index].code = that.domains[i].code;
+                                that.tableAttr[index].data_type = that.domains[i].data_type;
+                                that.tableAttr[index].length = that.domains[i].length;
+                                that.tableAttr[index].precision = that.domains[i].precision;
+                                that.tableAttr[index].comment = that.domains[i].comment;
+                                that.tableAttr[index].defaults = that.domains[i].defaults;
+                                // 移除事件不可修改
+                            } else {
+                                    // 添加事件
+                                }
+                        }
+                    });
+                }
+            }
+        } // domain end
+
+    },
+    components: {},
+    created: function created() {
+        this.tableCode = window.location.search.split('=')[1];
+
+        this.getTable(this.tableCode);
+        this.getAllDomains();
+        this.getTableSpaces();
+    }
+};
+
+/***/ },
+/* 11 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1489,8 +1714,6 @@ exports.default = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-//
-//
 //
 //
 //
@@ -1562,16 +1785,6 @@ exports.default = {
     },
 
     methods: {
-        getTable: function getTable(code) {
-            this.$http.get('/getTable/' + code).then(function (res) {
-                if (res.status == 200) {
-                    var re = res.body;
-                    this.tables = re;
-                }
-            }, function (res) {
-                alert('请求 table ' + code + ' 失败： ' + res.status);
-            });
-        },
         getTableSpaces: function getTableSpaces() {
             this.$http.get('/getAll/table_spaces').then(function (res) {
                 if (res.status == 200) {
@@ -1579,98 +1792,12 @@ exports.default = {
                     this.tableSpaces = re;
                 }
             }, function (res) {
-                alert('TableInfo 页面 请求 table space 失败： ' + res.status);
+                alert('TableList 页面 请求 table space 失败： ' + res.status);
             });
-        }
-    },
-    components: {},
-    created: function created() {
-        this.tableCode = window.location.search.split('=')[1];
-        console.log('code:  ' + this.tableCode);
-        this.getTable(this.tableCode);
-        this.getTableSpaces();
-    }
-};
-
-/***/ },
-/* 10 */
-/***/ function(module, exports) {
-
-"use strict";
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-exports.default = {
-    data: function data() {
-        return {
-            tables: []
-        };
-    },
-
-    methods: {
-        getAllTables: function getAllTables() {
-            this.$http.get('/getAll/tables').then(function (res) {
+        },
+        getAllTables: function getAllTables(page, code, comment, tableSpace) {
+            var API = '/getAll/tables?page=' + page + '&code=' + code + '&comment=' + comment + '&tableSpace=' + tableSpace;
+            this.$http.get(API).then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
                     this.tables = re;
@@ -1678,16 +1805,18 @@ exports.default = {
             }, function (res) {
                 alert('TableList 页面 请求 table 失败： ' + res.status);
             });
-        }
+        },
+        getSql: function getSql() {}
     },
     components: {},
     created: function created() {
+        this.getTableSpaces();
         this.getAllTables();
     }
 };
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1700,7 +1829,7 @@ if((typeof window==="undefined"?"undefined":_typeof(window))==="object")g=window
 module.exports=g;
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1725,16 +1854,14 @@ function Item(fun,array){this.fun=fun;this.array=array;}Item.prototype.run=funct
 process.versions={};function noop(){}process.on=noop;process.addListener=noop;process.once=noop;process.off=noop;process.removeListener=noop;process.removeAllListeners=noop;process.emit=noop;process.binding=function(name){throw new Error('process.binding is not supported');};process.cwd=function(){return'/';};process.chdir=function(dir){throw new Error('process.chdir is not supported');};process.umask=function(){return 0;};
 
 /***/ },
-/* 13 */
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
 /* 14 */
 /***/ function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+"use strict";(function(){// 普通文本框
+function editInput(e,callback){var target=e.target,value=target.innerText;target.innerHTML="<input type='text' value='"+value+"' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}// 下拉框
+function editSelect(e,options,callback){var target=e.target,value=target.innerText;// target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";
+var selectHTML='';selectHTML+="<select id='_editable'>";for(var i in options){if(value==options[i]){selectHTML+="<option value='"+options[i]+"' selected='selected'>"+options[i]+"</option>";}else{selectHTML+="<option value='"+options[i]+"'>"+options[i]+"</option>";}}selectHTML+="</select>";target.innerHTML=selectHTML;var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}var Models={editInput:editInput,editSelect:editSelect};module.exports=Models;})();
 
 /***/ },
 /* 15 */
@@ -1750,19 +1877,31 @@ process.versions={};function noop(){}process.on=noop;process.addListener=noop;pr
 
 /***/ },
 /* 17 */
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(14)
+__webpack_require__(16)
 
 /* script */
-__vue_exports__ = __webpack_require__(8)
+__vue_exports__ = __webpack_require__(9)
 
 /* template */
-var __vue_template__ = __webpack_require__(19)
+var __vue_template__ = __webpack_require__(21)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1797,7 +1936,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 18 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1807,46 +1946,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("表中文名称")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.keyword),
-      expression: "keyword"
+      value: (_vm.code),
+      expression: "code"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.keyword)
+      "value": _vm._s(_vm.code)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.keyword = $event.target.value
+        _vm.code = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("表英文名称")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("表中文描述")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.keyword),
-      expression: "keyword"
+      value: (_vm.comment),
+      expression: "comment"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.keyword)
+      "value": _vm._s(_vm.comment)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.keyword = $event.target.value
+        _vm.comment = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -1855,13 +1994,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.category),
-      expression: "category"
+      value: (_vm.tableSpace),
+      expression: "tableSpace"
     }],
     staticClass: "form-control",
     on: {
       "change": function($event) {
-        _vm.category = Array.prototype.filter.call($event.target.options, function(o) {
+        _vm.tableSpace = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
@@ -1887,16 +2026,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {}
     }
-  }, [_vm._v("查询")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    attrs: {
+      "href": "/tableInfo/code="
+    }
+  }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {}
+    }
+  }, [_vm._v("生成sql")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
     staticClass: "table table-striped"
   }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tables), function(table, index) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(table.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.table_space))]), _vm._v(" "), _c('td', [_c('a', {
-      staticClass: "btn btn-sm btn-success"
+    return _c('tr', [_c('td', [_vm._v(_vm._s(table.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.table_space))]), _vm._v(" "), _c('td', [_c('router-link', {
+      staticClass: "btn btn-sm btn-success",
+      attrs: {
+        "to": {
+          path: '/tableInfo',
+          query: {
+            tableCode: table.name
+          }
+        }
+      }
     }, [_vm._v("查看")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-sm btn-info"
-    }, [_vm._v("编辑")]), _vm._v(" "), _c('a', {
       staticClass: "btn btn-sm btn-danger",
       attrs: {
         "href": "javascript:;"
@@ -1904,7 +2059,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       on: {
         "click": function($event) {}
       }
-    }, [_vm._v("删除")])])])
+    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-sm btn-info"
+    }, [_vm._v("脚本")])], 1)])
   }))])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("table space")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
@@ -1917,7 +2074,7 @@ if (false) {
 }
 
 /***/ },
-/* 19 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -1933,11 +2090,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           }
         }
       }
-    }, [_c('a', {
-      attrs: {
-        "href": "javascript:;"
-      }
-    }, [_vm._v(" " + _vm._s(table.name))])])], 1)
+    }, [_vm._v(" " + _vm._s(table.name))])], 1)
   }), _vm._v(" "), _c('li', [_c('a', {
     attrs: {
       "href": "javascript:;"
@@ -1994,7 +2147,7 @@ if (false) {
 }
 
 /***/ },
-/* 20 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2012,7 +2165,7 @@ if (false) {
 }
 
 /***/ },
-/* 21 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2068,7 +2221,7 @@ if (false) {
 }
 
 /***/ },
-/* 22 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2082,13 +2235,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.category),
-      expression: "category"
+      value: (_vm.table.table_space),
+      expression: "table.table_space"
     }],
     staticClass: "form-control",
     on: {
       "change": function($event) {
-        _vm.category = Array.prototype.filter.call($event.target.options, function(o) {
+        _vm.table.table_space = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
@@ -2111,46 +2264,46 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
   })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("表中文名称")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.comment),
-      expression: "comment"
+      value: (_vm.table.code),
+      expression: "table.code"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.comment)
+      "value": _vm._s(_vm.table.code)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.comment = $event.target.value
+        _vm.table.code = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("表英文名称")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("表中文描述")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.code),
-      expression: "code"
+      value: (_vm.table.comment),
+      expression: "table.comment"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.code)
+      "value": _vm._s(_vm.table.comment)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.code = $event.target.value
+        _vm.table.comment = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('a', {
@@ -2158,15 +2311,104 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": function($event) {}
     }
-  }, [_vm._v("保存")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("保存")])]), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('br'), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.addRow(0);
+      }
+    }
+  }, [_vm._v("add before")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.addRow(1);
+      }
+    }
+  }, [_vm._v("add after")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.deleteRow();
+      }
+    }
+  }, [_vm._v("remove")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
     staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tables.attr), function(table, index) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(table.name))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.data_type))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.lengths))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.precision))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.M))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.P))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.default))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.domain))])])
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tableAttr), function(tb, index) {
+    return _c('tr', {
+      on: {
+        "click": function($event) {
+          _vm.selectRow($event, index);
+        }
+      }
+    }, [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'name', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.name))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'code', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.code))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editDataType($event, 'dataType', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.dataType))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'lengths', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.lengths))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'precision', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.precision))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'M', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.M))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'P', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.P))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editable($event, 'comment', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.comment))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editInput($event, 'defaults', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.defaults))]), _vm._v(" "), _c('td', {
+      on: {
+        "dblclick": function($event) {
+          _vm.editDomain($event, 'domain', tb, index)
+        }
+      }
+    }, [_vm._v(_vm._s(tb.domain))])])
   }))])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("索引")]), _vm._v(" "), _c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
 }]}
 if (false) {
   module.hot.accept()
@@ -2176,11 +2418,11 @@ if (false) {
 }
 
 /***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(5);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);//routes config
+'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(4);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(5);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(6);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(7);var _TableList2=_interopRequireDefault(_TableList);var _vueEditable=__webpack_require__(3);var _vueEditable2=_interopRequireDefault(_vueEditable);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);_vue2.default.use(_vueEditable2.default);//routes config
 var routes=[{path:'/',redirect:'/frame'},{path:'/frame',component:_Frame2.default,children:[{path:'/tableList',component:_TableList2.default,name:'tableList'},{path:'/tableInfo',component:_TableInfo2.default,name:'tableInfo'}]}];//genartor VueRouter object
 var router=new _vueRouter2.default({mode:'history',routes:routes});//bind and render
 var app=new _vue2.default({router:router,render:function render(h){return h(_App2.default);}}).$mount('#app');

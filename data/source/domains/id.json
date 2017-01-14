@@ -5,5 +5,5 @@
   "length": 32,
   "precision": 0,
   "comment": "主键ID",
-  "default": ""
+  "defaults": ""
 }

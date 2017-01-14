@@ -4,23 +4,26 @@
         <form class="form-inline form-filter">
 
             <div class="form-group">
-                <label>表中文名称</label>
-                <input class="form-control" v-model="keyword" type="text"/>
+                <label>表名称</label>
+                <input class="form-control" v-model="code" type="text"/>
             </div>
             <div class="form-group">
-                <label>表英文名称</label>
-                <input class="form-control" v-model="keyword" type="text"/>
+                <label>表中文描述</label>
+                <input class="form-control" v-model="comment" type="text"/>
             </div>
             <div class="form-group">
                 <label>表空间</label>
-                <select class="form-control" v-model="category">
+                <select class="form-control" v-model="tableSpace">
                     <option value="">- 选择表空间 -</option>
                     <option v-for="(tableSpace, index) in tableSpaces" :value="tableSpace.code.toString()">
                         {{tableSpace.code}}
                     </option>
                 </select>
             </div>
-            <a class="btn btn-info" @click="">查询</a>
+            <a class="btn btn-info" @click="">筛选</a>
+
+            <a class="btn btn-info" href="/tableInfo/code=">新增表</a>
+            <a class="btn btn-info" @click="">生成sql</a>
         </form>
 
         <div class="table-responsive articleList">
@@ -41,9 +44,9 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <a class="btn btn-sm btn-success">查看</a>
-                        <a class="btn btn-sm btn-info">编辑</a>
+                        <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
                         <a href="javascript:;" class="btn btn-sm btn-danger" @click="">删除</a>
+                        <a class="btn btn-sm btn-info">脚本</a>
                     </td>
                 </tr>
                 </tbody>
@@ -60,12 +63,24 @@
 export default{
     data(){
         return{
-            tables:[]
+            tables:[],
+            tableSpaces:[]
         }
     },
     methods:{
-        getAllTables(){
-            this.$http.get('/getAll/tables').then(function(res){
+        getTableSpaces(){
+            this.$http.get('/getAll/table_spaces').then(function(res){
+                if(res.status == 200){
+                   var re = res.body;
+                   this.tableSpaces = re;
+                }
+            },function(res){
+                alert('TableList 页面 请求 table space 失败： '+ res.status);
+            });
+        },
+        getAllTables(page,code,comment,tableSpace){
+            let API = '/getAll/tables?page='+page+'&code='+code+'&comment='+comment+'&tableSpace='+tableSpace;
+            this.$http.get(API).then(function(res){
                 if(res.status == 200){
                    var re = res.body;
                    this.tables = re;
@@ -73,6 +88,10 @@ export default{
             },function(res){
                 alert('TableList 页面 请求 table 失败： '+ res.status);
             });
+        },
+        getSql(){
+
+
         }
 
     },
@@ -80,6 +99,7 @@ export default{
 
     },
     created(){
+        this.getTableSpaces();
         this.getAllTables();
     }
 }

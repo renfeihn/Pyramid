@@ -122,14 +122,18 @@ const getTable = function (code) {
     const filePath = sourcePath + 'tables/' + code + '.json';
 
     var table = {};
-    const statFile = fs.statSync(filePath);
+    try{
+        const statFile = fs.statSync(filePath);
 
-    logger.writeInfo(statFile.isFile())
+        logger.writeInfo(statFile.isFile())
 
-    if (statFile.isFile()) {
-        logger.writeInfo(filePath + ' 文件存在');
-        table = JSON.parse(fs.readFileSync(filePath));
-    } else {
+        if (statFile.isFile()) {
+            logger.writeInfo(filePath + ' 文件存在');
+            table = JSON.parse(fs.readFileSync(filePath));
+        } else {
+            logger.writeErr(filePath + ' 文件不存在');
+        }
+    }catch (e){
         logger.writeErr(filePath + ' 文件不存在');
     }
 

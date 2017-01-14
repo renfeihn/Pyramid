@@ -6,25 +6,25 @@
     {
       "name": "id",
       "code": "id",
-      "dataType": "varchar",
+      "dataType": "Variable Characters",
       "lengths": 32,
       "precision": 0,
       "M": "Y",
       "P": "Y",
       "comment": "主键ID",
-      "default": "'1'",
+      "defaults": "'1'",
       "domain": "id"
     },
     {
       "name": "name",
       "code": "name",
-      "dataType": "varchar",
+      "dataType": "Variable Characters",
       "lengths": 40,
       "precision": 0,
       "M": "Y",
       "P": "N",
       "comment": "姓名",
-      "default": "",
+      "defaults": "",
       "domain": ""
     },
     {
@@ -36,7 +36,7 @@
       "M": "Y",
       "P": "N",
       "comment": "年龄",
-      "default": "",
+      "defaults": "",
       "domain": ""
     }
   ],

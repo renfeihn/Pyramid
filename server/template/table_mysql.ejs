@@ -61,8 +61,8 @@ if (isNotNull(table.code)) {
                 }
 
                 // 默认值
-                if (isNotNull(attr.default)) {
-                    sql.append(space + "default " + attr.default);
+                if (isNotNull(attr.defaults)) {
+                    sql.append(space + "default " + attr.defaults);
                 }
 
                 // 描述

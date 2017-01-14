@@ -1,13 +1,11 @@
 <template>
     <div>
         <ul class="nav nav-sidebar">
-            <li><a href="/tableList"><i class="fa fa-th-list"></i>&nbsp;tables</a>
+            <li><a href="/tableList" ><i class="fa fa-th-list"></i>&nbsp;tables</a>
             </li>
 
             <li v-for="(table, index) in tables">
-                <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}">
-                    <a href="javascript:;"> {{table.name}}</a>
-                </router-link>
+                <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}"> {{table.name}}</router-link>
             </li>
 
             <li><a href="javascript:;" @click="getAllDomains()"><i class="fa fa-th-list"></i>&nbsp;domain</a>
@@ -72,9 +70,9 @@
             }
         },
         created(){
-            this.getAllTables();
-            this.getAllDomains();
-            this.getAllTableSpaces();
+            //this.getAllTables();
+            //this.getAllDomains();
+            //this.getAllTableSpaces();
         },
         components:{
 

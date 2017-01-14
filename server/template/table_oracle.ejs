@@ -58,8 +58,8 @@ if (isNotNull(table.code)) {
                 sql.append(')');
 
                 // 默认值
-                if (isNotNull(attr.default)) {
-                    sql.append(space + "default " + attr.default);
+                if (isNotNull(attr.defaults)) {
+                    sql.append(space + "default " + attr.defaults);
                 }
 
                 // 是否不为空
