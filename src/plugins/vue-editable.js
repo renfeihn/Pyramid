@@ -28,7 +28,7 @@
 				input.addEventListener("blur", action, false); 
 			}
 		}
-	}
+	};
 
 	if (typeof exports == "object") {
 		module.exports = VueEditable;

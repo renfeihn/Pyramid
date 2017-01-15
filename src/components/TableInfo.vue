@@ -72,7 +72,6 @@
 
 import editable from '../plugins/editable.js';
 
-
 var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'Date','Variable Characters','Double'];
 
 export default{
