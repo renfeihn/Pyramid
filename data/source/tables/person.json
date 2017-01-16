@@ -1,7 +1,7 @@
 {
   "name": "person",
   "code": "person",
-  "comment": "äººå‘˜è¡¨",
+  "comment": "ÈËÔ±±í",
   "attr": [
     {
       "name": "id",
@@ -11,7 +11,7 @@
       "precision": 0,
       "M": "Y",
       "P": "N",
-      "comment": "äººå‘˜ID",
+      "comment": "ÈËÔ±ID",
       "defaults": "",
       "domain": "person_id"
     },
@@ -23,7 +23,7 @@
       "precision": 0,
       "M": "Y",
       "P": "N",
-      "comment": "å§“å",
+      "comment": "ĞÕÃû",
       "defaults": "",
       "domain": ""
     },
@@ -35,7 +35,7 @@
       "precision": 0,
       "M": "Y",
       "P": "N",
-      "comment": "å¹´é¾„",
+      "comment": "ÄêÁä",
       "defaults": "",
       "domain": ""
     }

@@ -1,7 +1,7 @@
 {
   "name": "user",
   "code": "user",
-  "comment": "ç”¨æˆ·è¡¨",
+  "comment": "ÓÃ»§±í",
   "attr": [
     {
       "name": "id",
@@ -11,7 +11,7 @@
       "precision": 0,
       "M": "Y",
       "P": "Y",
-      "comment": "ä¸»é”®ID",
+      "comment": "Ö÷¼üID",
       "defaults": "'1'",
       "domain": "id"
     },
@@ -23,7 +23,7 @@
       "precision": 0,
       "M": "Y",
       "P": "N",
-      "comment": "å§“å",
+      "comment": "ĞÕÃû",
       "defaults": "",
       "domain": ""
     },
@@ -35,7 +35,7 @@
       "precision": 2,
       "M": "Y",
       "P": "N",
-      "comment": "å¹´é¾„",
+      "comment": "ÄêÁä",
       "defaults": "",
       "domain": ""
     }

@@ -22,7 +22,6 @@ const readFile = function (name) {
     logger.writeInfo('db 读取的 path:  ' + path);
     const objs = new Array();
     const files = fs.readdirSync(path);
-
     if (files.length > 0) {
         files.forEach(function (file) {
             const filePath = path + '/' + file;
@@ -31,6 +30,9 @@ const readFile = function (name) {
             if (!statFile.isDirectory()) {
                 logger.writeInfo('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
+                // const data = fs.readSync(filePath);
+                // const str = iconv.decode(data,'gbk');
+                // const json = JSON.parse(str);
                 const json = JSON.parse(fs.readFileSync(filePath));
                 objs.push(json);
             }
@@ -48,7 +50,8 @@ const writeSourceFile = function (type, name, data) {
     // 目标路径  eg: data/source/tables/user.json
     const outPath = sourcePath + '/' + type;
     checkAndCreateDir(outPath);
-    const outFile = outPath + name + '.json';
+    const outFile = outPath + '/' + name + '.json';
+    logger.writeDebug('要写入的数据： ' + data);
     // 把中文转换成字节数组
     const arr = iconv.encode(data, 'gbk');
     // 如果用writeFile，那么会删除旧文件，直接写新文件
@@ -122,7 +125,7 @@ const getTable = function (code) {
     const filePath = sourcePath + 'tables/' + code + '.json';
 
     var table = {};
-    try{
+    try {
         const statFile = fs.statSync(filePath);
 
         logger.writeInfo(statFile.isFile())
@@ -133,7 +136,7 @@ const getTable = function (code) {
         } else {
             logger.writeErr(filePath + ' 文件不存在');
         }
-    }catch (e){
+    } catch (e) {
         logger.writeErr(filePath + ' 文件不存在');
     }
 

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 25);
+/******/ 	return __webpack_require__(__webpack_require__.s = 24);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -319,7 +319,7 @@ if(fallback&&this.checkFallback()){return;}ensureSlash();}if(History)HashHistory
 // consistent across browsers - Firefox will pre-decode it!
 var href=window.location.href;var index=href.indexOf('#');return index===-1?'':href.slice(index+1);}function pushHash(path){window.location.hash=path;}function replaceHash(path){var i=window.location.href.indexOf('#');window.location.replace(window.location.href.slice(0,i>=0?i:0)+'#'+path);}/*  */var AbstractHistory=function(History){function AbstractHistory(router){History.call(this,router);this.stack=[];this.index=-1;}if(History)AbstractHistory.__proto__=History;AbstractHistory.prototype=Object.create(History&&History.prototype);AbstractHistory.prototype.constructor=AbstractHistory;AbstractHistory.prototype.push=function push(location){var this$1=this;this.transitionTo(location,function(route){this$1.stack=this$1.stack.slice(0,this$1.index+1).concat(route);this$1.index++;});};AbstractHistory.prototype.replace=function replace(location){var this$1=this;this.transitionTo(location,function(route){this$1.stack=this$1.stack.slice(0,this$1.index).concat(route);});};AbstractHistory.prototype.go=function go(n){var this$1=this;var targetIndex=this.index+n;if(targetIndex<0||targetIndex>=this.stack.length){return;}var route=this.stack[targetIndex];this.confirmTransition(route,function(){this$1.index=targetIndex;this$1.updateRoute(route);});};AbstractHistory.prototype.ensureURL=function ensureURL(){// noop
 };return AbstractHistory;}(History);/*  */var VueRouter=function VueRouter(options){if(options===void 0)options={};this.app=null;this.options=options;this.beforeHooks=[];this.afterHooks=[];this.match=createMatcher(options.routes||[]);var mode=options.mode||'hash';this.fallback=mode==='history'&&!supportsHistory;if(this.fallback){mode='hash';}if(!inBrowser){mode='abstract';}this.mode=mode;switch(mode){case'history':this.history=new HTML5History(this,options.base);break;case'hash':this.history=new HashHistory(this,options.base,this.fallback);break;case'abstract':this.history=new AbstractHistory(this);break;default:process.env.NODE_ENV!=='production'&&assert(false,"invalid mode: "+mode);}};var prototypeAccessors={currentRoute:{}};prototypeAccessors.currentRoute.get=function(){return this.history&&this.history.current;};VueRouter.prototype.init=function init(app/* Vue component instance */){var this$1=this;process.env.NODE_ENV!=='production'&&assert(install.installed,"not installed. Make sure to call `Vue.use(VueRouter)` "+"before creating root instance.");this.app=app;var history=this.history;if(history instanceof HTML5History){history.transitionTo(getLocation(history.base));}else if(history instanceof HashHistory){var setupHashListener=function setupHashListener(){window.addEventListener('hashchange',function(){history.onHashChange();});};history.transitionTo(getHash(),setupHashListener,setupHashListener);}history.listen(function(route){this$1.app._route=route;});};VueRouter.prototype.beforeEach=function beforeEach(fn){this.beforeHooks.push(fn);};VueRouter.prototype.afterEach=function afterEach(fn){this.afterHooks.push(fn);};VueRouter.prototype.push=function push(location){this.history.push(location);};VueRouter.prototype.replace=function replace(location){this.history.replace(location);};VueRouter.prototype.go=function go(n){this.history.go(n);};VueRouter.prototype.back=function back(){this.go(-1);};VueRouter.prototype.forward=function forward(){this.go(1);};VueRouter.prototype.getMatchedComponents=function getMatchedComponents(to){var route=to?this.resolve(to).resolved:this.currentRoute;if(!route){return[];}return[].concat.apply([],route.matched.map(function(m){return Object.keys(m.components).map(function(key){return m.components[key];});}));};VueRouter.prototype.resolve=function resolve(to,current,append){var normalizedTo=normalizeLocation(to,current||this.history.current,append);var resolved=this.match(normalizedTo,current);var fullPath=resolved.redirectedFrom||resolved.fullPath;var base=this.history.base;var href=createHref(base,fullPath,this.mode);return{normalizedTo:normalizedTo,resolved:resolved,href:href};};Object.defineProperties(VueRouter.prototype,prototypeAccessors);function createHref(base,fullPath,mode){var path=mode==='hash'?'#'+fullPath:fullPath;return base?cleanPath(base+'/'+path):path;}VueRouter.install=install;if(inBrowser&&window.Vue){window.Vue.use(VueRouter);}module.exports=VueRouter;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ },
 /* 2 */
@@ -1149,24 +1149,17 @@ if(!options.render){var template=options.template;if(template){if(typeof templat
  * Get outerHTML of elements, taking care
  * of SVG elements in IE as well.
  */function getOuterHTML(el){if(el.outerHTML){return el.outerHTML;}else{var container=document.createElement('div');container.appendChild(el.cloneNode(true));return container.innerHTML;}}Vue$3.compile=compileToFunctions;return Vue$3;});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11)))
 
 /***/ },
 /* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-"use strict";
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;"use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};(function(){var VueEditable={install:function install(Vue){Vue.prototype.$editable=function(e,callback){var target=e.target,value=target.innerText;target.innerHTML="<input type='text' value='"+value+"' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);};}};if(( false?"undefined":_typeof(exports))=="object"){module.exports=VueEditable;}else if(true){!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function(){return VueEditable;}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));}else if(window.Vue){window.VueEditable=VueEditable;Vue.use(VueEditable);};})();
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* template */
-var __vue_template__ = __webpack_require__(22)
+var __vue_template__ = __webpack_require__(21)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1200,20 +1193,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 5 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(17)
+__webpack_require__(16)
 
 /* script */
-__vue_exports__ = __webpack_require__(8)
+__vue_exports__ = __webpack_require__(7)
 
 /* template */
-var __vue_template__ = __webpack_require__(23)
+var __vue_template__ = __webpack_require__(22)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1248,20 +1241,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 6 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(18)
+__webpack_require__(17)
 
 /* script */
-__vue_exports__ = __webpack_require__(10)
+__vue_exports__ = __webpack_require__(9)
 
 /* template */
-var __vue_template__ = __webpack_require__(24)
+var __vue_template__ = __webpack_require__(23)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1296,20 +1289,20 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(15)
+__webpack_require__(14)
 
 /* script */
-__vue_exports__ = __webpack_require__(11)
+__vue_exports__ = __webpack_require__(10)
 
 /* template */
-var __vue_template__ = __webpack_require__(20)
+var __vue_template__ = __webpack_require__(19)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1344,7 +1337,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1354,7 +1347,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _LeftNav = __webpack_require__(19);
+var _LeftNav = __webpack_require__(18);
 
 var _LeftNav2 = _interopRequireDefault(_LeftNav);
 
@@ -1394,7 +1387,7 @@ exports.default = {
 //
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1485,7 +1478,7 @@ exports.default = {
 };
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1495,7 +1488,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _editable = __webpack_require__(14);
+var _editable = __webpack_require__(13);
 
 var _editable2 = _interopRequireDefault(_editable);
 
@@ -1571,39 +1564,50 @@ var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'D
 //
 //
 //
+//
+//
+//
+//
 
 
 exports.default = {
     data: function data() {
         return {
-            table: [],
+            table: {},
             // table 中 attr 的属性
             tableAttr: [],
             // 所有domain域
             domains: [],
             // 所有表空间
             tableSpaces: [],
+            errors: [], //服务端验证失败的返回
             // 选中行的索引
-            selectRowIndex: -1
+            selectRowIndex: -1,
+            content: '',
+            textshow: false,
+            // 页面累计行数
+            maxRowSize: 0
         };
     },
 
     methods: {
         getTable: function getTable(code) {
-            this.$http.get('/getTable/' + code).then(function (res) {
-                if (res.status == 200) {
-                    var re = res.body;
-                    this.table = re;
-                    if (null != re && re.attr instanceof Array) {
-                        this.tableAttr = this.table.attr;
-                        this.selectRowIndex = this.tableAttr.length;
-                    } else {
-                        this.tableAttr = null;
+            if (null != code && '' != code && undefined != code) {
+                this.$http.get('/getTable/' + code).then(function (res) {
+                    if (res.status == 200) {
+                        var re = res.body;
+                        this.table = re;
+                        if (null != re && re.attr instanceof Array) {
+                            this.tableAttr = this.table.attr;
+                            this.maxRowSize = this.tableAttr.length;
+                        } else {
+                            this.tableAttr = null;
+                        }
                     }
-                }
-            }, function (res) {
-                alert('TableInfo 页面 请求 table ' + code + ' 失败： ' + res.status);
-            });
+                }, function (res) {
+                    alert('TableInfo 页面 请求 table ' + code + ' 失败： ' + res.status);
+                });
+            }
         },
         getAllDomains: function getAllDomains() {
             this.$http.get('/getAll/domains').then(function (res) {
@@ -1625,19 +1629,59 @@ exports.default = {
                 alert('TableInfo 页面 请求 table space 失败： ' + res.status);
             });
         },
+        checkTableCode: function checkTableCode(code) {
+            this.$http.get('/checkTableCode/' + code).then(function (res) {
+                if (res.status == 200) {
+                    this.errors = [];
+                }
+            }, function (res) {
+                console.log('未通过服务端校验' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        },
+
+        // 选中行
         selectRow: function selectRow(e, index) {
             // 设置高亮
-            //var tr = e.target;
-            //tr.setAttribute("style", "background-color: #f5f5f5");
+            var tr = e.currentTarget;
+            /*
+            var tbd = tr.parentNode;
+            console.log(tdb);
+            if(null != tbd && tbd instanceof Array){
+                for(var i in tbd){
+                    if(tr == tbd[i]){
+                        tbd[i].setAttribute("style", "background-color: #DEDEDE");
+                    }else{
+                        tbd[i].removeAttribute("style");
+                    }
+                }
+            }
+            */
             this.selectRowIndex = index;
         },
+
+        // 添加一行
         addRow: function addRow(i) {
-            if (this.selectRowIndex != -1) {
-                this.tableAttr.splice(this.selectRowIndex + i, 0, new Object());
-            } else {
-                this.tableAttr.push(new Object());
+            this.maxRowSize++;
+            var tr = new Object();
+            tr.name = 'Column_' + this.maxRowSize;
+            tr.code = 'Column_' + this.maxRowSize;
+
+            // 如果没有选中行，第一次 add before 在首行添加，  第一次 add after 在数组尾行添加
+            if (this.selectRowIndex == -1) {
+                if (null != this.tableAttr && this.tableAttr instanceof Array) {
+                    if (i == 1) {
+                        this.selectRowIndex = this.tableAttr.length;
+                    }
+                }
+                if (i == 0) {
+                    this.selectRowIndex = 0;
+                }
             }
+            this.tableAttr.splice(this.selectRowIndex + i, 0, tr);
         },
+
+        // 删除一行
         deleteRow: function deleteRow() {
             if (this.selectRowIndex != -1) {
                 this.tableAttr.splice(this.selectRowIndex, 1);
@@ -1691,12 +1735,66 @@ exports.default = {
                     });
                 }
             }
-        } // domain end
+        },
+        // domain end
 
+        save: function save() {
+            // 处理数据
+            this.table.attr = this.tableAttr;
+            this.table.name = this.table.code;
+            this.$http.post('/saveTable', {
+                data: this.table
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('添加表成功');
+                    this.$router.push('/tableList');
+                } else {
+                    console.log('添加表失败');
+                }
+            }, function (res) {
+                console.log('添加表失败，未通过服务端校验' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        },
+        showSQL: function showSQL() {
+
+            // 处理数据
+            this.table.attr = this.tableAttr;
+            this.$http.post('/showSQL', {
+                type: 'table',
+                db_type: 'oracle',
+                data: this.table
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if (re) {
+                        this.textshow = true;
+                        this.content = re;
+                        // 先清除错误信息
+                        this.errors = [];
+                    }
+                } else {
+                    console.log('生成sql失败');
+                }
+            }, function (res) {
+                console.log('生成sql失败' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        }
     },
     components: {},
     created: function created() {
-        this.tableCode = window.location.search.split('=')[1];
+        var params = window.location.search.split('=');
+        console.log('params: ' + params);
+
+        if (null != params && undefined != params && '' != params && params.length > 0) {
+            this.tableCode = params[1];
+        } else {
+            this.tableCode = '';
+        }
+        console.log('code: ' + this.tableCode);
 
         this.getTable(this.tableCode);
         this.getAllDomains();
@@ -1705,7 +1803,7 @@ exports.default = {
 };
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1816,7 +1914,7 @@ exports.default = {
 };
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1829,7 +1927,7 @@ if((typeof window==="undefined"?"undefined":_typeof(window))==="object")g=window
 module.exports=g;
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1854,7 +1952,7 @@ function Item(fun,array){this.fun=fun;this.array=array;}Item.prototype.run=funct
 process.versions={};function noop(){}process.on=noop;process.addListener=noop;process.once=noop;process.off=noop;process.removeListener=noop;process.removeAllListeners=noop;process.emit=noop;process.binding=function(name){throw new Error('process.binding is not supported');};process.cwd=function(){return'/';};process.chdir=function(dir){throw new Error('process.chdir is not supported');};process.umask=function(){return 0;};
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -1862,6 +1960,12 @@ process.versions={};function noop(){}process.on=noop;process.addListener=noop;pr
 function editInput(e,callback){var target=e.target,value=target.innerText;target.innerHTML="<input type='text' value='"+value+"' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}// 下拉框
 function editSelect(e,options,callback){var target=e.target,value=target.innerText;// target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";
 var selectHTML='';selectHTML+="<select id='_editable'>";for(var i in options){if(value==options[i]){selectHTML+="<option value='"+options[i]+"' selected='selected'>"+options[i]+"</option>";}else{selectHTML+="<option value='"+options[i]+"'>"+options[i]+"</option>";}}selectHTML+="</select>";target.innerHTML=selectHTML;var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}var Models={editInput:editInput,editSelect:editSelect};module.exports=Models;})();
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ },
 /* 15 */
@@ -1883,25 +1987,19 @@ var selectHTML='';selectHTML+="<select id='_editable'>";for(var i in options){if
 
 /***/ },
 /* 18 */
-/***/ function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(16)
+__webpack_require__(15)
 
 /* script */
-__vue_exports__ = __webpack_require__(9)
+__vue_exports__ = __webpack_require__(8)
 
 /* template */
-var __vue_template__ = __webpack_require__(21)
+var __vue_template__ = __webpack_require__(20)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -1936,7 +2034,7 @@ module.exports = __vue_exports__
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2029,14 +2127,14 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     attrs: {
-      "href": "/tableInfo/code="
+      "href": "/tableInfo"
     }
   }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {}
     }
-  }, [_vm._v("生成sql")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("生成脚本")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
     staticClass: "table table-striped"
@@ -2074,7 +2172,7 @@ if (false) {
 }
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2147,7 +2245,7 @@ if (false) {
 }
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2165,7 +2263,7 @@ if (false) {
 }
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -2221,13 +2319,42 @@ if (false) {
 }
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('h2', {
     staticClass: "sub-header"
-  }, [_vm._v("工作区域 ")]), _vm._v(" "), _c('form', {
+  }, [_vm._v("工作区域 ")]), _vm._v(" "), _vm._l((_vm.errors), function(item) {
+    return _c('p', {
+      staticClass: "alert alert-danger"
+    }, [_vm._v(_vm._s(item))])
+  }), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }, {
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.textshow),
+      expression: "textshow"
+    }],
+    attrs: {
+      "rows": "5",
+      "cols": "100"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
@@ -2279,6 +2406,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": _vm._s(_vm.table.code)
     },
     on: {
+      "blur": function($event) {
+        _vm.checkTableCode(_vm.table.code);
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.table.code = $event.target.value
@@ -2309,9 +2439,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   })]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.save();
+      }
     }
-  }, [_vm._v("保存")])]), _vm._v(" "), _c('form', {
+  }, [_vm._v("保存")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.showSQL();
+      }
+    }
+  }, [_vm._v("sql 预览")])]), _vm._v(" "), _c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('br'), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
@@ -2406,9 +2545,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v(_vm._s(tb.domain))])])
-  }))])])])
+  }))])])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("索引")]), _vm._v(" "), _c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
+  return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
 }]}
 if (false) {
   module.hot.accept()
@@ -2418,11 +2557,13 @@ if (false) {
 }
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(4);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(5);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(6);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(7);var _TableList2=_interopRequireDefault(_TableList);var _vueEditable=__webpack_require__(3);var _vueEditable2=_interopRequireDefault(_vueEditable);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);_vue2.default.use(_vueEditable2.default);//routes config
+'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(5);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}// import VueEditable from './plugins/vue-editable.js';
+_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);// Vue.use(VueEditable);
+//routes config
 var routes=[{path:'/',redirect:'/frame'},{path:'/frame',component:_Frame2.default,children:[{path:'/tableList',component:_TableList2.default,name:'tableList'},{path:'/tableInfo',component:_TableInfo2.default,name:'tableInfo'}]}];//genartor VueRouter object
 var router=new _vueRouter2.default({mode:'history',routes:routes});//bind and render
 var app=new _vue2.default({router:router,render:function render(h){return h(_App2.default);}}).$mount('#app');

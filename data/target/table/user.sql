@@ -7,8 +7,8 @@ drop table "user" cascade constraints;
 
 create table "user"
 (
-    id varchar(32) not null,
-    name varchar(40) not null,
+    id Variable Characters(32) default '1' not null,
+    name Variable Characters(40) not null,
     age Double(5,2) not null,
     constraint PK_USER primary  key (id)
 ) tablespace test01;

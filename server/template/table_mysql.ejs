@@ -44,11 +44,22 @@ if (isNotNull(table.code)) {
         var primary_key;
         var attrs = table.attr;
         attrs.forEach(function (attr, index, array) {
-            // 列名，数据类型
-            sql.append(tab + attr.code + space + attr.dataType);
-            if (isNotNull(attr.lengths)) {
+            if (isNotNull(attr)) {
+                // 列名
+                sql.append(tab + attr.code);
+                // 数据类型
+                if (isNotNull(attr.dataType)) {
+                    sql.append(space + attr.dataType);
+                } else {
+                    sql.append(space + 'char');
+                }
+
                 // 长度
-                sql.append('(' + attr.lengths);
+                if (isNotNull(attr.lengths)) {
+                    sql.append('(' + attr.lengths);
+                } else {
+                    sql.append('(10');
+                }
                 if (isNotNull(attr.precision)) {
                     // 精度
                     sql.append(',' + attr.precision);

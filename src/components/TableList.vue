@@ -22,8 +22,8 @@
             </div>
             <a class="btn btn-info" @click="">筛选</a>
 
-            <a class="btn btn-info" href="/tableInfo/code=">新增表</a>
-            <a class="btn btn-info" @click="">生成sql</a>
+            <a class="btn btn-info" href="/tableInfo">新增表</a>
+            <a class="btn btn-info" @click="">生成脚本</a>
         </form>
 
         <div class="table-responsive articleList">

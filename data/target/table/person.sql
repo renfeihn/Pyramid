@@ -7,8 +7,8 @@ drop table "person" cascade constraints;
 
 create table "person"
 (
-    id Variable characters (%n)(20) not null,
-    name Variable characters (%n)(40) not null,
+    id Variable Characters(20) not null,
+    name Variable Characters(40) not null,
     age Integer(5) not null
 ) tablespace test03;
 comment on table "person" is '»À‘±±Ì';

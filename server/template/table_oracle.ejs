@@ -1,6 +1,6 @@
 <%
 function isNotNull(str) {
-    if (str != null && str != undefined && str != '') {
+    if (null != str && undefined != str && str != '' && str.length > 0) {
         return true;
     } else {
         return false;
@@ -26,18 +26,18 @@ var space = ' ';
 // 缩进tab（4个空格）
 var tab = '    ';
 if (isNotNull(table.code)) {
-    sql.append('drop table "')
-            .append(table.code + '" cascade constraints;')
+    sql.append('drop table ')
+            .append(table.code + ' cascade constraints;')
             .append(nextLine)
             .append(nextLine)
             .append('/*==============================================================*/')
             .append(nextLine)
-            .append('/* Table: "' + table.code + '"                                           */')
+            .append('/* Table: ' + table.code + '                                           */')
             .append(nextLine)
             .append('/*==============================================================*/')
             .append(nextLine)
             .append(nextLine)
-            .append('create table "' + table.code + '"')
+            .append('create table ' + table.code)
             .append(nextLine)
             .append('(')
             .append(nextLine);
@@ -47,10 +47,23 @@ if (isNotNull(table.code)) {
         var attrs = table.attr;
         attrs.forEach(function (attr, index, array) {
             // 列名，数据类型
-            sql.append(tab + attr.code + space + attr.dataType);
-            if (isNotNull(attr.lengths)) {
+            if (attr) {
+                sql.append(tab + attr.code);
+
+                // 数据类型
+                if (isNotNull(attr.dataType)) {
+                    sql.append(space + attr.dataType);
+                } else {
+                    sql.append(space + 'char');
+                }
+
                 // 长度
-                sql.append('(' + attr.lengths);
+                if (isNotNull(attr.lengths)) {
+                    sql.append('(' + attr.lengths);
+                } else {
+                    sql.append('(10');
+                }
+
                 if (isNotNull(attr.precision)) {
                     // 精度
                     sql.append(',' + attr.precision);
@@ -96,17 +109,20 @@ if (isNotNull(table.code)) {
     // 表说明
     if (isNotNull(table.comment)) {
         sql.append(nextLine)
-                .append('comment on table "' + table.code + '" is \'' + table.comment + '\';');
+                .append('comment on table ' + table.code + ' is \'' + table.comment + '\';');
+    }
+    if (isNotNull(table.attr)) {
+        var attrs = table.attr;
+        // 列说明
+        attrs.forEach(function (attr, index, array) {
+            // 描述
+            if (isNotNull(attr.comment)) {
+                sql.append(nextLine)
+                        .append('comment on column ' + table.code + '.' + attr.code + ' is \'' + attr.comment + '\';');
+            }
+        });
     }
 
-    // 列说明
-    attrs.forEach(function (attr, index, array) {
-        // 描述
-        if (isNotNull(attr.comment)) {
-            sql.append(nextLine)
-                    .append('comment on column "' + table.code + '".' + attr.code + ' is \'' + attr.comment + '\';');
-        }
-    });
 }
 %>
 <%- sql %>

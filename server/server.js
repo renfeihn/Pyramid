@@ -49,6 +49,3 @@ app.listen(app.get('port'), function () {
     var time = sdate.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
     logger.writeInfo('---- Server up: http://localhost:' + app.get('port') + '   ' + time + ' ----');
 });
-
-
-

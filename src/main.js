@@ -10,6 +10,8 @@ import tableList from './components/TableList.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+
+
 // Vue.use(VueEditable);
 
 //routes config
