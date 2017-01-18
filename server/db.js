@@ -30,10 +30,10 @@ const readFile = function (name) {
             if (!statFile.isDirectory()) {
                 logger.writeInfo('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
-                // const data = fs.readSync(filePath);
-                // const str = iconv.decode(data,'gbk');
-                // const json = JSON.parse(str);
-                const json = JSON.parse(fs.readFileSync(filePath));
+                var fileStr = fs.readFileSync(filePath, {encoding:'binary'});
+                var buf = new Buffer(fileStr, 'binary');
+                var data = iconv.decode(buf, 'GBK');
+                const json = JSON.parse(data);
                 objs.push(json);
             }
         });
