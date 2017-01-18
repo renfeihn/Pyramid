@@ -1,5 +1,6 @@
 const fs = require("fs");
-var iconv = require('iconv-lite');
+const path = require("path");
+const iconv = require('iconv-lite');
 const logger = require("./log/logHelper").helper;
 // const validator = require('validator');
 const table_name = "tables";
@@ -30,10 +31,11 @@ const readFile = function (name) {
             if (!statFile.isDirectory()) {
                 logger.writeInfo('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
-                var fileStr = fs.readFileSync(filePath, {encoding:'binary'});
+                var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
                 var buf = new Buffer(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 const json = JSON.parse(data);
+                // const json = JSON.parse(fs.readFileSync(filePath));
                 objs.push(json);
             }
         });
@@ -41,14 +43,28 @@ const readFile = function (name) {
     return objs;
 };
 
+
+const delSourceFile = function (type, name) {
+    // 目标路径  eg: data/source/tables/user.json
+    var outPath = sourcePath + type;
+    outPath = path.join(__dirname, '../', outPath, '/');
+    const outFile = outPath + name + '.json'
+
+    if (fs.existsSync(outFile)) {
+        logger.writeDebug('删除文件： ' + outFile);
+        fs.unlinkSync(outFile);
+    }
+};
+
 /**
  * 保存源数据文件 json 文件
  * @param type 类型:table\domains\table_spaces
+ * @param name 文件名：
  * @param data ? 计划传拼接json数据 是否先用模板格式化?
  */
 const writeSourceFile = function (type, name, data) {
     // 目标路径  eg: data/source/tables/user.json
-    const outPath = sourcePath + '/' + type;
+    const outPath = sourcePath + type;
     checkAndCreateDir(outPath);
     const outFile = outPath + '/' + name + '.json';
     logger.writeDebug('要写入的数据： ' + data);
@@ -132,7 +148,13 @@ const getTable = function (code) {
 
         if (statFile.isFile()) {
             logger.writeInfo(filePath + ' 文件存在');
-            table = JSON.parse(fs.readFileSync(filePath));
+
+            var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+            var buf = new Buffer(fileStr, 'binary');
+            var data = iconv.decode(buf, 'GBK');
+            table = JSON.parse(data);
+
+            // table = JSON.parse(fs.readFileSync(filePath));
         } else {
             logger.writeErr(filePath + ' 文件不存在');
         }
@@ -176,6 +198,7 @@ const Models = {
     readFile: readFile,
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
+    delSourceFile: delSourceFile,
     getTable: getTable,
     getAllDomains: getAllDomains,
     getAllTableSpaces: getAllTableSpaces,

@@ -1354,10 +1354,29 @@ var _LeftNav2 = _interopRequireDefault(_LeftNav);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
+    data: function data() {
+        return {
+            db_type: 'oracle',
+            options: [{ text: 'ORACLE', value: 'oracle' }, { text: 'MYSQL', value: 'mysql' }]
+        };
+    },
+
     components: {
         leftNav: _LeftNav2.default
     }
 }; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -1568,6 +1587,12 @@ var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'D
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 exports.default = {
@@ -1633,9 +1658,11 @@ exports.default = {
             this.$http.get('/checkTableCode/' + code).then(function (res) {
                 if (res.status == 200) {
                     this.errors = [];
+                    this.table.name = code;
                 }
             }, function (res) {
                 console.log('未通过服务端校验' + res.status + '  ' + res.body);
+                this.table.name = '';
                 this.errors = res.body;
             });
         },
@@ -1644,6 +1671,7 @@ exports.default = {
         selectRow: function selectRow(e, index) {
             // 设置高亮
             var tr = e.currentTarget;
+            console.log('tr:  ' + tr.innerHTML);
             /*
             var tbd = tr.parentNode;
             console.log(tdb);
@@ -1741,7 +1769,6 @@ exports.default = {
         save: function save() {
             // 处理数据
             this.table.attr = this.tableAttr;
-            this.table.name = this.table.code;
             this.$http.post('/saveTable', {
                 data: this.table
             }).then(function (res) {
@@ -1872,13 +1899,21 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
+//
+//
+//
 
 
 exports.default = {
     data: function data() {
         return {
             tables: [],
-            tableSpaces: []
+            tableSpaces: [],
+            errors: [], //服务端验证失败的返回
+            // 选中行的索引
+            content: '',
+            textshow: false
         };
     },
 
@@ -1904,7 +1939,51 @@ exports.default = {
                 alert('TableList 页面 请求 table 失败： ' + res.status);
             });
         },
-        getSql: function getSql() {}
+        deleteTable: function deleteTable(code) {
+            this.$http.post('/deleteFile', {
+                type: 'tables',
+                code: code
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('删除表成功');
+                    // 提示信息并新获取table
+                    var re = res.body;
+                    if (re) {
+                        this.errors = re;
+                        this.getAllTables();
+                    }
+                } else {
+                    console.log('删除表失败');
+                }
+            }, function (res) {
+                console.log('删除表失败' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        },
+        getSql: function getSql(code) {
+            this.$http.post('/showSQL', {
+                type: 'table',
+                db_type: 'oracle',
+                code: code
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if (re) {
+                        this.textshow = true;
+                        this.content = re;
+                        // 先清除错误信息
+                        this.errors = [];
+                    }
+                } else {
+                    console.log('生成sql失败');
+                }
+            }, function (res) {
+                console.log('生成sql失败' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        }
     },
     components: {},
     created: function created() {
@@ -2040,7 +2119,36 @@ module.exports = __vue_exports__
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('h2', {
     staticClass: "sub-header"
-  }, [_vm._v("表区域 ")]), _vm._v(" "), _c('form', {
+  }, [_vm._v("表区域 ")]), _vm._v(" "), _vm._l((_vm.errors), function(item) {
+    return _c('p', {
+      staticClass: "alert alert-danger"
+    }, [_vm._v(_vm._s(item))])
+  }), _vm._v(" "), _c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }, {
+      name: "show",
+      rawName: "v-show",
+      value: (_vm.textshow),
+      expression: "textshow"
+    }],
+    attrs: {
+      "rows": "5",
+      "cols": "100"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
@@ -2151,16 +2259,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }, [_vm._v("查看")]), _vm._v(" "), _c('a', {
       staticClass: "btn btn-sm btn-danger",
-      attrs: {
-        "href": "javascript:;"
-      },
       on: {
-        "click": function($event) {}
+        "click": function($event) {
+          _vm.deleteTable(table.code);
+        }
       }
     }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-sm btn-info"
+      staticClass: "btn btn-sm btn-info",
+      on: {
+        "click": function($event) {
+          _vm.getSql(table.code);
+        }
+      }
     }, [_vm._v("脚本")])], 1)])
-  }))])])])
+  }))])])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("table space")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
 }]}
@@ -2282,7 +2394,39 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "to": "/"
     }
-  }, [_vm._v("首页")])], 1)])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("首页")]), _vm._v("\n\n                DBMS:\n                "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.db_type),
+      expression: "db_type"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        _vm.db_type = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, [_vm._l((_vm.options), function(option) {
+    return [(option.value == _vm.db_type) ? _c('option', {
+      attrs: {
+        "selected": ""
+      },
+      domProps: {
+        "value": option.value,
+        "selected": true
+      }
+    }, [_vm._v("\n                            " + _vm._s(option.text) + "\n                        ")]) : _c('option', {
+      domProps: {
+        "value": option.value
+      }
+    }, [_vm._v("\n                            " + _vm._s(option.text) + "\n                        ")])]
+  })], 2)], 1)])]), _vm._v(" "), _c('div', {
     staticClass: "container-fluid float-top"
   }, [_c('div', {
     staticClass: "row"
@@ -2376,22 +2520,48 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         })[0]
       }
     }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    },
-    domProps: {
-      "value": ""
-    }
-  }, [_vm._v("- 选择表空间 -")]), _vm._v(" "), _vm._l((_vm.tableSpaces), function(tableSpace, index) {
-    return _c('option', {
+  }, [_vm._l((_vm.tableSpaces), function(tableSpace) {
+    return [(tableSpace.code == _vm.table.table_space) ? _c('option', {
+      attrs: {
+        "selected": ""
+      },
       domProps: {
-        "value": tableSpace.code.toString()
+        "value": tableSpace.code,
+        "selected": true
       }
-    }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
+    }, [_vm._v("\n                        " + _vm._s(tableSpace.code) + "\n                    ")]) : _c('option', {
+      domProps: {
+        "value": tableSpace.code
+      }
+    }, [_vm._v("\n                        " + _vm._s(tableSpace.code) + "\n                    ")])]
   })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.table.name),
+      expression: "table.name"
+    }, {
+      name: "show",
+      rawName: "v-show",
+      value: (false),
+      expression: "false"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.table.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.table.name = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -2561,9 +2731,7 @@ if (false) {
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(5);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}// import VueEditable from './plugins/vue-editable.js';
-_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);// Vue.use(VueEditable);
-//routes config
+'use strict';var _vue=__webpack_require__(2);var _vue2=_interopRequireDefault(_vue);var _App=__webpack_require__(3);var _App2=_interopRequireDefault(_App);var _vueRouter=__webpack_require__(1);var _vueRouter2=_interopRequireDefault(_vueRouter);var _vueResource=__webpack_require__(0);var _vueResource2=_interopRequireDefault(_vueResource);var _Frame=__webpack_require__(4);var _Frame2=_interopRequireDefault(_Frame);var _TableInfo=__webpack_require__(5);var _TableInfo2=_interopRequireDefault(_TableInfo);var _TableList=__webpack_require__(6);var _TableList2=_interopRequireDefault(_TableList);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}_vue2.default.use(_vueRouter2.default);_vue2.default.use(_vueResource2.default);//routes config
 var routes=[{path:'/',redirect:'/frame'},{path:'/frame',component:_Frame2.default,children:[{path:'/tableList',component:_TableList2.default,name:'tableList'},{path:'/tableInfo',component:_TableInfo2.default,name:'tableInfo'}]}];//genartor VueRouter object
 var router=new _vueRouter2.default({mode:'history',routes:routes});//bind and render
 var app=new _vue2.default({router:router,render:function render(h){return h(_App2.default);}}).$mount('#app');

@@ -10,6 +10,18 @@
                         <span class="icon-bar"></span>
                     </button>
                     <router-link class="navbar-brand" to="/">首页</router-link>
+
+                    DBMS:
+                    <select class="navbar-brand" v-model="db_type">
+                        <template v-for="option in options">
+                            <option :value="option.value" v-if="option.value == db_type" selected>
+                                {{option.text}}
+                            </option>
+                            <option :value="option.value" v-else>
+                                {{option.text}}
+                            </option>
+                        </template>
+                    </select>
                 </div>
             </div>
         </nav>
@@ -30,6 +42,15 @@
 import leftNav from './LeftNav.vue'
 
 export default{
+    data(){
+        return{
+            db_type:'oracle',
+            options: [
+              { text: 'ORACLE', value: 'oracle' },
+              { text: 'MYSQL', value: 'mysql' }
+            ]
+        }
+    },
     components:{
         leftNav,
     }

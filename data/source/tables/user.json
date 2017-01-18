@@ -22,7 +22,7 @@
       "lengths": 40,
       "precision": 0,
       "M": "Y",
-      "P": "N",
+      "P": "Y",
       "comment": "ĞÕÃû",
       "defaults": "",
       "domain": ""
@@ -34,7 +34,7 @@
       "lengths": 5,
       "precision": 2,
       "M": "Y",
-      "P": "N",
+      "P": "Y",
       "comment": "ÄêÁä",
       "defaults": "",
       "domain": ""

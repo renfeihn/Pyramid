@@ -1,8 +1,12 @@
 <template>
     <div>
         <h2 class="sub-header">表区域 </h2>
-        <form class="form-inline form-filter">
 
+        <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
+        <textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>
+        <br>
+
+        <form class="form-inline form-filter">
             <div class="form-group">
                 <label>表名称</label>
                 <input class="form-control" v-model="code" type="text"/>
@@ -45,8 +49,8 @@
                     <td>{{table.table_space}}</td>
                     <td>
                         <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
-                        <a href="javascript:;" class="btn btn-sm btn-danger" @click="">删除</a>
-                        <a class="btn btn-sm btn-info">脚本</a>
+                        <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
+                        <a class="btn btn-sm btn-info" @click="getSql(table.code);">脚本</a>
                     </td>
                 </tr>
                 </tbody>
@@ -64,7 +68,11 @@ export default{
     data(){
         return{
             tables:[],
-            tableSpaces:[]
+            tableSpaces:[],
+            errors:[],    //服务端验证失败的返回
+            // 选中行的索引
+            content:'',
+            textshow:false
         }
     },
     methods:{
@@ -89,11 +97,52 @@ export default{
                 alert('TableList 页面 请求 table 失败： '+ res.status);
             });
         },
-        getSql(){
-
+        deleteTable(code){
+            this.$http.post('/deleteFile',{
+                type : 'tables',
+                code : code
+            }).then(function(res){
+                if(res.status==200){
+                    console.log('删除表成功');
+                    // 提示信息并新获取table
+                    var re = res.body;
+                    if(re){
+                        this.errors = re;
+                        this.getAllTables();
+                    }
+                }else{
+                    console.log('删除表失败')
+                }
+            },function(res){
+                console.log('删除表失败'+ res.status + '  '+res.body);
+                this.errors = res.body;
+            });
+        },
+        getSql(code){
+            this.$http.post('/showSQL',{
+                type : 'table',
+                db_type : 'oracle',
+                code : code
+            }).then(function(res){
+                if(res.status==200){
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if(re){
+                        this.textshow = true;
+                        this.content = re;
+                        // 先清除错误信息
+                        this.errors = [];
+                    }
+                }else{
+                    console.log('生成sql失败')
+                }
+            },function(res){
+                console.log('生成sql失败'+ res.status + '  '+res.body);
+                this.errors = res.body;
+            });
 
         }
-
     },
     components:{
 

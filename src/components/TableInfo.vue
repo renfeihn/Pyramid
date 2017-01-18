@@ -8,14 +8,20 @@
             <div class="form-group">
                 <label>表空间</label>
                 <select class="form-control" v-model="table.table_space">
-                    <option value="">- 选择表空间 -</option>
-                    <option v-for="(tableSpace, index) in tableSpaces" :value="tableSpace.code.toString()">
-                        {{tableSpace.code}}
-                    </option>
+                    <template v-for="tableSpace in tableSpaces">
+                        <option :value="tableSpace.code" v-if="tableSpace.code == table.table_space" selected>
+                            {{tableSpace.code}}
+                        </option>
+                        <option :value="tableSpace.code" v-else>
+                            {{tableSpace.code}}
+                        </option>
+                    </template>
                 </select>
+
             </div>
             <div class="form-group">
                 <label>表名称</label>
+                <input class="form-control" v-model="table.name" v-show="false" type="text"/>
                 <input class="form-control" v-model="table.code" @blur="checkTableCode(table.code);" type="text"/>
             </div>
             <div class="form-group">
@@ -141,10 +147,12 @@ export default{
             this.$http.get('/checkTableCode/'+code).then(function(res){
                 if(res.status == 200){
                     this.errors=[];
+                    this.table.name = code;
                 }
             },function(res){
                 console.log('未通过服务端校验'+ res.status + '  '+res.body);
-                this.errors=res.body;
+                this.table.name = '';
+                this.errors = res.body;
             });
 
         },
@@ -152,6 +160,7 @@ export default{
         selectRow(e,index){
             // 设置高亮
             var tr = e.currentTarget;
+            console.log('tr:  '+tr.innerHTML);
             /*
             var tbd = tr.parentNode;
             console.log(tdb);
@@ -243,7 +252,6 @@ export default{
         save(){
             // 处理数据
             this.table.attr = this.tableAttr;
-            this.table.name = this.table.code;
             this.$http.post('/saveTable',{
                 data : this.table
             }).then(function(res){

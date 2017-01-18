@@ -126,11 +126,19 @@ router.post('/showSQL', function (req, res, next) {
 
     const type = req.body.type;
     const db_type = req.body.db_type;
-    const data = req.body.data;
+    const code = req.body.code; // 表名字
+    var data = req.body.data;
+    if (code) {
+        if (type.toLowerCase() == 'table') {
+            data = db.getTable(code);
+        } else if (type.toLowerCase() == 'domain') {
+
+        }
+    }
 
     logger.writeDebug('type: ' + type + ' db_type: ' + db_type + '  data: ' + JSON.stringify(data));
     try {
-        const sql = utils.generatorSqlOnline(type, 'mysql', data);
+        const sql = utils.generatorSqlOnline(type, db_type, data);
         return res.status(200).send(sql).end();
     } catch (e) {
         logger.writeErr('生成SQL错误: ' + e)
@@ -140,25 +148,24 @@ router.post('/showSQL', function (req, res, next) {
 
 });
 
-
 /**
- * 单表view sql
+ * 删除源文件
  */
-router.post('/showSQL', function (req, res, next) {
-    var errors = new Array();
+router.post('/deleteFile', function (req, res, next) {
+    var msg = new Array();
+    const type = req.body.type; // 类型 table、domain、
+    const code = req.body.code; // 名字
 
-    const db_type = req.body.db_type;
 
-    logger.writeDebug('db_type: ' + db_type);
     try {
-        utils.generatorSql('mysql', 'table');
-        return res.status(200).send('生成sql成功').end();
+        db.delSourceFile(type, code);
+        msg.push('表 ' + code + ' 删除成功！');
+        return res.status(200).send(msg).end();
     } catch (e) {
-        logger.writeErr('生成SQL失败: ' + e)
-        errors.push('生成SQL失败，请重试');
+        logger.writeErr('删除文件错误: ' + e);
+        msg.push('删除文件错误，请重试');
     }
-    return res.status(301).send(errors).end();
-
+    return res.status(301).send(msg).end();
 });
 
 

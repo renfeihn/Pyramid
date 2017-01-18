@@ -41,7 +41,7 @@ if (isNotNull(table.code)) {
             .append(nextLine);
 
     if (isNotNull(table.attr)) {
-        var primary_key;
+        var primary_keys = new Array();
         var attrs = table.attr;
         attrs.forEach(function (attr, index, array) {
             if (isNotNull(attr)) {
@@ -83,16 +83,25 @@ if (isNotNull(table.code)) {
 
                 // 标记主键
                 if (isNotNull(attr.P) && attr.P == 'Y') {
-                    primary_key = attr.code;
+                    primary_keys.push(attr.code);
                 }
 
                 if ((index + 1) != array.length) {
                     sql.append(',' + nextLine);
                 } else {
-                    if (isNotNull(primary_key)) {
+                    if (primary_keys.length > 0) {
                         sql.append(',' + nextLine)
                                 .append(tab)
-                                .append(' primary  key (' + primary_key + ')');
+                                .append('primary  key (');
+
+                        primary_keys.forEach(function (pk, int, pks) {
+                            if(int == 0){
+                                sql.append(pk);
+                            }else{
+                                sql.append(',' +pk);
+                            }
+                        });
+                        sql.append(')');
                     }
                 }
             }
