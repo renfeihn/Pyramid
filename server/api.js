@@ -21,13 +21,11 @@ var n = 0;
 router.get('/getAll/tables', function (req, res, next) {
     var obj;
     var start = process.uptime();
-    const code = req.query.code;
-    const comment = req.query.comment;
-    const tableSpace = req.query.tableSpace;
+    const code = req.query.code.trim();
+    const comment = req.query.comment.trim();
+    const tableSpace = req.query.tableSpace.trim();
 
-    logger.writeDebug('code: ' + code + '  comment: ' + comment + '   tableSpace: ' + tableSpace
-    )
-
+    logger.writeDebug('code: ' + code + '  comment: ' + comment + '   tableSpace: ' + tableSpace);
 
     var result = db.readFile('tables');
     var tableRes = new Array();
@@ -47,7 +45,6 @@ router.get('/getAll/tables', function (req, res, next) {
             }
 
             if (util.isNotNull(tableSpace)) {
-
                 logger.writeDebug('table.table_space: ' + table.table_space);
                 logger.writeDebug('-------------' + (table.table_space).indexOf(tableSpace) > 0);
                 if ((table.table_space).indexOf(tableSpace) > 0) {
@@ -59,7 +56,6 @@ router.get('/getAll/tables', function (req, res, next) {
         });
     }
 
-
     if (tableRes.length > 0) {
         obj = tableRes;
     } else {
@@ -67,10 +63,8 @@ router.get('/getAll/tables', function (req, res, next) {
     }
 
     logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
-
     var end = process.uptime();
     logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
-
     res.status(200).send(obj).end();
 });
 
