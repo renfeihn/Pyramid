@@ -1361,12 +1361,23 @@ exports.default = {
         };
     },
 
+    methods: {
+        dbmsChange: function dbmsChange() {
+            localStorage.setItem('dbms', this.db_type);
+        }
+    },
     components: {
         leftNav: _LeftNav2.default
+    },
+    created: function created() {
+        var db = localStorage.getItem('dbms');
+        if (null != db && undefined != db && '' != db && db.length > 0) {
+            this.db_type = db;
+        } else {
+            localStorage.setItem('dbms', this.db_type);
+        }
     }
 }; //
-//
-//
 //
 //
 //
@@ -1789,7 +1800,7 @@ exports.default = {
             this.table.attr = this.tableAttr;
             this.$http.post('/showSQL', {
                 type: 'table',
-                db_type: 'oracle',
+                db_type: localStorage.getItem('dbms'),
                 data: this.table
             }).then(function (res) {
                 if (res.status == 200) {
@@ -1902,12 +1913,14 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
-//
 
 
 exports.default = {
     data: function data() {
         return {
+            code: '',
+            comment: '',
+            tableSpace: '',
             tables: [],
             tableSpaces: [],
             errors: [], //服务端验证失败的返回
@@ -1928,8 +1941,8 @@ exports.default = {
                 alert('TableList 页面 请求 table space 失败： ' + res.status);
             });
         },
-        getAllTables: function getAllTables(page, code, comment, tableSpace) {
-            var API = '/getAll/tables?page=' + page + '&code=' + code + '&comment=' + comment + '&tableSpace=' + tableSpace;
+        getAllTables: function getAllTables() {
+            var API = '/getAll/tables?page=' + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
             this.$http.get(API).then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
@@ -1960,10 +1973,30 @@ exports.default = {
                 this.errors = res.body;
             });
         },
+        generatorSql: function generatorSql() {
+            this.$http.post('/generatorSql', {
+                type: 'table',
+                db_type: localStorage.getItem('dbms')
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if (re) {
+                        this.errors = re;
+                    }
+                } else {
+                    console.log('生成sql失败');
+                }
+            }, function (res) {
+                console.log('生成sql失败' + res.status + '  ' + res.body);
+                this.errors = res.body;
+            });
+        },
         getSql: function getSql(code) {
             this.$http.post('/showSQL', {
                 type: 'table',
-                db_type: 'oracle',
+                db_type: localStorage.getItem('dbms'),
                 code: code
             }).then(function (res) {
                 if (res.status == 200) {
@@ -2214,23 +2247,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         })[0]
       }
     }
-  }, [_c('option', {
-    attrs: {
-      "value": ""
-    },
-    domProps: {
-      "value": ""
-    }
-  }, [_vm._v("- 选择表空间 -")]), _vm._v(" "), _vm._l((_vm.tableSpaces), function(tableSpace, index) {
+  }, _vm._l((_vm.tableSpaces), function(tableSpace, index) {
     return _c('option', {
       domProps: {
         "value": tableSpace.code.toString()
       }
     }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
-  })], 2)]), _vm._v(" "), _c('a', {
+  }))]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.getAllTables();
+      }
     }
   }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
@@ -2240,7 +2268,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.generatorSql();
+      }
     }
   }, [_vm._v("生成脚本")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
@@ -2389,28 +2419,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "container-fluid"
   }, [_c('div', {
     staticClass: "navbar-header"
-  }, [_vm._m(0), _vm._v(" "), _c('router-link', {
-    staticClass: "navbar-brand",
-    attrs: {
-      "to": "/"
-    }
-  }, [_vm._v("首页")]), _vm._v("\n\n                DBMS:\n                "), _c('select', {
+  }, [_vm._m(0), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.db_type),
       expression: "db_type"
     }],
-    staticClass: "form-control",
+    staticClass: "navbar-brand",
     on: {
-      "change": function($event) {
+      "change": [function($event) {
         _vm.db_type = Array.prototype.filter.call($event.target.options, function(o) {
           return o.selected
         }).map(function(o) {
           var val = "_value" in o ? o._value : o.value;
           return val
         })[0]
-      }
+      }, function($event) {
+        _vm.dbmsChange();
+      }]
     }
   }, [_vm._l((_vm.options), function(option) {
     return [(option.value == _vm.db_type) ? _c('option', {
@@ -2426,7 +2453,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": option.value
       }
     }, [_vm._v("\n                            " + _vm._s(option.text) + "\n                        ")])]
-  })], 2)], 1)])]), _vm._v(" "), _c('div', {
+  })], 2)])])]), _vm._v(" "), _c('div', {
     staticClass: "container-fluid float-top"
   }, [_c('div', {
     staticClass: "row"
@@ -2502,7 +2529,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("表空间")]), _vm._v(" "), _c('select', {
+  }, [_c('label', [_vm._v("表空间" + _vm._s(_vm.table.table_space))]), _vm._v(" "), _c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",

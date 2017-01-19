@@ -1049,19 +1049,14 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-modules-commonjs/node_modules/babel-types/node_modules/esutils/lib/utils.js" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/node_modules/babel-preset-es2015/node_modules/babel-plugin-transform-es2015-modules-commonjs/node_modules/babel-types/node_modules/esutils/package.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/source/table_spaces/test01.json" afterPath="$PROJECT_DIR$/data/source/table_spaces/test01.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/source/table_spaces/test02.json" afterPath="$PROJECT_DIR$/data/source/table_spaces/test02.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/source/table_spaces/test03.json" afterPath="$PROJECT_DIR$/data/source/table_spaces/test03.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/source/tables/user.json" afterPath="$PROJECT_DIR$/data/source/tables/user.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/target/table/person.sql" afterPath="$PROJECT_DIR$/data/target/table/person.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/target/table/user.sql" afterPath="$PROJECT_DIR$/data/target/table/user.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/build.js" afterPath="$PROJECT_DIR$/dist/build.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api.js" afterPath="$PROJECT_DIR$/server/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/db.js" afterPath="$PROJECT_DIR$/server/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/template/table_mysql.ejs" afterPath="$PROJECT_DIR$/server/template/table_mysql.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/template/table_oracle.ejs" afterPath="$PROJECT_DIR$/server/template/table_oracle.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.js" afterPath="$PROJECT_DIR$/server/server.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/Frame.vue" afterPath="$PROJECT_DIR$/src/components/Frame.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/TableInfo.vue" afterPath="$PROJECT_DIR$/src/components/TableInfo.vue" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/TableList.vue" afterPath="$PROJECT_DIR$/src/components/TableList.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -1079,11 +1074,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="api.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/api.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="140" column="58" lean-forward="false" selection-start-line="140" selection-start-column="58" selection-end-line="140" selection-end-column="58" />
+            <state relative-caret-position="186">
+              <caret line="51" column="71" lean-forward="false" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -1092,8 +1087,28 @@
       <file leaf-file-name="tableUtil.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/util/tableUtil.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="335">
-              <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+            <state relative-caret-position="-84">
+              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="logHelper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2048">
+              <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/util/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="164">
+              <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -1134,8 +1149,8 @@
       <file leaf-file-name="TableList.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
+            <state relative-caret-position="-645">
+              <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -1144,18 +1159,18 @@
       <file leaf-file-name="TableInfo.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="17" selection-end-column="31" />
+            <state relative-caret-position="126">
+              <caret line="108" column="41" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Frame.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Frame.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/Frame.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="14">
-              <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+            <state relative-caret-position="231">
+              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1171,7 +1186,6 @@
       <find>field</find>
       <find>maxRowSize</find>
       <find>this.selectRowIndex</find>
-      <find>getTable</find>
       <find>.json</find>
       <find>vue-html</find>
       <find>selectRow</find>
@@ -1180,6 +1194,9 @@
       <find>de</find>
       <find>del</find>
       <find>fore</find>
+      <find>page</find>
+      <find>tableInfo</find>
+      <find>getTable</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -1200,16 +1217,17 @@
         <option value="$PROJECT_DIR$/data/source/tables/person.json" />
         <option value="$PROJECT_DIR$/server/log/logHelper.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/server/util/tableUtil.js" />
-        <option value="$PROJECT_DIR$/src/components/TableInfo.vue" />
         <option value="$PROJECT_DIR$/server/db.js" />
-        <option value="$PROJECT_DIR$/src/components/TableList.vue" />
-        <option value="$PROJECT_DIR$/server/api.js" />
         <option value="$PROJECT_DIR$/server/template/table_oracle.ejs" />
         <option value="$PROJECT_DIR$/server/template/table_mysql.ejs" />
         <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/src/components/Frame.vue" />
+        <option value="$PROJECT_DIR$/server/util/util.js" />
+        <option value="$PROJECT_DIR$/src/components/TableInfo.vue" />
+        <option value="$PROJECT_DIR$/src/components/TableList.vue" />
+        <option value="$PROJECT_DIR$/server/api.js" />
       </list>
     </option>
   </component>
@@ -1290,6 +1308,70 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="PowerDesigner" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="source" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -1305,7 +1387,7 @@
     <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="main&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;table&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_mysql.ejs&#10;table_or&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;table_o&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;main.js&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;ser&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js&#10;p&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;user&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;create&#9;null&#9;null&#10;id&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;left&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/LeftNav.vue&#10;ps&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/target/table/person.sql&#10;fr&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/Frame.vue&#10;ta&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;user.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;server&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js" />
+    <property name="SearchEverywhereHistoryKey" value="json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;ser&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js&#10;main&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;table&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_mysql.ejs&#10;table_or&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;table_o&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;main.js&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;p&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;user&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;create&#9;null&#9;null&#10;id&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;left&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/LeftNav.vue&#10;ps&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/target/table/person.sql&#10;fr&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/Frame.vue&#10;ta&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;user.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;server&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jsx.switch.disabled" value="true" />
   </component>
@@ -1395,7 +1477,7 @@
       <workItem from="1484059465986" duration="6859000" />
       <workItem from="1484319047938" duration="264000" />
       <workItem from="1484319728607" duration="31641000" />
-      <workItem from="1484422612809" duration="39791000" />
+      <workItem from="1484422612809" duration="52297000" />
     </task>
     <task id="LOCAL-00001" summary="修改项目启动说明">
       <created>1483979911191</created>
@@ -1439,22 +1521,29 @@
       <option name="project" value="LOCAL" />
       <updated>1484747724299</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="列表优化">
+      <created>1484758071738</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1484758071738</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82975000" />
+    <option name="totallyTimeSpent" value="95481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.232" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1467,6 +1556,25 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3312" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3616" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1501,21 +1609,14 @@
     <MESSAGE value="修改引入插件" />
     <MESSAGE value="完善生成sql预览功能" />
     <MESSAGE value="解决读取文件中文内容乱码" />
-    <option name="LAST_COMMIT_MESSAGE" value="解决读取文件中文内容乱码" />
+    <MESSAGE value="列表优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="列表优化" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1533">
@@ -1528,6 +1629,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="83" lean-forward="true" selection-start-line="7" selection-start-column="83" selection-end-line="7" selection-end-column="83" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1601,6 +1703,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1761,6 +1864,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="49" column="12" lean-forward="true" selection-start-line="49" selection-start-column="12" selection-end-line="58" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1822,50 +1926,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/db.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="54" column="29" lean-forward="false" selection-start-line="54" selection-start-column="29" selection-end-line="54" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="134" column="41" lean-forward="true" selection-start-line="134" selection-start-column="41" selection-end-line="134" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="140" column="58" lean-forward="false" selection-start-line="140" selection-start-column="58" selection-end-line="140" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1886,14 +1950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/util/tableUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="164">
@@ -1904,18 +1960,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
+    <entry file="file://$PROJECT_DIR$/server/server.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="10" column="20" lean-forward="true" selection-start-line="10" selection-start-column="20" selection-end-line="17" selection-end-column="31" />
+        <state relative-caret-position="98">
+          <caret line="26" column="41" lean-forward="false" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="735">
+          <caret line="35" column="13" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/Frame.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="14">
-          <caret line="14" column="47" lean-forward="false" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+        <state relative-caret-position="231">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2048">
+          <caret line="1" column="24" lean-forward="true" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/util/tableUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-84">
+          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/util/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="12" column="41" lean-forward="true" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-645">
+          <caret line="19" column="64" lean-forward="false" selection-start-line="19" selection-start-column="64" selection-end-line="19" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="108" column="41" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="51" column="71" lean-forward="false" selection-start-line="51" selection-start-column="71" selection-end-line="51" selection-end-column="71" />
           <folding />
         </state>
       </provider>

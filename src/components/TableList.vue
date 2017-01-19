@@ -18,16 +18,15 @@
             <div class="form-group">
                 <label>表空间</label>
                 <select class="form-control" v-model="tableSpace">
-                    <option value="">- 选择表空间 -</option>
                     <option v-for="(tableSpace, index) in tableSpaces" :value="tableSpace.code.toString()">
                         {{tableSpace.code}}
                     </option>
                 </select>
             </div>
-            <a class="btn btn-info" @click="">筛选</a>
+            <a class="btn btn-info" @click="getAllTables();">筛选</a>
 
             <a class="btn btn-info" href="/tableInfo">新增表</a>
-            <a class="btn btn-info" @click="">生成脚本</a>
+            <a class="btn btn-info" @click="generatorSql();">生成脚本</a>
         </form>
 
         <div class="table-responsive articleList">
@@ -67,6 +66,9 @@
 export default{
     data(){
         return{
+            code:'',
+            comment:'',
+            tableSpace:'',
             tables:[],
             tableSpaces:[],
             errors:[],    //服务端验证失败的返回
@@ -86,8 +88,8 @@ export default{
                 alert('TableList 页面 请求 table space 失败： '+ res.status);
             });
         },
-        getAllTables(page,code,comment,tableSpace){
-            let API = '/getAll/tables?page='+page+'&code='+code+'&comment='+comment+'&tableSpace='+tableSpace;
+        getAllTables(){
+            let API = '/getAll/tables?page='+'&code='+this.code+'&comment='+this.comment+'&tableSpace='+this.tableSpace;
             this.$http.get(API).then(function(res){
                 if(res.status == 200){
                    var re = res.body;
@@ -118,10 +120,30 @@ export default{
                 this.errors = res.body;
             });
         },
+        generatorSql(){
+            this.$http.post('/generatorSql',{
+                type : 'table',
+                db_type : localStorage.getItem('dbms')
+            }).then(function(res){
+                if(res.status==200){
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if(re){
+                        this.errors = re;
+                    }
+                }else{
+                    console.log('生成sql失败')
+                }
+            },function(res){
+                console.log('生成sql失败'+ res.status + '  '+res.body);
+                this.errors = res.body;
+            });
+        },
         getSql(code){
             this.$http.post('/showSQL',{
                 type : 'table',
-                db_type : 'oracle',
+                db_type : localStorage.getItem('dbms'),
                 code : code
             }).then(function(res){
                 if(res.status==200){
@@ -141,7 +163,6 @@ export default{
                 console.log('生成sql失败'+ res.status + '  '+res.body);
                 this.errors = res.body;
             });
-
         }
     },
     components:{

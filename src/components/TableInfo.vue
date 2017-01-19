@@ -273,7 +273,7 @@ export default{
             this.table.attr = this.tableAttr;
             this.$http.post('/showSQL',{
                 type : 'table',
-                db_type : 'oracle',
+                db_type : localStorage.getItem('dbms'),
                 data : this.table
             }).then(function(res){
                 if(res.status==200){

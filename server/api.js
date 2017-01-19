@@ -4,6 +4,7 @@ const logger = require('./log/logHelper').helper;
 const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
+const util = require('./util/util');
 // 子进程（child_process）
 const exec = require('child_process').exec;
 
@@ -17,26 +18,100 @@ var n = 0;
 /**
  * 根据name(源文件目录名字)获取对象数据
  */
-router.get('/getAll/:code', function (req, res, next) {
+router.get('/getAll/tables', function (req, res, next) {
+    var obj;
+    var start = process.uptime();
+    const code = req.query.code;
+    const comment = req.query.comment;
+    const tableSpace = req.query.tableSpace;
 
-    if (!req.params.code) {
-        return next(new Error('未提供查询条件'));
+    logger.writeDebug('code: ' + code + '  comment: ' + comment + '   tableSpace: ' + tableSpace
+    )
+
+
+    var result = db.readFile('tables');
+    var tableRes = new Array();
+
+    if (util.isArray(result) && result.length > 0) {
+        result.forEach(function (table, index, tables) {
+            logger.writeDebug('table:  ' + JSON.stringify(table));
+            if (util.isNotNull(code)) {
+                if ((table.code).indexOf(code) > 0) {
+                    tableRes.push(table);
+                }
+            }
+            if (util.isNotNull(comment)) {
+                if ((table.comment).indexOf(comment) > 0) {
+                    tableRes.push(table);
+                }
+            }
+
+            if (util.isNotNull(tableSpace)) {
+
+                logger.writeDebug('table.table_space: ' + table.table_space);
+                logger.writeDebug('-------------' + (table.table_space).indexOf(tableSpace) > 0);
+                if ((table.table_space).indexOf(tableSpace) > 0) {
+                    logger.writeDebug('包含 tableSpace: ' + tableSpace);
+                    tableRes.push(table);
+                }
+            }
+
+        });
     }
+
+
+    if (tableRes.length > 0) {
+        obj = tableRes;
+    } else {
+        obj = result;
+    }
+
+    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+
+    var end = process.uptime();
+    logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+
+    res.status(200).send(obj).end();
+});
+
+/**
+ * 获取domains
+ */
+router.get('/getAll/domains', function (req, res, next) {
 
     var start = process.uptime();
 
-    var result = db.readFile(req.params.code);
+    var result = db.readFile('domains');
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
     var end = process.uptime();
-    logger.writeDebug('执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeDebug('查询 domains 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(result).end();
 });
 
 /**
+ * 获取表空间
+ */
+router.get('/getAll/table_spaces', function (req, res, next) {
+
+    var start = process.uptime();
+    logger.writeDebug('params: ' + req.params);
+
+    var result = db.readFile('table_spaces');
+    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+
+    var end = process.uptime();
+    logger.writeDebug('查询 table_spaces  执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+
+    res.status(200).send(result).end();
+});
+
+
+/**
  * 根据name(源文件目录名字)获取对象数据
  */
+
 router.get('/getTable/:code', function (req, res, next) {
     var result = db.getTable(req.params.code);
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
@@ -145,6 +220,28 @@ router.post('/showSQL', function (req, res, next) {
         errors.push('生成SQL错误，请重试');
     }
     return res.status(301).send(errors).end();
+
+});
+
+
+/**
+ * 生成sql
+ */
+router.post('/generatorSql', function (req, res, next) {
+    var msg = new Array();
+
+    const db_type = req.body.db_type;
+    const type = req.body.type;
+    logger.writeDebug('db_type: ' + db_type);
+    try {
+        utils.generatorSql(db_type, type);
+        msg.push('生成SQL成功');
+        return res.status(200).send(msg).end();
+    } catch (e) {
+        logger.writeErr('生成SQL错误: ' + e)
+        msg.push('生成SQL错误，请重试');
+    }
+    return res.status(301).send(msg).end();
 
 });
 

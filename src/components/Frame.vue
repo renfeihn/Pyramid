@@ -9,10 +9,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <router-link class="navbar-brand" to="/">首页</router-link>
 
-                    DBMS:
-                    <select class="navbar-brand" v-model="db_type">
+                    <select class="navbar-brand" @change="dbmsChange();" v-model="db_type">
                         <template v-for="option in options">
                             <option :value="option.value" v-if="option.value == db_type" selected>
                                 {{option.text}}
@@ -51,8 +49,21 @@ export default{
             ]
         }
     },
+    methods:{
+        dbmsChange(){
+            localStorage.setItem('dbms',this.db_type);
+        }
+    },
     components:{
         leftNav,
+    },
+    created(){
+        var db = localStorage.getItem('dbms');
+        if(null != db && undefined != db && '' != db && db.length > 0){
+            this.db_type = db;
+        }else{
+            localStorage.setItem('dbms',this.db_type);
+        }
     }
 }
 </script>
