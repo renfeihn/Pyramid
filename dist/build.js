@@ -1550,7 +1550,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
     data: function data() {
         return {
-            data_types: ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'Date', 'Varchar', 'Double'],
+            data_types: ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob'],
             // 传递进来的 code 参数
             domainCode: '',
             // domain域
@@ -1922,7 +1922,7 @@ var _editable2 = _interopRequireDefault(_editable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'Date', 'Variable Characters', 'Double']; //
+var data_types = ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob']; //
 //
 //
 //
