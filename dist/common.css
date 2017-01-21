@@ -478,3 +478,363 @@ body[data-v-4dddddea] {
 
 
 
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body[data-v-582389da] {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+.sub-header[data-v-582389da] {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+  background: #f1f1f1;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius:3px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top[data-v-582389da] {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar[data-v-582389da] {
+  display: none;
+}
+@media (min-width: 768px) {
+.sidebar[data-v-582389da] {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+}
+
+/* Sidebar navigation */
+.nav-sidebar[data-v-582389da] {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a[data-v-582389da] {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .router-link-active > a[data-v-582389da],
+.nav-sidebar > .router-link-active > a[data-v-582389da]:hover,
+.nav-sidebar > .router-link-active > a[data-v-582389da]:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+
+/*
+ * Main content
+ */
+.main[data-v-582389da] {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+.main[data-v-582389da] {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+}
+.main .page-header[data-v-582389da] {
+  margin-top: 0;
+}
+.articleList[data-v-582389da]{
+  border:1px solid #eee;
+  margin-top: 20px;
+  border-radius:2px;
+}
+.articleList table[data-v-582389da]{
+  margin-bottom:0;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+.placeholders[data-v-582389da] {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4[data-v-582389da] {
+  margin-bottom: 0;
+}
+.placeholder[data-v-582389da] {
+  margin-bottom: 20px;
+}
+.placeholder img[data-v-582389da] {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body[data-v-e35731ba] {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+.sub-header[data-v-e35731ba] {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+  background: #f1f1f1;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius:3px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top[data-v-e35731ba] {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar[data-v-e35731ba] {
+  display: none;
+}
+@media (min-width: 768px) {
+.sidebar[data-v-e35731ba] {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+}
+
+/* Sidebar navigation */
+.nav-sidebar[data-v-e35731ba] {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a[data-v-e35731ba] {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .router-link-active > a[data-v-e35731ba],
+.nav-sidebar > .router-link-active > a[data-v-e35731ba]:hover,
+.nav-sidebar > .router-link-active > a[data-v-e35731ba]:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+
+/*
+ * Main content
+ */
+.main[data-v-e35731ba] {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+.main[data-v-e35731ba] {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+}
+.main .page-header[data-v-e35731ba] {
+  margin-top: 0;
+}
+.articleList[data-v-e35731ba]{
+  border:1px solid #eee;
+  margin-top: 20px;
+  border-radius:2px;
+}
+.articleList table[data-v-e35731ba]{
+  margin-bottom:0;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+.placeholders[data-v-e35731ba] {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4[data-v-e35731ba] {
+  margin-bottom: 0;
+}
+.placeholder[data-v-e35731ba] {
+  margin-bottom: 20px;
+}
+.placeholder img[data-v-e35731ba] {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body[data-v-86f138b2] {
+  padding-top: 50px;
+}
+
+
+/*
+ * Global add-ons
+ */
+.sub-header[data-v-86f138b2] {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+  background: #f1f1f1;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius:3px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top[data-v-86f138b2] {
+  border: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+.sidebar[data-v-86f138b2] {
+  display: none;
+}
+@media (min-width: 768px) {
+.sidebar[data-v-86f138b2] {
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+}
+}
+
+/* Sidebar navigation */
+.nav-sidebar[data-v-86f138b2] {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a[data-v-86f138b2] {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .router-link-active > a[data-v-86f138b2],
+.nav-sidebar > .router-link-active > a[data-v-86f138b2]:hover,
+.nav-sidebar > .router-link-active > a[data-v-86f138b2]:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+
+
+/*
+ * Main content
+ */
+.main[data-v-86f138b2] {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+.main[data-v-86f138b2] {
+    padding-right: 40px;
+    padding-left: 40px;
+}
+}
+.main .page-header[data-v-86f138b2] {
+  margin-top: 0;
+}
+.articleList[data-v-86f138b2]{
+  border:1px solid #eee;
+  margin-top: 20px;
+  border-radius:2px;
+}
+.articleList table[data-v-86f138b2]{
+  margin-bottom:0;
+}
+
+/*
+ * Placeholder dashboard ideas
+ */
+.placeholders[data-v-86f138b2] {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4[data-v-86f138b2] {
+  margin-bottom: 0;
+}
+.placeholder[data-v-86f138b2] {
+  margin-bottom: 20px;
+}
+.placeholder img[data-v-86f138b2] {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+
+

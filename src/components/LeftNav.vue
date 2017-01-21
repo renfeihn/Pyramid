@@ -8,18 +8,18 @@
                 <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}"> {{table.name}}</router-link>
             </li>
 
-            <li><a href="javascript:;" @click="getAllDomains()"><i class="fa fa-th-list"></i>&nbsp;domain</a>
+            <li><a href="/domainList" ><i class="fa fa-th-list"></i>&nbsp;domain</a>
             </li>
 
             <li v-for="(domain, index) in domains">
-                <a href="/index"><i class="fa fa-files-o"></i>&nbsp;{{domain.code}}</a>
+                <a href="/"><i class="fa fa-files-o"></i>&nbsp;{{domain.code}}</a>
             </li>
 
-            <li><a href="javascript:;" @click="getAllTableSpaces()"><i class="fa fa-th-list"></i>&nbsp;table space</a>
+            <li><a href="/tableSpaceList"><i class="fa fa-th-list"></i>&nbsp;table space</a>
             </li>
 
             <li v-for="(tableSpace, index) in tableSpaces">
-                <a href="/index"><i class="fa fa-files-o"></i>&nbsp;{{tableSpace.code}}</a>
+                <a href="/"><i class="fa fa-files-o"></i>&nbsp;{{tableSpace.code}}</a>
             </li>
 
         </ul>

@@ -112,6 +112,16 @@ router.get('/getTable/:code', function (req, res, next) {
     res.status(200).send(result).end();
 });
 
+/**
+ * 根据name(源文件目录名字)获取对象数据
+ */
+
+router.get('/getDomain/:code', function (req, res, next) {
+    var result = db.getDomain(req.params.code);
+    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+    res.status(200).send(result).end();
+});
+
 
 /**
  * 保存table数据
@@ -126,7 +136,7 @@ router.post('/saveTable', function (req, res, next) {
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCcode(data.code);
+    var flag = checkTableCode('tables',data.code);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + data.code + ' 已存在');
@@ -143,6 +153,37 @@ router.post('/saveTable', function (req, res, next) {
 });
 
 
+/**
+ * domain
+ */
+router.post('/saveDomain', function (req, res, next) {
+    var errors = new Array();
+    // 后台接收的参数
+    const data = req.body.data;
+    logger.writeDebug('/saveDomain 接收的数据： ' + JSON.stringify(data));
+    if (!data) {
+        return res.status(301).send('数据不能为空').end();
+    }
+
+    // 服务端数据验证 表名唯一，表中字段不可重复
+    var flag = checkTableCode('domains',data.code);
+    logger.writeDebug('flag: ' + flag);
+    if (flag) {
+        errors.push('表名 ' + data.code + ' 已存在');
+    }
+
+    if (errors.length > 0) {
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    } else {
+        db.writeSourceFile('domains', data.code, JSON.stringify(data, null, 4));
+        res.status(200).send('保存成功').end();
+    }
+
+});
+
+
+
 router.get('/checkTableCode/:code', function (req, res, next) {
     var errors = new Array();
     // 后台接收的参数
@@ -155,10 +196,34 @@ router.get('/checkTableCode/:code', function (req, res, next) {
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCcode(code);
+    var flag = checkTableCode('tables',code);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + code + ' 已存在');
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    }
+
+    return res.status(200).send('').end();
+});
+
+
+router.get('/checkDomainCode/:code', function (req, res, next) {
+    var errors = new Array();
+    // 后台接收的参数
+    const code = req.params.code;
+    logger.writeDebug('后台接收domain的数据： ' + JSON.stringify(code));
+    if (!code) {
+        errors.push('请填写domain名称！');
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    }
+
+    // 服务端数据验证 表名唯一，表中字段不可重复
+    var flag = checkTableCode('domains',code);
+    logger.writeDebug('flag: ' + flag);
+    if (flag) {
+        errors.push('domain ' + code + ' 已存在');
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     }
@@ -170,9 +235,9 @@ router.get('/checkTableCode/:code', function (req, res, next) {
  * 检查表code 唯一
  * @param code
  */
-function checkTableCcode(code) {
+function checkTableCode(type,code) {
     // 获取所有的table
-    var tables = db.readFile('tables');
+    var tables = db.readFile(type);
     var flag = false;
     logger.writeDebug('tables: ' + tables);
     if (null != tables && tables instanceof Array) {

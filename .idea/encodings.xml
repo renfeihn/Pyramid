@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/data/source/domains/id.json" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/source/tables/user.json" charset="GBK" />
     <file url="file://$PROJECT_DIR$/data/target/table/person.sql" charset="GB2312" />
   </component>
 </project>

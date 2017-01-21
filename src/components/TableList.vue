@@ -33,7 +33,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>name</th>
+                    <!--<th>name</th>-->
                     <th>code</th>
                     <th>comment</th>
                     <th>table space</th>
@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="(table,index) in tables">
-                    <td>{{table.name}}</td>
+                    <!--<td>{{table.name}}</td>-->
                     <td>{{table.code}}</td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>

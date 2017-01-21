@@ -21,7 +21,6 @@
             </div>
             <div class="form-group">
                 <label>表名称</label>
-                <input class="form-control" v-model="table.name" v-show="false" type="text"/>
                 <input class="form-control" v-model="table.code" @blur="checkTableCode(table.code);" type="text"/>
             </div>
             <div class="form-group">
@@ -82,7 +81,7 @@
 
 import editable from '../plugins/editable.js';
 
-var data_types = ['Integer', 'Byte', 'Number', 'Decimal', 'Float', 'Boolean', 'Date','Variable Characters','Double'];
+var data_types = ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
 export default{
     data(){
@@ -110,6 +109,7 @@ export default{
                     if(res.status == 200){
                         var re = res.body;
                         this.table = re;
+                        console.log('table_space: '+ re.table_space);
                         if(null != re && re.attr instanceof Array){
                             this.tableAttr = (this.table).attr;
                             this.maxRowSize = this.tableAttr.length;
@@ -235,7 +235,7 @@ export default{
                                 (that.tableAttr[index]).name = (that.domains[i]).name;
                                 (that.tableAttr[index]).code = (that.domains[i]).code;
                                 (that.tableAttr[index]).data_type = (that.domains[i]).data_type;
-                                (that.tableAttr[index]).length = (that.domains[i]).length;
+                                (that.tableAttr[index]).lengths = (that.domains[i]).lengths;
                                 (that.tableAttr[index]).precision = (that.domains[i]).precision;
                                 (that.tableAttr[index]).comment = (that.domains[i]).comment;
                                 (that.tableAttr[index]).defaults = (that.domains[i]).defaults;
