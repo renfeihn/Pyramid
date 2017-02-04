@@ -59,7 +59,7 @@
 export default{
     data(){
         return{
-            data_types : ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob'],
+            data_types : ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'],
             // 传递进来的 code 参数
             domainCode:'',
             // domain域

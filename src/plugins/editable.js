@@ -32,7 +32,6 @@
     // 下拉框
     function editSelect(e, options, callback) {
         var target = e.target, value = target.innerText;
-        // target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";
         var selectHTML = '';
         selectHTML += "<select id='_editable'>";
         for (var i in options) {
