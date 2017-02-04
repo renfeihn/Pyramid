@@ -11,11 +11,11 @@
                 <label>domain名称</label>
                 <input class="form-control" v-model="code" type="text"/>
             </div>
-            <div class="form-group">
-                <label>domain中文描述</label>
-                <input class="form-control" v-model="comment" type="text"/>
-            </div>
-            <a class="btn btn-info" @click="getAllTables();">筛选</a>
+            <!--<div class="form-group">-->
+                <!--<label>domain中文描述</label>-->
+                <!--<input class="form-control" v-model="comment" type="text"/>-->
+            <!--</div>-->
+            <a class="btn btn-info" @click="getAllDomains();">筛选</a>
 
             <a class="btn btn-info" href="/domainInfo">新增domain</a>
         </form>

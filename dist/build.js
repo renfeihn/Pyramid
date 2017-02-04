@@ -1545,6 +1545,7 @@ Object.defineProperty(exports, "__esModule", {
 //
 //
 //
+//
 
 
 exports.default = {
@@ -1578,7 +1579,7 @@ exports.default = {
             }
         },
         checkDomainCode: function checkDomainCode(code) {
-            this.$http.get('/checkDomainCode/' + code).then(function (res) {
+            this.$http.get('/checkDomainCode/' + code + '?oldCode=' + this.domainCode).then(function (res) {
                 if (res.status == 200) {
                     this.errors = [];
                 }
@@ -1590,7 +1591,8 @@ exports.default = {
         save: function save() {
             // 处理数据
             this.$http.post('/saveDomain', {
-                data: this.domain
+                data: this.domain,
+                oldCode: this.domainCode
             }).then(function (res) {
                 if (res.status == 200) {
                     console.log('添加domain成功');
@@ -1922,7 +1924,8 @@ var _editable2 = _interopRequireDefault(_editable);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var data_types = ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob']; //
+var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Nvarchar', 'Date', 'Timestamp', 'Clob', 'Blob']; //
+//
 //
 //
 //
@@ -2063,11 +2066,13 @@ exports.default = {
                 alert('TableInfo 页面 请求 table space 失败： ' + res.status);
             });
         },
+
+        // 检查表名是否存在，如果新表名和老表名一致则不校验
         checkTableCode: function checkTableCode(code) {
-            this.$http.get('/checkTableCode/' + code).then(function (res) {
+            this.$http.get('/checkTableCode/' + code + '?oldCode=' + this.tableCode).then(function (res) {
                 if (res.status == 200) {
                     this.errors = [];
-                    this.table.name = code;
+                    //this.table.name = code;
                 }
             }, function (res) {
                 console.log('未通过服务端校验' + res.status + '  ' + res.body);
@@ -2143,6 +2148,16 @@ exports.default = {
             });
         },
 
+        // dataType
+        editYN: function editYN(e, field, data, index) {
+            var that = this;
+            var yn = ['Y', 'N'];
+            _editable2.default.editSelect(e, yn, function (value) {
+                //如果数据没有被修改这个回调方法不会执行
+                that.tableAttr[index][field] = value;
+            });
+        },
+
         // domain
         editDomain: function editDomain(e, field, data, index) {
             var that = this;
@@ -2179,7 +2194,8 @@ exports.default = {
             // 处理数据
             this.table.attr = this.tableAttr;
             this.$http.post('/saveTable', {
-                data: this.table
+                data: this.table,
+                oldCode: this.tableCode
             }).then(function (res) {
                 if (res.status == 200) {
                     console.log('添加表成功');
@@ -2193,7 +2209,6 @@ exports.default = {
             });
         },
         showSQL: function showSQL() {
-
             // 处理数据
             this.table.attr = this.tableAttr;
             this.$http.post('/showSQL', {
@@ -2232,9 +2247,9 @@ exports.default = {
         }
         console.log('code: ' + this.tableCode);
 
-        this.getTable(this.tableCode);
         this.getAllDomains();
         this.getTableSpaces();
+        this.getTable(this.tableCode);
     }
 };
 
@@ -2576,7 +2591,7 @@ process.versions={};function noop(){}process.on=noop;process.addListener=noop;pr
 
 "use strict";
 "use strict";(function(){// 普通文本框
-function editInput(e,callback){var target=e.target,value=target.innerText;target.innerHTML="<input type='text' value='"+value+"' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}// 下拉框
+function editInput(e,callback){var target=e.target,value=target.innerText;var width='80px';target.innerHTML="<input type='text' id='_editable' style='width:"+width+";background:transparent;font-size:13px;color:red;text-align:left'>";var input=document.getElementById('_editable');input.value=value;input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}// 下拉框
 function editSelect(e,options,callback){var target=e.target,value=target.innerText;// target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";
 var selectHTML='';selectHTML+="<select id='_editable'>";for(var i in options){if(value==options[i]){selectHTML+="<option value='"+options[i]+"' selected='selected'>"+options[i]+"</option>";}else{selectHTML+="<option value='"+options[i]+"'>"+options[i]+"</option>";}}selectHTML+="</select>";target.innerHTML=selectHTML;var input=document.getElementById('_editable');input.focus();var len=input.value.length;if(document.selection){var sel=input.createTextRange();sel.moveStart('character',len);sel.collapse();sel.select();}else if(typeof input.selectionStart=='number'&&typeof input.selectionEnd=='number'){input.selectionStart=input.selectionEnd=len;}var action=function action(){if(value!=this.value&&this.value!=''){target.innerHTML=this.value;callback(this.value);}else{target.innerHTML=value;}input.removeEventListener("blur",action,false);};input.addEventListener("blur",action,false);}var Models={editInput:editInput,editSelect:editSelect};module.exports=Models;})();
 
@@ -2725,31 +2740,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": _vm._s(_vm.code)
     },
     on: {
+      "change": function($event) {
+        _vm.getAllTables();
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.code = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表中文描述")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.comment),
-      expression: "comment"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.comment)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.comment = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('div', {
@@ -2797,7 +2793,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.generatorSql();
       }
     }
-  }, [_vm._v("生成脚本")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
     staticClass: "table table-striped"
@@ -2826,10 +2822,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.getSql(table.code);
         }
       }
-    }, [_vm._v("脚本")])], 1)])
+    }, [_vm._v("SQL预览")])], 1)])
   }))])])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("table space")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("表名")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("表空间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
 }]}
 if (false) {
   module.hot.accept()
@@ -2965,33 +2961,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.code = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("domain中文描述")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.comment),
-      expression: "comment"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.comment)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.comment = $event.target.value
-      }
-    }
   })]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {
-        _vm.getAllTables();
+        _vm.getAllDomains();
       }
     }
   }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
@@ -3320,6 +3294,25 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
+      value: (_vm.tableCode),
+      expression: "tableCode"
+    }],
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": _vm._s(_vm.tableCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.tableCode = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
       value: (_vm.table.code),
       expression: "table.code"
     }],
@@ -3418,12 +3411,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(tb.name))]), _vm._v(" "), _c('td', {
       on: {
         "dblclick": function($event) {
-          _vm.editInput($event, 'code', tb, index)
-        }
-      }
-    }, [_vm._v(_vm._s(tb.code))]), _vm._v(" "), _c('td', {
-      on: {
-        "dblclick": function($event) {
           _vm.editDataType($event, 'dataType', tb, index)
         }
       }
@@ -3442,19 +3429,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(tb.precision))]), _vm._v(" "), _c('td', {
       on: {
         "dblclick": function($event) {
-          _vm.editInput($event, 'M', tb, index)
+          _vm.editYN($event, 'M', tb, index)
         }
       }
     }, [_vm._v(_vm._s(tb.M))]), _vm._v(" "), _c('td', {
       on: {
         "dblclick": function($event) {
-          _vm.editInput($event, 'P', tb, index)
+          _vm.editYN($event, 'P', tb, index)
         }
       }
     }, [_vm._v(_vm._s(tb.P))]), _vm._v(" "), _c('td', {
       on: {
         "dblclick": function($event) {
-          _vm.editable($event, 'comment', tb, index)
+          _vm.editInput($event, 'comment', tb, index)
         }
       }
     }, [_vm._v(_vm._s(tb.comment))]), _vm._v(" "), _c('td', {
@@ -3472,7 +3459,47 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }, [_vm._v(_vm._s(tb.domain))])])
   }))])])], 2)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th'), _vm._v(" "), _c('th', [_vm._v("name")]), _vm._v(" "), _c('th', [_vm._v("code")]), _vm._v(" "), _c('th', [_vm._v("data_type")]), _vm._v(" "), _c('th', [_vm._v("length")]), _vm._v(" "), _c('th', [_vm._v("precision")]), _vm._v(" "), _c('th', [_vm._v("M")]), _vm._v(" "), _c('th', [_vm._v("p")]), _vm._v(" "), _c('th', [_vm._v("comment")]), _vm._v(" "), _c('th', [_vm._v("default")]), _vm._v(" "), _c('th', [_vm._v("domain")])])])
+  return _c('thead', [_c('tr', [_c('th', {
+    attrs: {
+      "width": "2%"
+    }
+  }), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "15%"
+    }
+  }, [_vm._v("表名")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "13%"
+    }
+  }, [_vm._v("数据类型")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("长度")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("精度")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("是否不为空")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("主键")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("描述")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("默认值")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "10%"
+    }
+  }, [_vm._v("域")])])])
 }]}
 if (false) {
   module.hot.accept()
@@ -3526,6 +3553,26 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("名称")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
   }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domainCode),
+      expression: "domainCode"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domainCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domainCode = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",

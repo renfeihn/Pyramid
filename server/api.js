@@ -34,29 +34,31 @@ router.get('/getAll/tables', function (req, res, next) {
         result.forEach(function (table, index, tables) {
             logger.writeDebug('table:  ' + JSON.stringify(table));
             if (util.isNotNull(code)) {
-                if ((table.code).indexOf(code) > 0) {
+                if ((table.code).indexOf(code) >= 0) {
                     tableRes.push(table);
                 }
             }
-            if (util.isNotNull(comment)) {
-                if ((table.comment).indexOf(comment) > 0) {
-                    tableRes.push(table);
-                }
-            }
+            /*
+             if (util.isNotNull(comment)) {
+             if ((table.comment).indexOf(comment) > 0) {
+             tableRes.push(table);
+             }
+             }
 
-            if (util.isNotNull(tableSpace)) {
-                logger.writeDebug('table.table_space: ' + table.table_space);
-                logger.writeDebug('-------------' + (table.table_space).indexOf(tableSpace) > 0);
-                if ((table.table_space).indexOf(tableSpace) > 0) {
-                    logger.writeDebug('包含 tableSpace: ' + tableSpace);
-                    tableRes.push(table);
-                }
-            }
-
+             if (util.isNotNull(tableSpace)) {
+             logger.writeDebug('table.table_space: ' + table.table_space);
+             logger.writeDebug('-------------' + (table.table_space).indexOf(tableSpace) > 0);
+             if ((table.table_space).indexOf(tableSpace) > 0) {
+             logger.writeDebug('包含 tableSpace: ' + tableSpace);
+             tableRes.push(table);
+             }
+             }
+             */
         });
     }
 
     if (tableRes.length > 0) {
+        logger.writeDebug('tableRes.length  ' + tableRes.length);
         obj = tableRes;
     } else {
         obj = result;
@@ -72,16 +74,39 @@ router.get('/getAll/tables', function (req, res, next) {
  * 获取domains
  */
 router.get('/getAll/domains', function (req, res, next) {
-
+    var obj;
     var start = process.uptime();
+    const code = req.query.code;
+
+    logger.writeDebug('code: ' + code);
 
     var result = db.readFile('domains');
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
+    var domainRes = new Array();
+
+    if (util.isArray(result) && result.length > 0) {
+        result.forEach(function (domain, index, domains) {
+            logger.writeDebug('domain:  ' + JSON.stringify(domain));
+            if (util.isNotNull(code)) {
+                if ((domain.code).indexOf(code) >= 0) {
+                    domainRes.push(domain);
+                }
+            }
+        });
+    }
+
+    if (domainRes.length > 0) {
+        logger.writeDebug('domainRes.length  ' + domainRes.length);
+        obj = domainRes;
+    } else {
+        obj = result;
+    }
+
     var end = process.uptime();
     logger.writeDebug('查询 domains 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
-    res.status(200).send(result).end();
+    res.status(200).send(obj).end();
 });
 
 /**
@@ -130,13 +155,15 @@ router.post('/saveTable', function (req, res, next) {
     var errors = new Array();
     // 后台接收的参数
     const data = req.body.data;
-    logger.writeDebug('后台接收的数据： ' + JSON.stringify(data));
+    const oldCode = req.body.oldCode;
+
+    logger.writeDebug('后台接收的数据  data: ' + JSON.stringify(data) + ' oldCode : ' + oldCode);
     if (!data) {
         return res.status(301).send('数据不能为空').end();
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCode('tables',data.code);
+    var flag = checkTableCode('tables', data.code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + data.code + ' 已存在');
@@ -160,13 +187,15 @@ router.post('/saveDomain', function (req, res, next) {
     var errors = new Array();
     // 后台接收的参数
     const data = req.body.data;
-    logger.writeDebug('/saveDomain 接收的数据： ' + JSON.stringify(data));
+    const oldCode = req.body.oldCode;
+
+    logger.writeDebug('后台接收的数据  data: ' + JSON.stringify(data) + ' oldCode : ' + oldCode);
     if (!data) {
         return res.status(301).send('数据不能为空').end();
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCode('domains',data.code);
+    var flag = checkTableCode('domains', data.code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + data.code + ' 已存在');
@@ -182,13 +211,15 @@ router.post('/saveDomain', function (req, res, next) {
 
 });
 
-
-
+/**
+ * 检查表名是否重复
+ */
 router.get('/checkTableCode/:code', function (req, res, next) {
     var errors = new Array();
     // 后台接收的参数
     const code = req.params.code;
-    logger.writeDebug('后台接收的数据： ' + JSON.stringify(code));
+    const oldCode = req.query.oldCode.trim();
+    logger.writeDebug('后台接收的数据 code : ' + JSON.stringify(code) + '  oldCode: ' + oldCode);
     if (!code) {
         errors.push('请填写表名！');
         logger.writeErr(errors);
@@ -196,7 +227,7 @@ router.get('/checkTableCode/:code', function (req, res, next) {
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCode('tables',code);
+    var flag = checkTableCode('tables', code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + code + ' 已存在');
@@ -207,12 +238,15 @@ router.get('/checkTableCode/:code', function (req, res, next) {
     return res.status(200).send('').end();
 });
 
-
+/**
+ * 检查domain是否有重复
+ */
 router.get('/checkDomainCode/:code', function (req, res, next) {
     var errors = new Array();
     // 后台接收的参数
     const code = req.params.code;
-    logger.writeDebug('后台接收domain的数据： ' + JSON.stringify(code));
+    const oldCode = req.query.oldCode.trim();
+    logger.writeDebug('后台接收的数据 code : ' + JSON.stringify(code) + '  oldCode: ' + oldCode);
     if (!code) {
         errors.push('请填写domain名称！');
         logger.writeErr(errors);
@@ -220,7 +254,7 @@ router.get('/checkDomainCode/:code', function (req, res, next) {
     }
 
     // 服务端数据验证 表名唯一，表中字段不可重复
-    var flag = checkTableCode('domains',code);
+    var flag = checkTableCode('domains', code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('domain ' + code + ' 已存在');
@@ -232,20 +266,22 @@ router.get('/checkDomainCode/:code', function (req, res, next) {
 });
 
 /**
- * 检查表code 唯一
+ * 检查code 唯一
  * @param code
  */
-function checkTableCode(type,code) {
+function checkTableCode(type, code, oldCode) {
     // 获取所有的table
     var tables = db.readFile(type);
     var flag = false;
-    logger.writeDebug('tables: ' + tables);
-    if (null != tables && tables instanceof Array) {
-        for (var i in tables) {
-            logger.writeDebug('code: ' + code + '   tableCode:' + tables[i].code)
-            if (code == tables[i].code) {
-                flag = true;
-                continue;
+    logger.writeDebug('检查code是否唯一  code: ' + tables + '  oldCode: ' + oldCode);
+    if (oldCode != code) {
+        if (null != tables && tables instanceof Array) {
+            for (var i in tables) {
+                logger.writeDebug('code: ' + code + '   tableCode:' + tables[i].code)
+                if (code == tables[i].code) {
+                    flag = true;
+                    continue;
+                }
             }
         }
     }
@@ -294,7 +330,7 @@ router.post('/generatorSql', function (req, res, next) {
     logger.writeDebug('db_type: ' + db_type);
     try {
         utils.generatorSql(db_type, type);
-        msg.push('生成SQL成功');
+        msg.push('生成SQL成功,<a>下载</a>');
         return res.status(200).send(msg).end();
     } catch (e) {
         logger.writeErr('生成SQL错误: ' + e)

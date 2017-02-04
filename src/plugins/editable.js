@@ -1,9 +1,11 @@
 (function () {
-// 普通文本框
+    // 普通文本框
     function editInput(e, callback) {
         var target = e.target, value = target.innerText;
-        target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";
+        var width = '80px';
+        target.innerHTML = "<input type='text' id='_editable' style='width:"+width+";background:transparent;font-size:13px;color:red;text-align:left'>";
         var input = document.getElementById('_editable');
+        input.value = value;
         input.focus();
         var len = input.value.length;
         if (document.selection) {
@@ -27,7 +29,7 @@
         input.addEventListener("blur", action, false);
     }
 
-// 下拉框
+    // 下拉框
     function editSelect(e, options, callback) {
         var target = e.target, value = target.innerText;
         // target.innerHTML = "<input type='text' value='" + value + "' id='_editable' style='width:100%;box-sizing:border-box;background:transparent;font-size:13px;color:red;text-align:center'>";

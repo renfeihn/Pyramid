@@ -21,6 +21,7 @@
             </div>
             <div class="form-group">
                 <label>表名称</label>
+                <input v-model="tableCode" type="hidden"/>
                 <input class="form-control" v-model="table.code" @blur="checkTableCode(table.code);" type="text"/>
             </div>
             <div class="form-group">
@@ -41,30 +42,30 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>name</th>
-                    <th>code</th>
-                    <th>data_type</th>
-                    <th>length</th>
-                    <th>precision</th>
-                    <th>M</th>
-                    <th>p</th>
-                    <th>comment</th>
-                    <th>default</th>
-                    <th>domain</th>
+                    <th width="2%"></th>
+                    <!--<th>name</th>-->
+                    <th width="15%">表名</th>
+                    <th width="13%">数据类型</th>
+                    <th width="10%">长度</th>
+                    <th width="10%">精度</th>
+                    <th width="10%">是否不为空</th>
+                    <th width="10%">主键</th>
+                    <th width="10%">描述</th>
+                    <th width="10%">默认值</th>
+                    <th width="10%">域</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(tb,index) in tableAttr" @click="selectRow($event,index);">
                     <td>{{index+1}}</td>
                     <td @dblclick="editInput($event,'name',tb,index)">{{tb.name}}</td>
-                    <td @dblclick="editInput($event,'code',tb,index)">{{tb.code}}</td>
+                    <!--<td @dblclick="editInput($event,'code',tb,index)">{{tb.code}}</td>-->
                     <td @dblclick="editDataType($event,'dataType',tb,index)">{{tb.dataType}}</td>
                     <td @dblclick="editInput($event,'lengths',tb,index)">{{tb.lengths}}</td>
                     <td @dblclick="editInput($event,'precision',tb,index)">{{tb.precision}}</td>
-                    <td @dblclick="editInput($event,'M',tb,index)">{{tb.M}}</td>
-                    <td @dblclick="editInput($event,'P',tb,index)">{{tb.P}}</td>
-                    <td @dblclick="editable($event,'comment',tb,index)">{{tb.comment}}</td>
+                    <td @dblclick="editYN($event,'M',tb,index)">{{tb.M}}</td>
+                    <td @dblclick="editYN($event,'P',tb,index)">{{tb.P}}</td>
+                    <td @dblclick="editInput($event,'comment',tb,index)">{{tb.comment}}</td>
                     <td @dblclick="editInput($event,'defaults',tb,index)">{{tb.defaults}}</td>
                     <td @dblclick="editDomain($event,'domain',tb,index)">{{tb.domain}}</td>
                 </tr>
@@ -81,7 +82,7 @@
 
 import editable from '../plugins/editable.js';
 
-var data_types = ['Integer', 'Number', 'Float', 'Char', 'Varchar', 'Nverchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
+var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
 export default{
     data(){
@@ -143,11 +144,12 @@ export default{
                 alert('TableInfo 页面 请求 table space 失败： '+ res.status);
             });
         },
+        // 检查表名是否存在，如果新表名和老表名一致则不校验
         checkTableCode(code){
-            this.$http.get('/checkTableCode/'+code).then(function(res){
+            this.$http.get('/checkTableCode/'+code+'?oldCode='+this.tableCode).then(function(res){
                 if(res.status == 200){
                     this.errors=[];
-                    this.table.name = code;
+                    //this.table.name = code;
                 }
             },function(res){
                 console.log('未通过服务端校验'+ res.status + '  '+res.body);
@@ -218,6 +220,15 @@ export default{
                 (that.tableAttr[index])[field] = value;
             });
         },
+        // dataType
+        editYN(e,field,data,index){
+            var that = this;
+            var yn = ['Y','N'];
+            editable.editSelect(e,yn,function(value){
+                //如果数据没有被修改这个回调方法不会执行
+                (that.tableAttr[index])[field] = value;
+            });
+        },
         // domain
         editDomain(e,field,data,index){
             var that = this;
@@ -253,7 +264,8 @@ export default{
             // 处理数据
             this.table.attr = this.tableAttr;
             this.$http.post('/saveTable',{
-                data : this.table
+                data : this.table,
+                oldCode : this.tableCode
             }).then(function(res){
                 if(res.status==200){
                     console.log('添加表成功');
@@ -268,7 +280,6 @@ export default{
 
         },
         showSQL(){
-
             // 处理数据
             this.table.attr = this.tableAttr;
             this.$http.post('/showSQL',{
@@ -310,9 +321,9 @@ export default{
         }
         console.log('code: ' + this.tableCode);
 
-        this.getTable(this.tableCode);
         this.getAllDomains();
         this.getTableSpaces();
+        this.getTable(this.tableCode);
     }
 }
 

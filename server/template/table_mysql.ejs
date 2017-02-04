@@ -18,6 +18,33 @@ StringBuffer.prototype.toString = function () {
     return this._strings.join("");
 }
 
+
+// 数据类型转换
+function dataTypeFactory(dataType) {
+    var newType = '';
+    if (isNotNull(dataType)) {
+        dataType = dataType.toLowerCase();
+        switch(dataType)
+        {
+            case 'number':
+                newType = 'Decimal';
+                break;
+
+            case 'clob':
+                newType = 'Text';
+                break;
+            case 'integer':
+                newType = 'Int';
+                break;
+            default:
+                newType = dataType;
+        }
+    } else {
+        newType = 'Varchar';
+    }
+    return newType;
+}
+
 var sql = new StringBuffer();
 // 换行
 var nextLine = '\n';
@@ -49,7 +76,7 @@ if (isNotNull(table.code)) {
                 sql.append(tab + attr.code);
                 // 数据类型
                 if (isNotNull(attr.dataType)) {
-                    sql.append(space + attr.dataType);
+                    sql.append(space + dataTypeFactory(attr.dataType));
                 } else {
                     sql.append(space + 'char');
                 }

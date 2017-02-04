@@ -8,6 +8,7 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-4">
+                    <input class="form-control" v-model="domainCode" type="hidden"/>
                     <input class="form-control" v-model="domain.code" @blur="checkDomainCode(domain.code);" type="text"/>
                 </div>
                 <label class="col-sm-2 control-label">中文描述</label>
@@ -86,7 +87,7 @@ export default{
         },
 
         checkDomainCode(code){
-            this.$http.get('/checkDomainCode/'+code).then(function(res){
+            this.$http.get('/checkDomainCode/'+code+'?oldCode='+this.domainCode).then(function(res){
                 if(res.status == 200){
                     this.errors=[];
                 }
@@ -99,7 +100,8 @@ export default{
         save(){
             // 处理数据
             this.$http.post('/saveDomain',{
-                data : this.domain
+                data : this.domain,
+                oldCode : this.domainCode
             }).then(function(res){
                 if(res.status==200){
                     console.log('添加domain成功');

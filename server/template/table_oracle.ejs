@@ -18,8 +18,23 @@ StringBuffer.prototype.toString = function () {
     return this._strings.join("");
 }
 
-function dataTypeFactory(dataType){
-
+// 数据类型转换
+function dataTypeFactory(dataType) {
+    var newType = '';
+    if (isNotNull(dataType)) {
+        dataType = dataType.toLowerCase();
+        switch(dataType)
+        {
+            case 'varchar':
+                newType = 'Varchar2';
+                break;
+            default:
+                newType = dataType;
+        }
+    } else {
+        newType = 'Varchar';
+    }
+    return newType;
 }
 
 
@@ -57,7 +72,7 @@ if (isNotNull(table.code)) {
 
                 // 数据类型
                 if (isNotNull(attr.dataType)) {
-                    sql.append(space + attr.dataType);
+                    sql.append(space + dataTypeFactory(attr.dataType));
                 } else {
                     sql.append(space + 'char');
                 }
@@ -96,13 +111,13 @@ if (isNotNull(table.code)) {
                     if (primary_keys.length > 0) {
                         sql.append(',' + nextLine)
                                 .append(tab)
-                                .append('constraint PK_' + (table.code).toUpperCase() +' (');
+                                .append('constraint PK_' + (table.code).toUpperCase() + ' (');
 
                         primary_keys.forEach(function (pk, int, pks) {
-                            if(int == 0){
+                            if (int == 0) {
                                 sql.append(pk);
-                            }else{
-                                sql.append(',' +pk);
+                            } else {
+                                sql.append(',' + pk);
                             }
                         });
                         sql.append(')');

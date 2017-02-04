@@ -9,12 +9,12 @@
         <form class="form-inline form-filter">
             <div class="form-group">
                 <label>表名称</label>
-                <input class="form-control" v-model="code" type="text"/>
+                <input class="form-control" v-model="code" @change="getAllTables();" type="text"/>
             </div>
-            <div class="form-group">
-                <label>表中文描述</label>
-                <input class="form-control" v-model="comment" type="text"/>
-            </div>
+            <!--<div class="form-group">-->
+                <!--<label>表中文描述</label>-->
+                <!--<input class="form-control" v-model="comment" type="text"/>-->
+            <!--</div>-->
             <div class="form-group">
                 <label>表空间</label>
                 <select class="form-control" v-model="tableSpace">
@@ -26,7 +26,7 @@
             <a class="btn btn-info" @click="getAllTables();">筛选</a>
 
             <a class="btn btn-info" href="/tableInfo">新增表</a>
-            <a class="btn btn-info" @click="generatorSql();">生成脚本</a>
+            <a class="btn btn-info" @click="generatorSql();">生成SQL</a>
         </form>
 
         <div class="table-responsive articleList">
@@ -34,9 +34,9 @@
                 <thead>
                 <tr>
                     <!--<th>name</th>-->
-                    <th>code</th>
-                    <th>comment</th>
-                    <th>table space</th>
+                    <th>表名</th>
+                    <th>描述</th>
+                    <th>表空间</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -49,7 +49,7 @@
                     <td>
                         <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
-                        <a class="btn btn-sm btn-info" @click="getSql(table.code);">脚本</a>
+                        <a class="btn btn-sm btn-info" @click="getSql(table.code);">SQL预览</a>
                     </td>
                 </tr>
                 </tbody>
