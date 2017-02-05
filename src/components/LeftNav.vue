@@ -1,26 +1,31 @@
 <template>
     <div>
         <ul class="nav nav-sidebar">
-            <li><a href="/tableList" ><i class="fa fa-th-list"></i>&nbsp;tables</a>
-            </li>
 
-            <li v-for="(table, index) in tables">
-                <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}"> {{table.name}}</router-link>
-            </li>
+            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Ensemble</a></li>
+            <li><a href="/tableList?module=Ensemble" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
 
-            <li><a href="/domainList" ><i class="fa fa-th-list"></i>&nbsp;domain</a>
-            </li>
+            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Limarket</a></li>
+            <li><a href="/tableList?module=Limarket" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
 
-            <li v-for="(domain, index) in domains">
-                <a href="/"><i class="fa fa-files-o"></i>&nbsp;{{domain.code}}</a>
-            </li>
+            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Accounting</a></li>
+            <li><a href="/tableList?module=Accounting" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
 
-            <li><a href="/tableSpaceList"><i class="fa fa-th-list"></i>&nbsp;table space</a>
-            </li>
+            <!--<li v-for="(table, index) in tables">-->
+                <!--<router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}"> {{table.name}}</router-link>-->
+            <!--</li>-->
 
-            <li v-for="(tableSpace, index) in tableSpaces">
-                <a href="/"><i class="fa fa-files-o"></i>&nbsp;{{tableSpace.code}}</a>
-            </li>
+            <li><a href="/domainList" ><i class="fa fa-th-list"></i>&nbsp;domain</a> </li>
+
+            <!--<li v-for="(domain, index) in domains">-->
+                <!--<a href="/"><i class="fa fa-files-o"></i>&nbsp;{{domain.code}}</a>-->
+            <!--</li>-->
+
+            <li><a href="/tableSpaceList"><i class="fa fa-th-list"></i>&nbsp;table space</a></li>
+
+            <!--<li v-for="(tableSpace, index) in tableSpaces">-->
+                <!--<a href="/"><i class="fa fa-files-o"></i>&nbsp;{{tableSpace.code}}</a>-->
+            <!--</li>-->
 
         </ul>
     </div>

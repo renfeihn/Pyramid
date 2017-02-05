@@ -25,7 +25,7 @@
             </div>
             <a class="btn btn-info" @click="getAllTables();">筛选</a>
 
-            <a class="btn btn-info" href="/tableInfo">新增表</a>
+            <a class="btn btn-info" :href="'/tableInfo?module=' + module">新增表</a>
             <a class="btn btn-info" @click="generatorSql();">生成SQL</a>
         </form>
 
@@ -47,7 +47,7 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
+                        <router-link :to="{path:'/tableInfo', query:{module:module,tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
                         <a class="btn btn-sm btn-info" @click="getSql(table.code);">SQL预览</a>
                     </td>
@@ -58,14 +58,13 @@
 
     </div>
 </template>
-<style scoped src="../css/dashboard.css">
 
-</style>
 <script>
 
 export default{
     data(){
         return{
+            module:'',  // 模块ID
             code:'',
             comment:'',
             tableSpace:'',
@@ -89,7 +88,7 @@ export default{
             });
         },
         getAllTables(){
-            let API = '/getAll/tables?page='+'&code='+this.code+'&comment='+this.comment+'&tableSpace='+this.tableSpace;
+            let API = '/getAll/tables?module='+this.module+'&code='+this.code+'&comment='+this.comment+'&tableSpace='+this.tableSpace;
             this.$http.get(API).then(function(res){
                 if(res.status == 200){
                    var re = res.body;
@@ -169,6 +168,16 @@ export default{
 
     },
     created(){
+        var mo = this.$route.query.module;
+        console.log('mo: ' + mo);
+
+        if(null != mo && undefined != mo && '' != mo && mo.length > 0){
+            this.module = mo;
+        }else{
+            this.module = '';
+        }
+        console.log('module: ' + this.module);
+
         this.getTableSpaces();
         this.getAllTables();
     }

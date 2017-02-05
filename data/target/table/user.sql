@@ -1,18 +1,13 @@
 
-drop table user cascade constraints;
-
+drop table if exists user;
 /*==============================================================*/
 /* Table: user                                           */
 /*==============================================================*/
-
 create table user
 (
-    id Variable Characters(10) default '1' not null,
-    name Variable Characters(10) not null,
-    age Double(10) not null,
-    constraint PK_USER (id,name,age)
-) tablespace test01;
-comment on table user is '用户表';
-comment on column user.id is '主键ID';
-comment on column user.name is '姓名';
-comment on column user.age is '年龄';
+    id Variable Characters(32) not null default '1' comment '主键ID',
+    name Variable Characters(40) not null comment '姓名',
+    age Double(5,2) not null comment '年龄',
+    primary  key (id,name,age)
+);
+alter table user comment '用户表';

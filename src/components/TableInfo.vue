@@ -32,52 +32,85 @@
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
         </form>
-        <form class="form-inline form-filter">
-            <br>
-            <a class="btn btn-info" @click="addRow(0);">add before</a>
-            <a class="btn btn-info" @click="addRow(1);">add after</a>
-            <a class="btn btn-info" @click="deleteRow();">remove</a>
-        </form>
-        <div class="table-responsive articleList">
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th width="2%"></th>
-                    <!--<th>name</th>-->
-                    <th width="15%">表名</th>
-                    <th width="13%">数据类型</th>
-                    <th width="10%">长度</th>
-                    <th width="10%">精度</th>
-                    <th width="10%">是否不为空</th>
-                    <th width="10%">主键</th>
-                    <th width="10%">描述</th>
-                    <th width="10%">默认值</th>
-                    <th width="10%">域</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr v-for="(tb,index) in tableAttr" @click="selectRow($event,index);">
-                    <td>{{index+1}}</td>
-                    <td @dblclick="editInput($event,'name',tb,index)">{{tb.name}}</td>
-                    <!--<td @dblclick="editInput($event,'code',tb,index)">{{tb.code}}</td>-->
-                    <td @dblclick="editDataType($event,'dataType',tb,index)">{{tb.dataType}}</td>
-                    <td @dblclick="editInput($event,'lengths',tb,index)">{{tb.lengths}}</td>
-                    <td @dblclick="editInput($event,'precision',tb,index)">{{tb.precision}}</td>
-                    <td @dblclick="editYN($event,'M',tb,index)">{{tb.M}}</td>
-                    <td @dblclick="editYN($event,'P',tb,index)">{{tb.P}}</td>
-                    <td @dblclick="editInput($event,'comment',tb,index)">{{tb.comment}}</td>
-                    <td @dblclick="editInput($event,'defaults',tb,index)">{{tb.defaults}}</td>
-                    <td @dblclick="editDomain($event,'domain',tb,index)">{{tb.domain}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
 
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active">
+
+                <form class="form-inline form-filter">
+                    <br>
+                    <a class="btn btn-info" @click="addRow(0);">add before</a>
+                    <a class="btn btn-info" @click="addRow(1);">add after</a>
+                    <a class="btn btn-info" @click="deleteRow();">remove</a>
+                </form>
+                <div class="table-responsive articleList">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="2%"></th>
+                            <!--<th>name</th>-->
+                            <th width="15%">表名</th>
+                            <th width="13%">数据类型</th>
+                            <th width="10%">长度</th>
+                            <th width="10%">精度</th>
+                            <th width="10%">是否不为空</th>
+                            <th width="10%">主键</th>
+                            <th width="10%">描述</th>
+                            <th width="10%">默认值</th>
+                            <th width="10%">域</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(tb,index) in tableAttr" @click="selectRow($event,index);">
+                            <td>{{index+1}}</td>
+                            <!--<td @dblclick="editInput($event,'name',tb,index)">{{tb.name}}</td>-->
+                            <td @dblclick="editInput($event,'code',tb,index)">{{tb.code}}</td>
+                            <td @dblclick="editDataType($event,'dataType',tb,index)">{{tb.dataType}}</td>
+                            <td @dblclick="editInput($event,'lengths',tb,index)">{{tb.lengths}}</td>
+                            <td @dblclick="editInput($event,'precision',tb,index)">{{tb.precision}}</td>
+                            <td @dblclick="editYN($event,'M',tb,index)">{{tb.M}}</td>
+                            <td @dblclick="editYN($event,'P',tb,index)">{{tb.P}}</td>
+                            <td @dblclick="editInput($event,'comment',tb,index)">{{tb.comment}}</td>
+                            <td @dblclick="editInput($event,'defaults',tb,index)">{{tb.defaults}}</td>
+                            <td @dblclick="editDomain($event,'domain',tb,index)">{{tb.domain}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade">
+                <form class="form-inline form-filter">
+                    <br>
+                    <a class="btn btn-info" @click="addRow(0);">add before</a>
+                    <a class="btn btn-info" @click="addRow(1);">add after</a>
+                    <a class="btn btn-info" @click="deleteRow();">remove</a>
+                </form>
+                <div class="table-responsive articleList">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th width="2%"></th>
+                            <th width="28%">索引名称</th>
+                            <th width="20%">是否唯一</th>
+                            <th width="50%">列项</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-for="(ind,index) in tableIndexs" @click="selectRow($event,index);">
+                            <td>{{index+1}}</td>
+                            <td @dblclick="editInput($event,'code',tb,index)">{{ind.code}}</td>
+                            <td @dblclick="editYN($event,'U',tb,index)">{{ind.U}}</td>
+                            <td @dblclick="editInput($event,'columns',tb,index)">{{ind.columns}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
-<style scoped src="../css/dashboard.css">
 
-</style>
 <script>
 
 import editable from '../plugins/editable.js';
@@ -87,9 +120,12 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
 export default{
     data(){
         return{
+            module:'',
             table:{},
             // table 中 attr 的属性
             tableAttr:[],
+            // table 中 的索引
+            tableIndexs:[],
             // 所有domain域
             domains:[],
             // 所有表空间
@@ -113,9 +149,11 @@ export default{
                         console.log('table_space: '+ re.table_space);
                         if(null != re && re.attr instanceof Array){
                             this.tableAttr = (this.table).attr;
+                            this.tableIndexs = (this.table).indexs;
                             this.maxRowSize = this.tableAttr.length;
                         }else{
                             this.tableAttr = null;
+                            this.tableIndexs = null;
                         }
                     }
                 },function(res){
@@ -162,7 +200,7 @@ export default{
         selectRow(e,index){
             // 设置高亮
             var tr = e.currentTarget;
-            console.log('tr:  '+tr.innerHTML);
+            //console.log('tr:  '+tr.innerHTML);
             /*
             var tbd = tr.parentNode;
             console.log(tdb);
@@ -263,13 +301,15 @@ export default{
         save(){
             // 处理数据
             this.table.attr = this.tableAttr;
+            // 添加模块ID
+            this.table.module = this.module;
             this.$http.post('/saveTable',{
                 data : this.table,
                 oldCode : this.tableCode
             }).then(function(res){
                 if(res.status==200){
                     console.log('添加表成功');
-                    this.$router.push('/tableList');
+                    this.$router.push('/tableList?module='+this.module);
                 }else{
                     console.log('添加表失败')
                 }
@@ -308,14 +348,21 @@ export default{
         }
     },
     components:{
-
     },
     created(){
-        var params = window.location.search.split('=');
-        console.log('params: ' + params);
+        // 模块ID
+        var mo = this.$route.query.module;
+        if(null != mo && undefined != mo && '' != mo && mo.length > 0){
+            this.module = mo;
+        }else{
+            this.module = '';
+        }
+        console.log('module: ' + this.module);
 
-        if(null != params && undefined != params && '' != params && params.length > 0){
-            this.tableCode = params[1];
+        // 查看或者修改是的 表CODE
+        var tcode = this.$route.query.tableCode;
+        if(null != tcode && undefined != tcode && '' != tcode && tcode.length > 0){
+            this.tableCode = tcode;
         }else{
             this.tableCode = '';
         }

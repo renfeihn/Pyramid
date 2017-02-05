@@ -1,44 +1,52 @@
 {
-  "name": "user",
-  "code": "user",
-  "comment": "用户表",
-  "attr": [
-    {
-      "name": "id",
-      "code": "id",
-      "dataType": "Variable Characters",
-      "lengths": 32,
-      "precision": 0,
-      "M": "Y",
-      "P": "Y",
-      "comment": "主键ID",
-      "defaults": "'1'",
-      "domain": "id"
-    },
-    {
-      "name": "name",
-      "code": "name",
-      "dataType": "Variable Characters",
-      "lengths": 40,
-      "precision": 0,
-      "M": "Y",
-      "P": "Y",
-      "comment": "姓名",
-      "defaults": "",
-      "domain": ""
-    },
-    {
-      "name": "age",
-      "code": "age",
-      "dataType": "Double",
-      "lengths": 5,
-      "precision": 2,
-      "M": "Y",
-      "P": "Y",
-      "comment": "年龄",
-      "defaults": "",
-      "domain": ""
-    }
-  ],
-  "table_space": "test01"
+    "name": "user",
+    "code": "user",
+    "comment": "用户表",
+    "attr": [
+        {
+            "name": "id",
+            "code": "id",
+            "dataType": "Varchar",
+            "lengths": 32,
+            "precision": "",
+            "M": "Y",
+            "P": "Y",
+            "comment": "主键ID",
+            "defaults": "'1'",
+            "domain": "id"
+        },
+        {
+            "name": "name",
+            "code": "name",
+            "dataType": "Varchar",
+            "lengths": 40,
+            "precision": "",
+            "M": "Y",
+            "P": "N",
+            "comment": "姓名",
+            "defaults": "",
+            "domain": ""
+        },
+        {
+            "name": "age",
+            "code": "age",
+            "dataType": "Number",
+            "lengths": 5,
+            "precision": 2,
+            "M": "Y",
+            "P": "Y",
+            "comment": "年龄",
+            "defaults": "",
+            "domain": ""
+        }
+    ],
+    "indexs": [
+	{
+		"code": "index_1",
+		"U":"Y",
+		"columns":"id,age"
+	}
+    ],
+    "table_space": "test02",
+    "module": "Ensemble"
 }

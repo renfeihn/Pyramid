@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const iconv = require('iconv-lite');
 const logger = require("./log/logHelper").helper;
+const util = require('./util/util');
 // const validator = require('validator');
 const table_name = "tables";
 const domain_name = "domains";
@@ -197,6 +198,26 @@ const getDomain = function (code) {
     return domain;
 };
 
+/**
+ * 根据模块ID查询table
+ * @param module
+ */
+const getTableByModule = function (module) {
+    var tableRes = new Array();
+    const allTables = this.readFile(table_name);
+    if (util.isArray(allTables) && allTables.length > 0) {
+        allTables.forEach(function (table, index, tables) {
+            logger.writeDebug('table:  ' + JSON.stringify(table));
+            if (util.isNotNull(module)) {
+                if (table.module == module) {
+                    tableRes.push(table);
+                }
+            }
+        });
+    }
+    return tableRes;
+};
+
 
 /**
  * 获取所有domain对象
@@ -231,6 +252,7 @@ const Models = {
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
     delSourceFile: delSourceFile,
+    getTableByModule:getTableByModule,
     getTable: getTable,
     getDomain: getDomain,
     getAllDomains: getAllDomains,

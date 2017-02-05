@@ -18,7 +18,7 @@
         }
 
         var action = function () {
-            if (value != this.value && this.value != '') {
+            if (value != this.value) {
                 target.innerHTML = this.value;
                 callback(this.value)
             } else {

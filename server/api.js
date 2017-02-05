@@ -21,13 +21,14 @@ var n = 0;
 router.get('/getAll/tables', function (req, res, next) {
     var obj;
     var start = process.uptime();
+    const module = req.query.module.trim();
     const code = req.query.code.trim();
     const comment = req.query.comment.trim();
     const tableSpace = req.query.tableSpace.trim();
 
     logger.writeDebug('code: ' + code + '  comment: ' + comment + '   tableSpace: ' + tableSpace);
 
-    var result = db.readFile('tables');
+    var result = db.getTableByModule(module);
     var tableRes = new Array();
 
     if (util.isArray(result) && result.length > 0) {
