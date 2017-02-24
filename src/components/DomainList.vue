@@ -46,9 +46,6 @@
 
     </div>
 </template>
-<style scoped src="../css/dashboard.css">
-
-</style>
 <script>
 
 export default{

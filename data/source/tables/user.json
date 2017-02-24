@@ -4,6 +4,14 @@
     "comment": "”√ªß±Ì",
     "attr": [
         {
+            "name": "Column_5",
+            "code": "Column_5"
+        },
+        {
+            "name": "Column_4",
+            "code": "Column_4"
+        },
+        {
             "name": "id",
             "code": "id",
             "dataType": "Varchar",
@@ -41,11 +49,14 @@
         }
     ],
     "indexs": [
-	{
-		"code": "index_1",
-		"U":"Y",
-		"columns":"id,age"
-	}
+        {
+            "code": "index_1",
+            "U": "Y",
+            "columns": [
+                "id",
+                "age"
+            ]
+        }
     ],
     "table_space": "test02",
     "module": "Ensemble"

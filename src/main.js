@@ -2,6 +2,8 @@ import Vue from 'vue';
 import App from './App.vue';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-default/index.css';
 import frame from './components/Frame.vue';
 import tableInfo from './components/TableInfo.vue';
 import tableList from './components/TableList.vue';
@@ -12,6 +14,7 @@ import tableSpaceList from './components/TableSpaceList.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(ElementUI);
 
 //routes config
 const routes = [

@@ -1,37 +1,20 @@
 <template>
     <div>
-        <ul class="nav nav-sidebar">
 
-            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Ensemble</a></li>
-            <li><a href="/tableList?module=Ensemble" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
+        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+            <el-submenu index="1">
+                <template slot="title"><i class="el-icon-message"></i>表管理</template>
 
-            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Limarket</a></li>
-            <li><a href="/tableList?module=Limarket" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
+                    <a href="/tableList?module=Ensemble"><el-menu-item index="1-1">核心表</el-menu-item></a>
+                    <a href="/tableList?module=Limarket"><el-menu-item index="1-2">计价表</el-menu-item></a>
+                    <a href="/tableList?module=Accounting"><el-menu-item index="1-3">核算表</el-menu-item></a>
+            </el-submenu>
+            <el-menu-item index="2"><i class="el-icon-menu"></i><a href="/domainList" >数据字典</a></el-menu-item>
+            <el-menu-item index="3"><i class="el-icon-setting"></i><a href="/tableSpaceList">表空间</a></el-menu-item>
+        </el-menu>
 
-            <li><a href="#" ><i class="fa fa-chevron-down"></i>&nbsp;Accounting</a></li>
-            <li><a href="/tableList?module=Accounting" style="margin-left:15px;"><i class="fa fa-th-list"></i>&nbsp;tables</a></li>
-
-            <!--<li v-for="(table, index) in tables">-->
-                <!--<router-link :to="{path:'/tableInfo', query:{tableCode:table.name}}"> {{table.name}}</router-link>-->
-            <!--</li>-->
-
-            <li><a href="/domainList" ><i class="fa fa-th-list"></i>&nbsp;domain</a> </li>
-
-            <!--<li v-for="(domain, index) in domains">-->
-                <!--<a href="/"><i class="fa fa-files-o"></i>&nbsp;{{domain.code}}</a>-->
-            <!--</li>-->
-
-            <li><a href="/tableSpaceList"><i class="fa fa-th-list"></i>&nbsp;table space</a></li>
-
-            <!--<li v-for="(tableSpace, index) in tableSpaces">-->
-                <!--<a href="/"><i class="fa fa-files-o"></i>&nbsp;{{tableSpace.code}}</a>-->
-            <!--</li>-->
-
-        </ul>
     </div>
 </template>
-<style scoped src="../css/dashboard.css">
-</style>
 <script>
     export default{
         data(){

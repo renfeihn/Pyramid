@@ -3,7 +3,6 @@
   "code": "id",
   "dataType": "Varchar",
   "lengths": 32,
-  "precision": 0,
   "comment": "Ö÷¼üID",
   "defaults": ""
 }

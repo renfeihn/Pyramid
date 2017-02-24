@@ -32,11 +32,9 @@
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
         </form>
-
-
-        <div class="tab-content">
-            <div class="tab-pane fade in active">
-
+        <br>
+        <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+            <el-tab-pane label="列管理" name="first">
                 <form class="form-inline form-filter">
                     <br>
                     <a class="btn btn-info" @click="addRow(0);">add before</a>
@@ -49,7 +47,7 @@
                         <tr>
                             <th width="2%"></th>
                             <!--<th>name</th>-->
-                            <th width="15%">表名</th>
+                            <th width="15%">列名</th>
                             <th width="13%">数据类型</th>
                             <th width="10%">长度</th>
                             <th width="10%">精度</th>
@@ -77,9 +75,8 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-
-            <div class="tab-pane fade">
+            </el-tab-pane>
+            <el-tab-pane label="索引管理" name="second">
                 <form class="form-inline form-filter">
                     <br>
                     <a class="btn btn-info" @click="addRow(0);">add before</a>
@@ -87,6 +84,9 @@
                     <a class="btn btn-info" @click="deleteRow();">remove</a>
                 </form>
                 <div class="table-responsive articleList">
+
+
+
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -101,18 +101,27 @@
                             <td>{{index+1}}</td>
                             <td @dblclick="editInput($event,'code',tb,index)">{{ind.code}}</td>
                             <td @dblclick="editYN($event,'U',tb,index)">{{ind.U}}</td>
-                            <td @dblclick="editInput($event,'columns',tb,index)">{{ind.columns}}</td>
+                            <td>
+                                <el-select v-model="ind.columns" multiple placeholder="请选择">
+                                    <el-option
+                                            v-for="attr in tableAttr"
+                                            :label="attr.code"
+                                            :value="attr.code">
+                                    </el-option>
+                                </el-select>
+                            </td>
+
+                            <!--<td @dblclick="editInput($event,'columns',tb,index)">{{ind.columns}}</td>-->
                         </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
+            </el-tab-pane>
+        </el-tabs>
     </div>
 </template>
 
 <script>
-
 import editable from '../plugins/editable.js';
 
 var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
@@ -120,6 +129,9 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
 export default{
     data(){
         return{
+            // 默认激活的页签
+            activeName: 'first',
+            // 模块ID
             module:'',
             table:{},
             // table 中 attr 的属性
@@ -140,6 +152,9 @@ export default{
         }
     },
     methods:{
+        handleClick(tab, event) {
+            console.log(tab, event);
+        },
         getTable(code){
             if(null != code && '' != code && undefined != code){
                 this.$http.get('/getTable/'+code).then(function(res){
@@ -283,7 +298,7 @@ export default{
                             if(value == (that.domains[i]).code){
                                 (that.tableAttr[index]).name = (that.domains[i]).name;
                                 (that.tableAttr[index]).code = (that.domains[i]).code;
-                                (that.tableAttr[index]).data_type = (that.domains[i]).data_type;
+                                (that.tableAttr[index]).dataType = (that.domains[i]).dataType;
                                 (that.tableAttr[index]).lengths = (that.domains[i]).lengths;
                                 (that.tableAttr[index]).precision = (that.domains[i]).precision;
                                 (that.tableAttr[index]).comment = (that.domains[i]).comment;

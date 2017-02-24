@@ -22,34 +22,40 @@ module.exports =
                         loaders: {
                             css: ExtractTextPlugin.extract({
                                 loader: 'css-loader',
-                                fallbackLoader: 'vue-style-loader'
+                                fallbackLoader: 'vue-style-loader',
+                                exclude: /node_modules/
                             })
                         }
                     }
                 },
                 {
-                    test: /\.js$/,
-                    loader: "babel-loader",
-                    query: {compact: true}
+                    test: /\.css$/,
+                    loader: 'style-loader!css-loader'
                 },
                 {
-                    test: /\.(png|jpg|gif|svg)$/,
+                    test: /\.js$/,
+                    loader: "babel-loader",
+                    exclude: /node_modules/
+                },
+                {
+                    test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+                    loader: 'file-loader'
+                },
+                {
+                    test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
                     loader: 'file-loader',
-                    options: {
+                    query: {
                         name: '[name].[ext]?[hash]'
                     }
                 }
             ]
         },
         plugins: [
-            new ExtractTextPlugin("common.css"),
-            new CopyWebpackPlugin([
-                {from: './src/assets/img', to: './'}
-            ])
+            new ExtractTextPlugin("common.css")
         ],
         resolve: {
             alias: {
                 'vue$': 'vue/dist/vue'
             }
         },
-    }
+    };

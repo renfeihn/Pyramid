@@ -1,0 +1,44 @@
+{
+    "code": "person1",
+    "comment": "人员表",
+    "attr": [
+        {
+            "name": "id",
+            "code": "id",
+            "dataType": "Varchar",
+            "lengths": 20,
+            "precision": 0,
+            "M": "Y",
+            "P": "Y",
+            "comment": "人员ID",
+            "defaults": "",
+            "domain": "person_id"
+        },
+        {
+            "name": "name",
+            "code": "name",
+            "dataType": "Varchar",
+            "lengths": 40,
+            "precision": 0,
+            "M": "Y",
+            "P": "N",
+            "comment": "姓名",
+            "defaults": "",
+            "domain": ""
+        },
+        {
+            "name": "age",
+            "code": "age",
+            "dataType": "Integer",
+            "lengths": 5,
+            "precision": 0,
+            "M": "Y",
+            "P": "N",
+            "comment": "年龄",
+            "defaults": "",
+            "domain": ""
+        }
+    ],
+    "table_space": "test01",
+    "module": "Accounting"
+}
