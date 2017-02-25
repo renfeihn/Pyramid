@@ -1,4 +1,4 @@
-# PowerDesigner
+# PowerDesigner for shenzhou
 Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空间等
 
 
@@ -16,6 +16,7 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 (如果启动过程中，缺少依赖，请自行安装)
 
 5.访问 http://localhost:8080
+
 
 
 VUE 资料参考:
