@@ -16,12 +16,9 @@ const app = express();
 const resolve = file => path.resolve(__dirname, file);
 // 将日志系统加入到应用中
 log.use(app);
-// 时间组件
-const sdate = require('silly-datetime');
-
 
 /*
- * 监听3300端口
+ * 监听8080端口
  * 用JSON格式处理bodyParser请求
  */
 app.set('port', (process.env.port || 8080));
@@ -46,6 +43,5 @@ app.get('*', function (req, res, next) {
 });
 
 app.listen(app.get('port'), function () {
-    var time = sdate.format(new Date(), 'YYYY-MM-DD HH:mm:ss');
-    logger.writeInfo('---- Server up: http://localhost:' + app.get('port') + '   ' + time + ' ----');
+    logger.writeInfo('---- Server up: http://localhost:' + app.get('port'));
 });
