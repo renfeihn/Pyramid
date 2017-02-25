@@ -168,9 +168,19 @@ if (isNotNull(table.code)) {
                 }
                 sql.append('index ' + ind.code + ' on ' + table.code + ' (');
                 sql.append(nextLine)
-                        .append(tab)
-                        .append(ind.columns)
-                        .append(nextLine)
+                        .append(tab);
+                // 索引的列项
+                var icolumns = ind.columns;
+                if(icolumns.length > 0){
+                    icolumns.forEach(function (c, int, ics) {
+                        if (int == 0) {
+                            sql.append(c);
+                        } else {
+                            sql.append(',' + c);
+                        }
+                    });
+                }
+                sql.append(nextLine)
                         .append(');');
             }
         });

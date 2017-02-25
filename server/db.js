@@ -1,3 +1,6 @@
+/**
+ * 对文件的操作
+ */
 const fs = require("fs");
 const path = require("path");
 const iconv = require('iconv-lite');
