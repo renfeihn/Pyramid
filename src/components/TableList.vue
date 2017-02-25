@@ -3,7 +3,9 @@
         <h2 class="sub-header">表区域 </h2>
 
         <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
-        <textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>
+        <el-dialog title="SQL脚本" v-model="textshow">
+            <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
+        </el-dialog>
         <br>
 
         <form class="form-inline form-filter">

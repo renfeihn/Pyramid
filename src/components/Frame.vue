@@ -67,7 +67,5 @@ export default{
     }
 }
 </script>
-<style scoped src="../css/dashboard.css">
-
-</style>
+<style scoped src="../css/dashboard.css"></style>
 

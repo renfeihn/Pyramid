@@ -1,8 +1,12 @@
 <template>
     <div>
         <h2 class="sub-header">工作区域 </h2>
+
+        <el-dialog title="SQL脚本" v-model="textshow">
+            <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
+        </el-dialog>
+
         <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
-        <textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>
         <br>
         <form class="form-inline form-filter">
             <div class="form-group">
@@ -347,6 +351,7 @@ export default{
                     // 弹出框，展示sql
                     var re = res.body;
                     if(re){
+
                         this.textshow = true;
                         this.content = re;
                         // 先清除错误信息
