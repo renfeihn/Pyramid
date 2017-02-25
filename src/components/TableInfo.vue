@@ -6,7 +6,7 @@
             <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
         </el-dialog>
 
-        <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
+        <!--<p class="alert alert-danger" v-for="item in errors">{{item}}</p>-->
         <br>
         <form class="form-inline form-filter">
             <div class="form-group">
@@ -89,8 +89,6 @@
                 </form>
                 <div class="table-responsive articleList">
 
-
-
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -146,7 +144,7 @@ export default{
             domains:[],
             // 所有表空间
             tableSpaces:[],
-            errors:[],    //服务端验证失败的返回
+            //errors:[],    //服务端验证失败的返回
             // 选中行的索引
             selectRowIndex:-1,
             content:'',
@@ -176,7 +174,7 @@ export default{
                         }
                     }
                 },function(res){
-                    alert('TableInfo 页面 请求 table '+code+' 失败： '+ res.status);
+                    this.$message.error('TableInfo 页面 请求 table '+code+' 失败： '+ res.status);
                 });
             }
 
@@ -188,7 +186,7 @@ export default{
                    this.domains = re;
                 }
             },function(res){
-                alert('TableInfo 页面 请求domain失败： '+ res.status);
+                this.$message.error('TableInfo 页面 请求domain失败： '+ res.status);
             });
         },
         getTableSpaces(){
@@ -198,20 +196,21 @@ export default{
                    this.tableSpaces = re;
                 }
             },function(res){
-                alert('TableInfo 页面 请求 table space 失败： '+ res.status);
+                this.$message.error('TableInfo 页面 请求 table space 失败： '+ res.status);
             });
         },
         // 检查表名是否存在，如果新表名和老表名一致则不校验
         checkTableCode(code){
             this.$http.get('/checkTableCode/'+code+'?oldCode='+this.tableCode).then(function(res){
                 if(res.status == 200){
-                    this.errors=[];
+                    //this.errors=[];
                     //this.table.name = code;
                 }
             },function(res){
                 console.log('未通过服务端校验'+ res.status + '  '+res.body);
                 this.table.name = '';
-                this.errors = res.body;
+                this.$message.error(res.body);
+                //this.errors = res.body;
             });
 
         },
@@ -318,6 +317,12 @@ export default{
         },// domain end
 
         save(){
+            const newCode = this.table.code;
+            if(null == newCode || undefined == newCode || '' == newCode){
+                this.$message.warning('请填写表名称');
+                return;
+            }
+
             // 处理数据
             this.table.attr = this.tableAttr;
             // 添加模块ID
@@ -328,13 +333,16 @@ export default{
             }).then(function(res){
                 if(res.status==200){
                     console.log('添加表成功');
+                    this.$message.success('添加表成功');
                     this.$router.push('/tableList?module='+this.module);
                 }else{
-                    console.log('添加表失败')
+                    console.log('添加表失败');
+                    this.$message.error('添加表失败');
                 }
             },function(res){
                 console.log('添加表失败，未通过服务端校验'+ res.status + '  '+res.body);
-                this.errors=res.body;
+                this.$message.error(res.body);
+                //this.errors=res.body;
             });
 
         },
@@ -351,18 +359,19 @@ export default{
                     // 弹出框，展示sql
                     var re = res.body;
                     if(re){
-
                         this.textshow = true;
                         this.content = re;
                         // 先清除错误信息
-                        this.errors = [];
+                        //this.errors = [];
                     }
                 }else{
-                    console.log('生成sql失败')
+                    console.log('生成sql失败');
+                    this.$message.error('生成sql失败');
                 }
             },function(res){
                 console.log('生成sql失败'+ res.status + '  '+res.body);
-                this.errors=res.body;
+                this.$message.error(res.body);
+                //this.errors=res.body;
             });
 
         }

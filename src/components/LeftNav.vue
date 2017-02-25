@@ -10,8 +10,8 @@
                     <a href="/tableList?module=Accounting"><el-menu-item index="1-3">核算表</el-menu-item></a>
             </el-submenu>
             <el-menu-item index="2"><i class="el-icon-menu"></i><a href="/domainList" >数据字典</a></el-menu-item>
-            <el-menu-item index="2"><i class="el-icon-menu"></i><a href="/domainList" >数据域</a></el-menu-item>
-            <el-menu-item index="3"><i class="el-icon-setting"></i><a href="/tableSpaceList">表空间</a></el-menu-item>
+            <el-menu-item index="3"><i class="el-icon-menu"></i><a href="/domainList" >数据域</a></el-menu-item>
+            <el-menu-item index="4"><i class="el-icon-setting"></i><a href="/tableSpaceList">表空间</a></el-menu-item>
         </el-menu>
 
     </div>

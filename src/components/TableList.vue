@@ -2,9 +2,9 @@
     <div>
         <h2 class="sub-header">表区域 </h2>
 
-        <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
-        <el-dialog title="SQL脚本" v-model="textshow">
-            <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
+        <!--<p class="alert alert-danger" v-for="item in errors">{{item}}</p>-->
+        <el-dialog title="SQL脚本" v-model="sql_dialog_show">
+            <textarea v-model="content" rows="10" cols="100"></textarea>
         </el-dialog>
         <br>
 
@@ -14,8 +14,8 @@
                 <input class="form-control" v-model="code" @change="getAllTables();" type="text"/>
             </div>
             <!--<div class="form-group">-->
-                <!--<label>表中文描述</label>-->
-                <!--<input class="form-control" v-model="comment" type="text"/>-->
+            <!--<label>表中文描述</label>-->
+            <!--<input class="form-control" v-model="comment" type="text"/>-->
             <!--</div>-->
             <div class="form-group">
                 <label>表空间</label>
@@ -49,7 +49,9 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <router-link :to="{path:'/tableInfo', query:{module:module,tableCode:table.name}}" class="btn btn-sm btn-success">查看</router-link>
+                        <router-link :to="{path:'/tableInfo', query:{module:module,tableCode:table.code}}"
+                                     class="btn btn-sm btn-success">查看
+                        </router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
                         <a class="btn btn-sm btn-info" @click="getSql(table.code);">SQL预览</a>
                     </td>
@@ -72,10 +74,10 @@ export default{
             tableSpace:'',
             tables:[],
             tableSpaces:[],
-            errors:[],    //服务端验证失败的返回
+            // errors:[],    //服务端验证失败的返回
             // 选中行的索引
             content:'',
-            textshow:false
+            sql_dialog_show:false
         }
     },
     methods:{
@@ -86,7 +88,7 @@ export default{
                    this.tableSpaces = re;
                 }
             },function(res){
-                alert('TableList 页面 请求 table space 失败： '+ res.status);
+                this.$message.error('TableList 页面 请求 table space 失败： '+ res.status);
             });
         },
         getAllTables(){
@@ -97,28 +99,39 @@ export default{
                    this.tables = re;
                 }
             },function(res){
-                alert('TableList 页面 请求 table 失败： '+ res.status);
+                this.$message.error('TableList 页面 请求 table 失败： '+ res.status);
             });
         },
         deleteTable(code){
-            this.$http.post('/deleteFile',{
-                type : 'tables',
-                code : code
-            }).then(function(res){
-                if(res.status==200){
-                    console.log('删除表成功');
-                    // 提示信息并新获取table
-                    var re = res.body;
-                    if(re){
-                        this.errors = re;
-                        this.getAllTables();
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(() => {
+                this.$http.post('/deleteFile',{
+                    type : 'tables',
+                    code : code
+                }).then(function(res){
+                    if(res.status==200){
+                        console.log('删除表成功');
+                        this.$message.success('删除成功!');
+                        // 提示信息并新获取table
+                        var re = res.body;
+                        if(re){
+                            // this.errors = re;
+                            this.getAllTables();
+                        }
+                    }else{
+                        console.log('删除表失败');
+                        this.$message.error('删除失败!');
                     }
-                }else{
-                    console.log('删除表失败')
-                }
-            },function(res){
-                console.log('删除表失败'+ res.status + '  '+res.body);
-                this.errors = res.body;
+                },function(res){
+                    console.log('删除表失败'+ res.status + '  '+res.body);
+                    this.$message.error('删除表失败'+ res.status + '  '+res.body);
+                    // this.errors = res.body;
+                });
+            }).catch(() => {
+                    this.$message.info('已取消删除');
             });
         },
         generatorSql(){
@@ -128,17 +141,19 @@ export default{
             }).then(function(res){
                 if(res.status==200){
                     console.log('生成sql成功');
-                    // 弹出框，展示sql
+                    // 下载sql
                     var re = res.body;
-                    if(re){
-                        this.errors = re;
-                    }
+                    //if(re){
+                        //this.errors = re;
+                    //}
                 }else{
-                    console.log('生成sql失败')
+                    console.log('生成sql失败');
+                    this.$message.error('生成sql失败!');
                 }
             },function(res){
                 console.log('生成sql失败'+ res.status + '  '+res.body);
-                this.errors = res.body;
+                this.$message.error('生成sql失败'+ res.status + '  '+res.body);
+                //this.errors = res.body;
             });
         },
         getSql(code){
@@ -152,17 +167,20 @@ export default{
                     // 弹出框，展示sql
                     var re = res.body;
                     if(re){
-                        this.textshow = true;
+                        this.sql_dialog_show = true;
                         this.content = re;
                         // 先清除错误信息
-                        this.errors = [];
+                        //this.errors = [];
                     }
                 }else{
-                    console.log('生成sql失败')
+                    console.log('生成sql失败');
+                    this.$message.error( '生成sql失败!');
+
                 }
             },function(res){
                 console.log('生成sql失败'+ res.status + '  '+res.body);
-                this.errors = res.body;
+                this.$message.error('生成sql失败'+ res.status + '  '+res.body);
+                //this.errors = res.body;
             });
         }
     },
@@ -184,5 +202,9 @@ export default{
         this.getAllTables();
     }
 }
+
+
+
+
 
 </script>
