@@ -72,6 +72,45 @@ router.get('/getAll/tables', function (req, res, next) {
 });
 
 /**
+ * 获取dictionarys
+ */
+router.get('/getAll/dictionarys', function (req, res, next) {
+    var obj;
+    var start = process.uptime();
+    const code = req.query.code;
+
+    logger.writeDebug('code: ' + code);
+
+    var result = db.readFile('dictionarys');
+    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+
+    var dictionaryRes = new Array();
+
+    if (util.isArray(result) && result.length > 0) {
+        result.forEach(function (domain, index, domains) {
+            logger.writeDebug('domain:  ' + JSON.stringify(domain));
+            if (util.isNotNull(code)) {
+                if ((domain.code).indexOf(code) >= 0) {
+                    dictionaryRes.push(domain);
+                }
+            }
+        });
+    }
+
+    if (dictionaryRes.length > 0) {
+        logger.writeDebug('dictionaryRes.length  ' + dictionaryRes.length);
+        obj = dictionaryRes;
+    } else {
+        obj = result;
+    }
+
+    var end = process.uptime();
+    logger.writeDebug('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+
+    res.status(200).send(obj).end();
+});
+
+/**
  * 获取domains
  */
 router.get('/getAll/domains', function (req, res, next) {
@@ -139,9 +178,17 @@ router.get('/getTable/:code', function (req, res, next) {
 });
 
 /**
- * 根据name(源文件目录名字)获取对象数据
+ * 根据code(源文件目录名字)获取对象数据
  */
+router.get('/getDictionary/:code', function (req, res, next) {
+    var result = db.getDictionary(req.params.code);
+    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+    res.status(200).send(result).end();
+});
 
+/**
+ * 根据code(源文件目录名字)获取对象数据
+ */
 router.get('/getDomain/:code', function (req, res, next) {
     var result = db.getDomain(req.params.code);
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
@@ -180,6 +227,37 @@ router.post('/saveTable', function (req, res, next) {
 
 });
 
+/**
+ * dictionary
+ */
+router.post('/saveDictionary', function (req, res, next) {
+    var errors = new Array();
+    // 后台接收的参数
+    const data = req.body.data;
+    const oldCode = req.body.oldCode;
+
+    logger.writeDebug('后台接收的数据  data: ' + JSON.stringify(data) + ' oldCode : ' + oldCode);
+    if (!data) {
+        return res.status(301).send('数据不能为空').end();
+    }
+
+    // 服务端数据验证 表名唯一，表中字段不可重复
+    var flag = checkTableCode('dictionarys', data.code, oldCode);
+    logger.writeDebug('flag: ' + flag);
+    if (flag) {
+        errors.push('数据字典 ' + data.code + ' 已存在');
+    }
+
+    if (errors.length > 0) {
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    } else {
+        db.writeSourceFile('dictionarys', data.code, JSON.stringify(data, null, 4));
+        res.status(200).send('保存成功').end();
+    }
+
+});
+
 
 /**
  * domain
@@ -199,7 +277,7 @@ router.post('/saveDomain', function (req, res, next) {
     var flag = checkTableCode('domains', data.code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
-        errors.push('表名 ' + data.code + ' 已存在');
+        errors.push('域名称 ' + data.code + ' 已存在');
     }
 
     if (errors.length > 0) {
@@ -232,6 +310,33 @@ router.get('/checkTableCode/:code', function (req, res, next) {
     logger.writeDebug('flag: ' + flag);
     if (flag) {
         errors.push('表名 ' + code + ' 已存在');
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    }
+
+    return res.status(200).send('').end();
+});
+
+/**
+ * 检查dictionary是否有重复
+ */
+router.get('/checkDictionaryCode/:code', function (req, res, next) {
+    var errors = new Array();
+    // 后台接收的参数
+    const code = req.params.code;
+    const oldCode = req.query.oldCode.trim();
+    logger.writeDebug('后台接收的数据 code : ' + JSON.stringify(code) + '  oldCode: ' + oldCode);
+    if (!code) {
+        errors.push('请填写dictionary名称！');
+        logger.writeErr(errors);
+        return res.status(301).send(errors).end();
+    }
+
+    // 服务端数据验证 表名唯一，表中字段不可重复
+    var flag = checkTableCode('dictionarys', code, oldCode);
+    logger.writeDebug('flag: ' + flag);
+    if (flag) {
+        errors.push('数据字典 ' + code + ' 已存在');
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     }

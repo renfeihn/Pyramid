@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu default-active="1-1" class="el-menu-vertical-demo">
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>表管理</template>
 
@@ -9,9 +9,9 @@
                     <a href="/tableList?module=Limarket"><el-menu-item index="1-2">计价表</el-menu-item></a>
                     <a href="/tableList?module=Accounting"><el-menu-item index="1-3">核算表</el-menu-item></a>
             </el-submenu>
-            <el-menu-item index="2"><i class="el-icon-menu"></i><a href="/domainList" >数据字典</a></el-menu-item>
-            <el-menu-item index="3"><i class="el-icon-menu"></i><a href="/domainList" >数据域</a></el-menu-item>
-            <el-menu-item index="4"><i class="el-icon-setting"></i><a href="/tableSpaceList">表空间</a></el-menu-item>
+            <el-menu-item index="2"><a href="/dictionaryList" ><i class="el-icon-menu"></i>数据字典</a></el-menu-item>
+            <el-menu-item index="3"><a href="/domainList" ><i class="el-icon-menu"></i>数据域</a></el-menu-item>
+            <el-menu-item index="4"><a href="/tableSpaceList"><i class="el-icon-setting"></i>表空间</a></el-menu-item>
         </el-menu>
 
     </div>

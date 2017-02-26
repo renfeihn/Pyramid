@@ -2,6 +2,9 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/.babelrc" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/source/dictionary/BASE_ACCT_NO.json" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/source/dictionary/OTHER_ACCT_NO.json" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data/source/domains/ACCT_NO.json" charset="GBK" />
     <file url="file://$PROJECT_DIR$/data/source/domains/create_date.json" charset="GBK" />
     <file url="file://$PROJECT_DIR$/data/source/domains/id.json" charset="GBK" />
     <file url="file://$PROJECT_DIR$/data/source/domains/test.json" charset="GB2312" />

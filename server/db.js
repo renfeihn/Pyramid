@@ -7,8 +7,13 @@ const iconv = require('iconv-lite');
 const logger = require("./log/logHelper").helper;
 const util = require('./util/util');
 // const validator = require('validator');
+// 表
 const table_name = "tables";
+// 数据字典
+const dictionary_name = "dictionarys";
+// 域
 const domain_name = "domains";
+// 表空间
 const table_space_name = "table_spaces";
 
 // JSON源数据路径
@@ -171,6 +176,37 @@ const getTable = function (code) {
 
 
 /**
+ * 获取根据code获取表对象getDictionary
+ */
+const getDictionary = function (code) {
+    const filePath = sourcePath + dictionary_name + '/' + code + '.json';
+
+    var domain = {};
+    try {
+        const statFile = fs.statSync(filePath);
+
+        logger.writeInfo(statFile.isFile())
+
+        if (statFile.isFile()) {
+            logger.writeInfo(filePath + ' 文件存在');
+
+            var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+            var buf = new Buffer(fileStr, 'binary');
+            var data = iconv.decode(buf, 'GBK');
+            domain = JSON.parse(data);
+
+            // table = JSON.parse(fs.readFileSync(filePath));
+        } else {
+            logger.writeErr(filePath + ' 文件不存在');
+        }
+    } catch (e) {
+        logger.writeErr(filePath + ' 文件不存在');
+    }
+
+    return domain;
+};
+
+/**
  * 获取根据code获取表对象
  */
 const getDomain = function (code) {
@@ -255,9 +291,10 @@ const Models = {
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
     delSourceFile: delSourceFile,
-    getTableByModule:getTableByModule,
+    getTableByModule: getTableByModule,
     getTable: getTable,
     getDomain: getDomain,
+    getDictionary: getDictionary,
     getAllDomains: getAllDomains,
     getAllTableSpaces: getAllTableSpaces,
     getDefaultTableSpace: getDefaultTableSpace

@@ -21,7 +21,7 @@
             "P": "Y",
             "comment": "Ö÷¼üID",
             "defaults": "'1'",
-            "domain": "id"
+            "dictionary": "BASE_ACCT_NO"
         },
         {
             "name": "name",
@@ -33,7 +33,7 @@
             "P": "N",
             "comment": "ÐÕÃû",
             "defaults": "",
-            "domain": ""
+            "dictionary": ""
         },
         {
             "name": "age",
@@ -45,7 +45,7 @@
             "P": "Y",
             "comment": "ÄêÁä",
             "defaults": "",
-            "domain": ""
+            "dictionary": ""
         }
     ],
     "indexs": [
