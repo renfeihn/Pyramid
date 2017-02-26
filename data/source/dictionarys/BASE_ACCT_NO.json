@@ -1,0 +1,8 @@
+{
+    "code": "BASE_ACCT_NO",
+    "dataType": "Varchar",
+    "lengths": "64",
+    "comment": "ук╨е",
+    "defaults": "",
+    "domains":"ACCT_NO"
+}
