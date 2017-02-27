@@ -42777,7 +42777,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     // 提示信息并新获取table
                     var re = res.body;
                     if (re) {
-                        this.$message.error(re);
+                        this.$message.success(re);
                         this.getAllDictionarys();
                     }
                 } else {
@@ -42980,9 +42980,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ exports["default"] = {
@@ -42990,11 +42987,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
         return {
             code: '',
             comment: '',
-            domains: [],
-            errors: [], //服务端验证失败的返回
-            // 选中行的索引
-            content: '',
-            textshow: false
+            domains: []
         };
     },
 
@@ -43007,7 +43000,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     this.domains = re;
                 }
             }, function (res) {
-                alert('DomainList 页面 请求 table 失败： ' + res.status);
+                this.$message.error('DomainList 页面 请求 table 失败： ' + res.status);
             });
         },
         deleteTable: function deleteTable(code) {
@@ -43020,15 +43013,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
                     // 提示信息并新获取table
                     var re = res.body;
                     if (re) {
-                        this.errors = re;
+                        console.log(re);
                         this.getAllDomains();
+                        this.$message.success(re);
                     }
                 } else {
-                    console.log('删除domain失败');
+                    this.$message.error('删除domain失败');
                 }
             }, function (res) {
-                console.log('删除domain失败' + res.status + '  ' + res.body);
-                this.errors = res.body;
+                this.$message.error('删除domain失败' + res.status + '  ' + res.body);
             });
         }
     },
@@ -50901,36 +50894,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('h2', {
     staticClass: "sub-header"
-  }, [_vm._v("domain区域 ")]), _vm._v(" "), _vm._l((_vm.errors), function(item) {
-    return _c('p', {
-      staticClass: "alert alert-danger"
-    }, [_vm._v(_vm._s(item))])
-  }), _vm._v(" "), _c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.content),
-      expression: "content"
-    }, {
-      name: "show",
-      rawName: "v-show",
-      value: (_vm.textshow),
-      expression: "textshow"
-    }],
-    attrs: {
-      "rows": "5",
-      "cols": "100"
-    },
-    domProps: {
-      "value": _vm._s(_vm.content)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.content = $event.target.value
-      }
-    }
-  }), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+  }, [_vm._v("domain区域 ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
@@ -50989,7 +50953,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     }, [_vm._v("删除")])], 1)])
-  }))])])], 2)
+  }))])])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("默认值")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
 }]}

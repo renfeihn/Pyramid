@@ -75,7 +75,7 @@ export default{
                     // 提示信息并新获取table
                     var re = res.body;
                     if(re){
-                        this.$message.error(re);
+                        this.$message.success(re);
                         this.getAllDictionarys();
                     }
                 }else{

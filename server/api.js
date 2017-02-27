@@ -450,18 +450,19 @@ router.post('/generatorSql', function (req, res, next) {
  * 删除源文件
  */
 router.post('/deleteFile', function (req, res, next) {
-    var msg = new Array();
+    var msg;
     const type = req.body.type; // 类型 table、domain、
     const code = req.body.code; // 名字
 
+    logger.writeDebug('type: ' + type + '    code: ' + code)
 
     try {
         db.delSourceFile(type, code);
-        msg.push('表 ' + code + ' 删除成功！');
+        msg = type + ' ' + code + ' 删除成功！';
         return res.status(200).send(msg).end();
     } catch (e) {
         logger.writeErr('删除文件错误: ' + e);
-        msg.push('删除文件错误，请重试');
+        msg = '删除文件错误，请重试';
     }
     return res.status(301).send(msg).end();
 });

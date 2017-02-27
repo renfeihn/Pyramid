@@ -75,8 +75,9 @@ export default{
                     // 提示信息并新获取table
                     var re = res.body;
                     if(re){
-                        this.$message.success(re)
+                        console.log(re);
                         this.getAllDomains();
+                        this.$message.success(re);
                     }
                 }else{
                     this.$message.error('删除domain失败');

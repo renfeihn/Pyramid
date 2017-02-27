@@ -55,7 +55,8 @@
             "columns": [
                 "id",
                 "age"
-            ]
+            ],
+            "table_space":"test02"
         }
     ],
     "table_space": "test02",
