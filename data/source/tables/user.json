@@ -51,7 +51,7 @@
     "indexs": [
         {
             "code": "index_1",
-            "U": "Y",
+            "U": false,
             "columns": [
                 "id",
                 "age"
@@ -60,7 +60,7 @@
         },
         {
             "code": "index_2",
-            "U": "N",
+            "U": true,
             "columns": [
                 "id"
             ],

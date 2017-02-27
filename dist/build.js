@@ -43327,6 +43327,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -43354,7 +43355,9 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
             content: '',
             textshow: false,
             // 页面累计行数
-            maxRowSize: 0
+            maxRowSize: 0,
+            // 页面索引累计行数
+            maxIndexRowSize: 0
         };
     },
 
@@ -43371,8 +43374,9 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
                         console.log('table_space: ' + re.table_space);
                         if (null != re && re.attr instanceof Array) {
                             this.tableAttr = this.table.attr;
-                            this.tableIndexs = this.table.indexs;
                             this.maxRowSize = this.tableAttr.length;
+
+                            this.tableIndexs = this.table.indexs;
                         } else {
                             this.tableAttr = null;
                             this.tableIndexs = null;
@@ -43420,9 +43424,28 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
         },
 
         // 选中行
-        selectRow: function selectRow(e, index) {
+        selectRow: function selectRow() {
+            //this.selectRowIndex = index;
             // 设置高亮
-            var tr = e.currentTarget;
+            //var tr = e.currentTarget;
+            var highlightcolor = '#E0F2FE';
+            var clickcolor = '#ffedd2';
+
+            var source = event.srcElement;
+            if (source.tagName == "TD") {
+                source = source.parentElement;
+                var cells = source.children;
+                if (cells[0].style.backgroundColor != clickcolor) {
+                    for (i = 0; i < cells.length; i++) {
+                        cells[i].style.backgroundColor = clickcolor;
+                    }
+                } else {
+                    for (i = 0; i < cells.length; i++) {
+                        cells[i].style.backgroundColor = "";
+                    }
+                }
+            }
+
             //console.log('tr:  '+tr.innerHTML);
             /*
             var tbd = tr.parentNode;
@@ -43437,7 +43460,6 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
                 }
             }
             */
-            this.selectRowIndex = index;
         },
 
         // 添加一行
@@ -43467,6 +43489,20 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
                 this.tableAttr.splice(this.selectRowIndex, 1);
             }
         },
+
+
+        // 添加一行索引
+        addIndexRow: function addIndexRow() {
+            console.log('--- add index row --- ' + this.tableIndexs.length);
+            var indexSize = this.tableIndexs.length + 1;
+            var tr = new Object();
+            tr.code = 'Index_' + indexSize;
+            tr.U = false;
+            tr.columns = [];
+            tr.table_space = '';
+            this.tableIndexs.splice(indexSize, 0, tr);
+        },
+
 
         // 普通的input
         editInput: function editInput(e, field, data, index) {
@@ -50693,7 +50729,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("remove")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
-    staticClass: "table table-striped"
+    staticClass: "table table-striped",
+    on: {
+      "click": function($event) {
+        _vm.selectRow()
+      }
+    }
   }, [_c('thead', [_c('tr', [_c('th', {
     attrs: {
       "width": "2%"
@@ -50718,11 +50759,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "10%"
     }
-  }, [_vm._v("是否不为空")]), _vm._v(" "), _c('th', {
+  }, [_vm._v("是否必填")]), _vm._v(" "), _c('th', {
     attrs: {
       "width": "10%"
     }
-  }, [_vm._v("主键")]), _vm._v(" "), _c('th', {
+  }, [_vm._v("是否主键")]), _vm._v(" "), _c('th', {
     attrs: {
       "width": "10%"
     }
@@ -50735,13 +50776,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "10%"
     }
   }, [_vm._v("域")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.tableAttr), function(tb, index) {
-    return _c('tr', {
-      on: {
-        "click": function($event) {
-          _vm.selectRow($event, index);
-        }
-      }
-    }, [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', {
       on: {
         "dblclick": function($event) {
           _vm.editInput($event, 'code', tb, index)
@@ -50810,21 +50845,28 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.addRow(0);
       }
     }
-  }, [_vm._v("add before")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("上移")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {
         _vm.addRow(1);
       }
     }
-  }, [_vm._v("add after")]), _vm._v(" "), _c('a', {
+  }, [_vm._v("下移")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.addIndexRow();
+      }
+    }
+  }, [_vm._v("新增")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {
         _vm.deleteRow();
       }
     }
-  }, [_vm._v("remove")])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("删除")])]), _vm._v(" "), _c('div', {
     staticClass: "table-responsive articleList"
   }, [_c('table', {
     staticClass: "table table-striped"
@@ -50834,7 +50876,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('th', {
     attrs: {
-      "width": "28%"
+      "width": "20%"
     }
   }, [_vm._v("索引名称")]), _vm._v(" "), _c('th', {
     attrs: {
@@ -50842,7 +50884,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("是否唯一")]), _vm._v(" "), _c('th', {
     attrs: {
-      "width": "30%"
+      "width": "38%"
     }
   }, [_vm._v("列项")]), _vm._v(" "), _c('th', {
     attrs: {
@@ -50855,19 +50897,41 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.selectRow($event, index);
         }
       }
-    }, [_c('td', [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c('td', {
+    }, [_c('td', [_vm._v("\n                            " + _vm._s(index + 1) + "\n                        ")]), _vm._v(" "), _c('td', [_c('el-input', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (ind.code),
+        expression: "ind.code"
+      }],
+      domProps: {
+        "value": (ind.code)
+      },
       on: {
-        "dblclick": function($event) {
-          _vm.editInput($event, 'code', _vm.tb, index)
+        "input": function($event) {
+          ind.code = $event
         }
       }
-    }, [_vm._v(_vm._s(ind.code))]), _vm._v(" "), _c('td', {
+    })], 1), _vm._v(" "), _c('td', [_c('el-switch', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (ind.U),
+        expression: "ind.U"
+      }],
+      attrs: {
+        "on-text": "",
+        "off-text": ""
+      },
+      domProps: {
+        "value": (ind.U)
+      },
       on: {
-        "dblclick": function($event) {
-          _vm.editYN($event, 'U', _vm.tb, index)
+        "input": function($event) {
+          ind.U = $event
         }
       }
-    }, [_vm._v(_vm._s(ind.U))]), _vm._v(" "), _c('td', [_c('el-select', {
+    })], 1), _vm._v(" "), _c('td', [_c('el-select', {
       directives: [{
         name: "model",
         rawName: "v-model",

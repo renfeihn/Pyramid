@@ -55,8 +55,8 @@
                             <th width="13%">数据类型</th>
                             <th width="10%">长度</th>
                             <th width="10%">精度</th>
-                            <th width="10%">是否不为空</th>
-                            <th width="10%">主键</th>
+                            <th width="10%">是否必填</th>
+                            <th width="10%">是否主键</th>
                             <th width="10%">描述</th>
                             <th width="10%">默认值</th>
                             <th width="10%">域</th>
@@ -83,27 +83,31 @@
             <el-tab-pane label="索引管理" name="second">
                 <form class="form-inline form-filter">
                     <br>
-                    <a class="btn btn-info" @click="addRow(0);">add before</a>
-                    <a class="btn btn-info" @click="addRow(1);">add after</a>
-                    <a class="btn btn-info" @click="deleteRow();">remove</a>
+                    <a class="btn btn-info" @click="addRow(0);">上移</a>
+                    <a class="btn btn-info" @click="addRow(1);">下移</a>
+                    <a class="btn btn-info" @click="addIndexRow();">新增</a>
+                    <a class="btn btn-info" @click="deleteRow();">删除</a>
                 </form>
                 <div class="table-responsive articleList">
-
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <th width="2%"></th>
-                            <th width="28%">索引名称</th>
+                            <th width="20%">索引名称</th>
                             <th width="20%">是否唯一</th>
-                            <th width="30%">列项</th>
+                            <th width="38%">列项</th>
                             <th width="20%">表空间</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(ind,index) in tableIndexs" @click="selectRow($event,index);">
-                            <td>{{index+1}}</td>
-                            <td @dblclick="editInput($event,'code',tb,index)">{{ind.code}}</td>
-                            <td @dblclick="editYN($event,'U',tb,index)">{{ind.U}}</td>
+                            <td>
+                                {{index+1}}
+                            </td>
+                            <td><el-input v-model="ind.code"></el-input></td>
+                            <td>
+                                <el-switch on-text="" off-text="" v-model="ind.U"></el-switch>
+                            </td>
                             <td>
                                 <el-select v-model="ind.columns" multiple placeholder="请选择">
                                     <el-option
@@ -122,10 +126,7 @@
                                             :value="item.code">
                                     </el-option>
                                 </el-select>
-
-
                             </td>
-                            <!--<td @dblclick="editInput($event,'columns',tb,index)">{{ind.columns}}</td>-->
                         </tr>
                         </tbody>
                     </table>
@@ -162,7 +163,9 @@ export default{
             content:'',
             textshow:false,
             // 页面累计行数
-            maxRowSize:0
+            maxRowSize:0,
+            // 页面索引累计行数
+            maxIndexRowSize:0
         }
     },
     methods:{
@@ -178,8 +181,10 @@ export default{
                         console.log('table_space: '+ re.table_space);
                         if(null != re && re.attr instanceof Array){
                             this.tableAttr = (this.table).attr;
-                            this.tableIndexs = (this.table).indexs;
                             this.maxRowSize = this.tableAttr.length;
+
+                            this.tableIndexs = (this.table).indexs;
+
                         }else{
                             this.tableAttr = null;
                             this.tableIndexs = null;
@@ -228,8 +233,10 @@ export default{
         },
         // 选中行
         selectRow(e,index){
+            //this.selectRowIndex = index;
             // 设置高亮
-            var tr = e.currentTarget;
+            //var tr = e.currentTarget;
+
             //console.log('tr:  '+tr.innerHTML);
             /*
             var tbd = tr.parentNode;
@@ -244,7 +251,7 @@ export default{
                 }
             }
             */
-            this.selectRowIndex = index;
+
         },
         // 添加一行
         addRow(i){
@@ -272,6 +279,19 @@ export default{
                 this.tableAttr.splice(this.selectRowIndex,1);
             }
         },
+
+        // 添加一行索引
+        addIndexRow(){
+            console.log('--- add index row --- '+(this.tableIndexs).length);
+            const indexSize = (this.tableIndexs).length +1;
+            const tr = new Object();
+            tr.code  = 'Index_'+(indexSize);
+            tr.U = false;
+            tr.columns = [];
+            tr.table_space = '';
+            this.tableIndexs.splice(indexSize,0,tr);
+        },
+
         // 普通的input
         editInput(e,field,data,index){
             var that = this;
