@@ -4,5 +4,6 @@
     "lengths": "64",
     "comment": "ук╨е",
     "defaults": "",
-    "domains":"ACCT_NO"
+    "scope": "A,C,E",
+    "domain": "ACCT_NO"
 }

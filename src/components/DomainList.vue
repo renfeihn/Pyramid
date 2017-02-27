@@ -1,9 +1,6 @@
 <template>
     <div>
         <h2 class="sub-header">domain区域 </h2>
-
-        <p class="alert alert-danger" v-for="item in errors">{{item}}</p>
-        <textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>
         <br>
 
         <form class="form-inline form-filter">
@@ -36,7 +33,7 @@
                     <td>{{domain.comment}}</td>
                     <td>{{domain.defaults}}</td>
                     <td>
-                        <router-link :to="{path:'/domainInfo', query:{domainCode:domain.name}}" class="btn btn-sm btn-success">查看</router-link>
+                        <router-link :to="{path:'/domainInfo', query:{domainCode:domain.code}}" class="btn btn-sm btn-success">查看</router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(domain.code);">删除</a>
                     </td>
                 </tr>
@@ -53,11 +50,7 @@ export default{
         return{
             code:'',
             comment:'',
-            domains:[],
-            errors:[],    //服务端验证失败的返回
-            // 选中行的索引
-            content:'',
-            textshow:false
+            domains:[]
         }
     },
     methods:{
@@ -69,7 +62,7 @@ export default{
                    this.domains = re;
                 }
             },function(res){
-                alert('DomainList 页面 请求 table 失败： '+ res.status);
+                this.$message.error('DomainList 页面 请求 table 失败： '+ res.status);
             });
         },
         deleteTable(code){
@@ -82,15 +75,14 @@ export default{
                     // 提示信息并新获取table
                     var re = res.body;
                     if(re){
-                        this.errors = re;
+                        this.$message.success(re)
                         this.getAllDomains();
                     }
                 }else{
-                    console.log('删除domain失败')
+                    this.$message.error('删除domain失败');
                 }
             },function(res){
-                console.log('删除domain失败'+ res.status + '  '+res.body);
-                this.errors = res.body;
+                this.$message.error('删除domain失败'+ res.status + '  '+res.body);
             });
         }
     },

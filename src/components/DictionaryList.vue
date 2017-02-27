@@ -1,9 +1,6 @@
 <template>
     <div>
         <h2 class="sub-header">数据字典区域 </h2>
-
-        <!--<p class="alert alert-danger" v-for="item in errors">{{item}}</p>-->
-        <!--<textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>-->
         <br>
 
         <form class="form-inline form-filter">
@@ -11,10 +8,6 @@
                 <label>数据字典名称</label>
                 <input class="form-control" v-model="code" type="text"/>
             </div>
-            <!--<div class="form-group">-->
-                <!--<label>domain中文描述</label>-->
-                <!--<input class="form-control" v-model="comment" type="text"/>-->
-            <!--</div>-->
             <a class="btn btn-info" @click="getAllDictionarys();">筛选</a>
 
             <a class="btn btn-info" href="/dictionaryInfo">新增数据字典</a>
@@ -26,7 +19,9 @@
                 <tr>
                     <th>名称</th>
                     <th>描述</th>
+                    <th>取值范围</th>
                     <th>默认值</th>
+                    <th>数据域</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -34,7 +29,9 @@
                 <tr v-for="(dictionary,index) in dictionarys">
                     <td>{{dictionary.code}}</td>
                     <td>{{dictionary.comment}}</td>
+                    <td>{{dictionary.scope}}</td>
                     <td>{{dictionary.defaults}}</td>
+                    <td>{{dictionary.domain}}</td>
                     <td>
                         <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}" class="btn btn-sm btn-success">查看</router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(dictionary.code);">删除</a>
@@ -51,12 +48,10 @@
 export default{
     data(){
         return{
+            //
             code:'',
             comment:'',
             dictionarys:[]
-            //errors:[],    //服务端验证失败的返回
-            // 选中行的索引
-            //content:''
         }
     },
     methods:{

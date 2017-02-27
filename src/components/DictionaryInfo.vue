@@ -1,10 +1,26 @@
 <template>
     <div>
+
         <h2 class="sub-header">数据字典详细 </h2>
-        <!--<p class="alert alert-danger" v-for="item in errors">{{item}}</p>-->
-        <textarea v-model="content" v-show="textshow" rows="5" cols="100"></textarea>
         <br>
+
         <form class="form-horizontal">
+            <div class="form-group">
+                <!-- 选择domain域 -->
+                <label class="col-sm-2 control-label">数据域</label>
+                <div class="col-sm-4">
+                    <el-select v-model="dictionary.domain"
+                               @change="selectDomain"
+                               filterable placeholder="请选择">
+                        <el-option
+                                v-for="item in domains"
+                                :label="item.code"
+                                :value="item.code">
+                        </el-option>
+                    </el-select>
+
+                </div>
+            </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-4">
@@ -19,31 +35,37 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">数据类型</label>
                 <div class="col-sm-4">
-                    <select class="form-control" v-model="dictionary.dataType">
-                        <template v-for="data_type in data_types">
-                            <option :value="data_type" v-if="data_type == dictionary.dataType" selected>
-                                {{data_type}}
-                            </option>
-                            <option :value="data_type" v-else>
-                                {{data_type}}
-                            </option>
-                        </template>
-                    </select>
-
+                    <input class="form-control" readonly="isReadOnly" v-model="dictionary.dataType" type="text"/>
+                    <!--<select class="form-control" readonly="isReadOnly" v-model="dictionary.dataType">-->
+                        <!--<template v-for="data_type in data_types">-->
+                            <!--<option :value="data_type" v-if="data_type == dictionary.dataType" selected>-->
+                                <!--{{data_type}}-->
+                            <!--</option>-->
+                            <!--<option :value="data_type" v-else>-->
+                                <!--{{data_type}}-->
+                            <!--</option>-->
+                        <!--</template>-->
+                    <!--</select>-->
                 </div>
                 <label class="col-sm-2 control-label">长度</label>
                 <div class="col-sm-4">
-                    <input class="form-control" v-model="dictionary.lengths" type="text"/>
+                    <input class="form-control" readonly="isReadOnly" v-model="dictionary.lengths" type="text"/>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-2 control-label">精度</label>
                 <div class="col-sm-4">
-                    <input class="form-control" v-model="dictionary.precision" type="text"/>
+                    <input class="form-control" readonly="isReadOnly" v-model="dictionary.precision" type="text"/>
                 </div>
                 <label class="col-sm-2 control-label">默认值</label>
                 <div class="col-sm-4">
                     <input class="form-control" v-model="dictionary.defaults" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">取值范围</label>
+                <div class="col-sm-4">
+                    <input class="form-control" v-model="dictionary.scope" type="text"/>
                 </div>
             </div>
 
@@ -61,12 +83,8 @@ export default{
             dictionaryCode:'',
             // 数据字典
             dictionary:{},
-            // 服务端验证失败的返回
-            //errors:[],
-            // 选中行的索引
-            content:'',
-            // 错误信息是否显示
-            textshow:false
+            // 所有domain域
+            domains:[]
         }
     },
     methods:{
@@ -82,10 +100,41 @@ export default{
                 });
             }
         },
+        getAllDomains(){
+            this.$http.get('/getAll/domains').then(function(res){
+                if(res.status == 200){
+                   var re = res.body;
+                   this.domains = re;
+                }
+            },function(res){
+                this.$message.error('DictionaryInfo 页面 请求domain失败： '+ res.status);
+            });
+        },
+        selectDomain(code){
+            console.log('选中的值：'+code);
+            // 获取domain，赋值给当前页面
+
+            // 如果当前数据字典对象为空，表示新增
+            if(null == (this.dictionary).code || undefined == (this.dictionary).code || '' == (this.dictionary).code){
+                return;
+            }
+            if(null != code && '' != code && undefined != code){
+                this.$http.get('/getDomain/'+code).then(function(res){
+                    if(res.status == 200){
+                        var re = res.body;
+                        this.dictionary.dataType = re.dataType;
+                        this.dictionary.lengths = re.lengths;
+                        this.dictionary.precision = re.precision;
+                    }
+                },function(res){
+                    this.$message.error('DictionaryInfo 页面 请求 domain '+code+' 失败： '+ res.status);
+                });
+            }
+
+        },
         checkDictionaryCode(code){
             this.$http.get('/checkDictionaryCode/'+code+'?oldCode='+this.domainCode).then(function(res){
                 if(res.status == 200){
-                    //this.errors=[];
                 }
             },function(res){
                 console.log('未通过服务端校验'+ res.status + '  '+res.body);
@@ -130,8 +179,12 @@ export default{
             this.dictionaryCode = params[1];
         }
         console.log('code: ' + this.dictionaryCode);
+        if('' != this.dictionaryCode){
+            this.getDictionary(this.dictionaryCode);
+        }
 
-        this.getDictionary(this.dictionaryCode);
+        // 获取domains
+        this.getAllDomains();
     }
 }
 
