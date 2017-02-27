@@ -43315,6 +43315,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -50830,9 +50842,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("是否唯一")]), _vm._v(" "), _c('th', {
     attrs: {
-      "width": "50%"
+      "width": "30%"
     }
-  }, [_vm._v("列项")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.tableIndexs), function(ind, index) {
+  }, [_vm._v("列项")]), _vm._v(" "), _c('th', {
+    attrs: {
+      "width": "20%"
+    }
+  }, [_vm._v("表空间")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.tableIndexs), function(ind, index) {
     return _c('tr', {
       on: {
         "click": function($event) {
@@ -50875,6 +50891,32 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         attrs: {
           "label": attr.code,
           "value": attr.code
+        }
+      })
+    }))], 1), _vm._v(" "), _c('td', [_c('el-select', {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: (ind.table_space),
+        expression: "ind.table_space"
+      }],
+      attrs: {
+        "filterable": "",
+        "placeholder": "请选择"
+      },
+      domProps: {
+        "value": (ind.table_space)
+      },
+      on: {
+        "input": function($event) {
+          ind.table_space = $event
+        }
+      }
+    }, _vm._l((_vm.tableSpaces), function(item) {
+      return _c('el-option', {
+        attrs: {
+          "label": item.code,
+          "value": item.code
         }
       })
     }))], 1)])

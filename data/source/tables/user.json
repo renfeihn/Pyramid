@@ -56,7 +56,15 @@
                 "id",
                 "age"
             ],
-            "table_space":"test02"
+            "table_space": "test01"
+        },
+        {
+            "code": "index_2",
+            "U": "N",
+            "columns": [
+                "id"
+            ],
+            "table_space": "test02"
         }
     ],
     "table_space": "test02",

@@ -95,7 +95,8 @@
                             <th width="2%"></th>
                             <th width="28%">索引名称</th>
                             <th width="20%">是否唯一</th>
-                            <th width="50%">列项</th>
+                            <th width="30%">列项</th>
+                            <th width="20%">表空间</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -112,7 +113,18 @@
                                     </el-option>
                                 </el-select>
                             </td>
+                            <td>
+                                <el-select v-model="ind.table_space"
+                                           filterable placeholder="请选择">
+                                    <el-option
+                                            v-for="item in tableSpaces"
+                                            :label="item.code"
+                                            :value="item.code">
+                                    </el-option>
+                                </el-select>
 
+
+                            </td>
                             <!--<td @dblclick="editInput($event,'columns',tb,index)">{{ind.columns}}</td>-->
                         </tr>
                         </tbody>
