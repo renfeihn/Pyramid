@@ -33,7 +33,9 @@
                     <td>{{dictionary.defaults}}</td>
                     <td>{{dictionary.domain}}</td>
                     <td>
-                        <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}" class="btn btn-sm btn-success">查看</router-link>
+                        <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}"
+                                     class="btn btn-sm btn-success">查看
+                        </router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(dictionary.code);">删除</a>
                     </td>
                 </tr>
@@ -45,53 +47,51 @@
 </template>
 <script>
 
-export default{
-    data(){
-        return{
-            //
-            code:'',
-            comment:'',
-            dictionarys:[]
-        }
-    },
-    methods:{
-        getAllDictionarys(){
-            let API = '/getAll/dictionarys?page='+'&code='+this.code+'&comment='+this.comment;
-            this.$http.get(API).then(function(res){
-                if(res.status == 200){
-                   var re = res.body;
-                   this.dictionarys = re;
-                }
-            },function(res){
-                this.$message.error('DictionaryList 页面 请求 dictionary 失败： '+ res.status);
-            });
+    export default{
+        data(){
+            return {
+                //
+                code: '',
+                comment: '',
+                dictionarys: []
+            }
         },
-        deleteTable(code){
-            this.$http.post('/deleteFile',{
-                type : 'dictionarys',
-                code : code
-            }).then(function(res){
-                if(res.status==200){
-                    // 提示信息并新获取table
-                    var re = res.body;
-                    if(re){
-                        this.$message.success(re);
-                        this.getAllDictionarys();
+        methods: {
+            getAllDictionarys(){
+                let API = '/getAll/dictionarys?page=' + '&code=' + this.code + '&comment=' + this.comment;
+                this.$http.get(API).then(function (res) {
+                    if (res.status == 200) {
+                        var re = res.body;
+                        this.dictionarys = re;
                     }
-                }else{
-                    this.$message.error('删除dictionary失败')
-                }
-            },function(res){
-                this.$message.error(res.body);
-            });
+                }, function (res) {
+                    this.$message.error('DictionaryList 页面 请求 dictionary 失败： ' + res.status);
+                });
+            },
+            deleteTable(code){
+                this.$http.post('/deleteFile', {
+                    type: 'dictionarys',
+                    code: code
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        // 提示信息并新获取table
+                        var re = res.body;
+                        if (re) {
+                            this.$message.success(re);
+                            this.getAllDictionarys();
+                        }
+                    } else {
+                        this.$message.error('删除dictionary失败')
+                    }
+                }, function (res) {
+                    this.$message.error(res.body);
+                });
+            }
+        },
+        components: {},
+        created(){
+            this.getAllDictionarys();
         }
-    },
-    components:{
-
-    },
-    created(){
-        this.getAllDictionarys();
     }
-}
 
 </script>

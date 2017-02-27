@@ -65,146 +65,141 @@
 
 <script>
 
-export default{
-    data(){
-        return{
-            module:'',  // 模块ID
-            code:'',
-            comment:'',
-            tableSpace:'',
-            tables:[],
-            tableSpaces:[],
-            // errors:[],    //服务端验证失败的返回
-            // 选中行的索引
-            content:'',
-            sql_dialog_show:false
-        }
-    },
-    methods:{
-        getTableSpaces(){
-            this.$http.get('/getAll/table_spaces').then(function(res){
-                if(res.status == 200){
-                   var re = res.body;
-                   this.tableSpaces = re;
-                }
-            },function(res){
-                this.$message.error('TableList 页面 请求 table space 失败： '+ res.status);
-            });
+    export default{
+        data(){
+            return {
+                module: '',  // 模块ID
+                code: '',
+                comment: '',
+                tableSpace: '',
+                tables: [],
+                tableSpaces: [],
+                // errors:[],    //服务端验证失败的返回
+                // 选中行的索引
+                content: '',
+                sql_dialog_show: false
+            }
         },
-        getAllTables(){
-            let API = '/getAll/tables?module='+this.module+'&code='+this.code+'&comment='+this.comment+'&tableSpace='+this.tableSpace;
-            this.$http.get(API).then(function(res){
-                if(res.status == 200){
-                   var re = res.body;
-                   this.tables = re;
-                }
-            },function(res){
-                this.$message.error('TableList 页面 请求 table 失败： '+ res.status);
-            });
-        },
-        deleteTable(code){
-            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-            }).then(() => {
-                this.$http.post('/deleteFile',{
-                    type : 'tables',
-                    code : code
-                }).then(function(res){
-                    if(res.status==200){
-                        console.log('删除表成功');
-                        this.$message.success('删除成功!');
-                        // 提示信息并新获取table
+        methods: {
+            getTableSpaces(){
+                this.$http.get('/getAll/table_spaces').then(function (res) {
+                    if (res.status == 200) {
                         var re = res.body;
-                        if(re){
-                            // this.errors = re;
-                            this.getAllTables();
-                        }
-                    }else{
-                        console.log('删除表失败');
-                        this.$message.error('删除失败!');
+                        this.tableSpaces = re;
                     }
-                },function(res){
-                    console.log('删除表失败'+ res.status + '  '+res.body);
-                    this.$message.error('删除表失败'+ res.status + '  '+res.body);
-                    // this.errors = res.body;
+                }, function (res) {
+                    this.$message.error('TableList 页面 请求 table space 失败： ' + res.status);
                 });
-            }).catch(() => {
-                    this.$message.info('已取消删除');
-            });
-        },
-        generatorSql(){
-            this.$http.post('/generatorSql',{
-                type : 'table',
-                db_type : localStorage.getItem('dbms')
-            }).then(function(res){
-                if(res.status==200){
-                    console.log('生成sql成功');
-                    // 下载sql
-                    var re = res.body;
-                    //if(re){
-                        //this.errors = re;
-                    //}
-                }else{
-                    console.log('生成sql失败');
-                    this.$message.error('生成sql失败!');
-                }
-            },function(res){
-                console.log('生成sql失败'+ res.status + '  '+res.body);
-                this.$message.error('生成sql失败'+ res.status + '  '+res.body);
-                //this.errors = res.body;
-            });
-        },
-        getSql(code){
-            this.$http.post('/showSQL',{
-                type : 'table',
-                db_type : localStorage.getItem('dbms'),
-                code : code
-            }).then(function(res){
-                if(res.status==200){
-                    console.log('生成sql成功');
-                    // 弹出框，展示sql
-                    var re = res.body;
-                    if(re){
-                        this.sql_dialog_show = true;
-                        this.content = re;
-                        // 先清除错误信息
-                        //this.errors = [];
+            },
+            getAllTables(){
+                let API = '/getAll/tables?module=' + this.module + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
+                this.$http.get(API).then(function (res) {
+                    if (res.status == 200) {
+                        var re = res.body;
+                        this.tables = re;
                     }
-                }else{
-                    console.log('生成sql失败');
-                    this.$message.error( '生成sql失败!');
+                }, function (res) {
+                    this.$message.error('TableList 页面 请求 table 失败： ' + res.status);
+                });
+            },
+            deleteTable(code){
+                this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$http.post('/deleteFile', {
+                        type: 'tables',
+                        code: code
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            console.log('删除表成功');
+                            this.$message.success('删除成功!');
+                            // 提示信息并新获取table
+                            var re = res.body;
+                            if (re) {
+                                // this.errors = re;
+                                this.getAllTables();
+                            }
+                        } else {
+                            console.log('删除表失败');
+                            this.$message.error('删除失败!');
+                        }
+                    }, function (res) {
+                        console.log('删除表失败' + res.status + '  ' + res.body);
+                        this.$message.error('删除表失败' + res.status + '  ' + res.body);
+                        // this.errors = res.body;
+                    });
+                }).catch(() => {
+                    this.$message.info('已取消删除');
+                });
+            },
+            generatorSql(){
+                this.$http.post('/generatorSql', {
+                    type: 'table',
+                    db_type: localStorage.getItem('dbms')
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('生成sql成功');
+                        // 下载sql
+                        var re = res.body;
+                        //if(re){
+                        //this.errors = re;
+                        //}
+                    } else {
+                        console.log('生成sql失败');
+                        this.$message.error('生成sql失败!');
+                    }
+                }, function (res) {
+                    console.log('生成sql失败' + res.status + '  ' + res.body);
+                    this.$message.error('生成sql失败' + res.status + '  ' + res.body);
+                    //this.errors = res.body;
+                });
+            },
+            getSql(code){
+                this.$http.post('/showSQL', {
+                    type: 'table',
+                    db_type: localStorage.getItem('dbms'),
+                    code: code
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('生成sql成功');
+                        // 弹出框，展示sql
+                        var re = res.body;
+                        if (re) {
+                            this.sql_dialog_show = true;
+                            this.content = re;
+                            // 先清除错误信息
+                            //this.errors = [];
+                        }
+                    } else {
+                        console.log('生成sql失败');
+                        this.$message.error('生成sql失败!');
 
-                }
-            },function(res){
-                console.log('生成sql失败'+ res.status + '  '+res.body);
-                this.$message.error('生成sql失败'+ res.status + '  '+res.body);
-                //this.errors = res.body;
-            });
+                    }
+                }, function (res) {
+                    console.log('生成sql失败' + res.status + '  ' + res.body);
+                    this.$message.error('生成sql失败' + res.status + '  ' + res.body);
+                    //this.errors = res.body;
+                });
+            }
+        },
+        components: {},
+        created(){
+            var mo = this.$route.query.module;
+            console.log('mo: ' + mo);
+
+            if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
+                this.module = mo;
+            } else {
+                this.module = '';
+            }
+            console.log('module: ' + this.module);
+
+            this.getTableSpaces();
+            this.getAllTables();
         }
-    },
-    components:{
-
-    },
-    created(){
-        var mo = this.$route.query.module;
-        console.log('mo: ' + mo);
-
-        if(null != mo && undefined != mo && '' != mo && mo.length > 0){
-            this.module = mo;
-        }else{
-            this.module = '';
-        }
-        console.log('module: ' + this.module);
-
-        this.getTableSpaces();
-        this.getAllTables();
     }
-}
-
-
-
 
 
 </script>

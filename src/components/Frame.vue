@@ -3,7 +3,8 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -37,35 +38,35 @@
     </div>
 </template>
 <script>
-import leftNav from './LeftNav.vue'
+    import leftNav from './LeftNav.vue'
 
-export default{
-    data(){
-        return{
-            db_type:'oracle',
-            options: [
-              { text: 'ORACLE', value: 'oracle' },
-              { text: 'MYSQL', value: 'mysql' }
-            ]
-        }
-    },
-    methods:{
-        dbmsChange(){
-            localStorage.setItem('dbms',this.db_type);
-        }
-    },
-    components:{
-        leftNav,
-    },
-    created(){
-        var db = localStorage.getItem('dbms');
-        if(null != db && undefined != db && '' != db && db.length > 0){
-            this.db_type = db;
-        }else{
-            localStorage.setItem('dbms',this.db_type);
+    export default{
+        data(){
+            return {
+                db_type: 'oracle',
+                options: [
+                    {text: 'ORACLE', value: 'oracle'},
+                    {text: 'MYSQL', value: 'mysql'}
+                ]
+            }
+        },
+        methods: {
+            dbmsChange(){
+                localStorage.setItem('dbms', this.db_type);
+            }
+        },
+        components: {
+            leftNav,
+        },
+        created(){
+            var db = localStorage.getItem('dbms');
+            if (null != db && undefined != db && '' != db && db.length > 0) {
+                this.db_type = db;
+            } else {
+                localStorage.setItem('dbms', this.db_type);
+            }
         }
     }
-}
 </script>
 <style scoped src="../css/dashboard.css"></style>
 

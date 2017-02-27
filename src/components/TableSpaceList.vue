@@ -41,58 +41,56 @@
 </template>
 <script>
 
-export default{
-    data(){
-        return{
-            code:'',
-            comment:'',
-            tableSpaces:[],
-            errors:[],    //服务端验证失败的返回
-            // 选中行的索引
-            content:'',
-            textshow:false
-        }
-    },
-    methods:{
-        getAllDomains(){
-            let API = '/getAll/table_spaces?page='+'&code='+this.code+'&comment='+this.comment;
-            this.$http.get(API).then(function(res){
-                if(res.status == 200){
-                   var re = res.body;
-                   this.tableSpaces = re;
-                }
-            },function(res){
-                alert('TableSpace 页面 请求 table 失败： '+ res.status);
-            });
+    export default{
+        data(){
+            return {
+                code: '',
+                comment: '',
+                tableSpaces: [],
+                errors: [],    //服务端验证失败的返回
+                // 选中行的索引
+                content: '',
+                textshow: false
+            }
         },
-        deleteTable(code){
-            this.$http.post('/deleteFile',{
-                type : 'table_spaces',
-                code : code
-            }).then(function(res){
-                if(res.status==200){
-                    console.log('删除表空间成功');
-                    // 提示信息并新获取table
-                    var re = res.body;
-                    if(re){
-                        this.errors = re;
-                        this.getAllDomains();
+        methods: {
+            getAllDomains(){
+                let API = '/getAll/table_spaces?page=' + '&code=' + this.code + '&comment=' + this.comment;
+                this.$http.get(API).then(function (res) {
+                    if (res.status == 200) {
+                        var re = res.body;
+                        this.tableSpaces = re;
                     }
-                }else{
-                    console.log('删除表空间失败')
-                }
-            },function(res){
-                console.log('删除表空间失败'+ res.status + '  '+res.body);
-                this.errors = res.body;
-            });
+                }, function (res) {
+                    alert('TableSpace 页面 请求 table 失败： ' + res.status);
+                });
+            },
+            deleteTable(code){
+                this.$http.post('/deleteFile', {
+                    type: 'table_spaces',
+                    code: code
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('删除表空间成功');
+                        // 提示信息并新获取table
+                        var re = res.body;
+                        if (re) {
+                            this.errors = re;
+                            this.getAllDomains();
+                        }
+                    } else {
+                        console.log('删除表空间失败')
+                    }
+                }, function (res) {
+                    console.log('删除表空间失败' + res.status + '  ' + res.body);
+                    this.errors = res.body;
+                });
+            }
+        },
+        components: {},
+        created(){
+            this.getAllDomains();
         }
-    },
-    components:{
-
-    },
-    created(){
-        this.getAllDomains();
     }
-}
 
 </script>

@@ -7,7 +7,8 @@
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-4">
                     <input class="form-control" v-model="domainCode" type="hidden"/>
-                    <input class="form-control" v-model="domain.code" @blur="checkDomainCode(domain.code);" type="text"/>
+                    <input class="form-control" v-model="domain.code" @blur="checkDomainCode(domain.code);"
+                           type="text"/>
                 </div>
                 <label class="col-sm-2 control-label">中文描述</label>
                 <div class="col-sm-4">
@@ -51,85 +52,83 @@
 </template>
 <script>
 
-export default{
-    data(){
-        return{
-            data_types : ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'],
-            // 传递进来的 code 参数
-            domainCode:'',
-            // domain域
-            domain:{}
-        }
-    },
-    methods:{
-        getDomain(code){
-            if(null != code && '' != code && undefined != code){
-                this.$http.get('/getDomain/'+code).then(function(res){
-                    if(res.status == 200){
-                        var re = res.body;
-                        this.domain = re;
+    export default{
+        data(){
+            return {
+                data_types: ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'],
+                // 传递进来的 code 参数
+                domainCode: '',
+                // domain域
+                domain: {}
+            }
+        },
+        methods: {
+            getDomain(code){
+                if (null != code && '' != code && undefined != code) {
+                    this.$http.get('/getDomain/' + code).then(function (res) {
+                        if (res.status == 200) {
+                            var re = res.body;
+                            this.domain = re;
+                        }
+                    }, function (res) {
+                        this.$message.error('DomainInfo 页面 请求 domain ' + code + ' 失败： ' + res.status);
+                    });
+                }
+            },
+
+            checkDomainCode(code){
+                this.$http.get('/checkDomainCode/' + code + '?oldCode=' + this.domainCode).then(function (res) {
+                    if (res.status == 200) {
                     }
-                },function(res){
-                    this.$message.error('DomainInfo 页面 请求 domain '+code+' 失败： '+ res.status);
+                }, function (res) {
+                    this.$message.error('未通过服务端校验' + res.status + '  ' + res.body);
+                    //this.errors = res.body;
                 });
+            },
+
+            save(){
+                // 处理数据
+                var msg;
+                if (null != this.domainCode && undefined != this.domainCode && '' != this.domainCode) {
+                    msg = '保存';
+                } else {
+                    msg = '新增';
+                }
+
+                const newCode = this.domain.code;
+                if (null == newCode || undefined == newCode || '' == newCode) {
+                    this.$message.warning('请填写数据域名称');
+                    return;
+                }
+
+                this.$http.post('/saveDomain', {
+                    data: this.domain,
+                    oldCode: this.domainCode
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        this.$message.success(msg + 'domain成功');
+                        this.$router.push('/domainList');
+                    } else {
+                        this.$message.error(msg + 'diomain失败')
+                    }
+                }, function (res) {
+                    this.$message.error(msg + 'domain失败，未通过服务端校验' + res.status + '  ' + res.body);
+                });
+
             }
         },
+        components: {},
+        created(){
+            var params = window.location.search.split('=');
+            console.log('params: ' + params);
 
-        checkDomainCode(code){
-            this.$http.get('/checkDomainCode/'+code+'?oldCode='+this.domainCode).then(function(res){
-                if(res.status == 200){
-                }
-            },function(res){
-                this.$message.error('未通过服务端校验'+ res.status + '  '+res.body);
-                //this.errors = res.body;
-            });
-        },
-
-        save(){
-            // 处理数据
-            var msg;
-            if(null != this.domainCode && undefined != this.domainCode && '' != this.domainCode){
-                msg = '保存';
-            }else{
-                msg = '新增';
+            if (null != params && undefined != params && '' != params && params.length > 0) {
+                this.domainCode = params[1];
             }
+            console.log('code: ' + this.domainCode);
 
-            const newCode = this.domain.code;
-            if(null == newCode || undefined == newCode || '' == newCode){
-                this.$message.warning('请填写数据域名称');
-                return;
-            }
-
-            this.$http.post('/saveDomain',{
-                data : this.domain,
-                oldCode : this.domainCode
-            }).then(function(res){
-                if(res.status==200){
-                    this.$message.success(msg+'domain成功');
-                    this.$router.push('/domainList');
-                }else{
-                    this.$message.error(msg+'diomain失败')
-                }
-            },function(res){
-                this.$message.error(msg+'domain失败，未通过服务端校验'+ res.status + '  '+res.body);
-            });
-
+            this.getDomain(this.domainCode);
         }
-    },
-    components:{
-
-    },
-    created(){
-        var params = window.location.search.split('=');
-        console.log('params: ' + params);
-
-        if(null != params && undefined != params && '' != params && params.length > 0){
-            this.domainCode = params[1];
-        }
-        console.log('code: ' + this.domainCode);
-
-        this.getDomain(this.domainCode);
     }
-}
 
 </script>
