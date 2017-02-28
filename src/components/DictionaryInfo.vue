@@ -36,16 +36,6 @@
                 <label class="col-sm-2 control-label">数据类型</label>
                 <div class="col-sm-4">
                     <input class="form-control" readonly="isReadOnly" v-model="dictionary.dataType" type="text"/>
-                    <!--<select class="form-control" readonly="isReadOnly" v-model="dictionary.dataType">-->
-                    <!--<template v-for="data_type in data_types">-->
-                    <!--<option :value="data_type" v-if="data_type == dictionary.dataType" selected>-->
-                    <!--{{data_type}}-->
-                    <!--</option>-->
-                    <!--<option :value="data_type" v-else>-->
-                    <!--{{data_type}}-->
-                    <!--</option>-->
-                    <!--</template>-->
-                    <!--</select>-->
                 </div>
                 <label class="col-sm-2 control-label">长度</label>
                 <div class="col-sm-4">
@@ -93,6 +83,7 @@
                     this.$http.get('/getDictionary/' + code).then(function (res) {
                         if (res.status == 200) {
                             var re = res.body;
+                            console.log('查询 getDictionary 完成！');
                             this.dictionary = re;
                         }
                     }, function (res) {
@@ -104,6 +95,7 @@
                 this.$http.get('/getAll/domains').then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
+                        console.log('查询 getAllDomains 完成！');
                         this.domains = re;
                     }
                 }, function (res) {
@@ -177,12 +169,17 @@
                 this.dictionaryCode = params[1];
             }
             console.log('code: ' + this.dictionaryCode);
+
             if ('' != this.dictionaryCode) {
                 this.getDictionary(this.dictionaryCode);
+            }else{
+                // 有疑问？？？
+                this.dictionary={'domain':''};
             }
 
             // 获取domains
             this.getAllDomains();
+
         }
     }
 

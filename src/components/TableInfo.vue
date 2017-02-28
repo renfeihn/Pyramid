@@ -168,7 +168,7 @@
                             <th width="20%">表空间</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody ref="tbodyId">
                         <tr v-for="(ind,index) in tableIndexs" @click="selectIndexEvent($event,index);">
                             <td>
                                 {{index+1}}
@@ -209,6 +209,13 @@
 
 <script>
     var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
+
+    function isEmptyObject(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
 
     export default{
         data(){
@@ -371,6 +378,20 @@
                 this.tableAttr.splice(this.selectRowNum + i, 0, tr);
                 // 移动完成，修改原选中的行号
                 this.selectRowNum = this.selectRowNum + i;
+                console.log('当前行号：' + this.selectRowNum);
+                // 修改高亮显示
+                const tbd = this.$refs.tbodyId;
+                if (null != tbd.childNodes) {
+                    for (var i in tbd.childNodes) {
+                        if (!isNaN(i)) {
+                            if (this.selectRowNum == i) {
+                                (tbd.childNodes[i]).style = "background-color: #DEDEDE";
+                            } else {
+                                (tbd.childNodes[i]).style = '';
+                            }
+                        }
+                    }
+                }
             },
             // 新增列，弹出页面
             addRow(i){
@@ -380,10 +401,21 @@
                 this.dictionary = {};
 
                 if (this.option == '1') {     // 新增
-                    // 查询所有数据字典信息
-                    this.tableColumns.dictionary = '';
-                    this.tableColumns.M = false;
-                    this.tableColumns.P = false;
+                    // 查询所有数据字典信息 有疑问？？？
+                    this.tableColumns = {
+                        'code': '',
+                        'dataType': '',
+                        'lengths': '',
+                        'comment': '',
+                        'defaults': '',
+                        'scope': '',
+                        'dictionary': '',
+                        'M': false,
+                        'P': false
+                    };
+//                    this.tableColumns.dictionary = '';
+//                    this.tableColumns.M = false;
+//                    this.tableColumns.P = false;
 
                     this.getAllDictionarys();
                 } else if (this.option == '2') {    // 修改
@@ -394,7 +426,8 @@
                     }
                     this.getAllDictionarys();
                     // 将选中的数据赋值给弹出页面
-                    this.tableColumns = this.tableAttr[this.selectRowNum];
+                    const attr = this.tableAttr[this.selectRowNum];
+                    this.tableColumns = attr;
                 } else {
                     return;
                 }
@@ -413,15 +446,33 @@
             // 根据选中的code查询数据字典赋值给页面
             selectDictionary(code){
                 console.log('选择了---' + code);
-                //
-                this.getDictionary(code);
-                if (!this.dictionary) {
-                    this.dictionary.code = this.tableColumns.code;
-                    this.dictionary.dataType = this.tableColumns.dataType;
-                    this.dictionary.lengths = this.tableColumns.lengths;
-                    this.dictionary.precision = this.tableColumns.precision;
-                    this.dictionary.defaults = this.tableColumns.defaults;
+
+                if (null != code && '' != code && undefined != code) {
+                    this.$http.get('/getDictionary/' + code).then(function (res) {
+                        if (res.status == 200) {
+                            var re = res.body;
+                            console.log('请求的re: ' + re.code);
+
+                            this.tableColumns.code = re.code;
+                            this.tableColumns.dataType = re.dataType;
+                            this.tableColumns.lengths = re.lengths;
+                            this.tableColumns.precision = re.precision;
+                            this.tableColumns.comment = re.comment;
+                            this.tableColumns.scope = re.scope;
+                            this.tableColumns.defaults = re.defaults;
+                        }
+                    }, function (res) {
+                        this.$message.error('TableInfo 页面 请求 dictionary ' + code + ' 失败： ' + res.status);
+                    });
                 }
+
+//                if (!this.dictionary) {
+//                    this.dictionary.code = this.tableColumns.code;
+//                    this.dictionary.dataType = this.tableColumns.dataType;
+//                    this.dictionary.lengths = this.tableColumns.lengths;
+//                    this.dictionary.precision = this.tableColumns.precision;
+//                    this.dictionary.defaults = this.tableColumns.defaults;
+//                }
             },
             // 确定事件
             columnsButton(){
