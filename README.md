@@ -15,7 +15,7 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 4.运行：npm start  提示 ---- Server up: http://localhost:8080 ---- 即表示运行成功
 (如果启动过程中，缺少依赖，请自行安装)
 <br/>
-5.访问 http://localhost:8080
+5.访问 [http://localhost:8080](http://localhost:8080)
 
 ##注意：
 如果启动过程中 log4js 报错，请修改 log4js.json 配置文件中日志路径
