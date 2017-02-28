@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="354bee70-e518-401f-ba26-902a6eee364d" name="Default" comment="增加表详细页面">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+    <list default="true" id="354bee70-e518-401f-ba26-902a6eee364d" name="Default" comment="增加 REAME.md 注意事项">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/source/tables/user.json" afterPath="$PROJECT_DIR$/data/source/tables/user.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/build.js" afterPath="$PROJECT_DIR$/dist/build.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/api.js" afterPath="$PROJECT_DIR$/server/api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/db.js" afterPath="$PROJECT_DIR$/server/db.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/LeftNav.vue" afterPath="$PROJECT_DIR$/src/components/LeftNav.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main.js" afterPath="$PROJECT_DIR$/src/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/common.css" afterPath="$PROJECT_DIR$/dist/common.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/log/log4js.json" afterPath="$PROJECT_DIR$/server/log/log4js.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/log/logHelper.js" afterPath="$PROJECT_DIR$/server/log/logHelper.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,78 +31,51 @@
       <file leaf-file-name="TableInfo.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="319" column="12" lean-forward="true" selection-start-line="319" selection-start-column="12" selection-end-line="323" selection-end-column="13" />
+            <state relative-caret-position="261">
+              <caret line="319" column="13" lean-forward="false" selection-start-line="319" selection-start-column="13" selection-end-line="319" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/db.js">
+      <file leaf-file-name="log4js.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/log/log4js.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="6" selection-end-line="180" selection-end-column="19" />
+            <state relative-caret-position="21">
+              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="api.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/api.js">
+      <file leaf-file-name="logHelper.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="338" column="25" lean-forward="false" selection-start-line="338" selection-start-column="25" selection-end-line="338" selection-end-column="25" />
+            <state relative-caret-position="1029">
+              <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/source/tables/user.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
-              <folding />
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="FIRST">
+              <first_editor relative-caret-position="252">
+                <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DictionaryList.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/DictionaryList.vue">
+      <file leaf-file-name="DomainInfo.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/DomainInfo.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="58" column="14" lean-forward="false" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DictionaryInfo.vue" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/DictionaryInfo.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ACCT_NO.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/source/domains/ACCT_NO.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeftNav.vue" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/LeftNav.vue">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+            <state relative-caret-position="1029">
+              <caret line="49" column="15" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="49" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -113,9 +84,21 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-84">
-              <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
+            <state relative-caret-position="231">
+              <caret line="11" column="53" lean-forward="false" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/data/source/tables/user.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1008">
+              <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+              <folding>
+                <marker date="1488291315950" expanded="true" signature="1259:1617" ph="{&quot;code&quot;: &quot;index_1&quot;...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -124,11 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>vue-html</find>
-      <find>fs.readFileSync</find>
-      <find>de</find>
-      <find>del</find>
-      <find>fore</find>
       <find>page</find>
       <find>tableInfo</find>
       <find>getTable</find>
@@ -145,7 +123,6 @@
       <find>save</find>
       <find>module</find>
       <find>activeName</find>
-      <find>handleClick</find>
       <find>this.$message</find>
       <find>selectRow</find>
       <find>domain</find>
@@ -154,6 +131,12 @@
       <find>getDictionary</find>
       <find>textshow</find>
       <find>errors</find>
+      <find>moveIndexRow</find>
+      <find>handleClick</find>
+      <find>addRow</find>
+      <find>dialogFormVisible</find>
+      <find>selectRowIndex</find>
+      <find>customBaseDir</find>
     </findStrings>
     <replaceStrings>
       <replace>dictionary</replace>
@@ -168,9 +151,7 @@
         <option value="$PROJECT_DIR$/data/target/table/person.sql" />
         <option value="$PROJECT_DIR$/src/plugins/vue-editable.js" />
         <option value="$PROJECT_DIR$/data/source/tables/person.json" />
-        <option value="$PROJECT_DIR$/server/log/logHelper.js" />
         <option value="$PROJECT_DIR$/server/util/tableUtil.js" />
-        <option value="$PROJECT_DIR$/server/server.js" />
         <option value="$PROJECT_DIR$/server/util/util.js" />
         <option value="$PROJECT_DIR$/src/css/dashboard.css" />
         <option value="$PROJECT_DIR$/src/plugins/editable.js" />
@@ -179,18 +160,11 @@
         <option value="$PROJECT_DIR$/server/template/table_oracle.ejs" />
         <option value="$PROJECT_DIR$/data/source/domains/create_date.json" />
         <option value="$PROJECT_DIR$/.babelrc" />
-        <option value="$PROJECT_DIR$/src/components/DomainInfo.vue" />
-        <option value="$PROJECT_DIR$/src/components/DomainList.vue" />
-        <option value="$PROJECT_DIR$/src/components/TableSpaceList.vue" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/data/source/domains/test.json" />
         <option value="$PROJECT_DIR$/data/source/domains/id.json" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/components/Frame.vue" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/components/TableList.vue" />
-        <option value="$PROJECT_DIR$/src/components/TableInfo.vue" />
         <option value="$PROJECT_DIR$/data/source/dictionary/base_acct_no.json" />
         <option value="$PROJECT_DIR$/data/source/dictionary/other_acct_no.json" />
         <option value="$PROJECT_DIR$/data/source/domains/acct_no.json" />
@@ -201,9 +175,19 @@
         <option value="$PROJECT_DIR$/server/db.js" />
         <option value="$PROJECT_DIR$/server/api.js" />
         <option value="$PROJECT_DIR$/src/main.js" />
+        <option value="$PROJECT_DIR$/server/server.js" />
+        <option value="$PROJECT_DIR$/src/components/LeftNav.vue" />
         <option value="$PROJECT_DIR$/src/components/DictionaryList.vue" />
         <option value="$PROJECT_DIR$/src/components/DictionaryInfo.vue" />
-        <option value="$PROJECT_DIR$/src/components/LeftNav.vue" />
+        <option value="$PROJECT_DIR$/src/components/DomainInfo.vue" />
+        <option value="$PROJECT_DIR$/src/components/DomainList.vue" />
+        <option value="$PROJECT_DIR$/src/components/Frame.vue" />
+        <option value="$PROJECT_DIR$/src/components/TableList.vue" />
+        <option value="$PROJECT_DIR$/src/components/TableSpaceList.vue" />
+        <option value="$PROJECT_DIR$/src/components/TableInfo.vue" />
+        <option value="$PROJECT_DIR$/server/log/log4js.json" />
+        <option value="$PROJECT_DIR$/server/log/logHelper.js" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -327,57 +311,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="PowerDesigner" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="source" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -388,7 +322,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -397,7 +331,7 @@
     <property name="nodejs_interpreter_path" value="D:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="D:\Program Files\nodejs\node.exe" />
-    <property name="SearchEverywhereHistoryKey" value="main&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;left&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/LeftNav.vue&#10;tableli&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;web&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/webpack.config.js&#10;pa&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;user&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;we&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/webpack.config.js&#10;inde&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;.json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;readme&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/README.md&#10;.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/.babelrc&#10;index&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;main.js&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;ht&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;.b&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/.babelrc&#10;pack&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;create&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/create_date.json&#10;mysql&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_mysql.ejs&#10;oracle&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;api&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/api.js&#10;tablel&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;dashboard&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/css/dashboard.css&#10;tablelist&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;tablein&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;us&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;table&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;id&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;das&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/css/dashboard.css&#10;id.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;ser&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js&#10;table_or&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;table_o&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;p&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;ps&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/target/table/person.sql&#10;fr&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/Frame.vue&#10;ta&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;user.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;server&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js" />
+    <property name="SearchEverywhereHistoryKey" value="re&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/README.md&#10;log&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/log/logHelper.js&#10;user.json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;server.js&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js&#10;rea&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/README.md&#10;main&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;left&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/LeftNav.vue&#10;tableli&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;web&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/webpack.config.js&#10;pa&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;user&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;we&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/webpack.config.js&#10;inde&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;.json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;readme&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/README.md&#10;.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/.babelrc&#10;index&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;main.js&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/main.js&#10;ht&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/index.html&#10;.b&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/.babelrc&#10;pack&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;create&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/create_date.json&#10;mysql&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_mysql.ejs&#10;oracle&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;api&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/api.js&#10;tablel&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;dashboard&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/css/dashboard.css&#10;tablelist&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableList.vue&#10;json&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;tablein&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;us&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;table&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;id&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;das&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/css/dashboard.css&#10;id.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/domains/id.json&#10;ser&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js&#10;table_or&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;table_o&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/template/table_oracle.ejs&#10;p&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/package.json&#10;ps&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/target/table/person.sql&#10;fr&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/Frame.vue&#10;ta&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/src/components/TableInfo.vue&#10;user.&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/data/source/tables/user.json&#10;server&#9;FILE&#9;file://G:/myWork/XBZX/Nodejs/PowerDesigner/server/server.js" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="jsx.switch.disabled" value="true" />
   </component>
@@ -409,6 +343,133 @@
       <recent name="G:\myWork\XBZX\Nodejs\PowerDesigner\src\assets" />
       <recent name="G:\myWork\XBZX\Nodejs\PowerDesigner\src\css" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/table_spaces/test01.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/table_spaces/test02.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/table_spaces/test03.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/tables/person.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/tables/person1.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/source/tables/user.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/dist/build.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/dist/common.css</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/index.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/log/log4js.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/template/table_mysql.ejs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/server/template/table_oracle.ejs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/DictionaryInfo.vue</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/Frame.vue</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/TableInfo.vue</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/components/TableList.vue</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/css/dashboard.css</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -512,7 +573,11 @@
       <workItem from="1487938825920" duration="13519000" />
       <workItem from="1488025775617" duration="1531000" />
       <workItem from="1488029874915" duration="8127000" />
-      <workItem from="1488104347304" duration="4663000" />
+      <workItem from="1488104347304" duration="6209000" />
+      <workItem from="1488202837815" duration="1770000" />
+      <workItem from="1488207384299" duration="251000" />
+      <workItem from="1488207781516" duration="5610000" />
+      <workItem from="1488291130521" duration="2253000" />
     </task>
     <task id="LOCAL-00001" summary="修改项目启动说明">
       <created>1483979911191</created>
@@ -640,11 +705,39 @@
       <option name="project" value="LOCAL" />
       <updated>1488037837816</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="增加数据字典管理">
+      <created>1488109226167</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1488109226167</updated>
+    </task>
+    <task id="LOCAL-00020" summary="增加 REAME.md 注意事项">
+      <created>1488109388127</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1488109388127</updated>
+    </task>
+    <task id="LOCAL-00021" summary="增加数据字典管理">
+      <created>1488125667269</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1488125667269</updated>
+    </task>
+    <task id="LOCAL-00022" summary="重构代码">
+      <created>1488213317007</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1488213317007</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192700000" />
+    <option name="totallyTimeSpent" value="204130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -657,15 +750,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22474378" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53311795" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41033927" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35218093" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42810985" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -675,6 +767,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53311795" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -686,9 +779,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41033927" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35218093" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35218093" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.53311795" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -741,20 +834,16 @@
     <MESSAGE value="增加ElementUI,完善索引管理" />
     <MESSAGE value="增加VUE资料链接" />
     <MESSAGE value="提示信息更改为Element UI提示框" />
-    <option name="LAST_COMMIT_MESSAGE" value="提示信息更改为Element UI提示框" />
+    <MESSAGE value="增加 REAME.md 注意事项" />
+    <MESSAGE value="增加数据字典管理" />
+    <MESSAGE value="重构代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/LICENSE">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="33" lean-forward="true" selection-start-line="0" selection-start-column="33" selection-end-line="0" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -804,13 +893,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dist/build.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="814" column="1546" lean-forward="false" selection-start-line="814" selection-start-column="1546" selection-end-line="814" selection-end-column="1546" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/source/tables/person.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -823,13 +905,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="3" column="28" lean-forward="false" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -898,40 +973,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DomainInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="52" column="11" lean-forward="false" selection-start-line="52" selection-start-column="11" selection-end-line="52" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DomainList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="47" column="11" lean-forward="false" selection-start-line="47" selection-start-column="11" selection-end-line="47" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TableSpaceList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="40" column="11" lean-forward="false" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/assets/js/npm.js" />
-    <entry file="file://$PROJECT_DIR$/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="49" lean-forward="false" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,21 +1002,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/source/domains/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/Frame.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
-          <caret line="39" column="14" lean-forward="false" selection-start-line="39" selection-start-column="7" selection-end-line="39" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/source/domains/test.json" />
     <entry file="file://$PROJECT_DIR$/node_modules/webpack/lib/RuleSet.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
@@ -989,46 +1021,147 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="36" column="55" lean-forward="false" selection-start-line="36" selection-start-column="55" selection-end-line="36" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/source/dictionary/OTHER_ACCT_NO.json" />
+    <entry file="file://$PROJECT_DIR$/data/source/domains/ACCT_NO.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/source/dictionary/BASE_ACCT_NO.json" />
+    <entry file="file://$PROJECT_DIR$/server/db.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3780">
+          <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="6" selection-end-line="180" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7098">
+          <caret line="338" column="25" lean-forward="false" selection-start-line="338" selection-start-column="25" selection-end-line="338" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="45" column="83" lean-forward="false" selection-start-line="45" selection-start-column="83" selection-end-line="45" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/LeftNav.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="819">
+          <caret line="39" column="21" lean-forward="false" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DictionaryList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="56" column="13" lean-forward="false" selection-start-line="56" selection-start-column="13" selection-end-line="56" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DictionaryInfo.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="56" column="31" lean-forward="false" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TableSpaceList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="861">
+          <caret line="41" column="8" lean-forward="false" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2121">
-          <caret line="101" column="35" lean-forward="false" selection-start-line="101" selection-start-column="35" selection-end-line="101" selection-end-column="35" />
+        <state relative-caret-position="270">
+          <caret line="88" column="21" lean-forward="false" selection-start-line="88" selection-start-column="21" selection-end-line="88" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/source/dictionary/OTHER_ACCT_NO.json">
+    <entry file="file://$PROJECT_DIR$/src/components/Frame.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="24" lean-forward="false" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        <state relative-caret-position="228">
+          <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DomainList.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="51" column="20" lean-forward="false" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/source/domains/ACCT_NO.json">
+    <entry file="file://$PROJECT_DIR$/src/components/DomainInfo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        <state relative-caret-position="1029">
+          <caret line="49" column="15" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="49" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/source/dictionary/BASE_ACCT_NO.json">
+    <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        <state relative-caret-position="261">
+          <caret line="319" column="13" lean-forward="false" selection-start-line="319" selection-start-column="13" selection-end-line="319" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="53" lean-forward="false" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/data/source/tables/user.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="9" selection-end-line="48" selection-end-column="9" />
+        <state relative-caret-position="1008">
+          <caret line="50" column="9" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="9" />
+          <folding>
+            <marker date="1488291315950" expanded="true" signature="1259:1617" ph="{&quot;code&quot;: &quot;index_1&quot;...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dist/build.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="46171" column="8" lean-forward="false" selection-start-line="46171" selection-start-column="8" selection-end-line="46171" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/log/log4js.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/log/logHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1029">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1036,67 +1169,11 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="105">
-            <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <first_editor relative-caret-position="252">
+            <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/db.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="180" column="19" lean-forward="false" selection-start-line="180" selection-start-column="6" selection-end-line="180" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="338" column="25" lean-forward="false" selection-start-line="338" selection-start-column="25" selection-end-line="338" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-84">
-          <caret line="11" column="53" lean-forward="true" selection-start-line="11" selection-start-column="53" selection-end-line="11" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DictionaryList.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="58" column="14" lean-forward="false" selection-start-line="58" selection-start-column="14" selection-end-line="58" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TableInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="319" column="12" lean-forward="true" selection-start-line="319" selection-start-column="12" selection-end-line="323" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/DictionaryInfo.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="101" column="0" lean-forward="true" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/LeftNav.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>

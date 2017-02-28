@@ -1,5 +1,5 @@
 {
-  "customBaseDir": "D:/Renfei/Nodejs/PowerDesigner/logs/",
+  "customBaseDir": "",
   "customDefaultAtt": {
     "type": "dateFile",
     "absolute": true,

@@ -18,8 +18,8 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 <br/>
 5.访问 [http://localhost:8080](http://localhost:8080)
 
-##注意：
-如果启动过程中 log4js 报错，请修改 log4js.json 配置文件中日志路径
+##FAQ：
+1.日志输出路径配置，文件log4js.json中customBaseDir，不配置默认为:项目根目录/logs/下
 <br/><br/>
 ##VUE 资料参考:
 ####ElementUI 饿了么PC端UI

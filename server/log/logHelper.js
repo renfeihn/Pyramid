@@ -11,6 +11,12 @@ var objConfig = JSON.parse(fs.readFileSync("server/log/log4js.json", "utf8"));
 // 检查配置文件所需的目录是否存在，不存在时创建
 if (objConfig.appenders) {
     var baseDir = objConfig["customBaseDir"];
+    // 判断如果没有配置baseDir ，取项目根路径
+    if (null == baseDir || '' == baseDir) {
+        baseDir = path.resolve(__dirname, '../../');
+        baseDir = baseDir + '/logs/';
+    }
+
     var defaultAtt = objConfig["customDefaultAtt"];
 
     for (var i = 0, j = objConfig.appenders.length; i < j; i++) {
@@ -41,6 +47,7 @@ if (objConfig.appenders) {
         if (!isAbsoluteDir(fileName))//path.isAbsolute(fileName))
             throw new Error("配置节" + category + "的路径不是绝对路径:" + fileName);
         var dir = path.dirname(fileName);
+
         checkAndCreateDir(dir);
     }
 }
@@ -83,14 +90,25 @@ helper.writeErr = function (msg, exp) {
 exports.use = function (app) {
     //页面请求日志, level用auto时,默认级别是WARN
     app.use(log4js.connectLogger(logInfo, {level: 'debug', format: ':method :url'}));
-}
+};
 
-// 判断日志目录是否存在，不存在时创建日志目录
-function checkAndCreateDir(dir) {
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
+/**
+ * 判断日志目录是否存在，不存在时创建日志目录
+ * fs.mkdirSync('creatdir2', 0777); 目录权限（读写权限），默认0777
+ * @param dirpath 将创建的目录路径
+ * @returns {boolean}
+ */
+function checkAndCreateDir(dirname) {
+    if (fs.existsSync(dirname)) {
+        return true;
+    } else {
+        if (checkAndCreateDir(path.dirname(dirname))) {
+            fs.mkdirSync(dirname);
+            return true;
+        }
     }
 }
+
 
 // 指定的字符串是否绝对路径
 function isAbsoluteDir(path) {
