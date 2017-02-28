@@ -13,6 +13,7 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 3.依赖安装完成之后运行（进行前端打包）：npm run build
 <br/>
 4.运行：npm start  提示 ---- Server up: http://localhost:8080 ---- 即表示运行成功
+<br/>
 (如果启动过程中，缺少依赖，请自行安装)
 <br/>
 5.访问 [http://localhost:8080](http://localhost:8080)
