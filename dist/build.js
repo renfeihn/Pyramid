@@ -43403,7 +43403,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -43429,20 +43428,20 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
             selectRowNum: -1,
             // 选中的索引行号
             selectIndexRowNum: -1,
+            // sql数据
             content: '',
+            // 控制sql弹出框
             textshow: false,
-            // 页面累计行数
-            maxRowSize: 0,
-            // 页面索引累计行数
-            maxIndexRowSize: 0,
             // 弹出框页面的列对象
-            columns: {},
-            // 列详情的显示属性
+            tableColumns: {},
+            // 控制列弹出框
             dialogFormVisible: false,
             // 数据字典信息
             dictionarys: [],
             // 查询的单个数据字典对象
-            dictionary: {}
+            dictionary: {},
+            // option 判断列是新增还是修改 默认0 新增1 修改2
+            option: '0'
         };
     },
 
@@ -43462,8 +43461,6 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
                             this.tableIndexs = null;
                         } else {
                             this.tableAttr = this.table.attr;
-                            this.maxRowSize = this.tableAttr.length;
-
                             this.tableIndexs = this.table.indexs;
                         }
                     }
@@ -43549,27 +43546,60 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
             }
         },
 
+        // 移动索引
+        moveRow: function moveRow(i) {
+            console.log('移动的行号：' + this.selectRowNum + '  操作i: ' + i);
+            if (this.selectRowNum < 0) {
+                this.$message.error('请先选择一行,再进行操作');
+                return;
+            }
+
+            // 如果是首行，不能上移
+            if (this.selectRowNum == 0 && i < 0) {
+                this.$message.warning('首行不能上移');
+                return;
+            }
+            // 如果是尾行，不能下移
+            if (this.selectRowNum == this.tableAttr.length - 1 && i > 0) {
+                this.$message.warning('尾行不能下移');
+                return;
+            }
+            var tr = this.tableAttr[this.selectRowNum];
+            this.tableAttr.splice(this.selectRowNum, 1);
+            this.tableAttr.splice(this.selectRowNum + i, 0, tr);
+            // 移动完成，修改原选中的行号
+            this.selectRowNum = this.selectRowNum + i;
+        },
+
         // 新增列，弹出页面
-        addRow: function addRow() {
-            //                this.maxRowSize++;
-            //                const tr = new Object();
-            //                tr.name = 'Column_' + (this.maxRowSize);
-            //                tr.code = 'Column_' + (this.maxRowSize);
-            //
-            //                // 如果没有选中行，第一次 add before 在首行添加，  第一次 add after 在数组尾行添加
-            //                if (this.selectRowNum == -1) {
-            //                    if (null != this.tableAttr && this.tableAttr instanceof Array) {
-            //                        if (i == 1) {
-            //                            this.selectRowNum = this.tableAttr.length;
-            //                        }
-            //                    }
-            //                    if (i == 0) {
-            //                        this.selectRowNum = 0;
-            //                    }
-            //                }
-            //                this.tableAttr.splice(this.selectRowNum + i, 0, tr);
-            // 查询所有数据字典信息
-            this.getAllDictionarys();
+        addRow: function addRow(i) {
+            this.option = i;
+            // 打开先清空页面数据
+            this.tableColumns = {};
+            this.dictionary = {};
+
+            if (this.option == '1') {
+                // 新增
+                // 查询所有数据字典信息
+                this.tableColumns.dictionary = '';
+                this.tableColumns.M = false;
+                this.tableColumns.P = false;
+
+                this.getAllDictionarys();
+            } else if (this.option == '2') {
+                // 修改
+                // 如果未选中不能进行修改
+                if (this.selectRowNum < 0) {
+                    this.$message.error('请先选择一行,再进行操作');
+                    return;
+                }
+                this.getAllDictionarys();
+                // 将选中的数据赋值给弹出页面
+                this.tableColumns = this.tableAttr[this.selectRowNum];
+            } else {
+                return;
+            }
+
             this.dialogFormVisible = true;
         },
 
@@ -43585,20 +43615,35 @@ var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', '
 
         // 根据选中的code查询数据字典赋值给页面
         selectDictionary: function selectDictionary(code) {
-            console.log('选择了');
+            console.log('选择了---' + code);
             //
             this.getDictionary(code);
             if (!this.dictionary) {
-                columns.code = this.dictionary.code;
-                columns.dataType = this.dictionary.dataType;
-                columns.lengths = this.dictionary.lengths;
-                columns.precision = this.dictionary.precision;
-                columns.defaults = this.dictionary.defaults;
+                this.dictionary.code = this.tableColumns.code;
+                this.dictionary.dataType = this.tableColumns.dataType;
+                this.dictionary.lengths = this.tableColumns.lengths;
+                this.dictionary.precision = this.tableColumns.precision;
+                this.dictionary.defaults = this.tableColumns.defaults;
             }
         },
+
+        // 确定事件
         columnsButton: function columnsButton() {
             console.log('-----------点击了确定-----------');
+            // 判断数据字典和code不能为空
+            if (!this.tableColumns.dictionary || !this.tableColumns.code) {
+                this.$message.error('请将信息填写完整');
+                return;
+            }
             this.dialogFormVisible = false;
+            if (this.option == '1') {
+                // 新增，将当前tableColumns 添加到table最后
+                this.tableAttr.push(this.tableColumns);
+            } else if (this.option == '2') {
+                // 修改，删除原数组中选中的行数据，将当前的tableColumns添加到原位置
+                this.tableAttr.splice(this.selectRowNum, 1);
+                this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns);
+            }
         },
 
 
@@ -50726,15 +50771,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.dialogFormVisible = $event
       }
     }
-  }, [_c('el-switch', {
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    }
-  }), _vm._v(" "), _c('form', {
+  }, [_c('form', {
     staticClass: "form-horizontal",
     attrs: {
-      "model": _vm.columns
+      "model": _vm.tableColumns
     }
   }, [_c('div', {
     staticClass: "form-group"
@@ -50746,20 +50786,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.dictionary),
-      expression: "columns.dictionary"
+      value: (_vm.tableColumns.dictionary),
+      expression: "tableColumns.dictionary"
     }],
     attrs: {
       "filterable": "",
       "placeholder": "请选择"
     },
     domProps: {
-      "value": (_vm.columns.dictionary)
+      "value": (_vm.tableColumns.dictionary)
     },
     on: {
       "change": _vm.selectDictionary,
       "input": function($event) {
-        _vm.columns.dictionary = $event
+        _vm.tableColumns.dictionary = $event
       }
     }
   }, _vm._l((_vm.dictionarys), function(item) {
@@ -50777,20 +50817,20 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.code),
-      expression: "columns.code"
+      value: (_vm.tableColumns.code),
+      expression: "tableColumns.code"
     }],
     staticClass: "form-control",
     attrs: {
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.code)
+      "value": _vm._s(_vm.tableColumns.code)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.code = $event.target.value
+        _vm.tableColumns.code = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -50803,8 +50843,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.dataType),
-      expression: "columns.dataType"
+      value: (_vm.tableColumns.dataType),
+      expression: "tableColumns.dataType"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50812,12 +50852,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.dataType)
+      "value": _vm._s(_vm.tableColumns.dataType)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.dataType = $event.target.value
+        _vm.tableColumns.dataType = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('label', {
@@ -50828,8 +50868,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.lengths),
-      expression: "columns.lengths"
+      value: (_vm.tableColumns.lengths),
+      expression: "tableColumns.lengths"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50837,12 +50877,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.lengths)
+      "value": _vm._s(_vm.tableColumns.lengths)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.lengths = $event.target.value
+        _vm.tableColumns.lengths = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -50855,8 +50895,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.precision),
-      expression: "columns.precision"
+      value: (_vm.tableColumns.precision),
+      expression: "tableColumns.precision"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50864,12 +50904,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.precision)
+      "value": _vm._s(_vm.tableColumns.precision)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.precision = $event.target.value
+        _vm.tableColumns.precision = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('label', {
@@ -50880,8 +50920,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.defaults),
-      expression: "columns.defaults"
+      value: (_vm.tableColumns.defaults),
+      expression: "tableColumns.defaults"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50889,12 +50929,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.defaults)
+      "value": _vm._s(_vm.tableColumns.defaults)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.defaults = $event.target.value
+        _vm.tableColumns.defaults = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -50907,19 +50947,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.M),
-      expression: "columns.M"
+      value: (_vm.tableColumns.M),
+      expression: "tableColumns.M"
     }],
     attrs: {
       "on-text": "",
       "off-text": ""
     },
     domProps: {
-      "value": (_vm.columns.M)
+      "value": (_vm.tableColumns.M)
     },
     on: {
       "input": function($event) {
-        _vm.columns.M = $event
+        _vm.tableColumns.M = $event
       }
     }
   })], 1), _vm._v(" "), _c('label', {
@@ -50930,19 +50970,19 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.p),
-      expression: "columns.p"
+      value: (_vm.tableColumns.P),
+      expression: "tableColumns.P"
     }],
     attrs: {
       "on-text": "",
       "off-text": ""
     },
     domProps: {
-      "value": (_vm.columns.p)
+      "value": (_vm.tableColumns.P)
     },
     on: {
       "input": function($event) {
-        _vm.columns.p = $event
+        _vm.tableColumns.P = $event
       }
     }
   })], 1)]), _vm._v(" "), _c('div', {
@@ -50955,8 +50995,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.comment),
-      expression: "columns.comment"
+      value: (_vm.tableColumns.comment),
+      expression: "tableColumns.comment"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50964,12 +51004,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.comment)
+      "value": _vm._s(_vm.tableColumns.comment)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.comment = $event.target.value
+        _vm.tableColumns.comment = $event.target.value
       }
     }
   })]), _vm._v(" "), _c('label', {
@@ -50980,8 +51020,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: (_vm.columns.scope),
-      expression: "columns.scope"
+      value: (_vm.tableColumns.scope),
+      expression: "tableColumns.scope"
     }],
     staticClass: "form-control",
     attrs: {
@@ -50989,12 +51029,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "type": "text"
     },
     domProps: {
-      "value": _vm._s(_vm.columns.scope)
+      "value": _vm._s(_vm.tableColumns.scope)
     },
     on: {
       "input": function($event) {
         if ($event.target.composing) { return; }
-        _vm.columns.scope = $event.target.value
+        _vm.tableColumns.scope = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -51013,7 +51053,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.columnsButton
     }
-  }, [_vm._v("确 定")])], 1)])], 1), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+  }, [_vm._v("确 定")])], 1)])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
@@ -51158,24 +51198,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('br'), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.moveRow(-1);
+      }
     }
   }, [_vm._v("上移")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.moveRow(1);
+      }
     }
   }, [_vm._v("下移")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {
-        _vm.addRow();
+        _vm.addRow(1);
       }
     }
   }, [_vm._v("新增")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     on: {
-      "click": function($event) {}
+      "click": function($event) {
+        _vm.addRow(2);
+      }
     }
   }, [_vm._v("修改")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",

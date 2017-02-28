@@ -9,7 +9,8 @@
         },
         {
             "name": "Column_4",
-            "code": "Column_4"
+            "code": "Column_4",
+            "dictionary": "OTHER_ACCT_NO"
         },
         {
             "name": "id",
@@ -21,7 +22,7 @@
             "P": true,
             "comment": "Ö÷¼üID",
             "defaults": "'1'",
-            "scope":"1,2,3",
+            "scope": "1,2,3",
             "dictionary": "BASE_ACCT_NO"
         },
         {

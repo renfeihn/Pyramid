@@ -7,11 +7,11 @@
         </el-dialog>
 
         <el-dialog title="列信息" v-model="dialogFormVisible">
-            <form class="form-horizontal" :model="columns">
+            <form class="form-horizontal" :model="tableColumns">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数据字典</label>
                     <div class="col-sm-4">
-                        <el-select v-model="columns.dictionary"
+                        <el-select v-model="tableColumns.dictionary"
                                    @change="selectDictionary"
                                    filterable placeholder="请选择">
                             <el-option
@@ -23,48 +23,48 @@
                     </div>
                     <label class="col-sm-2 control-label">列名称</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.code" type="text"/>
+                        <input class="form-control" v-model="tableColumns.code" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数据类型</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.dataType" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.dataType" type="text"/>
 
                     </div>
                     <label class="col-sm-2 control-label">长度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.lengths" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.lengths" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">精度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.precision" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.precision" type="text"/>
                     </div>
                     <label class="col-sm-2 control-label">默认值</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.defaults" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.defaults" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">是否必填</label>
                     <div class="col-sm-4">
-                        <el-switch on-text="" off-text="" v-model="columns.M"></el-switch>
+                        <el-switch on-text="" off-text="" v-model="tableColumns.M"></el-switch>
                     </div>
                     <label class="col-sm-2 control-label">是否主键</label>
                     <div class="col-sm-4">
-                        <el-switch on-text="" off-text="" v-model="columns.p"></el-switch>
+                        <el-switch on-text="" off-text="" v-model="tableColumns.P"></el-switch>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">描述</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.comment" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.comment" type="text"/>
                     </div>
                     <label class="col-sm-2 control-label">取值范围</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="columns.scope" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.scope" type="text"/>
                     </div>
                 </div>
 
@@ -109,10 +109,10 @@
             <el-tab-pane label="列管理" name="first">
                 <form class="form-inline form-filter">
                     <br>
-                    <a class="btn btn-info" @click="">上移</a>
-                    <a class="btn btn-info" @click="">下移</a>
-                    <a class="btn btn-info" @click="addRow();">新增</a>
-                    <a class="btn btn-info" @click="">修改</a>
+                    <a class="btn btn-info" @click="moveRow(-1);">上移</a>
+                    <a class="btn btn-info" @click="moveRow(1);">下移</a>
+                    <a class="btn btn-info" @click="addRow(1);">新增</a>
+                    <a class="btn btn-info" @click="addRow(2);">修改</a>
                     <a class="btn btn-info" @click="deleteRow();">删除</a>
                 </form>
                 <div class="table-responsive articleList">
@@ -232,20 +232,20 @@
                 selectRowNum: -1,
                 // 选中的索引行号
                 selectIndexRowNum: -1,
+                // sql数据
                 content: '',
+                // 控制sql弹出框
                 textshow: false,
-                // 页面累计行数
-                maxRowSize: 0,
-                // 页面索引累计行数
-                maxIndexRowSize: 0,
                 // 弹出框页面的列对象
-                columns:{},
-                // 列详情的显示属性
+                tableColumns:{},
+                // 控制列弹出框
                 dialogFormVisible : false,
                 // 数据字典信息
                 dictionarys:[],
                 // 查询的单个数据字典对象
-                dictionary:{}
+                dictionary:{},
+                // option 判断列是新增还是修改 默认0 新增1 修改2
+                option:'0'
             }
         },
         methods: {
@@ -264,8 +264,6 @@
                                 this.tableIndexs = null;
                             } else {
                                 this.tableAttr = (this.table).attr;
-                                this.maxRowSize = this.tableAttr.length;
-
                                 this.tableIndexs = (this.table).indexs;
 
                             }
@@ -354,30 +352,58 @@
                     });
                 }
             },
+            // 移动索引
+            moveRow(i){
+                console.log('移动的行号：' + this.selectRowNum  + '  操作i: ' + i);
+                if (this.selectRowNum < 0) {
+                    this.$message.error('请先选择一行,再进行操作');
+                    return;
+                }
+
+                // 如果是首行，不能上移
+                if (this.selectRowNum == 0 && i < 0) {
+                    this.$message.warning('首行不能上移');
+                    return;
+                }
+                // 如果是尾行，不能下移
+                if (this.selectRowNum == (this.tableAttr.length - 1) && i > 0) {
+                    this.$message.warning('尾行不能下移');
+                    return;
+                }
+                const tr = this.tableAttr[this.selectRowNum];
+                this.tableAttr.splice(this.selectRowNum, 1);
+                this.tableAttr.splice(this.selectRowNum + i, 0, tr);
+                // 移动完成，修改原选中的行号
+                this.selectRowNum = this.selectRowNum + i;
+            },
             // 新增列，弹出页面
-            addRow(){
-//                this.maxRowSize++;
-//                const tr = new Object();
-//                tr.name = 'Column_' + (this.maxRowSize);
-//                tr.code = 'Column_' + (this.maxRowSize);
-//
-//                // 如果没有选中行，第一次 add before 在首行添加，  第一次 add after 在数组尾行添加
-//                if (this.selectRowNum == -1) {
-//                    if (null != this.tableAttr && this.tableAttr instanceof Array) {
-//                        if (i == 1) {
-//                            this.selectRowNum = this.tableAttr.length;
-//                        }
-//                    }
-//                    if (i == 0) {
-//                        this.selectRowNum = 0;
-//                    }
-//                }
-//                this.tableAttr.splice(this.selectRowNum + i, 0, tr);
-                // 查询所有数据字典信息
-                this.getAllDictionarys();
+            addRow(i){
+                this.option = i;
+                // 打开先清空页面数据
+                this.tableColumns = {};
+                this.dictionary = {};
+
+                if(this.option == '1'){     // 新增
+                    // 查询所有数据字典信息
+                    this.tableColumns.dictionary = '';
+                    this.tableColumns.M = false;
+                    this.tableColumns.P = false;
+
+                    this.getAllDictionarys();
+                }else if(this.option == '2'){    // 修改
+                    // 如果未选中不能进行修改
+                    if (this.selectRowNum < 0){
+                        this.$message.error('请先选择一行,再进行操作');
+                        return;
+                    }
+                    this.getAllDictionarys();
+                    // 将选中的数据赋值给弹出页面
+                    this.tableColumns = this.tableAttr[this.selectRowNum];
+                }else{
+                    return;
+                }
+
                 this.dialogFormVisible = true;
-
-
             },
             // 删除一行
             deleteRow(){
@@ -390,23 +416,34 @@
             },
             // 根据选中的code查询数据字典赋值给页面
             selectDictionary(code){
-                console.log('选择了');
+                console.log('选择了---' + code);
                 //
                 this.getDictionary(code);
                 if(!this.dictionary){
-                    columns.code = this.dictionary.code;
-                    columns.dataType = this.dictionary.dataType;
-                    columns.lengths = this.dictionary.lengths;
-                    columns.precision = this.dictionary.precision;
-                    columns.defaults = this.dictionary.defaults;
-
+                    this.dictionary.code = this.tableColumns.code;
+                    this.dictionary.dataType = this.tableColumns.dataType;
+                    this.dictionary.lengths = this.tableColumns.lengths;
+                    this.dictionary.precision = this.tableColumns.precision;
+                    this.dictionary.defaults = this.tableColumns.defaults;
                 }
-
             },
+            // 确定事件
             columnsButton(){
                 console.log('-----------点击了确定-----------');
+                // 判断数据字典和code不能为空
+                if(!this.tableColumns.dictionary || !this.tableColumns.code){
+                    this.$message.error('请将信息填写完整');
+                    return;
+                }
                 this.dialogFormVisible = false;
-
+                if(this.option == '1'){
+                    // 新增，将当前tableColumns 添加到table最后
+                    this.tableAttr.push(this.tableColumns);
+                }else if(this.option == '2'){
+                    // 修改，删除原数组中选中的行数据，将当前的tableColumns添加到原位置
+                    this.tableAttr.splice(this.selectRowNum, 1);
+                    this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
+                }
             },
 
             // 选中的索引行号
