@@ -1,120 +1,44 @@
-/* Move down content because we have a fixed navbar that is 50px tall */
-body {
-  padding-top: 50px;
+#Container {
+    width: 100%;
+    margin: 0 auto;
 }
 
-
-/*
- * Global add-ons
- */
-
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  padding-left: 10px;
-  padding-top: 10px;
-  font-size: 16px;
-  background: #f1f1f1;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  border-radius:3px;
+#Header {
+    height: 60px;
+    background: #20a0ff;
 }
 
-/*
- * Top navigation
- * Hide default border to remove 1px line.
- */
-.navbar-fixed-top {
-  border: 0;
+#logo {
+    float: right;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 50px;
 }
 
-/*
- * Sidebar
- */
+#Content {
+    height: auto;
+    margin-top: 3px;
 
-/* Hide for mobile, show later */
-.sidebar {
-  display: none;
-}
-@media (min-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 51px;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    display: block;
-    padding: 20px;
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
-  }
 }
 
-/* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-.nav-sidebar > .router-link-active > a,
-.nav-sidebar > .router-link-active > a:hover,
-.nav-sidebar > .router-link-active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+#Content-Left {
+    min-height: 400px;
+    width: 13%;
+    float: left;
 }
 
-
-
-/*
- * Main content
- */
-
-.main {
-  padding: 20px;
-}
-@media (min-width: 768px) {
-  .main {
-    padding-right: 40px;
-    padding-left: 40px;
-  }
-}
-.main .page-header {
-  margin-top: 0;
+#Content-Main {
+    min-height: 400px;
+    width: 87%;
+    padding-left: 10px;
+    float: left;
 }
 
-.articleList{
-  border:1px solid #eee;
-  margin-top: 20px;
-  border-radius:2px;
-}
-.articleList table{
-  margin-bottom:0;
+#Footer {
+    height: 40px;
+    margin-top: 6px;
 }
 
-/*
- * Placeholder dashboard ideas
- */
-
-.placeholders {
-  margin-bottom: 30px;
-  text-align: center;
+.Clear {
+    clear: both;
 }
-.placeholders h4 {
-  margin-bottom: 0;
-}
-.placeholder {
-  margin-bottom: 20px;
-}
-.placeholder img {
-  display: inline-block;
-  border-radius: 50%;
-}
-
-
-

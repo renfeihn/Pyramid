@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h2 class="sub-header">表区域 </h2>
+        <h2>表区域 </h2>
 
-        <!--<p class="alert alert-danger" v-for="item in errors">{{item}}</p>-->
         <el-dialog title="SQL脚本" v-model="sql_dialog_show">
             <textarea v-model="content" rows="10" cols="100"></textarea>
         </el-dialog>
@@ -13,10 +12,7 @@
                 <label>表名称</label>
                 <input class="form-control" v-model="code" @change="getAllTables();" type="text"/>
             </div>
-            <!--<div class="form-group">-->
-            <!--<label>表中文描述</label>-->
-            <!--<input class="form-control" v-model="comment" type="text"/>-->
-            <!--</div>-->
+
             <div class="form-group">
                 <label>表空间</label>
                 <select class="form-control" v-model="tableSpace">
@@ -35,7 +31,6 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <!--<th>name</th>-->
                     <th>表名</th>
                     <th>描述</th>
                     <th>表空间</th>
@@ -44,7 +39,6 @@
                 </thead>
                 <tbody>
                 <tr v-for="(table,index) in tables">
-                    <!--<td>{{table.name}}</td>-->
                     <td>{{table.code}}</td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>

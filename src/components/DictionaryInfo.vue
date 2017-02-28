@@ -18,7 +18,6 @@
                                 :value="item.code">
                         </el-option>
                     </el-select>
-
                 </div>
             </div>
             <div class="form-group">

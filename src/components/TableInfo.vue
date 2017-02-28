@@ -1,42 +1,71 @@
 <template>
     <div>
-        <h2 class="sub-header">工作区域 </h2>
+        <h2 class="sub-header">表信息区域 </h2>
 
         <el-dialog title="SQL脚本" v-model="textshow">
             <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
         </el-dialog>
 
         <el-dialog title="列信息" v-model="dialogFormVisible">
+                <el-switch on-text="" off-text=""></el-switch>
             <form class="form-horizontal" :model="columns">
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">名称</label>
+                    <label class="col-sm-2 control-label">数据字典</label>
+                    <div class="col-sm-4">
+                        <el-select v-model="columns.dictionary"
+                                   @change="selectDictionary"
+                                   filterable placeholder="请选择">
+                            <el-option
+                                    v-for="item in dictionarys"
+                                    :label="item.code"
+                                    :value="item.code">
+                            </el-option>
+                        </el-select>
+                    </div>
+                    <label class="col-sm-2 control-label">列名称</label>
                     <div class="col-sm-4">
                         <input class="form-control" v-model="columns.code" type="text"/>
-                    </div>
-                    <label class="col-sm-2 control-label">中文描述</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.comment" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数据类型</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.comment" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.dataType" type="text"/>
 
                     </div>
                     <label class="col-sm-2 control-label">长度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.lengths" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.lengths" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">精度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.precision" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.precision" type="text"/>
                     </div>
                     <label class="col-sm-2 control-label">默认值</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="columns.defaults" type="text"/>
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.defaults" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">是否必填</label>
+                    <div class="col-sm-4">
+                        <el-switch on-text="" off-text="" v-model="columns.M"></el-switch>
+                    </div>
+                    <label class="col-sm-2 control-label">是否主键</label>
+                    <div class="col-sm-4">
+                        <el-switch on-text="" off-text="" v-model="columns.p"></el-switch>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">描述</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.comment" type="text"/>
+                    </div>
+                    <label class="col-sm-2 control-label">取值范围</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" readonly="isReadOnly" v-model="columns.scope" type="text"/>
                     </div>
                 </div>
 
@@ -213,7 +242,11 @@
                 // 弹出框页面的列对象
                 columns:{},
                 // 列详情的显示属性
-                dialogFormVisible : false
+                dialogFormVisible : false,
+                // 数据字典信息
+                dictionarys:[],
+                // 查询的单个数据字典对象
+                dictionary:{}
             }
         },
         methods: {
@@ -299,6 +332,29 @@
                  */
 
             },
+            getAllDictionarys(){
+                let API = '/getAll/dictionarys?page=' + '&code=' + this.code + '&comment=' + this.comment;
+                this.$http.get(API).then(function (res) {
+                    if (res.status == 200) {
+                        var re = res.body;
+                        this.dictionarys = re;
+                    }
+                }, function (res) {
+                    this.$message.error('TableList 页面 请求 dictionarys 失败： ' + res.status);
+                });
+            },
+            getDictionary(code){
+                if (null != code && '' != code && undefined != code) {
+                    this.$http.get('/getDictionary/' + code).then(function (res) {
+                        if (res.status == 200) {
+                            var re = res.body;
+                            this.dictionary = re;
+                        }
+                    }, function (res) {
+                        this.$message.error('DictionaryInfo 页面 请求 dictionary ' + code + ' 失败： ' + res.status);
+                    });
+                }
+            },
             // 新增列，弹出页面
             addRow(){
 //                this.maxRowSize++;
@@ -318,7 +374,8 @@
 //                    }
 //                }
 //                this.tableAttr.splice(this.selectRowNum + i, 0, tr);
-
+                // 查询所有数据字典信息
+                this.getAllDictionarys();
                 this.dialogFormVisible = true;
 
 
@@ -332,7 +389,21 @@
                     return;
                 }
             },
+            // 根据选中的code查询数据字典赋值给页面
+            selectDictionary(code){
+                console.log('选择了');
+                //
+                this.getDictionary(code);
+                if(!this.dictionary){
+                    columns.code = this.dictionary.code;
+                    columns.dataType = this.dictionary.dataType;
+                    columns.lengths = this.dictionary.lengths;
+                    columns.precision = this.dictionary.precision;
+                    columns.defaults = this.dictionary.defaults;
 
+                }
+
+            },
             columnsButton(){
                 console.log('-----------点击了确定-----------');
                 this.dialogFormVisible = false;

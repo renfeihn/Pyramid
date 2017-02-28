@@ -17,10 +17,11 @@
             "dataType": "Varchar",
             "lengths": 32,
             "precision": "",
-            "M": "Y",
-            "P": "Y",
+            "M": true,
+            "P": true,
             "comment": "Ö÷¼üID",
             "defaults": "'1'",
+            "scope":"1,2,3",
             "dictionary": "BASE_ACCT_NO"
         },
         {
@@ -29,8 +30,8 @@
             "dataType": "Varchar",
             "lengths": 40,
             "precision": "",
-            "M": "Y",
-            "P": "N",
+            "M": true,
+            "P": false,
             "comment": "ÐÕÃû",
             "defaults": "",
             "dictionary": ""
@@ -41,8 +42,8 @@
             "dataType": "Number",
             "lengths": 5,
             "precision": 2,
-            "M": "Y",
-            "P": "Y",
+            "M": true,
+            "P": false,
             "comment": "ÄêÁä",
             "defaults": "",
             "dictionary": ""
