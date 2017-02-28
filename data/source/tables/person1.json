@@ -8,8 +8,8 @@
             "dataType": "Varchar",
             "lengths": 20,
             "precision": 0,
-            "M": "Y",
-            "P": "Y",
+            "M": true,
+            "P": true,
             "comment": "人员ID",
             "defaults": "",
             "domain": "person_id"
@@ -20,8 +20,8 @@
             "dataType": "Varchar",
             "lengths": 40,
             "precision": 0,
-            "M": "Y",
-            "P": "N",
+            "M": true,
+            "P": false,
             "comment": "姓名",
             "defaults": "",
             "domain": ""
@@ -32,8 +32,8 @@
             "dataType": "Integer",
             "lengths": 5,
             "precision": 0,
-            "M": "Y",
-            "P": "N",
+            "M": true,
+            "P": false,
             "comment": "年龄",
             "defaults": "",
             "domain": ""

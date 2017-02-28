@@ -208,8 +208,6 @@
 </template>
 
 <script>
-    import editable from '../plugins/editable.js';
-
     var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
     export default{
@@ -237,15 +235,15 @@
                 // 控制sql弹出框
                 textshow: false,
                 // 弹出框页面的列对象
-                tableColumns:{},
+                tableColumns: {},
                 // 控制列弹出框
-                dialogFormVisible : false,
+                dialogFormVisible: false,
                 // 数据字典信息
-                dictionarys:[],
+                dictionarys: [],
                 // 查询的单个数据字典对象
-                dictionary:{},
+                dictionary: {},
                 // option 判断列是新增还是修改 默认0 新增1 修改2
-                option:'0'
+                option: '0'
             }
         },
         methods: {
@@ -311,23 +309,21 @@
             selectRow(e, index){
                 this.selectRowNum = index;
                 // 设置高亮
-                //var tr = e.currentTarget;
-
-                //console.log('tr:  '+tr.innerHTML);
-                /*
-                 var tbd = tr.parentNode;
-                 console.log(tdb);
-                 if(null != tbd && tbd instanceof Array){
-                 for(var i in tbd){
-                 if(tr == tbd[i]){
-                 tbd[i].setAttribute("style", "background-color: #DEDEDE");
-                 }else{
-                 tbd[i].removeAttribute("style");
-                 }
-                 }
-                 }
-                 */
-
+                var tr = e.currentTarget;
+//                console.log('tr:  '+tr.innerHTML);
+                var tbd = tr.parentNode;
+//                console.log(tbd);
+                if (null != tbd.childNodes) {
+                    for (var i in tbd.childNodes) {
+                        if (!isNaN(i)) {
+                            if (tr == tbd.childNodes[i]) {
+                                (tbd.childNodes[i]).style = "background-color: #DEDEDE";
+                            } else {
+                                (tbd.childNodes[i]).style = '';
+                            }
+                        }
+                    }
+                }
             },
             getAllDictionarys(){
                 let API = '/getAll/dictionarys?page=' + '&code=' + this.code + '&comment=' + this.comment;
@@ -354,7 +350,7 @@
             },
             // 移动索引
             moveRow(i){
-                console.log('移动的行号：' + this.selectRowNum  + '  操作i: ' + i);
+                console.log('移动的行号：' + this.selectRowNum + '  操作i: ' + i);
                 if (this.selectRowNum < 0) {
                     this.$message.error('请先选择一行,再进行操作');
                     return;
@@ -383,23 +379,23 @@
                 this.tableColumns = {};
                 this.dictionary = {};
 
-                if(this.option == '1'){     // 新增
+                if (this.option == '1') {     // 新增
                     // 查询所有数据字典信息
                     this.tableColumns.dictionary = '';
                     this.tableColumns.M = false;
                     this.tableColumns.P = false;
 
                     this.getAllDictionarys();
-                }else if(this.option == '2'){    // 修改
+                } else if (this.option == '2') {    // 修改
                     // 如果未选中不能进行修改
-                    if (this.selectRowNum < 0){
+                    if (this.selectRowNum < 0) {
                         this.$message.error('请先选择一行,再进行操作');
                         return;
                     }
                     this.getAllDictionarys();
                     // 将选中的数据赋值给弹出页面
                     this.tableColumns = this.tableAttr[this.selectRowNum];
-                }else{
+                } else {
                     return;
                 }
 
@@ -409,7 +405,7 @@
             deleteRow(){
                 if (this.selectRowNum >= 0) {
                     this.tableAttr.splice(this.selectRowNum, 1);
-                }else{
+                } else {
                     this.$message.error('请先选择一行,再进行操作');
                     return;
                 }
@@ -419,7 +415,7 @@
                 console.log('选择了---' + code);
                 //
                 this.getDictionary(code);
-                if(!this.dictionary){
+                if (!this.dictionary) {
                     this.dictionary.code = this.tableColumns.code;
                     this.dictionary.dataType = this.tableColumns.dataType;
                     this.dictionary.lengths = this.tableColumns.lengths;
@@ -431,15 +427,15 @@
             columnsButton(){
                 console.log('-----------点击了确定-----------');
                 // 判断数据字典和code不能为空
-                if(!this.tableColumns.dictionary || !this.tableColumns.code){
+                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
                     this.$message.error('请将信息填写完整');
                     return;
                 }
                 this.dialogFormVisible = false;
-                if(this.option == '1'){
+                if (this.option == '1') {
                     // 新增，将当前tableColumns 添加到table最后
                     this.tableAttr.push(this.tableColumns);
-                }else if(this.option == '2'){
+                } else if (this.option == '2') {
                     // 修改，删除原数组中选中的行数据，将当前的tableColumns添加到原位置
                     this.tableAttr.splice(this.selectRowNum, 1);
                     this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
@@ -450,6 +446,24 @@
             selectIndexEvent(e, index){
                 console.log('选中的索引行号：' + index);
                 this.selectIndexRowNum = index;
+
+                // 设置高亮
+                var tr = e.currentTarget;
+//                console.log('tr:  '+tr.innerHTML);
+                var tbd = tr.parentNode;
+//                console.log(tbd);
+                if (null != tbd.childNodes) {
+                    for (var i in tbd.childNodes) {
+                        if (!isNaN(i)) {
+                            if (tr == tbd.childNodes[i]) {
+                                tbd.childNodes[i].style = 'background-color: #DEDEDE';
+                            } else {
+                                tbd.childNodes[i].style = '';
+                            }
+
+                        }
+                    }
+                }
             },
             // 添加一行索引
             addIndexRow(){
@@ -495,63 +509,6 @@
                     return;
                 }
             },
-
-            // 普通的input
-            editInput(e, field, data, index){
-                var that = this;
-                editable.editInput(e, function (value) {
-                    // 如果数据修改 更新到 model 中
-                    (that.tableAttr[index])[field] = value;
-                });
-            },
-            // dataType
-            editDataType(e, field, data, index){
-                var that = this;
-                editable.editSelect(e, data_types, function (value) {
-                    //如果数据没有被修改这个回调方法不会执行
-                    (that.tableAttr[index])[field] = value;
-                });
-            },
-            // dataType
-            editYN(e, field, data, index){
-                var that = this;
-                var yn = ['Y', 'N'];
-                editable.editSelect(e, yn, function (value) {
-                    //如果数据没有被修改这个回调方法不会执行
-                    (that.tableAttr[index])[field] = value;
-                });
-            },
-            // domain
-            editDomain(e, field, data, index){
-                var that = this;
-                if (null != that.domains && that.domains instanceof Array) {
-                    var options = new Array();
-                    for (var i in that.domains) {
-                        options.push((that.domains[i]).code);
-                    }
-                    if (options.length > 0) {
-                        editable.editSelect(e, options, function (value) {
-                            // 如果数据没有被修改这个回调方法不会执行
-                            // 如果数据修改，则用domain的属性覆盖改行的数据
-                            for (var i in that.domains) {
-                                if (value == (that.domains[i]).code) {
-                                    (that.tableAttr[index]).name = (that.domains[i]).name;
-                                    (that.tableAttr[index]).code = (that.domains[i]).code;
-                                    (that.tableAttr[index]).dataType = (that.domains[i]).dataType;
-                                    (that.tableAttr[index]).lengths = (that.domains[i]).lengths;
-                                    (that.tableAttr[index]).precision = (that.domains[i]).precision;
-                                    (that.tableAttr[index]).comment = (that.domains[i]).comment;
-                                    (that.tableAttr[index]).defaults = (that.domains[i]).defaults;
-                                    // 移除事件不可修改
-                                } else {
-                                    // 添加事件
-                                }
-                            }
-                        });
-                    }
-                }
-            },// domain end
-
             save(){
                 const newCode = this.table.code;
                 if (null == newCode || undefined == newCode || '' == newCode) {

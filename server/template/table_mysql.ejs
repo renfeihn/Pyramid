@@ -93,7 +93,7 @@ if (isNotNull(table.code)) {
                 sql.append(')');
 
                 // 是否不为空
-                if (isNotNull(attr.M) && attr.M == 'Y') {
+                if (isNotNull(attr.M) && attr.M) {
                     sql.append(space + 'not null');
                 }
 
@@ -108,7 +108,7 @@ if (isNotNull(table.code)) {
                 }
 
                 // 标记主键
-                if (isNotNull(attr.P) && attr.P == 'Y') {
+                if (isNotNull(attr.P) && attr.P) {
                     primary_keys.push(attr.code);
                 }
 
@@ -146,11 +146,11 @@ if (isNotNull(table.code)) {
 
 
     // 索引 start
-    sql.append(nextLine)
-            .append(nextLine);
     if (isNotNull(table.indexs)) {
         var indexs = table.indexs;
         indexs.forEach(function (ind, index, array) {
+            sql.append(nextLine)
+                    .append(nextLine);
             // 列名，数据类型
             if (ind) {
                 sql.append('drop index ' + ind.code + ' on ' + table.code + ';')
@@ -163,7 +163,7 @@ if (isNotNull(table.code)) {
                         .append(nextLine);
 
                 sql.append('create ');
-                if (isNotNull(ind.U) && (ind.U) == 'Y') {
+                if (isNotNull(ind.U) && (ind.U)) {
                     sql.append('unique ');
                 }
                 sql.append('index ' + ind.code + ' on ' + table.code + ' (');

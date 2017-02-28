@@ -94,13 +94,13 @@ if (isNotNull(table.code)) {
                     sql.append(space + "default " + attr.defaults);
                 }
 
-                // 是否不为空
-                if (isNotNull(attr.M) && attr.M == 'Y') {
+                // 是否必填
+                if (isNotNull(attr.M) && attr.M) {
                     sql.append(space + 'not null');
                 }
 
                 // 标记主键
-                if (isNotNull(attr.P) && attr.P == 'Y') {
+                if (isNotNull(attr.P) && attr.P) {
                     primary_keys.push(attr.code);
                 }
 
@@ -171,7 +171,7 @@ if (isNotNull(table.code)) {
                         .append(nextLine);
 
                 sql.append('create ');
-                if (isNotNull(ind.U) && (ind.U) == 'Y') {
+                if (isNotNull(ind.U) && (ind.U)) {
                     sql.append('unique ');
                 }
                 sql.append('index ' + ind.code + ' on ' + table.code + ' (');
