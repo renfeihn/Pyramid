@@ -7,7 +7,6 @@
         </el-dialog>
 
         <el-dialog title="列信息" v-model="dialogFormVisible">
-                <el-switch on-text="" off-text=""></el-switch>
             <form class="form-horizontal" :model="columns">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数据字典</label>
