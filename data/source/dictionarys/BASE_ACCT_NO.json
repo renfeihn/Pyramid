@@ -3,7 +3,8 @@
     "dataType": "Varchar",
     "lengths": "64",
     "comment": "ук╨е",
-    "defaults": "",
     "scope": "A,C",
-    "domain": "ACCT_NO"
+    "domain": "ACCT_NO",
+    "precision": "",
+    "defaults": "1"
 }

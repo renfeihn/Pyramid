@@ -1,8 +1,8 @@
 {
-  "name": "id",
-  "code": "id",
-  "dataType": "Varchar",
-  "lengths": 32,
-  "comment": "Ö÷¼üID",
-  "defaults": ""
+    "code": "id",
+    "dataType": "Varchar",
+    "lengths": "60",
+    "precision": "",
+    "comment": "Ö÷¼üID",
+    "defaults": ""
 }

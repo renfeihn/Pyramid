@@ -217,6 +217,101 @@
         return true;
     }
 
+    /**
+     * 检查表对象属性
+     */
+    function checkTableVal(tmp, module) {
+        var newTmp;
+        if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
+
+            if (null == tmp.module || undefined == tmp.module) {
+                tmp.module = '';
+            }
+            if (null == tmp.table_space || undefined == tmp.table_space) {
+                tmp.table_space = '';
+            }
+            if (null == tmp.code || undefined == tmp.code) {
+                tmp.code = '';
+            }
+            if (null == tmp.comment || undefined == tmp.comment) {
+                tmp.precision = '';
+            }
+            if (null == tmp.attr || undefined == tmp.attr) {
+                tmp.attr = [];
+            }
+            if (null == tmp.indexs || undefined == tmp.indexs) {
+                tmp.indexs = [];
+            }
+            newTmp = tmp;
+        } else {
+            newTmp = {
+                "module": "",
+                "table_space": "",
+                "code": "",
+                "comment": "",
+                "attr": [],
+                "indexs": []
+            };
+        }
+        return newTmp;
+    }
+
+    /**
+     * 检查表中列对象属性
+     */
+    function checkColumnVal(tmp) {
+        var newTmp;
+        if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
+
+            if (null == tmp.dictionary || undefined == tmp.dictionary) {
+                tmp.dictionary = '';
+            }
+            if (null == tmp.code || undefined == tmp.code) {
+                tmp.code = '';
+            }
+            if (null == tmp.dataType || undefined == tmp.dataType) {
+                tmp.dataType = '';
+            }
+            if (null == tmp.lengths || undefined == tmp.lengths) {
+                tmp.lengths = '';
+            }
+            if (null == tmp.precision || undefined == tmp.precision) {
+                tmp.precision = '';
+            }
+            if (null == tmp.comment || undefined == tmp.comment) {
+                tmp.comment = '';
+            }
+            if (null == tmp.defaults || undefined == tmp.defaults) {
+                tmp.defaults = '';
+            }
+            if (null == tmp.scope || undefined == tmp.scope) {
+                tmp.scope = '';
+            }
+            if (null == tmp.M || undefined == tmp.M) {
+                tmp.M = false;
+            }
+            if (null == tmp.P || undefined == tmp.P) {
+                tmp.P = false;
+            }
+            newTmp = tmp;
+        } else {
+            newTmp = {
+                "code": "",
+                "dataType": "",
+                "lengths": "",
+                "precision": "",
+                "M": false,
+                "P": false,
+                "comment": "",
+                "defaults": "",
+                "scope": "",
+                "dictionary": ""
+            };
+        }
+        return newTmp;
+    }
+
+
     export default{
         data(){
             return {
@@ -270,7 +365,6 @@
                             } else {
                                 this.tableAttr = (this.table).attr;
                                 this.tableIndexs = (this.table).indexs;
-
                             }
                         }
                     }, function (res) {
@@ -402,21 +496,7 @@
 
                 if (this.option == '1') {     // 新增
                     // 查询所有数据字典信息 有疑问？？？
-                    this.tableColumns = {
-                        'code': '',
-                        'dataType': '',
-                        'lengths': '',
-                        'comment': '',
-                        'defaults': '',
-                        'scope': '',
-                        'dictionary': '',
-                        'M': false,
-                        'P': false
-                    };
-//                    this.tableColumns.dictionary = '';
-//                    this.tableColumns.M = false;
-//                    this.tableColumns.P = false;
-
+                    this.tableColumns = checkColumnVal();
                     this.getAllDictionarys();
                 } else if (this.option == '2') {    // 修改
                     // 如果未选中不能进行修改
@@ -426,7 +506,8 @@
                     }
                     this.getAllDictionarys();
                     // 将选中的数据赋值给弹出页面
-                    const attr = this.tableAttr[this.selectRowNum];
+                    var attr = this.tableAttr[this.selectRowNum];
+                    attr = checkColumnVal(attr);
                     this.tableColumns = attr;
                 } else {
                     return;
@@ -466,13 +547,6 @@
                     });
                 }
 
-//                if (!this.dictionary) {
-//                    this.dictionary.code = this.tableColumns.code;
-//                    this.dictionary.dataType = this.tableColumns.dataType;
-//                    this.dictionary.lengths = this.tableColumns.lengths;
-//                    this.dictionary.precision = this.tableColumns.precision;
-//                    this.dictionary.defaults = this.tableColumns.defaults;
-//                }
             },
             // 确定事件
             columnsButton(){
@@ -485,9 +559,11 @@
                 this.dialogFormVisible = false;
                 if (this.option == '1') {
                     // 新增，将当前tableColumns 添加到table最后
+                    this.tableColumns = checkColumnVal(this.tableColumns);
                     this.tableAttr.push(this.tableColumns);
                 } else if (this.option == '2') {
                     // 修改，删除原数组中选中的行数据，将当前的tableColumns添加到原位置
+                    this.tableColumns = checkColumnVal(this.tableColumns);
                     this.tableAttr.splice(this.selectRowNum, 1);
                     this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
                 }
@@ -500,9 +576,7 @@
 
                 // 设置高亮
                 var tr = e.currentTarget;
-//                console.log('tr:  '+tr.innerHTML);
                 var tbd = tr.parentNode;
-//                console.log(tbd);
                 if (null != tbd.childNodes) {
                     for (var i in tbd.childNodes) {
                         if (!isNaN(i)) {
@@ -568,7 +642,15 @@
                 }
 
                 // 处理数据
-                this.table.attr = this.tableAttr;
+                if(undefined != this.tableAttr && null != this.tableAttr && this.tableAttr.length > 0){
+                    var tattrs = new Array();
+                    (this.tableAttr).forEach(function (attr, index, attrs) {
+                        tattrs.push(checkColumnVal(attr));
+                    });
+                    this.table.attr = tattrs;
+                }else{
+                    this.table.attr = [];
+                }
                 // 添加模块ID
                 this.table.module = this.module;
                 this.$http.post('/saveTable', {
@@ -586,7 +668,6 @@
                 }, function (res) {
                     console.log('添加表失败，未通过服务端校验' + res.status + '  ' + res.body);
                     this.$message.error(res.body);
-                    //this.errors=res.body;
                 });
 
             },
@@ -630,19 +711,19 @@
                 this.module = '';
             }
             console.log('module: ' + this.module);
+            this.getAllDomains();
+            this.getTableSpaces();
 
             // 查看或者修改是的 表CODE
             var tcode = this.$route.query.tableCode;
             if (null != tcode && undefined != tcode && '' != tcode && tcode.length > 0) {
+                console.log('code: ' + this.tableCode);
                 this.tableCode = tcode;
+                this.getTable(this.tableCode);
             } else {
-                this.tableCode = '';
+                this.table = checkTableVal();
             }
-            console.log('code: ' + this.tableCode);
 
-            this.getAllDomains();
-            this.getTableSpaces();
-            this.getTable(this.tableCode);
         }
     }
 

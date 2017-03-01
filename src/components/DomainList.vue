@@ -6,12 +6,8 @@
         <form class="form-inline form-filter">
             <div class="form-group">
                 <label>domain名称</label>
-                <input class="form-control" v-model="code" type="text"/>
+                <input class="form-control" v-model="code" @change="getAllDomains();" type="text"/>
             </div>
-            <!--<div class="form-group">-->
-            <!--<label>domain中文描述</label>-->
-            <!--<input class="form-control" v-model="comment" type="text"/>-->
-            <!--</div>-->
             <a class="btn btn-info" @click="getAllDomains();">筛选</a>
 
             <a class="btn btn-info" href="/domainInfo">新增domain</a>

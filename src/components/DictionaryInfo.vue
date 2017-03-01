@@ -65,6 +65,61 @@
 </template>
 <script>
 
+    function isEmptyObject(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查数据字典属性 如果不存在的属性，赋空
+     */
+    function checkObjectVal(tmp) {
+        var newTmp;
+        if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
+
+            if (null == tmp.domain || undefined == tmp.domain) {
+                tmp.domain = '';
+            }
+            if (null == tmp.code || undefined == tmp.code) {
+                tmp.code = '';
+            }
+            if (null == tmp.dataType || undefined == tmp.dataType) {
+                tmp.dataType = '';
+            }
+            if (null == tmp.lengths || undefined == tmp.lengths) {
+                tmp.lengths = '';
+            }
+            if (null == tmp.precision || undefined == tmp.precision) {
+                tmp.precision = '';
+            }
+            if (null == tmp.comment || undefined == tmp.comment) {
+                tmp.comment = '';
+            }
+            if (null == tmp.defaults || undefined == tmp.defaults) {
+                tmp.defaults = '';
+            }
+            if (null == tmp.scope || undefined == tmp.scope) {
+                tmp.scope = '';
+            }
+            newTmp = tmp;
+        } else {
+            newTmp = {
+                "domain":"",
+                "code": "",
+                "dataType": "",
+                "lengths": "",
+                "precision":"",
+                "comment": "",
+                "defaults": "",
+                "scope":""
+            };
+        }
+        return newTmp;
+    }
+
+
     export default{
         data(){
             return {
@@ -105,11 +160,6 @@
             selectDomain(code){
                 console.log('选中的值：' + code);
                 // 获取domain，赋值给当前页面
-
-                // 如果当前数据字典对象为空，表示新增
-                if (null == (this.dictionary).code || undefined == (this.dictionary).code || '' == (this.dictionary).code) {
-                    return;
-                }
                 if (null != code && '' != code && undefined != code) {
                     this.$http.get('/getDomain/' + code).then(function (res) {
                         if (res.status == 200) {
@@ -140,6 +190,8 @@
                     this.$message.warning('请填写数据字典名称');
                     return;
                 }
+
+                this.dictionary = checkObjectVal(this.dictionary);
 
                 // 处理数据
                 this.$http.post('/saveDictionary', {
@@ -172,9 +224,9 @@
 
             if ('' != this.dictionaryCode) {
                 this.getDictionary(this.dictionaryCode);
-            }else{
+            } else {
                 // 有疑问？？？
-                this.dictionary={'domain':''};
+                this.dictionary = checkObjectVal();
             }
 
             // 获取domains

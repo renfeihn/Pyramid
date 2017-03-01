@@ -52,6 +52,53 @@
 </template>
 <script>
 
+    function isEmptyObject(obj) {
+        for (var key in obj) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 检查domain属性
+     */
+    function checkObjectVal(tmp) {
+        var newTmp;
+        if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
+
+            if (null == tmp.code || undefined == tmp.code) {
+                tmp.code = '';
+            }
+            if (null == tmp.dataType || undefined == tmp.dataType) {
+                tmp.dataType = '';
+            }
+            if (null == tmp.lengths || undefined == tmp.lengths) {
+                tmp.lengths = '';
+            }
+            if (null == tmp.precision || undefined == tmp.precision) {
+                tmp.precision = '';
+            }
+            if (null == tmp.comment || undefined == tmp.comment) {
+                tmp.comment = '';
+            }
+            if (null == tmp.defaults || undefined == tmp.defaults) {
+                tmp.defaults = '';
+            }
+            newTmp = tmp;
+        } else {
+            newTmp = {
+                "code": "",
+                "dataType": "",
+                "lengths": "",
+                "precision": "",
+                "comment": "",
+                "defaults": ""
+            };
+        }
+        return newTmp;
+    }
+
+
     export default{
         data(){
             return {
@@ -101,6 +148,8 @@
                     return;
                 }
 
+                // 检查属性，如果没有的赋值为空
+                this.domain = checkObjectVal(this.domain);
                 this.$http.post('/saveDomain', {
                     data: this.domain,
                     oldCode: this.domainCode
@@ -123,11 +172,14 @@
             console.log('params: ' + params);
 
             if (null != params && undefined != params && '' != params && params.length > 0) {
+                console.log('code: ' + this.domainCode);
                 this.domainCode = params[1];
+                this.getDomain(this.domainCode);
+            } else {
+                this.domain = checkObjectVal();
             }
-            console.log('code: ' + this.domainCode);
 
-            this.getDomain(this.domainCode);
+
         }
     }
 

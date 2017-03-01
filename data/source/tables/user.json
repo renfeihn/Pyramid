@@ -1,19 +1,34 @@
 {
-    "name": "user",
     "code": "user",
     "comment": "用户表",
     "attr": [
         {
             "name": "Column_5",
-            "code": "Column_5"
+            "code": "Column_5",
+            "dictionary": "",
+            "dataType": "",
+            "lengths": "",
+            "precision": "",
+            "comment": "",
+            "defaults": "",
+            "scope": "",
+            "M": false,
+            "P": false
         },
         {
             "name": "Column_4",
             "code": "Column_4",
-            "dictionary": "OTHER_ACCT_NO"
+            "dictionary": "OTHER_ACCT_NO",
+            "dataType": "",
+            "lengths": "",
+            "precision": "",
+            "comment": "",
+            "defaults": "",
+            "scope": "",
+            "M": false,
+            "P": false
         },
         {
-            "name": "id",
             "code": "id",
             "dataType": "Varchar",
             "lengths": 32,
@@ -35,7 +50,8 @@
             "P": false,
             "comment": "姓名",
             "defaults": "",
-            "dictionary": ""
+            "dictionary": "",
+            "scope": ""
         },
         {
             "name": "age",
@@ -47,7 +63,8 @@
             "P": false,
             "comment": "年龄",
             "defaults": "",
-            "dictionary": ""
+            "dictionary": "",
+            "scope": ""
         }
     ],
     "indexs": [
@@ -67,6 +84,18 @@
                 "id"
             ],
             "table_space": "test02"
+        },
+        {
+            "code": "Index_3",
+            "U": false,
+            "columns": [],
+            "table_space": ""
+        },
+        {
+            "code": "Index_4",
+            "U": false,
+            "columns": [],
+            "table_space": ""
         }
     ],
     "table_space": "test02",

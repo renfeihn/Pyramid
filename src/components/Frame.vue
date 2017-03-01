@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="Clear"></div>
-        <div id="Footer">预留footer</div>
+        <div id="Footer"></div>
     </div>
 
 
