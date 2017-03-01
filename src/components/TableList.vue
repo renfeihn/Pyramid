@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h2>表区域 </h2>
-
+        <!--<h2>表区域 </h2>-->
         <el-dialog title="SQL脚本" v-model="sql_dialog_show">
             <textarea v-model="content" rows="10" cols="100"></textarea>
         </el-dialog>
@@ -47,7 +46,7 @@
                                      class="btn btn-sm btn-success">查看
                         </router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
-                        <a class="btn btn-sm btn-info" @click="getSql(table.code);">SQL预览</a>
+                        <!--<a class="btn btn-sm btn-info" @click="getSql(table.code);">SQL预览</a>-->
                     </td>
                 </tr>
                 </tbody>

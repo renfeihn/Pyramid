@@ -3,7 +3,7 @@
 
         <el-menu default-active="1-1" class="el-menu-vertical-demo">
             <el-submenu index="1">
-                <template slot="title"><i class="el-icon-message"></i>表管理</template>
+                <template slot="title"><i class="el-icon-message"></i>数据结构</template>
 
                 <a href="/tableList?module=Ensemble">
                     <el-menu-item index="1-1">核心表</el-menu-item>

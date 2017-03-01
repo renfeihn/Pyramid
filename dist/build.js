@@ -43996,7 +43996,7 @@ function checkColumnVal(tmp) {
                 return;
             }
 
-            // 处理数据
+            // 添加column 处理数据
             if (undefined != this.tableAttr && null != this.tableAttr && this.tableAttr.length > 0) {
                 var tattrs = new Array();
                 this.tableAttr.forEach(function (attr, index, attrs) {
@@ -44006,6 +44006,8 @@ function checkColumnVal(tmp) {
             } else {
                 this.table.attr = [];
             }
+            // 添加索引
+            this.table.indexs = this.tableIndexs;
             // 添加模块ID
             this.table.module = this.module;
             this.$http.post('/saveTable', {
@@ -44082,7 +44084,6 @@ function checkColumnVal(tmp) {
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-//
 //
 //
 //
@@ -52143,7 +52144,7 @@ if (false) {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', [_vm._v("表区域 ")]), _vm._v(" "), _c('el-dialog', {
+  return _c('div', [_c('el-dialog', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -52276,14 +52277,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.deleteTable(table.code);
         }
       }
-    }, [_vm._v("删除")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-sm btn-info",
-      on: {
-        "click": function($event) {
-          _vm.getSql(table.code);
-        }
-      }
-    }, [_vm._v("SQL预览")])], 1)])
+    }, [_vm._v("删除")])], 1)])
   }))])])], 1)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('thead', [_c('tr', [_c('th', [_vm._v("表名")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("表空间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
@@ -52523,7 +52517,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     slot: "title"
   }, [_c('i', {
     staticClass: "el-icon-message"
-  }), _vm._v("表管理")]), _vm._v(" "), _c('a', {
+  }), _vm._v("数据结构")]), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/tableList?module=Ensemble"
     }

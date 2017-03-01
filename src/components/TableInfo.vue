@@ -29,6 +29,16 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-2 control-label">是否必填</label>
+                    <div class="col-sm-4">
+                        <el-switch on-text="" off-text="" v-model="tableColumns.M"></el-switch>
+                    </div>
+                    <label class="col-sm-2 control-label">是否主键</label>
+                    <div class="col-sm-4">
+                        <el-switch on-text="" off-text="" v-model="tableColumns.P"></el-switch>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2 control-label">数据类型</label>
                     <div class="col-sm-4">
                         <input class="form-control" readonly="isReadOnly" v-model="tableColumns.dataType" type="text"/>
@@ -47,16 +57,6 @@
                     <label class="col-sm-2 control-label">默认值</label>
                     <div class="col-sm-4">
                         <input class="form-control" readonly="isReadOnly" v-model="tableColumns.defaults" type="text"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">是否必填</label>
-                    <div class="col-sm-4">
-                        <el-switch on-text="" off-text="" v-model="tableColumns.M"></el-switch>
-                    </div>
-                    <label class="col-sm-2 control-label">是否主键</label>
-                    <div class="col-sm-4">
-                        <el-switch on-text="" off-text="" v-model="tableColumns.P"></el-switch>
                     </div>
                 </div>
                 <div class="form-group">
@@ -703,7 +703,7 @@
                     return;
                 }
 
-                // 处理数据
+                // 添加column 处理数据
                 if (undefined != this.tableAttr && null != this.tableAttr && this.tableAttr.length > 0) {
                     var tattrs = new Array();
                     (this.tableAttr).forEach(function (attr, index, attrs) {
@@ -713,6 +713,8 @@
                 } else {
                     this.table.attr = [];
                 }
+                // 添加索引
+                this.table.indexs = this.tableIndexs;
                 // 添加模块ID
                 this.table.module = this.module;
                 this.$http.post('/saveTable', {
