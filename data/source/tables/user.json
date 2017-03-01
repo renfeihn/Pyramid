@@ -69,7 +69,7 @@
     ],
     "indexs": [
         {
-            "code": "index_1",
+            "code": "index_2_1",
             "U": false,
             "columns": [
                 "id",
@@ -88,7 +88,9 @@
         {
             "code": "Index_3",
             "U": false,
-            "columns": [],
+            "columns": [
+                "id"
+            ],
             "table_space": ""
         },
         {

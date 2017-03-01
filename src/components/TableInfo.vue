@@ -23,7 +23,8 @@
                     </div>
                     <label class="col-sm-2 control-label">列名称</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="tableColumns.code" type="text"/>
+                        <input class="form-control" v-model="tableColumns.code" @blur="checkColumnCode(tableColumns.code);" type="text"/>
+                        <input v-model="tableColumnCode" type="hidden"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -174,7 +175,7 @@
                                 {{index+1}}
                             </td>
                             <td>
-                                <el-input v-model="ind.code"></el-input>
+                                <input class="form-control" v-model="ind.code" @blur="checkIndex(ind.code,index);" type="text"/>
                             </td>
                             <td>
                                 <el-switch on-text="" off-text="" v-model="ind.U"></el-switch>
@@ -338,6 +339,8 @@
                 textshow: false,
                 // 弹出框页面的列对象
                 tableColumns: {},
+                // 弹出框页面的列code
+                tableColumnCode:'',
                 // 控制列弹出框
                 dialogFormVisible: false,
                 // 数据字典信息
@@ -405,6 +408,28 @@
                     this.$message.error(res.body);
                 });
 
+            },
+            // 检查新增的列code是否已经存在
+            checkColumnCode(code){
+                var flag = false;
+                // 如果未做修改，不进行重复检查
+                if(code == this.tableColumnCode){
+                    return;
+                }
+                if(null != this.tableAttr && undefined != this.tableAttr && this.tableAttr.length > 0){
+                    this.tableAttr.forEach(function (attr, index, attrs) {
+                        if(undefined != attr && null != attr){
+                            if(code == attr.code){
+                                flag = true;
+                            }
+                        }
+                    });
+                }
+
+                if (flag){
+                    this.$message.error('列名已存在');
+                    this.tableColumns.code =this.tableColumns.code + '_1';
+                }
             },
             // 选中行
             selectRow(e, index){
@@ -508,6 +533,7 @@
                     // 将选中的数据赋值给弹出页面
                     var attr = this.tableAttr[this.selectRowNum];
                     attr = checkColumnVal(attr);
+                    this.tableColumnCode = attr.code;
                     this.tableColumns = attr;
                 } else {
                     return;
@@ -624,6 +650,25 @@
                 this.tableIndexs.splice(this.selectIndexRowNum + i, 0, tr)
                 // 移动完成，修改原选中的行号
                 this.selectIndexRowNum = this.selectIndexRowNum + i;
+            },
+            // 检查新修改的索引名称是否有重复
+            checkIndex(code,n){
+                var flag = false;
+                if(undefined != this.tableIndexs && null != this.tableIndexs && this.tableIndexs.length > 0){
+                    (this.tableIndexs).forEach(function (ind,i,indexs) {
+                        if(null != ind && undefined != ind){
+                            if (ind.code == code && n != i){
+                                flag = true;
+                            }
+
+                        }
+                    })
+                }
+
+                if (flag){
+                    this.$message.error('该索引名称已存在');
+                    ((this.tableIndexs)[n]).code = ((this.tableIndexs)[n]).code + '_1';
+                }
             },
             deleteIndexRow(){
                 if (this.selectIndexRowNum >= 0) {

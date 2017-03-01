@@ -43493,6 +43493,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
 
 var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
@@ -43623,6 +43624,8 @@ function checkColumnVal(tmp) {
             textshow: false,
             // 弹出框页面的列对象
             tableColumns: {},
+            // 弹出框页面的列code
+            tableColumnCode: '',
             // 控制列弹出框
             dialogFormVisible: false,
             // 数据字典信息
@@ -43688,6 +43691,29 @@ function checkColumnVal(tmp) {
                 this.table.name = '';
                 this.$message.error(res.body);
             });
+        },
+
+        // 检查新增的列code是否已经存在
+        checkColumnCode: function checkColumnCode(code) {
+            var flag = false;
+            // 如果未做修改，不进行重复检查
+            if (code == this.tableColumnCode) {
+                return;
+            }
+            if (null != this.tableAttr && undefined != this.tableAttr && this.tableAttr.length > 0) {
+                this.tableAttr.forEach(function (attr, index, attrs) {
+                    if (undefined != attr && null != attr) {
+                        if (code == attr.code) {
+                            flag = true;
+                        }
+                    }
+                });
+            }
+
+            if (flag) {
+                this.$message.error('列名已存在');
+                this.tableColumns.code = this.tableColumns.code + '_1';
+            }
         },
 
         // 选中行
@@ -43796,6 +43822,7 @@ function checkColumnVal(tmp) {
                 // 将选中的数据赋值给弹出页面
                 var attr = this.tableAttr[this.selectRowNum];
                 attr = checkColumnVal(attr);
+                this.tableColumnCode = attr.code;
                 this.tableColumns = attr;
             } else {
                 return;
@@ -43916,6 +43943,25 @@ function checkColumnVal(tmp) {
             this.tableIndexs.splice(this.selectIndexRowNum + i, 0, tr);
             // 移动完成，修改原选中的行号
             this.selectIndexRowNum = this.selectIndexRowNum + i;
+        },
+
+        // 检查新修改的索引名称是否有重复
+        checkIndex: function checkIndex(code, n) {
+            var flag = false;
+            if (undefined != this.tableIndexs && null != this.tableIndexs && this.tableIndexs.length > 0) {
+                this.tableIndexs.forEach(function (ind, i, indexs) {
+                    if (null != ind && undefined != ind) {
+                        if (ind.code == code && n != i) {
+                            flag = true;
+                        }
+                    }
+                });
+            }
+
+            if (flag) {
+                this.$message.error('该索引名称已存在');
+                this.tableIndexs[n].code = this.tableIndexs[n].code + '_1';
+            }
         },
         deleteIndexRow: function deleteIndexRow() {
             if (this.selectIndexRowNum >= 0) {
@@ -50916,9 +50962,31 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "value": _vm._s(_vm.tableColumns.code)
     },
     on: {
+      "blur": function($event) {
+        _vm.checkColumnCode(_vm.tableColumns.code);
+      },
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.tableColumns.code = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.tableColumnCode),
+      expression: "tableColumnCode"
+    }],
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": _vm._s(_vm.tableColumnCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.tableColumnCode = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -51438,22 +51506,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.selectIndexEvent($event, index);
         }
       }
-    }, [_c('td', [_vm._v("\n                            " + _vm._s(index + 1) + "\n                        ")]), _vm._v(" "), _c('td', [_c('el-input', {
+    }, [_c('td', [_vm._v("\n                            " + _vm._s(index + 1) + "\n                        ")]), _vm._v(" "), _c('td', [_c('input', {
       directives: [{
         name: "model",
         rawName: "v-model",
         value: (ind.code),
         expression: "ind.code"
       }],
+      staticClass: "form-control",
+      attrs: {
+        "type": "text"
+      },
       domProps: {
-        "value": (ind.code)
+        "value": _vm._s(ind.code)
       },
       on: {
+        "blur": function($event) {
+          _vm.checkIndex(ind.code, index);
+        },
         "input": function($event) {
-          ind.code = $event
+          if ($event.target.composing) { return; }
+          ind.code = $event.target.value
         }
       }
-    })], 1), _vm._v(" "), _c('td', [_c('el-switch', {
+    })]), _vm._v(" "), _c('td', [_c('el-switch', {
       directives: [{
         name: "model",
         rawName: "v-model",
