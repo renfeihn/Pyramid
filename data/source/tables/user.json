@@ -4,7 +4,7 @@
     "attr": [
         {
             "name": "Column_5",
-            "code": "Column_5",
+            "code": "Column_4_1",
             "dictionary": "",
             "dataType": "",
             "lengths": "",
@@ -69,7 +69,7 @@
     ],
     "indexs": [
         {
-            "code": "index_2_1",
+            "code": "Index_2_1",
             "U": false,
             "columns": [
                 "id",
@@ -78,7 +78,7 @@
             "table_space": "test01"
         },
         {
-            "code": "index_2",
+            "code": "Index_3_1",
             "U": true,
             "columns": [
                 "id"
@@ -94,7 +94,7 @@
             "table_space": ""
         },
         {
-            "code": "Index_4",
+            "code": "Index_3_1_1",
             "U": false,
             "columns": [],
             "table_space": ""

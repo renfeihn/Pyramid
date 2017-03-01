@@ -23,7 +23,8 @@
                     </div>
                     <label class="col-sm-2 control-label">列名称</label>
                     <div class="col-sm-4">
-                        <input class="form-control" v-model="tableColumns.code" @blur="checkColumnCode(tableColumns.code);" type="text"/>
+                        <input class="form-control" v-model="tableColumns.code"
+                               @blur="checkColumnCode(tableColumns.code);" type="text"/>
                         <input v-model="tableColumnCode" type="hidden"/>
                     </div>
                 </div>
@@ -132,7 +133,7 @@
                             <th width="10%">数据字典</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody ref="tbodyId">
                         <tr v-for="(tb,index) in tableAttr" @click="selectRow($event,index);">
                             <td>{{index+1}}</td>
                             <td>{{tb.code}}</td>
@@ -169,13 +170,14 @@
                             <th width="20%">表空间</th>
                         </tr>
                         </thead>
-                        <tbody ref="tbodyId">
+                        <tbody ref="ibodyId">
                         <tr v-for="(ind,index) in tableIndexs" @click="selectIndexEvent($event,index);">
                             <td>
                                 {{index+1}}
                             </td>
                             <td>
-                                <input class="form-control" v-model="ind.code" @blur="checkIndex(ind.code,index);" type="text"/>
+                                <input class="form-control" v-model="ind.code" @blur="checkIndex(ind.code,index);"
+                                       type="text"/>
                             </td>
                             <td>
                                 <el-switch on-text="" off-text="" v-model="ind.U"></el-switch>
@@ -340,7 +342,7 @@
                 // 弹出框页面的列对象
                 tableColumns: {},
                 // 弹出框页面的列code
-                tableColumnCode:'',
+                tableColumnCode: '',
                 // 控制列弹出框
                 dialogFormVisible: false,
                 // 数据字典信息
@@ -413,22 +415,22 @@
             checkColumnCode(code){
                 var flag = false;
                 // 如果未做修改，不进行重复检查
-                if(code == this.tableColumnCode){
+                if (code == this.tableColumnCode) {
                     return;
                 }
-                if(null != this.tableAttr && undefined != this.tableAttr && this.tableAttr.length > 0){
+                if (null != this.tableAttr && undefined != this.tableAttr && this.tableAttr.length > 0) {
                     this.tableAttr.forEach(function (attr, index, attrs) {
-                        if(undefined != attr && null != attr){
-                            if(code == attr.code){
+                        if (undefined != attr && null != attr) {
+                            if (code == attr.code) {
                                 flag = true;
                             }
                         }
                     });
                 }
 
-                if (flag){
+                if (flag) {
                     this.$message.error('列名已存在');
-                    this.tableColumns.code =this.tableColumns.code + '_1';
+                    this.tableColumns.code = this.tableColumns.code + '_1';
                 }
             },
             // 选中行
@@ -650,14 +652,29 @@
                 this.tableIndexs.splice(this.selectIndexRowNum + i, 0, tr)
                 // 移动完成，修改原选中的行号
                 this.selectIndexRowNum = this.selectIndexRowNum + i;
+
+                // 高亮显示
+                const tbd = this.$refs.ibodyId;
+                if (null != tbd.childNodes) {
+                    for (var i in tbd.childNodes) {
+                        if (!isNaN(i)) {
+                            if (this.selectIndexRowNum == i) {
+                                (tbd.childNodes[i]).style = "background-color: #DEDEDE";
+                            } else {
+                                (tbd.childNodes[i]).style = '';
+                            }
+                        }
+                    }
+                }
             },
             // 检查新修改的索引名称是否有重复
-            checkIndex(code,n){
+            checkIndex(code, n){
+                console.log('code: ' + code + '  n: ' + n)
                 var flag = false;
-                if(undefined != this.tableIndexs && null != this.tableIndexs && this.tableIndexs.length > 0){
-                    (this.tableIndexs).forEach(function (ind,i,indexs) {
-                        if(null != ind && undefined != ind){
-                            if (ind.code == code && n != i){
+                if (undefined != this.tableIndexs && null != this.tableIndexs && this.tableIndexs.length > 0) {
+                    (this.tableIndexs).forEach(function (ind, i, indexs) {
+                        if (null != ind && undefined != ind) {
+                            if (ind.code == code && n != i) {
                                 flag = true;
                             }
 
@@ -665,7 +682,7 @@
                     })
                 }
 
-                if (flag){
+                if (flag) {
                     this.$message.error('该索引名称已存在');
                     ((this.tableIndexs)[n]).code = ((this.tableIndexs)[n]).code + '_1';
                 }
@@ -687,13 +704,13 @@
                 }
 
                 // 处理数据
-                if(undefined != this.tableAttr && null != this.tableAttr && this.tableAttr.length > 0){
+                if (undefined != this.tableAttr && null != this.tableAttr && this.tableAttr.length > 0) {
                     var tattrs = new Array();
                     (this.tableAttr).forEach(function (attr, index, attrs) {
                         tattrs.push(checkColumnVal(attr));
                     });
                     this.table.attr = tattrs;
-                }else{
+                } else {
                     this.table.attr = [];
                 }
                 // 添加模块ID
@@ -731,8 +748,6 @@
                         if (re) {
                             this.textshow = true;
                             this.content = re;
-                            // 先清除错误信息
-                            //this.errors = [];
                         }
                     } else {
                         console.log('生成sql失败');
@@ -741,7 +756,6 @@
                 }, function (res) {
                     console.log('生成sql失败' + res.status + '  ' + res.body);
                     this.$message.error(res.body);
-                    //this.errors=res.body;
                 });
 
             }

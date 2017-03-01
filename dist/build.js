@@ -43494,6 +43494,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
@@ -43943,10 +43945,25 @@ function checkColumnVal(tmp) {
             this.tableIndexs.splice(this.selectIndexRowNum + i, 0, tr);
             // 移动完成，修改原选中的行号
             this.selectIndexRowNum = this.selectIndexRowNum + i;
+
+            // 高亮显示
+            var tbd = this.$refs.ibodyId;
+            if (null != tbd.childNodes) {
+                for (var i in tbd.childNodes) {
+                    if (!isNaN(i)) {
+                        if (this.selectIndexRowNum == i) {
+                            tbd.childNodes[i].style = "background-color: #DEDEDE";
+                        } else {
+                            tbd.childNodes[i].style = '';
+                        }
+                    }
+                }
+            }
         },
 
         // 检查新修改的索引名称是否有重复
         checkIndex: function checkIndex(code, n) {
+            console.log('code: ' + code + '  n: ' + n);
             var flag = false;
             if (undefined != this.tableIndexs && null != this.tableIndexs && this.tableIndexs.length > 0) {
                 this.tableIndexs.forEach(function (ind, i, indexs) {
@@ -44023,8 +44040,6 @@ function checkColumnVal(tmp) {
                     if (re) {
                         this.textshow = true;
                         this.content = re;
-                        // 先清除错误信息
-                        //this.errors = [];
                     }
                 } else {
                     console.log('生成sql失败');
@@ -44033,7 +44048,6 @@ function checkColumnVal(tmp) {
             }, function (res) {
                 console.log('生成sql失败' + res.status + '  ' + res.body);
                 this.$message.error(res.body);
-                //this.errors=res.body;
             });
         }
     },
@@ -51430,7 +51444,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "width": "10%"
     }
-  }, [_vm._v("数据字典")])])]), _vm._v(" "), _c('tbody', _vm._l((_vm.tableAttr), function(tb, index) {
+  }, [_vm._v("数据字典")])])]), _vm._v(" "), _c('tbody', {
+    ref: "tbodyId"
+  }, _vm._l((_vm.tableAttr), function(tb, index) {
     return _c('tr', {
       on: {
         "click": function($event) {
@@ -51498,7 +51514,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "width": "20%"
     }
   }, [_vm._v("表空间")])])]), _vm._v(" "), _c('tbody', {
-    ref: "tbodyId"
+    ref: "ibodyId"
   }, _vm._l((_vm.tableIndexs), function(ind, index) {
     return _c('tr', {
       on: {
