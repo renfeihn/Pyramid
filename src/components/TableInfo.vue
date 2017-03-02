@@ -124,7 +124,7 @@
                 <label>分类一</label>
                 <el-select v-model="table.class1" size="small" placeholder="请选择">
                     <el-option
-                            v-for="item in class1"
+                            v-for="item in class1s"
                             :label="item.code"
                             :value="item.code">
                     </el-option>
@@ -134,7 +134,7 @@
                 <label>分类二</label>
                 <el-select v-model="table.class2" size="small" placeholder="请选择">
                     <el-option
-                            v-for="item in class2"
+                            v-for="item in class2s"
                             :label="item.code"
                             :value="item.code">
                     </el-option>
@@ -400,14 +400,14 @@
                 // 所属系统
                 systems:[{"code":"Ensemble"},{"code":"Limarket"},{"code":"Accounting"}],
                 // 所属分类1
-                class1:[{"code":"upright"},{"code":"level"}],
+                class1s:[{"code":"upright"},{"code":"level"}],
                 // 所属分类2
-                class2:[{"code":"init"},{"code":"busi"}]
+                class2s:[{"code":"init"},{"code":"busi"}]
             }
         },
         methods: {
             handleClick(tab, event) {
-                //console.log(tab, event);
+                //console.lib(tab, event);
             },
             getTable(code){
                 if (null != code && '' != code && undefined != code) {
@@ -458,7 +458,7 @@
 //
 //                    }
 //                }, function (res) {
-//                    console.log('未通过服务端校验' + res.status + '  ' + res.body);
+//                    console.lib('未通过服务端校验' + res.status + '  ' + res.body);
 //                    this.table.name = '';
 //                    this.$message.error(res.body);
 //                });
@@ -491,9 +491,9 @@
                 this.selectRowNum = index;
                 // 设置高亮
                 var tr = e.currentTarget;
-//                console.log('tr:  '+tr.innerHTML);
+//                console.lib('tr:  '+tr.innerHTML);
                 var tbd = tr.parentNode;
-//                console.log(tbd);
+//                console.lib(tbd);
                 if (null != tbd.childNodes) {
                     for (var i in tbd.childNodes) {
                         if (!isNaN(i)) {

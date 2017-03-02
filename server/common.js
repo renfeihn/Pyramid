@@ -17,7 +17,11 @@ const Models = {
 
 
     // 类型
-    TABLE_TYPE: "table"
+    TABLE_TYPE: "table",
+
+    // 创建文件夹的权限 默认权限0777
+    AUTH_NUM : '0777'
+
 };
 
 module.exports = Models;

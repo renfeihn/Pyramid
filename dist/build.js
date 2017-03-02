@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "/dist/";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 104);
+/******/ 	return __webpack_require__(__webpack_require__.s = 107);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -292,11 +292,11 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = {
   required: __webpack_require__(14),
-  whitespace: __webpack_require__(44),
-  type: __webpack_require__(43),
-  range: __webpack_require__(42),
-  "enum": __webpack_require__(40),
-  pattern: __webpack_require__(41)
+  whitespace: __webpack_require__(45),
+  type: __webpack_require__(44),
+  range: __webpack_require__(43),
+  "enum": __webpack_require__(41),
+  pattern: __webpack_require__(42)
 };
 module.exports = exports['default'];
 
@@ -8873,7 +8873,7 @@ return Vue$3;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(102)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(105)))
 
 /***/ }),
 /* 3 */
@@ -9744,7 +9744,7 @@ module.exports =
 exports.__esModule = true;
 exports.i18n = exports.use = exports.t = undefined;
 
-var _zhCN = __webpack_require__(78);
+var _zhCN = __webpack_require__(80);
 
 var _zhCN2 = _interopRequireDefault(_zhCN);
 
@@ -9752,11 +9752,11 @@ var _vue = __webpack_require__(2);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _deepmerge = __webpack_require__(71);
+var _deepmerge = __webpack_require__(73);
 
 var _deepmerge2 = _interopRequireDefault(_deepmerge);
 
-var _format = __webpack_require__(77);
+var _format = __webpack_require__(79);
 
 var _format2 = _interopRequireDefault(_format);
 
@@ -10039,7 +10039,7 @@ var _popup = __webpack_require__(19);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var PopperJS = _vue2.default.prototype.$isServer ? function () {} : __webpack_require__(86);
+var PopperJS = _vue2.default.prototype.$isServer ? function () {} : __webpack_require__(88);
 var stop = function stop(e) {
   return e.stopPropagation();
 };
@@ -11228,7 +11228,7 @@ var _merge = __webpack_require__(5);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _popupManager = __webpack_require__(87);
+var _popupManager = __webpack_require__(89);
 
 var _popupManager2 = _interopRequireDefault(_popupManager);
 
@@ -12777,13 +12777,13 @@ module.exports =
 /* 8 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(82);
+	module.exports = __webpack_require__(84);
 
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(80);
+	module.exports = __webpack_require__(82);
 
 /***/ },
 /* 10 */
@@ -13754,13 +13754,13 @@ module.exports =
 /* 30 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(73);
+	module.exports = __webpack_require__(75);
 
 /***/ },
 /* 31 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(72);
+	module.exports = __webpack_require__(74);
 
 /***/ },
 /* 32 */
@@ -14446,7 +14446,7 @@ module.exports =
 /* 48 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(84);
+	module.exports = __webpack_require__(86);
 
 /***/ },
 /* 49 */
@@ -18649,7 +18649,7 @@ module.exports =
 /* 124 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(75);
+	module.exports = __webpack_require__(77);
 
 /***/ },
 /* 125 */
@@ -20581,7 +20581,7 @@ module.exports =
 /* 136 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(74);
+	module.exports = __webpack_require__(76);
 
 /***/ },
 /* 137 */
@@ -22098,7 +22098,7 @@ module.exports =
 /* 146 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(85);
+	module.exports = __webpack_require__(87);
 
 /***/ },
 /* 147 */
@@ -27416,7 +27416,7 @@ module.exports =
 /* 206 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(38);
+	module.exports = __webpack_require__(39);
 
 /***/ },
 /* 207 */
@@ -29790,7 +29790,7 @@ module.exports =
 /* 240 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(88);
+	module.exports = __webpack_require__(90);
 
 /***/ },
 /* 241 */
@@ -30307,7 +30307,7 @@ module.exports =
 /* 247 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(76);
+	module.exports = __webpack_require__(78);
 
 /***/ },
 /* 248 */
@@ -30487,7 +30487,7 @@ module.exports =
 /* 250 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(83);
+	module.exports = __webpack_require__(85);
 
 /***/ },
 /* 251 */
@@ -31715,7 +31715,7 @@ module.exports =
 /* 274 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(81);
+	module.exports = __webpack_require__(83);
 
 /***/ },
 /* 275 */
@@ -32404,7 +32404,7 @@ module.exports =
 /* 284 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(79);
+	module.exports = __webpack_require__(81);
 
 /***/ },
 /* 285 */
@@ -35776,7 +35776,7 @@ module.exports =
 /* 348 */
 /***/ function(module, exports) {
 
-	module.exports = __webpack_require__(59);
+	module.exports = __webpack_require__(60);
 
 /***/ },
 /* 349 */
@@ -37222,10 +37222,10 @@ module.exports =
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(69);
+var content = __webpack_require__(71);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(90)(content, {});
+var update = __webpack_require__(92)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -37249,7 +37249,7 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(100)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37290,10 +37290,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(60)
+__vue_exports__ = __webpack_require__(61)
 
 /* template */
-var __vue_template__ = __webpack_require__(94)
+var __vue_template__ = __webpack_require__(97)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37334,10 +37334,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(61)
+__vue_exports__ = __webpack_require__(62)
 
 /* template */
-var __vue_template__ = __webpack_require__(92)
+var __vue_template__ = __webpack_require__(95)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37378,10 +37378,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(62)
+__vue_exports__ = __webpack_require__(63)
 
 /* template */
-var __vue_template__ = __webpack_require__(101)
+var __vue_template__ = __webpack_require__(104)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37422,10 +37422,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(63)
+__vue_exports__ = __webpack_require__(64)
 
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(99)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37466,13 +37466,13 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* styles */
-__webpack_require__(89)
+__webpack_require__(91)
 
 /* script */
-__vue_exports__ = __webpack_require__(64)
+__vue_exports__ = __webpack_require__(65)
 
 /* template */
-var __vue_template__ = __webpack_require__(99)
+var __vue_template__ = __webpack_require__(102)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37514,10 +37514,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(66)
+__vue_exports__ = __webpack_require__(67)
 
 /* template */
-var __vue_template__ = __webpack_require__(100)
+var __vue_template__ = __webpack_require__(103)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37558,10 +37558,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(67)
+__vue_exports__ = __webpack_require__(68)
 
 /* template */
-var __vue_template__ = __webpack_require__(93)
+var __vue_template__ = __webpack_require__(96)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37602,10 +37602,10 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(68)
+__vue_exports__ = __webpack_require__(69)
 
 /* template */
-var __vue_template__ = __webpack_require__(98)
+var __vue_template__ = __webpack_require__(101)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37640,6 +37640,50 @@ module.exports = __vue_exports__
 
 /***/ }),
 /* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __vue_exports__, __vue_options__
+var __vue_styles__ = {}
+
+/* script */
+__vue_exports__ = __webpack_require__(70)
+
+/* template */
+var __vue_template__ = __webpack_require__(94)
+__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+if (
+  typeof __vue_exports__.default === "object" ||
+  typeof __vue_exports__.default === "function"
+) {
+if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+__vue_options__ = __vue_exports__ = __vue_exports__.default
+}
+if (typeof __vue_options__ === "function") {
+  __vue_options__ = __vue_options__.options
+}
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\analysis\\TableSelect.vue"
+__vue_options__.render = __vue_template__.render
+__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-18b6417b", __vue_options__)
+  } else {
+    hotAPI.reload("data-v-18b6417b", __vue_options__)
+  }
+})()}
+if (__vue_options__.functional) {console.error("[vue-loader] TableSelect.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+
+module.exports = __vue_exports__
+
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38717,7 +38761,7 @@ var xhrClient = function (request) {
 
 var nodeClient = function (request) {
 
-    var client = __webpack_require__(103);
+    var client = __webpack_require__(106);
 
     return new PromiseObj(function (resolve) {
 
@@ -39171,7 +39215,7 @@ module.exports = plugin;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41457,7 +41501,7 @@ module.exports = VueRouter;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41473,11 +41517,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _util = __webpack_require__(0);
 
-var _validator = __webpack_require__(50);
+var _validator = __webpack_require__(51);
 
 var _validator2 = _interopRequireDefault(_validator);
 
-var _messages2 = __webpack_require__(39);
+var _messages2 = __webpack_require__(40);
 
 var _rule = __webpack_require__(1);
 
@@ -41735,7 +41779,7 @@ exports["default"] = Schema;
 module.exports = exports['default'];
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41803,7 +41847,7 @@ function newMessages() {
 var messages = exports.messages = newMessages();
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41843,7 +41887,7 @@ exports["default"] = enumerable;
 module.exports = exports['default'];
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41882,7 +41926,7 @@ exports["default"] = pattern;
 module.exports = exports['default'];
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41951,7 +41995,7 @@ exports["default"] = range;
 module.exports = exports['default'];
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42061,7 +42105,7 @@ exports["default"] = type;
 module.exports = exports['default'];
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42098,7 +42142,7 @@ exports["default"] = whitespace;
 module.exports = exports['default'];
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42146,7 +42190,7 @@ exports["default"] = array;
 module.exports = exports['default'];
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42193,7 +42237,7 @@ exports["default"] = boolean;
 module.exports = exports['default'];
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42235,7 +42279,7 @@ exports["default"] = date;
 module.exports = exports['default'];
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42284,7 +42328,7 @@ exports["default"] = enumerable;
 module.exports = exports['default'];
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42332,33 +42376,33 @@ exports["default"] = floatFn;
 module.exports = exports['default'];
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-  string: __webpack_require__(58),
-  method: __webpack_require__(52),
-  number: __webpack_require__(53),
-  "boolean": __webpack_require__(46),
-  regexp: __webpack_require__(56),
-  integer: __webpack_require__(51),
-  "float": __webpack_require__(49),
-  array: __webpack_require__(45),
-  object: __webpack_require__(54),
-  "enum": __webpack_require__(48),
-  pattern: __webpack_require__(55),
+  string: __webpack_require__(59),
+  method: __webpack_require__(53),
+  number: __webpack_require__(54),
+  "boolean": __webpack_require__(47),
+  regexp: __webpack_require__(57),
+  integer: __webpack_require__(52),
+  "float": __webpack_require__(50),
+  array: __webpack_require__(46),
+  object: __webpack_require__(55),
+  "enum": __webpack_require__(49),
+  pattern: __webpack_require__(56),
   email: __webpack_require__(6),
   url: __webpack_require__(6),
-  date: __webpack_require__(47),
+  date: __webpack_require__(48),
   hex: __webpack_require__(6),
-  required: __webpack_require__(57)
+  required: __webpack_require__(58)
 };
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42406,7 +42450,7 @@ exports["default"] = integer;
 module.exports = exports['default'];
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42453,7 +42497,7 @@ exports["default"] = method;
 module.exports = exports['default'];
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42501,7 +42545,7 @@ exports["default"] = number;
 module.exports = exports['default'];
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42548,7 +42592,7 @@ exports["default"] = object;
 module.exports = exports['default'];
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42598,7 +42642,7 @@ exports["default"] = pattern;
 module.exports = exports['default'];
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42645,7 +42689,7 @@ exports["default"] = regexp;
 module.exports = exports['default'];
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42674,7 +42718,7 @@ exports["default"] = required;
 module.exports = exports['default'];
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42726,7 +42770,7 @@ exports["default"] = string;
 module.exports = exports['default'];
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports) {
 
 var nestRE = /^(attrs|props|on|nativeOn|class|style|hook)$/
@@ -42782,7 +42826,7 @@ function mergeFn (a, b) {
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43020,7 +43064,7 @@ function checkObjectVal(tmp) {
 };
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43120,7 +43164,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43305,7 +43349,7 @@ function checkObjectVal(tmp) {
 };
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43402,12 +43446,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LeftNav_vue__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LeftNav_vue__ = __webpack_require__(93);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__LeftNav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__LeftNav_vue__);
 //
 //
@@ -43470,7 +43514,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43535,7 +43579,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$http.get('/getAll/table_spaces').then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
-                    //console.log('tableSpaces:  '+re);
+                    //console.lib('tableSpaces:  '+re);
                     this.tableSpaces = re;
                 }
             }, function (res) {
@@ -43553,7 +43597,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -43959,15 +44003,15 @@ function checkColumnVal(tmp) {
             // 所属系统
             systems: [{ "code": "Ensemble" }, { "code": "Limarket" }, { "code": "Accounting" }],
             // 所属分类1
-            class1: [{ "code": "upright" }, { "code": "level" }],
+            class1s: [{ "code": "upright" }, { "code": "level" }],
             // 所属分类2
-            class2: [{ "code": "init" }, { "code": "busi" }]
+            class2s: [{ "code": "init" }, { "code": "busi" }]
         };
     },
 
     methods: {
         handleClick: function handleClick(tab, event) {
-            //console.log(tab, event);
+            //console.lib(tab, event);
         },
         getTable: function getTable(code) {
             if (null != code && '' != code && undefined != code) {
@@ -44018,7 +44062,7 @@ function checkColumnVal(tmp) {
             //
             //                    }
             //                }, function (res) {
-            //                    console.log('未通过服务端校验' + res.status + '  ' + res.body);
+            //                    console.lib('未通过服务端校验' + res.status + '  ' + res.body);
             //                    this.table.name = '';
             //                    this.$message.error(res.body);
             //                });
@@ -44053,9 +44097,9 @@ function checkColumnVal(tmp) {
             this.selectRowNum = index;
             // 设置高亮
             var tr = e.currentTarget;
-            //                console.log('tr:  '+tr.innerHTML);
+            //                console.lib('tr:  '+tr.innerHTML);
             var tbd = tr.parentNode;
-            //                console.log(tbd);
+            //                console.lib(tbd);
             if (null != tbd.childNodes) {
                 for (var i in tbd.childNodes) {
                     if (!isNaN(i)) {
@@ -44410,7 +44454,7 @@ function checkColumnVal(tmp) {
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44477,19 +44521,77 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = {
     data: function data() {
         return {
-            system: '', // 系统ID
+            // 系统
+            system: '',
+            // class1 垂直、水平
+            class1: '',
+            // class2 init/busi
+            class2: '',
             code: '',
             comment: '',
             tableSpace: '',
             tables: [],
             tableSpaces: [],
-            // errors:[],    //服务端验证失败的返回
-            // 选中行的索引
             content: '',
             sql_dialog_show: false
         };
@@ -44507,7 +44609,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         getAllTables: function getAllTables() {
-            var API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
+            var API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&class1=' + this.class1 + '&class2=' + this.class2 + '&tableSpace=' + this.tableSpace;
             this.$http.get(API).then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
@@ -44517,7 +44619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 this.$message.error('TableList 页面 请求 table 失败： ' + res.status);
             });
         },
-        deleteTable: function deleteTable(code) {
+        deleteTable: function deleteTable(tableTemp) {
             var _this = this;
 
             this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
@@ -44525,9 +44627,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 cancelButtonText: '取消',
                 type: 'warning'
             }).then(function () {
-                _this.$http.post('/deleteFile', {
-                    type: 'tables',
-                    code: code
+                _this.$http.post('/deleteTableFile', {
+                    table: tableTemp
                 }).then(function (res) {
                     if (res.status == 200) {
                         console.log('删除表成功');
@@ -44535,7 +44636,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         // 提示信息并新获取table
                         var re = res.body;
                         if (re) {
-                            // this.errors = re;
                             this.getAllTables();
                         }
                     } else {
@@ -44545,7 +44645,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }, function (res) {
                     console.log('删除表失败' + res.status + '  ' + res.body);
                     this.$message.error('删除表失败' + res.status + '  ' + res.body);
-                    // this.errors = res.body;
                 });
             }).catch(function () {
                 _this.$message.info('已取消删除');
@@ -44560,9 +44659,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.log('生成sql成功');
                     // 下载sql
                     var re = res.body;
-                    //if(re){
-                    //this.errors = re;
-                    //}
                 } else {
                     console.log('生成sql失败');
                     this.$message.error('生成sql失败!');
@@ -44570,7 +44666,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, function (res) {
                 console.log('生成sql失败' + res.status + '  ' + res.body);
                 this.$message.error('生成sql失败' + res.status + '  ' + res.body);
-                //this.errors = res.body;
             });
         },
         getSql: function getSql(code) {
@@ -44586,8 +44681,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     if (re) {
                         this.sql_dialog_show = true;
                         this.content = re;
-                        // 先清除错误信息
-                        //this.errors = [];
                     }
                 } else {
                     console.log('生成sql失败');
@@ -44596,7 +44689,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, function (res) {
                 console.log('生成sql失败' + res.status + '  ' + res.body);
                 this.$message.error('生成sql失败' + res.status + '  ' + res.body);
-                //this.errors = res.body;
             });
         }
     },
@@ -44604,21 +44696,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     created: function created() {
         var mo = this.$route.query.system;
         console.log('mo: ' + mo);
-
         if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
             this.system = mo;
         } else {
             this.system = '';
         }
         console.log('system: ' + this.system);
-
         this.getTableSpaces();
         this.getAllTables();
     }
 };
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44720,10 +44810,248 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 };
 
 /***/ }),
-/* 69 */
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = {
+    data: function data() {
+        return {
+            // 系统
+            system: '',
+            // class1 垂直、水平
+            class1: '',
+            // class2 init/busi
+            class2: '',
+            // 所属系统
+            systems: [{ "code": "Ensemble" }, { "code": "Limarket" }, { "code": "Accounting" }],
+            // 所属分类1
+            class1s: [{ "code": "upright" }, { "code": "level" }],
+            // 所属分类2
+            class2s: [{ "code": "init" }, { "code": "busi" }],
+            code: '',
+            comment: '',
+            tableSpace: '',
+            // 列表的复选框
+            checkList: [],
+            tables: [],
+            tableSpaces: [],
+            content: '',
+            sql_dialog_show: false
+        };
+    },
+
+    methods: {
+        handleSelectionChange: function handleSelectionChange(val) {
+            console.log(val);
+            this.checkList = val;
+        },
+        getTableSpaces: function getTableSpaces() {
+            this.$http.get('/getAll/table_spaces').then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.tableSpaces = re;
+                }
+            }, function (res) {
+                this.$message.error('TableList 页面 请求 table space 失败： ' + res.status);
+            });
+        },
+        getAllTables: function getAllTables() {
+            var API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&class1=' + this.class1 + '&class2=' + this.class2 + '&tableSpace=' + this.tableSpace;
+            this.$http.get(API).then(function (res) {
+                if (res.status == 200) {
+                    var re = res.body;
+                    this.tables = re;
+                }
+            }, function (res) {
+                this.$message.error('TableList 页面 请求 table 失败： ' + res.status);
+            });
+        },
+        deleteTable: function deleteTable(code) {
+            var _this = this;
+
+            this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+            }).then(function () {
+                _this.$http.post('/deleteFile', {
+                    type: 'tables',
+                    code: code
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('删除表成功');
+                        this.$message.success('删除成功!');
+                        // 提示信息并新获取table
+                        var re = res.body;
+                        if (re) {
+                            this.getAllTables();
+                        }
+                    } else {
+                        console.log('删除表失败');
+                        this.$message.error('删除失败!');
+                    }
+                }, function (res) {
+                    console.log('删除表失败' + res.status + '  ' + res.body);
+                    this.$message.error('删除表失败' + res.status + '  ' + res.body);
+                });
+            }).catch(function () {
+                _this.$message.info('已取消删除');
+            });
+        },
+        generatorSql: function generatorSql() {
+            this.$http.post('/generatorSql', {
+                type: 'table',
+                db_type: localStorage.getItem('dbms')
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('生成sql成功');
+                    // 下载sql
+                    var re = res.body;
+                } else {
+                    console.log('生成sql失败');
+                    this.$message.error('生成sql失败!');
+                }
+            }, function (res) {
+                console.log('生成sql失败' + res.status + '  ' + res.body);
+                this.$message.error('生成sql失败' + res.status + '  ' + res.body);
+            });
+        },
+        getSql: function getSql(code) {
+            this.$http.post('/showSQL', {
+                type: 'table',
+                db_type: localStorage.getItem('dbms'),
+                code: code
+            }).then(function (res) {
+                if (res.status == 200) {
+                    console.log('生成sql成功');
+                    // 弹出框，展示sql
+                    var re = res.body;
+                    if (re) {
+                        this.sql_dialog_show = true;
+                        this.content = re;
+                    }
+                } else {
+                    console.log('生成sql失败');
+                    this.$message.error('生成sql失败!');
+                }
+            }, function (res) {
+                console.log('生成sql失败' + res.status + '  ' + res.body);
+                this.$message.error('生成sql失败' + res.status + '  ' + res.body);
+            });
+        }
+    },
+    components: {},
+    created: function created() {
+        this.getTableSpaces();
+        this.getAllTables();
+    }
+};
+
+/***/ }),
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(70)();
+exports = module.exports = __webpack_require__(72)();
 // imports
 
 
@@ -44734,7 +45062,7 @@ exports.push([module.i, "@charset \"UTF-8\";.el-breadcrumb:after,.el-breadcrumb:
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports) {
 
 /*
@@ -44790,7 +45118,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root, factory) {
@@ -44884,7 +45212,7 @@ return deepmerge
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports) {
 
 module.exports =
@@ -45073,7 +45401,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports) {
 
 module.exports =
@@ -45317,7 +45645,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -45522,7 +45850,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -45937,7 +46265,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -46389,7 +46717,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46451,7 +46779,7 @@ exports.default = function (Vue) {
 var RE_NARGS = /(%|)\{([0-9a-zA-Z_]+)\}/g;
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46554,7 +46882,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46623,7 +46951,7 @@ exports.default = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)))
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -46959,7 +47287,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports =
@@ -47313,7 +47641,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -48748,7 +49076,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports =
@@ -49001,7 +49329,7 @@ module.exports =
 /******/ });
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49097,7 +49425,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49424,7 +49752,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;
 })(undefined);
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50686,7 +51014,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 });
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50871,7 +51199,7 @@ var PopupManager = {
 exports.default = PopupManager;
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50895,13 +51223,13 @@ function isVNode(node) {
 };
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, exports) {
 
 /*
@@ -51153,17 +51481,17 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* script */
-__vue_exports__ = __webpack_require__(65)
+__vue_exports__ = __webpack_require__(66)
 
 /* template */
-var __vue_template__ = __webpack_require__(95)
+var __vue_template__ = __webpack_require__(98)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -51197,7 +51525,236 @@ module.exports = __vue_exports__
 
 
 /***/ }),
-/* 92 */
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('el-dialog', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.sql_dialog_show),
+      expression: "sql_dialog_show"
+    }],
+    attrs: {
+      "title": "SQL脚本"
+    },
+    domProps: {
+      "value": (_vm.sql_dialog_show)
+    },
+    on: {
+      "input": function($event) {
+        _vm.sql_dialog_show = $event
+      }
+    }
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }],
+    attrs: {
+      "rows": "10",
+      "cols": "100"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("所属系统")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.system),
+      expression: "system"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.system = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, _vm._l((_vm.systems), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("垂直/水平")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.class1),
+      expression: "class1"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.class1 = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, _vm._l((_vm.class1s), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("分类2")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.class2),
+      expression: "class2"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.class2 = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, _vm._l((_vm.class2s), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  }))]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.code),
+      expression: "code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.code)
+    },
+    on: {
+      "change": function($event) {
+        _vm.getAllTables();
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.getAllTables();
+      }
+    }
+  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.generatorSql();
+      }
+    }
+  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-table', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "data": _vm.tables,
+      "border": ""
+    },
+    on: {
+      "selection-change": _vm.handleSelectionChange
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "type": "selection",
+      "width": "55"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "system",
+      "label": "所属系统",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "class1",
+      "label": "垂直/水平",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "class2",
+      "label": "分类2",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "code",
+      "label": "表名",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "comment",
+      "label": "描述",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "table_space",
+      "label": "表空间",
+      "show-overflow-tooltip": ""
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-18b6417b", module.exports)
+  }
+}
+
+/***/ }),
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51272,7 +51829,7 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51406,7 +51963,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       staticClass: "btn btn-sm btn-danger",
       on: {
         "click": function($event) {
-          _vm.deleteTable(table.code);
+          _vm.deleteTable(table);
         }
       }
     }, [_vm._v("删除")])], 1)])
@@ -51422,7 +51979,7 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51683,7 +52240,7 @@ if (false) {
 }
 
 /***/ }),
-/* 95 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51760,7 +52317,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('a', {
     attrs: {
-      "href": "#"
+      "href": "/tableSelect"
     }
   }, [_c('i', {
     staticClass: "el-icon-setting"
@@ -51774,7 +52331,7 @@ if (false) {
 }
 
 /***/ }),
-/* 96 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51852,7 +52409,7 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51870,7 +52427,7 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -51976,7 +52533,7 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -52052,7 +52609,7 @@ if (false) {
 }
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -52591,7 +53148,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.table.class1 = $event
       }
     }
-  }, _vm._l((_vm.class1), function(item) {
+  }, _vm._l((_vm.class1s), function(item) {
     return _c('el-option', {
       attrs: {
         "label": item.code,
@@ -52619,7 +53176,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.table.class2 = $event
       }
     }
-  }, _vm._l((_vm.class2), function(item) {
+  }, _vm._l((_vm.class2s), function(item) {
     return _c('el-option', {
       attrs: {
         "label": item.code,
@@ -52914,7 +53471,7 @@ if (false) {
 }
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -53123,7 +53680,7 @@ if (false) {
 }
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports) {
 
 var g;
@@ -53150,13 +53707,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53165,9 +53722,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__App_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vue_router___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_vue_router__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_resource__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_resource__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_resource___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_resource__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_element_ui__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_element_ui__);
@@ -53189,6 +53746,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_DomainInfo_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12__components_DomainInfo_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_TableSpaceList_vue__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_TableSpaceList_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__components_TableSpaceList_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_analysis_TableSelect_vue__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_analysis_TableSelect_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__components_analysis_TableSelect_vue__);
+
 
 
 
@@ -53210,7 +53770,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_4_elem
 
 //routes config
 var routes = [{ path: '/', redirect: '/frame' }, { path: '/frame', component: __WEBPACK_IMPORTED_MODULE_6__components_Frame_vue___default.a,
-    children: [{ path: '/tableList', component: __WEBPACK_IMPORTED_MODULE_8__components_TableList_vue___default.a, name: 'tableList' }, { path: '/tableInfo', component: __WEBPACK_IMPORTED_MODULE_7__components_TableInfo_vue___default.a, name: 'tableInfo' }, { path: '/dictionaryList', component: __WEBPACK_IMPORTED_MODULE_9__components_DictionaryList_vue___default.a, name: 'dictionaryList' }, { path: '/dictionaryInfo', component: __WEBPACK_IMPORTED_MODULE_10__components_DictionaryInfo_vue___default.a, name: 'dictionaryInfo' }, { path: '/domainList', component: __WEBPACK_IMPORTED_MODULE_11__components_DomainList_vue___default.a, name: 'domainList' }, { path: '/domainInfo', component: __WEBPACK_IMPORTED_MODULE_12__components_DomainInfo_vue___default.a, name: 'domainInfo' }, { path: '/tableSpaceList', component: __WEBPACK_IMPORTED_MODULE_13__components_TableSpaceList_vue___default.a, name: 'tableSpaceList' }]
+    children: [{ path: '/tableList', component: __WEBPACK_IMPORTED_MODULE_8__components_TableList_vue___default.a, name: 'tableList' }, { path: '/tableInfo', component: __WEBPACK_IMPORTED_MODULE_7__components_TableInfo_vue___default.a, name: 'tableInfo' }, { path: '/dictionaryList', component: __WEBPACK_IMPORTED_MODULE_9__components_DictionaryList_vue___default.a, name: 'dictionaryList' }, { path: '/dictionaryInfo', component: __WEBPACK_IMPORTED_MODULE_10__components_DictionaryInfo_vue___default.a, name: 'dictionaryInfo' }, { path: '/domainList', component: __WEBPACK_IMPORTED_MODULE_11__components_DomainList_vue___default.a, name: 'domainList' }, { path: '/domainInfo', component: __WEBPACK_IMPORTED_MODULE_12__components_DomainInfo_vue___default.a, name: 'domainInfo' }, { path: '/tableSpaceList', component: __WEBPACK_IMPORTED_MODULE_13__components_TableSpaceList_vue___default.a, name: 'tableSpaceList' }, { path: '/tableSelect', component: __WEBPACK_IMPORTED_MODULE_14__components_analysis_TableSelect_vue___default.a, name: 'tableSelect' }]
 }];
 
 //genartor VueRouter object

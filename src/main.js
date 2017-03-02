@@ -12,6 +12,7 @@ import dictionaryInfo from './components/DictionaryInfo.vue';
 import domainList from './components/DomainList.vue';
 import domainInfo from './components/DomainInfo.vue';
 import tableSpaceList from './components/TableSpaceList.vue';
+import tableSelect from './components/analysis/TableSelect.vue';
 
 
 Vue.use(VueRouter);
@@ -29,7 +30,8 @@ const routes = [
             {path:'/dictionaryInfo', component:dictionaryInfo, name:'dictionaryInfo'},
             {path:'/domainList', component:domainList, name:'domainList'},
             {path:'/domainInfo', component:domainInfo, name:'domainInfo'},
-            {path:'/tableSpaceList', component:tableSpaceList, name:'tableSpaceList'}
+            {path:'/tableSpaceList', component:tableSpaceList, name:'tableSpaceList'},
+            {path:'/tableSelect', component:tableSelect, name:'tableSelect'},
         ]
     }
 ];

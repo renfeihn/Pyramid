@@ -2,7 +2,7 @@
  * 生成建表语句
  */
 const fs = require("fs");
-const logger = require("./../log/logHelper").helper;
+const logger = require("./../lib/logHelper").helper;
 const db = require('./../db');
 const ejs = require('ejs');
 

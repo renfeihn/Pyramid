@@ -1,7 +1,8 @@
 const express = require('express');
 var glob = require('glob');
 // const passport = require('passport');
-const logger = require('./log/logHelper').helper;
+const logger = require('./lib/logHelper').helper;
+const excel = require('./lib/excel');
 const common = require('./common');
 const router = express.Router();
 const db = require('./db');
@@ -24,13 +25,15 @@ router.get('/getAll/tables', function (req, res, next) {
     var obj;
     var start = process.uptime();
     const system = req.query.system.trim();
+    const class1 = req.query.class1.trim();
+    const class2 = req.query.class2.trim();
     const code = req.query.code.trim();
-    const comment = req.query.comment.trim();
     const tableSpace = req.query.tableSpace.trim();
 
-    logger.writeDebug('code: ' + code + '  comment: ' + comment + '   tableSpace: ' + tableSpace);
+    logger.writeDebug('system: ' + system + '  class1: ' + class1 + '   class2: ' + class2
+        + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
-    var result = db.getTableBySystem(system);
+    var result = db.readFile(common.table_name, system, class1, class2);
     var tableRes = new Array();
 
     if (util.isArray(result) && result.length > 0) {
@@ -41,22 +44,7 @@ router.get('/getAll/tables', function (req, res, next) {
                     tableRes.push(table);
                 }
             }
-            /*
-             if (util.isNotNull(comment)) {
-             if ((table.comment).indexOf(comment) > 0) {
-             tableRes.push(table);
-             }
-             }
 
-             if (util.isNotNull(tableSpace)) {
-             logger.writeDebug('table.table_space: ' + table.table_space);
-             logger.writeDebug('-------------' + (table.table_space).indexOf(tableSpace) > 0);
-             if ((table.table_space).indexOf(tableSpace) > 0) {
-             logger.writeDebug('包含 tableSpace: ' + tableSpace);
-             tableRes.push(table);
-             }
-             }
-             */
         });
     }
 
@@ -219,8 +207,8 @@ router.post('/saveTable', function (req, res, next) {
         errors = '表名 ' + data.code + ' 已存在';
         logger.writeErr(errors);
         res.status(200).send(errors).end();
-    }else{
-        db.writeTableSourceFile(data,JSON.stringify(data, null, 4));
+    } else {
+        db.writeTableSourceFile(data, JSON.stringify(data, null, 4));
         errors = '保存成功';
         logger.writeInfo(errors);
         res.status(200).send(errors).end();
@@ -449,7 +437,7 @@ router.post('/showSQL', function (req, res, next) {
  * 生成sql
  */
 router.post('/generatorSql', function (req, res, next) {
-    var msg ;
+    var msg;
 
     const db_type = req.body.db_type;
     const type = req.body.type;
@@ -489,6 +477,30 @@ router.post('/deleteFile', function (req, res, next) {
     return res.status(301).send(msg).end();
 });
 
+/**
+ * 删除源文件
+ */
+router.post('/deleteTableFile', function (req, res, next) {
+    var msg;
+    const table = req.body.table; // table对象
+
+    logger.writeDebug('del table data: ' + JSON.stringify(table));
+
+    try {
+
+        const filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.class1
+            + '/' + table.class2 + '/' + table.code + '.json';
+
+        db.delFile(filePath);
+        msg = '表 ' + table.code + ' 删除成功！';
+        return res.status(200).send(msg).end();
+    } catch (e) {
+        logger.writeErr('删除文件错误: ' + e);
+        msg = '删除文件错误，请重试';
+    }
+    return res.status(301).send(msg).end();
+});
+
 
 /**
  * 测试使用：
@@ -496,24 +508,47 @@ router.post('/deleteFile', function (req, res, next) {
  */
 router.get('/test', function (req, res, next) {
 
+
+    var conf = {};
+    conf.cols = [
+        {caption: 'string', type: 'string'},
+        {caption: 'date', type: 'string'},
+        {caption: 'bool', type: 'bool'},
+        {caption: 'number', type: 'number'}
+    ];
+    conf.rows = [
+        ['pi', '2015-06-29', true, 3.14],
+        ["e", '2015-06-29', false, 2.7182]
+    ];
+    var filename = "导出excel.xlsx";
+    res.setHeader('Content-Disposition', 'attachment; filename=' + encodeURIComponent(filename));
+    excel.createExcel({
+        data: conf,
+        savePath: "uploadFile/excel/",
+        cb: function (path) {
+            excel.download(path, req, res, true);
+        }
+    });
+
+
     // var pattern = 'data/source/tables/**/**/**/*.json';
     // glob(pattern, {nodir: true}, function (err, files) {
     //     if (err)
-    //         console.log(err);
+    //         console.lib(err);
     //     else
-    //         console.log(files);
+    //         console.lib(files);
     //     res.status(200).send(files).end();
     // });
 
-    res.status(200).send(common.table_name).end();
+    // res.status(200).send(common.table_name).end();
 
     // const objs = db.readFile('tables','Ensemble','upright','init');
     // res.status(200).send(objs).end();
 
     // 调用系统命令
     // exec('java -version', function (error, stdout, stderr) {
-    //     console.log('标准输出： ' + stdout);
-    //     console.log('错误输出： ' + stderr);
+    //     console.lib('标准输出： ' + stdout);
+    //     console.lib('错误输出： ' + stderr);
     // });
 
 

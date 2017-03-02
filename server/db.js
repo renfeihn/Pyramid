@@ -5,7 +5,7 @@ const fs = require("fs");
 const path = require("path");
 const glob = require("glob");
 const iconv = require('iconv-lite');
-const logger = require("./log/logHelper").helper;
+const logger = require("./lib/logHelper").helper;
 const common = require('./common');
 const util = require('./util/util');
 // const validator = require('validator');
@@ -42,7 +42,7 @@ const readFile = function (type, system, class1, class2) {
  * @param class2
  * @returns {*}
  */
-const getPatternFiles = function (type, system, class1, class2) {
+const getPatternFiles = function (type, system, class1, class2, code) {
     var pattern = sourcePath + type;
     if (util.isNotNull(system)) {
         pattern = pattern + '/' + system;
@@ -61,8 +61,11 @@ const getPatternFiles = function (type, system, class1, class2) {
     } else {
         pattern = pattern + '/**';
     }
-
-    pattern = pattern + '/**/*.json';
+    if (util.isNotNull(code)) {
+        pattern = pattern + '/' + code + '.json';
+    } else {
+        pattern = pattern + '/*.json';
+    }
     logger.writeInfo('db 读取的 pattern:  ' + pattern);
     return glob.sync(pattern, {nodir: true});
 };
@@ -97,10 +100,15 @@ const delSourceFile = function (type, name) {
     var outPath = sourcePath + type;
     outPath = path.join(__dirname, '../', outPath, '/');
     const outFile = outPath + name + '.json'
+    delFile(outFile);
 
-    if (fs.existsSync(outFile)) {
-        logger.writeDebug('删除文件： ' + outFile);
-        fs.unlinkSync(outFile);
+};
+
+const delFile = function (filePath) {
+    logger.writeDebug('del file path: ' + filePath);
+    if (fs.existsSync(filePath)) {
+        logger.writeDebug('删除文件： ' + filePath);
+        fs.unlinkSync(filePath);
     }
 };
 
@@ -113,7 +121,7 @@ const delSourceFile = function (type, name) {
 const writeSourceFile = function (type, name, data) {
     // 目标路径  eg: data/source/tables/user.json
     const outPath = sourcePath + type;
-    checkAndCreateDir(outPath);
+    util.checkAndCreateDir(outPath);
     const outFile = outPath + '/' + name + '.json';
     logger.writeDebug('要写入的数据： ' + data);
     // 把中文转换成字节数组
@@ -192,23 +200,6 @@ function writeFile(filePath, suffix, data) {
         }
     });
 }
-
-
-/**
- * 检查文件夹路径是否存在，不存在则创建
- * @param dir
- */
-function checkAndCreateDir(dir) {
-    if (fs.existsSync(dir)) {
-        return true;
-    } else {
-        if (checkAndCreateDir(path.dirname(dir))) {
-            fs.mkdirSync(dir);
-            return true;
-        }
-    }
-}
-
 
 /**
  * 获取根据code获取表对象
@@ -363,6 +354,7 @@ const Models = {
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
     writeTableSourceFile: writeTableSourceFile,
+    delFile: delFile,
     delSourceFile: delSourceFile,
     getTableBySystem: getTableBySystem,
     getTable: getTable,

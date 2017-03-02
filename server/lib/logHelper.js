@@ -6,7 +6,7 @@ var fs = require("fs");
 var path = require("path");
 
 // 加载配置文件
-var objConfig = JSON.parse(fs.readFileSync("server/log/log4js.json", "utf8"));
+var objConfig = JSON.parse(fs.readFileSync("server/lib/log4js.json", "utf8"));
 
 // 检查配置文件所需的目录是否存在，不存在时创建
 if (objConfig.appenders) {

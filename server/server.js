@@ -9,9 +9,9 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const api = require('./api');
-const logger = require("./log/logHelper").helper;
+const logger = require("./lib/logHelper").helper;
 
-const log = require('./log/logHelper');
+const log = require('./lib/logHelper');
 const app = express();
 const resolve = file => path.resolve(__dirname, file);
 // 将日志系统加入到应用中
