@@ -30,16 +30,16 @@ app.use(api);   //最好放在下边
 
 /**
  * 设置静态资源目录为dist
- * 排除api接口的路由，向浏览器发送根文件
+ * 排除api接口的路由，向浏览器发送根文件 **需要是放开此路由**
  */
 app.use('/dist', express.static(resolve('../dist')));
 app.get('*', function (req, res, next) {
-    if (req.originalUrl.indexOf('/article') != 0 || req.originalUrl.indexOf('/category') != 0 || req.originalUrl.indexOf('/favorite') != 0) {
+    // if (req.originalUrl.indexOf('/tableList') != 0) {
         const html = fs.readFileSync(resolve('../index.html'), 'utf-8');
         res.send(html);
-    } else {
-        next();
-    }
+    // } else {
+    //     next();
+    // }
 });
 
 app.listen(app.get('port'), function () {
