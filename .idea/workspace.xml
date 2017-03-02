@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="354bee70-e518-401f-ba26-902a6eee364d" name="Default" comment="增加 REAME.md 注意事项">
+    <list default="true" id="354bee70-e518-401f-ba26-902a6eee364d" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/PowerDesigner.iml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
@@ -14,6 +14,7 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/target/table/person.sql" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/target/table/rewfrwe.sql" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/target/table/user.sql" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,21 +35,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TableList.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TableList.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="249">
               <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -563,7 +554,7 @@
       <workItem from="1488207384299" duration="251000" />
       <workItem from="1488207781516" duration="5610000" />
       <workItem from="1488291130521" duration="10733000" />
-      <workItem from="1488462505387" duration="1694000" />
+      <workItem from="1488462505387" duration="2054000" />
     </task>
     <task id="LOCAL-00001" summary="修改项目启动说明">
       <created>1483979911191</created>
@@ -747,11 +738,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488464137942</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="删除不需要提交的文件">
+      <created>1488464657207</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1488464657207</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="214304000" />
+    <option name="totallyTimeSpent" value="214664000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -853,7 +851,8 @@
     <MESSAGE value="优化日志路径自动创建" />
     <MESSAGE value="优化代码" />
     <MESSAGE value="增加git提交时，忽略文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加git提交时，忽略文件" />
+    <MESSAGE value="删除不需要提交的文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="删除不需要提交的文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1172,18 +1171,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+        <state relative-caret-position="84">
+          <caret line="4" column="12" lean-forward="false" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/components/TableList.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        <state relative-caret-position="249">
+          <caret line="33" column="32" lean-forward="true" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
           <folding />
         </state>
       </provider>

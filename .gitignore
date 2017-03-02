@@ -1,7 +1,5 @@
-.DS_Store
-node_modules/
-npm-debug.log
-.idea/
-data/target/
 logs/
 src/assets/
+/.idea
+/node_modules
+/data/target/table
