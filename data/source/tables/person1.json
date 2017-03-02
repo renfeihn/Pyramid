@@ -40,5 +40,5 @@
         }
     ],
     "table_space": "test01",
-    "module": "Accounting"
+    "system": "Accounting"
 }

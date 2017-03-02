@@ -44144,7 +44144,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* harmony default export */ exports["default"] = {
     data: function data() {
         return {
-            module: '', // 模块ID
+            system: '', // 系统ID
             code: '',
             comment: '',
             tableSpace: '',
@@ -44169,7 +44169,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
             });
         },
         getAllTables: function getAllTables() {
-            var API = '/getAll/tables?module=' + this.module + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
+            var API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
             this.$http.get(API).then(function (res) {
                 if (res.status == 200) {
                     var re = res.body;
@@ -44264,15 +44264,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
     },
     components: {},
     created: function created() {
-        var mo = this.$route.query.module;
+        var mo = this.$route.query.system;
         console.log('mo: ' + mo);
 
         if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
-            this.module = mo;
+            this.system = mo;
         } else {
-            this.module = '';
+            this.system = '';
         }
-        console.log('module: ' + this.module);
+        console.log('system: ' + this.system);
 
         this.getTableSpaces();
         this.getAllTables();
@@ -52237,7 +52237,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
     attrs: {
-      "href": '/tableInfo?module=' + _vm.module
+      "href": '/tableInfo?system=' + _vm.system
     }
   }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
     staticClass: "btn btn-info",
@@ -52257,7 +52257,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "to": {
           path: '/tableInfo',
           query: {
-            module: _vm.module,
+            system: _vm.system,
             tableCode: table.code
           }
         }
@@ -52511,7 +52511,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "el-icon-message"
   }), _vm._v("数据结构")]), _vm._v(" "), _c('a', {
     attrs: {
-      "href": "/tableList?module=Ensemble"
+      "href": "/tableList?system=Ensemble"
     }
   }, [_c('el-menu-item', {
     attrs: {
@@ -52519,7 +52519,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("核心表")])], 1), _vm._v(" "), _c('a', {
     attrs: {
-      "href": "/tableList?module=Limarket"
+      "href": "/tableList?system=Limarket"
     }
   }, [_c('el-menu-item', {
     attrs: {
@@ -52527,7 +52527,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("计价表")])], 1), _vm._v(" "), _c('a', {
     attrs: {
-      "href": "/tableList?module=Accounting"
+      "href": "/tableList?system=Accounting"
     }
   }, [_c('el-menu-item', {
     attrs: {

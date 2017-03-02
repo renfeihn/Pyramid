@@ -22,7 +22,7 @@
             </div>
             <a class="btn btn-info" @click="getAllTables();">筛选</a>
 
-            <a class="btn btn-info" :href="'/tableInfo?module=' + module">新增表</a>
+            <a class="btn btn-info" :href="'/tableInfo?system=' + system">新增表</a>
             <a class="btn btn-info" @click="generatorSql();">生成SQL</a>
         </form>
 
@@ -42,7 +42,7 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <router-link :to="{path:'/tableInfo', query:{module:module,tableCode:table.code}}"
+                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code}}"
                                      class="btn btn-sm btn-success">查看
                         </router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table.code);">删除</a>
@@ -61,7 +61,7 @@
     export default{
         data(){
             return {
-                module: '',  // 模块ID
+                system: '',  // 系统ID
                 code: '',
                 comment: '',
                 tableSpace: '',
@@ -85,7 +85,7 @@
                 });
             },
             getAllTables(){
-                let API = '/getAll/tables?module=' + this.module + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
+                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&comment=' + this.comment + '&tableSpace=' + this.tableSpace;
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
@@ -179,15 +179,15 @@
         },
         components: {},
         created(){
-            var mo = this.$route.query.module;
+            var mo = this.$route.query.system;
             console.log('mo: ' + mo);
 
             if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
-                this.module = mo;
+                this.system = mo;
             } else {
-                this.module = '';
+                this.system = '';
             }
-            console.log('module: ' + this.module);
+            console.log('system: ' + this.system);
 
             this.getTableSpaces();
             this.getAllTables();

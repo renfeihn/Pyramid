@@ -239,16 +239,16 @@ const getDomain = function (code) {
 
 /**
  * 根据模块ID查询table
- * @param module
+ * @param system
  */
-const getTableByModule = function (module) {
+const getTableBySystem = function (system) {
     var tableRes = new Array();
     const allTables = this.readFile(table_name);
     if (util.isArray(allTables) && allTables.length > 0) {
         allTables.forEach(function (table, index, tables) {
             logger.writeDebug('table:  ' + JSON.stringify(table));
-            if (util.isNotNull(module)) {
-                if (table.module == module) {
+            if (util.isNotNull(system)) {
+                if (table.system == system) {
                     tableRes.push(table);
                 }
             }
@@ -291,7 +291,7 @@ const Models = {
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
     delSourceFile: delSourceFile,
-    getTableByModule: getTableByModule,
+    getTableBySystem: getTableBySystem,
     getTable: getTable,
     getDomain: getDomain,
     getDictionary: getDictionary,

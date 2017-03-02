@@ -5,13 +5,13 @@
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>数据结构</template>
 
-                <a href="/tableList?module=Ensemble">
+                <a href="/tableList?system=Ensemble">
                     <el-menu-item index="1-1">核心表</el-menu-item>
                 </a>
-                <a href="/tableList?module=Limarket">
+                <a href="/tableList?system=Limarket">
                     <el-menu-item index="1-2">计价表</el-menu-item>
                 </a>
-                <a href="/tableList?module=Accounting">
+                <a href="/tableList?system=Accounting">
                     <el-menu-item index="1-3">核算表</el-menu-item>
                 </a>
             </el-submenu>
