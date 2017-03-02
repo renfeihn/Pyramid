@@ -9,8 +9,8 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const api = require('./api');
+const common = require('./common');
 const logger = require("./lib/logHelper").helper;
-
 const log = require('./lib/logHelper');
 const app = express();
 const resolve = file => path.resolve(__dirname, file);
@@ -21,7 +21,7 @@ log.use(app);
  * 监听8080端口
  * 用JSON格式处理bodyParser请求
  */
-app.set('port', (process.env.port || 8080));
+app.set('port', (process.env.port || common.SERVER_PORT));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 //app.set('view engine', 'ejs');

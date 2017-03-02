@@ -2,6 +2,9 @@
  * 常量配置
  */
 const Models = {
+    // 系统端口 预计上线端口 19919/15816
+    SERVER_PORT: 8080,
+
     // 表
     table_name: "tables",
     // 数据字典
@@ -20,7 +23,7 @@ const Models = {
     TABLE_TYPE: "table",
 
     // 创建文件夹的权限 默认权限0777
-    AUTH_NUM : '0777'
+    AUTH_NUM: '0777'
 
 };
 
