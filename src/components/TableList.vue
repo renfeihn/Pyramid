@@ -30,6 +30,8 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
+                    <th>垂直/水平</th>
+                    <th>分类2</th>
                     <th>表名</th>
                     <th>描述</th>
                     <th>表空间</th>
@@ -38,6 +40,8 @@
                 </thead>
                 <tbody>
                 <tr v-for="(table,index) in tables">
+                    <td>{{table.class1}}</td>
+                    <td>{{table.class2}}</td>
                     <td>{{table.code}}</td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>

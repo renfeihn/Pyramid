@@ -1,37 +1,37 @@
 
-#Container[data-v-333f9397] {
+#Container[data-v-b01eb828] {
     width: 100%;
     margin: 0 auto;
 }
-#Header[data-v-333f9397] {
+#Header[data-v-b01eb828] {
     height: 60px;
     background: #20a0ff;
 }
-#logo[data-v-333f9397] {
+#logo[data-v-b01eb828] {
     float: right;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 50px;
 }
-#Content[data-v-333f9397] {
+#Content[data-v-b01eb828] {
     height: auto;
     margin-top: 3px;
 }
-#Content-Left[data-v-333f9397] {
+#Content-Left[data-v-b01eb828] {
     min-height: 400px;
     width: 13%;
     float: left;
 }
-#Content-Main[data-v-333f9397] {
+#Content-Main[data-v-b01eb828] {
     min-height: 400px;
     width: 85%;
     padding-left: 10px;
     float: left;
 }
-#Footer[data-v-333f9397] {
+#Footer[data-v-b01eb828] {
     height: 40px;
     margin-top: 6px;
 }
-.Clear[data-v-333f9397] {
+.Clear[data-v-b01eb828] {
     clear: both;
 }

@@ -399,7 +399,9 @@
                 option: '0',
                 // 所属系统
                 systems:[{"code":"Ensemble"},{"code":"Limarket"},{"code":"Accounting"}],
+                // 所属分类1
                 class1:[{"code":"upright"},{"code":"level"}],
+                // 所属分类2
                 class2:[{"code":"init"},{"code":"busi"}]
             }
         },
