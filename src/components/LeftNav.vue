@@ -6,13 +6,13 @@
                 <template slot="title"><i class="el-icon-message"></i>数据结构</template>
 
                 <a href="/tableList?system=Ensemble">
-                    <el-menu-item index="1-1">核心表</el-menu-item>
+                    <el-menu-item index="1-1">核心系统</el-menu-item>
                 </a>
                 <a href="/tableList?system=Limarket">
-                    <el-menu-item index="1-2">计价表</el-menu-item>
+                    <el-menu-item index="1-2">计价系统</el-menu-item>
                 </a>
                 <a href="/tableList?system=Accounting">
-                    <el-menu-item index="1-3">核算表</el-menu-item>
+                    <el-menu-item index="1-3">核算系统</el-menu-item>
                 </a>
             </el-submenu>
             <el-menu-item index="2"><a href="/dictionaryList"><i class="el-icon-menu"></i>数据字典</a></el-menu-item>

@@ -43493,6 +43493,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
@@ -43506,12 +43541,18 @@ function isEmptyObject(obj) {
 /**
  * 检查表对象属性
  */
-function checkTableVal(tmp, module) {
+function checkTableVal(tmp, system) {
     var newTmp;
     if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
 
-        if (null == tmp.module || undefined == tmp.module) {
-            tmp.module = '';
+        if (null == tmp.system || undefined == tmp.system) {
+            tmp.system = '';
+        }
+        if (null == tmp.class1 || undefined == tmp.class1) {
+            tmp.class1 = '';
+        }
+        if (null == tmp.class2 || undefined == tmp.class2) {
+            tmp.class2 = '';
         }
         if (null == tmp.table_space || undefined == tmp.table_space) {
             tmp.table_space = '';
@@ -43531,7 +43572,9 @@ function checkTableVal(tmp, module) {
         newTmp = tmp;
     } else {
         newTmp = {
-            "module": "",
+            "system": system,
+            "class1": "",
+            "class2": "",
             "table_space": "",
             "code": "",
             "comment": "",
@@ -43602,8 +43645,9 @@ function checkColumnVal(tmp) {
         return {
             // 默认激活的页签
             activeName: 'first',
-            // 模块ID
-            module: '',
+            // 系统ID
+            system: '',
+            // 表对象
             table: {},
             // table 中 attr 的属性
             tableAttr: [],
@@ -43632,7 +43676,11 @@ function checkColumnVal(tmp) {
             // 查询的单个数据字典对象
             dictionary: {},
             // option 判断列是新增还是修改 默认0 新增1 修改2
-            option: '0'
+            option: '0',
+            // 所属系统
+            systems: [{ "code": "Ensemble" }, { "code": "Limarket" }, { "code": "Accounting" }],
+            class1: [{ "code": "upright" }, { "code": "level" }],
+            class2: [{ "code": "init" }, { "code": "busi" }]
         };
     },
 
@@ -44006,7 +44054,7 @@ function checkColumnVal(tmp) {
             // 添加索引
             this.table.indexs = this.tableIndexs;
             // 添加模块ID
-            this.table.module = this.module;
+            this.table.system = this.system;
             this.$http.post('/saveTable', {
                 data: this.table,
                 oldCode: this.tableCode
@@ -44014,7 +44062,7 @@ function checkColumnVal(tmp) {
                 if (res.status == 200) {
                     console.log('添加表成功');
                     this.$message.success('添加表成功');
-                    this.$router.push('/tableList?module=' + this.module);
+                    this.$router.push('/tableList?system=' + this.system);
                 } else {
                     console.log('添加表失败');
                     this.$message.error('添加表失败');
@@ -44053,13 +44101,14 @@ function checkColumnVal(tmp) {
     components: {},
     created: function created() {
         // 模块ID
-        var mo = this.$route.query.module;
+        var mo = this.$route.query.system;
         if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
-            this.module = mo;
+            this.system = mo;
         } else {
-            this.module = '';
+            this.system = '';
         }
-        console.log('module: ' + this.module);
+
+        console.log('system: ' + this.system);
         this.getAllDomains();
         this.getTableSpaces();
 
@@ -44070,7 +44119,7 @@ function checkColumnVal(tmp) {
             this.tableCode = tcode;
             this.getTable(this.tableCode);
         } else {
-            this.table = checkTableVal();
+            this.table = checkTableVal('', this.system);
         }
     }
 };
@@ -51194,6 +51243,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
+      "placeholder": "示例：A:正常,C:销户",
       "rows": "4"
     },
     domProps: {
@@ -51336,7 +51386,95 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.showSQL();
       }
     }
-  }, [_vm._v("sql 预览")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-tabs', {
+  }, [_vm._v("sql 预览")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "control-label"
+  }, [_vm._v("所属系统")]), _vm._v(" "), _c('el-select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.table.system),
+      expression: "table.system"
+    }],
+    attrs: {
+      "size": "small",
+      "placeholder": "请选择"
+    },
+    domProps: {
+      "value": (_vm.table.system)
+    },
+    on: {
+      "input": function($event) {
+        _vm.table.system = $event
+      }
+    }
+  }, _vm._l((_vm.systems), function(item) {
+    return _c('el-option', {
+      attrs: {
+        "label": item.code,
+        "value": item.code
+      }
+    })
+  }))], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("分类一")]), _vm._v(" "), _c('el-select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.table.class1),
+      expression: "table.class1"
+    }],
+    attrs: {
+      "size": "small",
+      "placeholder": "请选择"
+    },
+    domProps: {
+      "value": (_vm.table.class1)
+    },
+    on: {
+      "input": function($event) {
+        _vm.table.class1 = $event
+      }
+    }
+  }, _vm._l((_vm.class1), function(item) {
+    return _c('el-option', {
+      attrs: {
+        "label": item.code,
+        "value": item.code
+      }
+    })
+  }))], 1), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("分类二")]), _vm._v(" "), _c('el-select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.table.class2),
+      expression: "table.class2"
+    }],
+    attrs: {
+      "size": "small",
+      "placeholder": "请选择"
+    },
+    domProps: {
+      "value": (_vm.table.class2)
+    },
+    on: {
+      "input": function($event) {
+        _vm.table.class2 = $event
+      }
+    }
+  }, _vm._l((_vm.class2), function(item) {
+    return _c('el-option', {
+      attrs: {
+        "label": item.code,
+        "value": item.code
+      }
+    })
+  }))], 1)]), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-tabs', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -52102,6 +52240,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
+      "placeholder": "示例：A:正常,C:销户",
       "rows": "4"
     },
     domProps: {
@@ -52517,7 +52656,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "index": "1-1"
     }
-  }, [_vm._v("核心表")])], 1), _vm._v(" "), _c('a', {
+  }, [_vm._v("核心系统")])], 1), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/tableList?system=Limarket"
     }
@@ -52525,7 +52664,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "index": "1-2"
     }
-  }, [_vm._v("计价表")])], 1), _vm._v(" "), _c('a', {
+  }, [_vm._v("计价系统")])], 1), _vm._v(" "), _c('a', {
     attrs: {
       "href": "/tableList?system=Accounting"
     }
@@ -52533,7 +52672,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "index": "1-3"
     }
-  }, [_vm._v("核算表")])], 1)], 2), _vm._v(" "), _c('el-menu-item', {
+  }, [_vm._v("核算系统")])], 1)], 2), _vm._v(" "), _c('el-menu-item', {
     attrs: {
       "index": "2"
     }

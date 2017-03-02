@@ -68,7 +68,7 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">取值范围</label>
                     <div class="col-sm-10">
-                        <textarea v-model="tableColumns.scope" class="form-control" rows="4"></textarea>
+                        <textarea v-model="tableColumns.scope" placeholder="示例：A:正常,C:销户" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
 
@@ -108,6 +108,41 @@
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
         </form>
+        <br/>
+        <form class="form-inline form-filter">
+            <div class="form-group">
+                <label class="control-label">所属系统</label>
+                <el-select v-model="table.system" size="small" placeholder="请选择">
+                    <el-option
+                            v-for="item in systems"
+                            :label="item.code"
+                            :value="item.code">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="form-group">
+                <label>分类一</label>
+                <el-select v-model="table.class1" size="small" placeholder="请选择">
+                    <el-option
+                            v-for="item in class1"
+                            :label="item.code"
+                            :value="item.code">
+                    </el-option>
+                </el-select>
+            </div>
+            <div class="form-group">
+                <label>分类二</label>
+                <el-select v-model="table.class2" size="small" placeholder="请选择">
+                    <el-option
+                            v-for="item in class2"
+                            :label="item.code"
+                            :value="item.code">
+                    </el-option>
+                </el-select>
+            </div>
+        </form>
+
+
         <br>
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
             <el-tab-pane label="列管理" name="first">
@@ -225,12 +260,18 @@
     /**
      * 检查表对象属性
      */
-    function checkTableVal(tmp, module) {
+    function checkTableVal(tmp, system) {
         var newTmp;
         if (undefined != tmp && null != tmp && !isEmptyObject(tmp)) {
 
-            if (null == tmp.module || undefined == tmp.module) {
-                tmp.module = '';
+            if (null == tmp.system || undefined == tmp.system) {
+                tmp.system = '';
+            }
+            if (null == tmp.class1 || undefined == tmp.class1) {
+                tmp.class1 = '';
+            }
+            if (null == tmp.class2 || undefined == tmp.class2) {
+                tmp.class2 = '';
             }
             if (null == tmp.table_space || undefined == tmp.table_space) {
                 tmp.table_space = '';
@@ -250,7 +291,9 @@
             newTmp = tmp;
         } else {
             newTmp = {
-                "module": "",
+                "system": system,
+                "class1": "",
+                "class2": "",
                 "table_space": "",
                 "code": "",
                 "comment": "",
@@ -322,8 +365,9 @@
             return {
                 // 默认激活的页签
                 activeName: 'first',
-                // 模块ID
-                module: '',
+                // 系统ID
+                system: '',
+                // 表对象
                 table: {},
                 // table 中 attr 的属性
                 tableAttr: [],
@@ -352,7 +396,11 @@
                 // 查询的单个数据字典对象
                 dictionary: {},
                 // option 判断列是新增还是修改 默认0 新增1 修改2
-                option: '0'
+                option: '0',
+                // 所属系统
+                systems:[{"code":"Ensemble"},{"code":"Limarket"},{"code":"Accounting"}],
+                class1:[{"code":"upright"},{"code":"level"}],
+                class2:[{"code":"init"},{"code":"busi"}]
             }
         },
         methods: {
@@ -718,7 +766,7 @@
                 // 添加索引
                 this.table.indexs = this.tableIndexs;
                 // 添加模块ID
-                this.table.module = this.module;
+                this.table.system = this.system;
                 this.$http.post('/saveTable', {
                     data: this.table,
                     oldCode: this.tableCode
@@ -726,7 +774,7 @@
                     if (res.status == 200) {
                         console.log('添加表成功');
                         this.$message.success('添加表成功');
-                        this.$router.push('/tableList?module=' + this.module);
+                        this.$router.push('/tableList?system=' + this.system);
                     } else {
                         console.log('添加表失败');
                         this.$message.error('添加表失败');
@@ -767,13 +815,14 @@
         components: {},
         created(){
             // 模块ID
-            var mo = this.$route.query.module;
+            var mo = this.$route.query.system;
             if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
-                this.module = mo;
+                this.system = mo;
             } else {
-                this.module = '';
+                this.system = '';
             }
-            console.log('module: ' + this.module);
+
+            console.log('system: ' + this.system);
             this.getAllDomains();
             this.getTableSpaces();
 
@@ -784,7 +833,7 @@
                 this.tableCode = tcode;
                 this.getTable(this.tableCode);
             } else {
-                this.table = checkTableVal();
+                this.table = checkTableVal('',this.system);
             }
 
         }

@@ -53,7 +53,7 @@
                 </div>
                 <label class="col-sm-2 control-label">取值范围</label>
                 <div class="col-sm-4">
-                    <textarea v-model="dictionary.scope" class="form-control" rows="4"></textarea>
+                    <textarea v-model="dictionary.scope" placeholder="示例：A:正常,C:销户" class="form-control" rows="4"></textarea>
                 </div>
             </div>
 

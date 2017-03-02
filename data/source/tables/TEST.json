@@ -1,0 +1,28 @@
+{
+    "system": "Ensemble",
+    "table_space": "test02",
+    "code": "TEST",
+    "comment": "TEST",
+    "attr": [
+        {
+            "code": "seq_no",
+            "dataType": "Number",
+            "lengths": "24",
+            "precision": "",
+            "M": false,
+            "P": false,
+            "comment": "",
+            "defaults": "1",
+            "scope": "",
+            "dictionary": "seq_no"
+        }
+    ],
+    "indexs": [
+        {
+            "code": "Index_1",
+            "U": false,
+            "columns": [],
+            "table_space": ""
+        }
+    ]
+}
