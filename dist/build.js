@@ -43730,14 +43730,18 @@ function checkColumnVal(tmp) {
         },
 
         // 检查表名是否存在，如果新表名和老表名一致则不校验
+        // 作废，无用，统一在提交时校验是表名是否用重复 20170302
         checkTableCode: function checkTableCode(code) {
-            this.$http.get('/checkTableCode/' + code + '?oldCode=' + this.tableCode).then(function (res) {
-                if (res.status == 200) {}
-            }, function (res) {
-                console.log('未通过服务端校验' + res.status + '  ' + res.body);
-                this.table.name = '';
-                this.$message.error(res.body);
-            });
+            //                this.$http.get('/checkTableCode/' + code + '?oldCode=' + this.tableCode).then(function (res) {
+            //                    if (res.status == 200) {
+            //
+            //                    }
+            //                }, function (res) {
+            //                    console.log('未通过服务端校验' + res.status + '  ' + res.body);
+            //                    this.table.name = '';
+            //                    this.$message.error(res.body);
+            //                });
+
         },
 
         // 检查新增的列code是否已经存在

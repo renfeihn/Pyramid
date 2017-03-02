@@ -3,39 +3,79 @@
  */
 const fs = require("fs");
 const path = require("path");
+const glob = require("glob");
 const iconv = require('iconv-lite');
 const logger = require("./log/logHelper").helper;
+const common = require('./common');
 const util = require('./util/util');
 // const validator = require('validator');
 // 表
-const table_name = "tables";
+const table_name = common.table_name;
 // 数据字典
-const dictionary_name = "dictionarys";
+const dictionary_name = common.dictionary_name;
 // 域
-const domain_name = "domains";
+const domain_name = common.domain_name;
 // 表空间
-const table_space_name = "table_spaces";
+const table_space_name = common.table_spaces;
 
 // JSON源数据路径
-var sourcePath = 'data/source/';
+var sourcePath = common.sourcePath;
 // 生成SQL路径
-var targerPath = 'data/target/';
+var targerPath = common.targerPath;
 
 
 /**
  * 读取目录下的所有文件
- * @param name 源文件目录
- * @returns [Array] 返回数组
+ * @param type 源文件目录
+ * @returns [Array] 返回数据对象数组
  */
-const readFile = function (name) {
-    const path = sourcePath + name;
-    logger.writeInfo('db 读取的 path:  ' + path);
-    const objs = new Array();
-    const files = fs.readdirSync(path);
-    if (files.length > 0) {
-        files.forEach(function (file) {
-            const filePath = path + '/' + file;
+const readFile = function (type, system, class1, class2) {
+    const files = getPatternFiles(type, system, class1, class2);
+    return readFiles(files);
+};
 
+/**
+ * 根据规则获取文件全路径列表
+ * @param type
+ * @param system
+ * @param class1
+ * @param class2
+ * @returns {*}
+ */
+const getPatternFiles = function (type, system, class1, class2) {
+    var pattern = sourcePath + type;
+    if (util.isNotNull(system)) {
+        pattern = pattern + '/' + system;
+    } else {
+        pattern = pattern + '/**';
+    }
+
+    if (util.isNotNull(class1)) {
+        pattern = pattern + '/' + class1;
+    } else {
+        pattern = pattern + '/**';
+    }
+
+    if (util.isNotNull(class2)) {
+        pattern = pattern + '/' + class2;
+    } else {
+        pattern = pattern + '/**';
+    }
+
+    pattern = pattern + '/**/*.json';
+    logger.writeInfo('db 读取的 pattern:  ' + pattern);
+    return glob.sync(pattern, {nodir: true});
+};
+
+
+/**
+ * 异步获取文件根据文件路径数组获取文件数组
+ * @param files
+ */
+const readFiles = function (files) {
+    const objs = new Array();
+    if (util.isArray(files) && files.length > 0) {
+        files.forEach(function (filePath) {
             const statFile = fs.statSync(filePath);
             if (!statFile.isDirectory()) {
                 logger.writeInfo('db 读取的文件名:  ' + filePath);
@@ -44,7 +84,6 @@ const readFile = function (name) {
                 var buf = new Buffer(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 const json = JSON.parse(data);
-                // const json = JSON.parse(fs.readFileSync(filePath));
                 objs.push(json);
             }
         });
@@ -68,7 +107,7 @@ const delSourceFile = function (type, name) {
 /**
  * 保存源数据文件 json 文件
  * @param type 类型:table\domains\table_spaces
- * @param name 文件名：
+ * @param name 文件名：用原对象的code
  * @param data ? 计划传拼接json数据 是否先用模板格式化?
  */
 const writeSourceFile = function (type, name, data) {
@@ -85,6 +124,29 @@ const writeSourceFile = function (type, name, data) {
             logger.writeErr('写入 ' + type + '  ' + name + '.json 文件错误:  ' + err);
         } else {
             logger.writeInfo('写入 ' + type + '  ' + name + '.json 文件成功');
+        }
+    });
+};
+
+/**
+ * 保存表，表特殊，根据属性创建目录
+ * @param data
+ */
+const writeTableSourceFile = function (table, data) {
+    // 目标路径  eg: data/source/tables/Ensemble/upright/init/user.json
+    const outPath = sourcePath + table_name + '/' + table.system + '/' + table.class1 + '/' + table.class2;
+    logger.writeDebug('save table path: ' + outPath);
+    checkAndCreateDir(outPath);
+    const outFile = outPath + '/' + table.code + '.json';
+    logger.writeDebug('要写入的数据： ' + data);
+    // 把中文转换成字节数组
+    const arr = iconv.encode(data, 'gbk');
+    // 如果用writeFile，那么会删除旧文件，直接写新文件
+    fs.writeFile(outFile, arr, function (err) {
+        if (err) {
+            logger.writeErr('写入 table  ' + table.code + '.json 文件错误:  ' + err);
+        } else {
+            logger.writeInfo('写入 table  ' + table.code + '.json 文件成功');
         }
     });
 };
@@ -137,8 +199,13 @@ function writeFile(filePath, suffix, data) {
  * @param dir
  */
 function checkAndCreateDir(dir) {
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir);
+    if (fs.existsSync(dir)) {
+        return true;
+    } else {
+        if (checkAndCreateDir(path.dirname(dir))) {
+            fs.mkdirSync(dir);
+            return true;
+        }
     }
 }
 
@@ -147,26 +214,30 @@ function checkAndCreateDir(dir) {
  * 获取根据code获取表对象
  */
 const getTable = function (code) {
-    const filePath = sourcePath + 'tables/' + code + '.json';
-
+    const pattern = sourcePath + table_name + '/**/' + code + '.json';
     var table = {};
     try {
-        const statFile = fs.statSync(filePath);
+        const files = glob.sync(pattern, {nodir: true});
+        if (util.isArray(files) && files.length > 0) {
+            const filePath = files[0];
+            const statFile = fs.statSync(filePath);
+            logger.writeInfo(statFile.isFile());
+            if (statFile.isFile()) {
+                logger.writeInfo(filePath + ' 文件存在');
 
-        logger.writeInfo(statFile.isFile())
+                var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+                var buf = new Buffer(fileStr, 'binary');
+                var data = iconv.decode(buf, 'GBK');
+                table = JSON.parse(data);
 
-        if (statFile.isFile()) {
-            logger.writeInfo(filePath + ' 文件存在');
-
-            var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-            var buf = new Buffer(fileStr, 'binary');
-            var data = iconv.decode(buf, 'GBK');
-            table = JSON.parse(data);
-
-            // table = JSON.parse(fs.readFileSync(filePath));
+                // table = JSON.parse(fs.readFileSync(filePath));
+            } else {
+                logger.writeErr(filePath + ' 文件不存在');
+            }
         } else {
             logger.writeErr(filePath + ' 文件不存在');
         }
+
     } catch (e) {
         logger.writeErr(filePath + ' 文件不存在');
     }
@@ -287,9 +358,11 @@ const getDefaultTableSpace = function () {
 };
 
 const Models = {
+    getPatternFiles: getPatternFiles,
     readFile: readFile,
     writeSQLFile: writeSQLFile,
     writeSourceFile: writeSourceFile,
+    writeTableSourceFile: writeTableSourceFile,
     delSourceFile: delSourceFile,
     getTableBySystem: getTableBySystem,
     getTable: getTable,
