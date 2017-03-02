@@ -1,6 +1,8 @@
 var helper = {};
 exports.helper = helper;
 
+var common = require('./../common');
+var util = require('./../util/util');
 var log4js = require('log4js');
 var fs = require("fs");
 var path = require("path");
@@ -14,8 +16,21 @@ if (objConfig.appenders) {
     // 判断如果没有配置baseDir ，取项目根路径
     if (null == baseDir || '' == baseDir) {
         baseDir = path.resolve(__dirname, '../../');
-        baseDir = baseDir + '/logs/';
+        if (util.isNotNull(common.LOG_PATH)) {
+            if ((common.LOG_PATH).substr(0, 1) == '/'
+                || ((common.LOG_PATH).substr(0, 2)).toUpperCase() == 'C:') {
+                // 绝对路径
+
+            } else {
+                // 相对于项目的根路径
+                baseDir = baseDir + '/' + common.LOG_PATH;
+            }
+        } else {
+            baseDir = baseDir + '/logs/';
+        }
     }
+
+    // console.log('..................' + baseDir);
 
     var defaultAtt = objConfig["customDefaultAtt"];
 
