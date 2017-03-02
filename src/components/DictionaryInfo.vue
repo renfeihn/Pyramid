@@ -19,17 +19,11 @@
                         </el-option>
                     </el-select>
                 </div>
-            </div>
-            <div class="form-group">
                 <label class="col-sm-2 control-label">名称</label>
                 <div class="col-sm-4">
                     <input class="form-control" v-model="dictionaryCode" type="hidden"/>
                     <input class="form-control" v-model="dictionary.code" @blur="checkDictionaryCode(dictionary.code);"
                            type="text"/>
-                </div>
-                <label class="col-sm-2 control-label">中文描述</label>
-                <div class="col-sm-4">
-                    <input class="form-control" v-model="dictionary.comment" type="text"/>
                 </div>
             </div>
             <div class="form-group">
@@ -53,13 +47,19 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-sm-2 control-label">描述</label>
+                <div class="col-sm-4">
+                    <textarea v-model="dictionary.comment" class="form-control" rows="4"></textarea>
+                </div>
                 <label class="col-sm-2 control-label">取值范围</label>
                 <div class="col-sm-4">
-                    <input class="form-control" v-model="dictionary.scope" type="text"/>
+                    <textarea v-model="dictionary.scope" class="form-control" rows="4"></textarea>
                 </div>
             </div>
 
-            <a class="btn btn-info" @click="save();">保存</a>
+            <div class="form-group text-center">
+                <a class="btn btn-info" @click="save();">保存</a>
+            </div>
         </form>
     </div>
 </template>
@@ -106,14 +106,14 @@
             newTmp = tmp;
         } else {
             newTmp = {
-                "domain":"",
+                "domain": "",
                 "code": "",
                 "dataType": "",
                 "lengths": "",
-                "precision":"",
+                "precision": "",
                 "comment": "",
                 "defaults": "",
-                "scope":""
+                "scope": ""
             };
         }
         return newTmp;

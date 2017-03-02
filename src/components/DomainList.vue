@@ -1,11 +1,8 @@
 <template>
     <div>
-        <h2 class="sub-header">domain区域 </h2>
-        <br>
-
         <form class="form-inline form-filter">
             <div class="form-group">
-                <label>domain名称</label>
+                <label>域名称</label>
                 <input class="form-control" v-model="code" @change="getAllDomains();" type="text"/>
             </div>
             <a class="btn btn-info" @click="getAllDomains();">筛选</a>

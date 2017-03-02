@@ -18,6 +18,7 @@
             <el-menu-item index="2"><a href="/dictionaryList"><i class="el-icon-menu"></i>数据字典</a></el-menu-item>
             <el-menu-item index="3"><a href="/domainList"><i class="el-icon-menu"></i>数据域</a></el-menu-item>
             <el-menu-item index="4"><a href="/tableSpaceList"><i class="el-icon-setting"></i>表空间</a></el-menu-item>
+            <el-menu-item index="5"><a href="#"><i class="el-icon-setting"></i>统计分析</a></el-menu-item>
         </el-menu>
 
     </div>

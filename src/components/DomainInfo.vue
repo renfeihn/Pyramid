@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="sub-header">domain区域 </h2>
+        <h2 class="sub-header">数据域相信</h2>
         <br>
         <form class="form-horizontal">
             <div class="form-group">

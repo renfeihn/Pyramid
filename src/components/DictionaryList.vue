@@ -1,8 +1,5 @@
 <template>
     <div>
-        <h2 class="sub-header">数据字典区域 </h2>
-        <br>
-
         <form class="form-inline form-filter">
             <div class="form-group">
                 <label>数据字典名称</label>

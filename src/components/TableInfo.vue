@@ -61,16 +61,18 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">描述</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.comment" type="text"/>
+                    <div class="col-sm-10">
+                        <textarea v-model="tableColumns.comment" class="form-control" rows="4"></textarea>
                     </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-2 control-label">取值范围</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.scope" type="text"/>
+                    <div class="col-sm-10">
+                        <textarea v-model="tableColumns.scope" class="form-control" rows="4"></textarea>
                     </div>
                 </div>
 
-                <div slot="footer" class="dialog-footer">
+                <div class="form-group text-center">
                     <el-button @click="dialogFormVisible = false">取 消</el-button>
                     <el-button type="primary" @click="columnsButton">确 定</el-button>
                 </div>

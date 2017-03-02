@@ -42790,9 +42790,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ exports["default"] = {
@@ -43074,9 +43071,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 /* harmony default export */ exports["default"] = {
@@ -43226,6 +43220,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ exports["default"] = {
     data: function data() {
@@ -43284,6 +43279,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -51008,6 +51005,54 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "col-sm-2 control-label"
+  }, [_vm._v("是否必填")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('el-switch', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.tableColumns.M),
+      expression: "tableColumns.M"
+    }],
+    attrs: {
+      "on-text": "",
+      "off-text": ""
+    },
+    domProps: {
+      "value": (_vm.tableColumns.M)
+    },
+    on: {
+      "input": function($event) {
+        _vm.tableColumns.M = $event
+      }
+    }
+  })], 1), _vm._v(" "), _c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("是否主键")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('el-switch', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.tableColumns.P),
+      expression: "tableColumns.P"
+    }],
+    attrs: {
+      "on-text": "",
+      "off-text": ""
+    },
+    domProps: {
+      "value": (_vm.tableColumns.P)
+    },
+    on: {
+      "input": function($event) {
+        _vm.tableColumns.P = $event
+      }
+    }
+  })], 1)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-sm-2 control-label"
   }, [_vm._v("数据类型")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
   }, [_c('input', {
@@ -51112,57 +51157,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "col-sm-2 control-label"
-  }, [_vm._v("是否必填")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('el-switch', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.tableColumns.M),
-      expression: "tableColumns.M"
-    }],
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    domProps: {
-      "value": (_vm.tableColumns.M)
-    },
-    on: {
-      "input": function($event) {
-        _vm.tableColumns.M = $event
-      }
-    }
-  })], 1), _vm._v(" "), _c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("是否主键")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('el-switch', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.tableColumns.P),
-      expression: "tableColumns.P"
-    }],
-    attrs: {
-      "on-text": "",
-      "off-text": ""
-    },
-    domProps: {
-      "value": (_vm.tableColumns.P)
-    },
-    on: {
-      "input": function($event) {
-        _vm.tableColumns.P = $event
-      }
-    }
-  })], 1)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "col-sm-2 control-label"
   }, [_vm._v("描述")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
+    staticClass: "col-sm-10"
+  }, [_c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -51171,8 +51168,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "readonly": "isReadOnly",
-      "type": "text"
+      "rows": "4"
     },
     domProps: {
       "value": _vm._s(_vm.tableColumns.comment)
@@ -51183,11 +51179,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.tableColumns.comment = $event.target.value
       }
     }
-  })]), _vm._v(" "), _c('label', {
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
     staticClass: "col-sm-2 control-label"
   }, [_vm._v("取值范围")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
+    staticClass: "col-sm-10"
+  }, [_c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -51196,8 +51194,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "readonly": "isReadOnly",
-      "type": "text"
+      "rows": "4"
     },
     domProps: {
       "value": _vm._s(_vm.tableColumns.scope)
@@ -51209,8 +51206,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   })])]), _vm._v(" "), _c('div', {
-    staticClass: "dialog-footer",
-    slot: "footer"
+    staticClass: "form-group text-center"
   }, [_c('el-button', {
     on: {
       "click": function($event) {
@@ -51632,13 +51628,11 @@ if (false) {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', {
-    staticClass: "sub-header"
-  }, [_vm._v("domain区域 ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+  return _c('div', [_c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
-  }, [_c('label', [_vm._v("domain名称")]), _vm._v(" "), _c('input', {
+  }, [_c('label', [_vm._v("域名称")]), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -51712,9 +51706,7 @@ if (false) {
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', {
-    staticClass: "sub-header"
-  }, [_vm._v("数据字典区域 ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+  return _c('div', [_c('form', {
     staticClass: "form-inline form-filter"
   }, [_c('div', {
     staticClass: "form-group"
@@ -51921,9 +51913,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "value": item.code
       }
     })
-  }))], 1)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
+  }))], 1), _vm._v(" "), _c('label', {
     staticClass: "col-sm-2 control-label"
   }, [_vm._v("名称")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
@@ -51968,30 +51958,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.dictionary.code = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("中文描述")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.dictionary.comment),
-      expression: "dictionary.comment"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.dictionary.comment)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.dictionary.comment = $event.target.value
       }
     }
   })])]), _vm._v(" "), _c('div', {
@@ -52101,9 +52067,33 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "col-sm-2 control-label"
+  }, [_vm._v("描述")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.dictionary.comment),
+      expression: "dictionary.comment"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "rows": "4"
+    },
+    domProps: {
+      "value": _vm._s(_vm.dictionary.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.dictionary.comment = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('label', {
+    staticClass: "col-sm-2 control-label"
   }, [_vm._v("取值范围")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
-  }, [_c('input', {
+  }, [_c('textarea', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -52112,7 +52102,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "type": "text"
+      "rows": "4"
     },
     domProps: {
       "value": _vm._s(_vm.dictionary.scope)
@@ -52123,14 +52113,16 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.dictionary.scope = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('a', {
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group text-center"
+  }, [_c('a', {
     staticClass: "btn btn-info",
     on: {
       "click": function($event) {
         _vm.save();
       }
     }
-  }, [_vm._v("保存")])])])
+  }, [_vm._v("保存")])])])])
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
@@ -52296,7 +52288,7 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('h2', {
     staticClass: "sub-header"
-  }, [_vm._v("domain区域 ")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+  }, [_vm._v("数据域相信")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
     staticClass: "form-horizontal"
   }, [_c('div', {
     staticClass: "form-group"
@@ -52571,7 +52563,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('i', {
     staticClass: "el-icon-setting"
-  }), _vm._v("表空间")])])], 1)], 1)
+  }), _vm._v("表空间")])]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "5"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "#"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-setting"
+  }), _vm._v("统计分析")])])], 1)], 1)
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
