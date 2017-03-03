@@ -220,7 +220,7 @@ router.post('/saveTable', function (req, res, next) {
  * dictionary
  */
 router.post('/saveDictionary', function (req, res, next) {
-    var errors = new Array();
+    var errors;
     // 后台接收的参数
     const data = req.body.data;
     const oldCode = req.body.oldCode;
@@ -234,10 +234,7 @@ router.post('/saveDictionary', function (req, res, next) {
     var flag = checkCode(common.dictionary_name, data.code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
-        errors.push('数据字典 ' + data.code + ' 已存在');
-    }
-
-    if (errors.length > 0) {
+        errors = '数据字典 ' + data.code + ' 已存在';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     } else {
@@ -252,7 +249,7 @@ router.post('/saveDictionary', function (req, res, next) {
  * domain
  */
 router.post('/saveDomain', function (req, res, next) {
-    var errors = new Array();
+    var errors;
     // 后台接收的参数
     const data = req.body.data;
     const oldCode = req.body.oldCode;
@@ -266,10 +263,7 @@ router.post('/saveDomain', function (req, res, next) {
     var flag = checkCode(common.domain_name, data.code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
-        errors.push('域名称 ' + data.code + ' 已存在');
-    }
-
-    if (errors.length > 0) {
+        errors = '域名称 ' + data.code + ' 已存在';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     } else {
@@ -311,13 +305,13 @@ router.get('/checkTableCode/:code', function (req, res, next) {
  * 检查dictionary是否有重复
  */
 router.get('/checkDictionaryCode/:code', function (req, res, next) {
-    var errors = new Array();
+    var errors;
     // 后台接收的参数
     const code = req.params.code;
     const oldCode = req.query.oldCode.trim();
     logger.writeDebug('后台接收的数据 code : ' + JSON.stringify(code) + '  oldCode: ' + oldCode);
     if (!code) {
-        errors.push('请填写dictionary名称！');
+        errors = '请填写dictionary名称！';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     }
@@ -326,25 +320,25 @@ router.get('/checkDictionaryCode/:code', function (req, res, next) {
     var flag = checkCode('dictionarys', code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
-        errors.push('数据字典 ' + code + ' 已存在');
+        errors = '数据字典 ' + code + ' 已存在';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
+    } else {
+        return res.status(200).send('').end();
     }
-
-    return res.status(200).send('').end();
 });
 
 /**
  * 检查domain是否有重复
  */
 router.get('/checkDomainCode/:code', function (req, res, next) {
-    var errors = new Array();
+    var errors;
     // 后台接收的参数
     const code = req.params.code;
     const oldCode = req.query.oldCode.trim();
     logger.writeDebug('后台接收的数据 code : ' + JSON.stringify(code) + '  oldCode: ' + oldCode);
     if (!code) {
-        errors.push('请填写domain名称！');
+        errors = '请填写domain名称！';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     }
@@ -353,12 +347,13 @@ router.get('/checkDomainCode/:code', function (req, res, next) {
     var flag = checkCode(common.domain_name, code, oldCode);
     logger.writeDebug('flag: ' + flag);
     if (flag) {
-        errors.push('domain ' + code + ' 已存在');
+        errors = 'domain ' + code + ' 已存在';
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
+    } else {
+        return res.status(200).send('').end();
     }
 
-    return res.status(200).send('').end();
 });
 
 
@@ -368,7 +363,7 @@ router.get('/checkDomainCode/:code', function (req, res, next) {
  */
 function checkCode(type, code, oldCode) {
     // 获取所有的table
-    var tables = db.readFile(type);
+    const tables = db.readFile(type);
     var flag = false;
     logger.writeDebug('检查code是否唯一  code: ' + tables + '  oldCode: ' + oldCode);
     if (oldCode != code) {
@@ -406,7 +401,7 @@ function checkTableCode(table, oldCode) {
  * 单表view sql
  */
 router.post('/showSQL', function (req, res, next) {
-    var errors = new Array();
+    var errors;
 
     const type = req.body.type;
     const db_type = req.body.db_type;
@@ -426,7 +421,7 @@ router.post('/showSQL', function (req, res, next) {
         return res.status(200).send(sql).end();
     } catch (e) {
         logger.writeErr('生成SQL错误: ' + e)
-        errors.push('生成SQL错误，请重试');
+        errors = '生成SQL错误，请重试';
     }
     return res.status(301).send(errors).end();
 
@@ -488,7 +483,7 @@ router.post('/deleteTableFile', function (req, res, next) {
 
     try {
 
-        const filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.class1
+        var filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.class1
             + '/' + table.class2 + '/' + table.code + '.json';
 
         db.delFile(filePath);
