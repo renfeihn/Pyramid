@@ -28,6 +28,8 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 http://cn.vuejs.org/
 ####简书VUE资料汇总
 [简书资料汇总](http://www.jianshu.com/p/afd8e1db7d9b)
+####Vue-router2
+[Vue-router2](http://router.vuejs.org/zh-cn/index.html)
 ####ElementUI 饿了么PC端UI
 PC端 elementUI  [PC官网](http://element.eleme.io)
 ####MintUI 饿了么移动端UI
