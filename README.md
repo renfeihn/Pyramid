@@ -24,6 +24,10 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 2.日志输出路径配置，查看common.js，看说明配置，不配置默认为:项目根目录/logs/下
 <br/><br/>
 ##VUE 资料参考:
+####官方中文网站
+http://cn.vuejs.org/
+####简书VUE资料汇总
+[简书资料汇总](http://www.jianshu.com/p/afd8e1db7d9b)
 ####ElementUI 饿了么PC端UI
 PC端 elementUI  [PC官网](http://element.eleme.io)
 ####MintUI 饿了么移动端UI
@@ -32,4 +36,7 @@ PC端 elementUI  [PC官网](http://element.eleme.io)
 一套基于 Vue.js 的 UI 组件库，主要服务于 PC 界面的中后台产品。[官网](https://www.iviewui.com/components/layout)
 ####vue-carbon
 web端组件UI库  [网址](https://myronliu347.github.io/vue-carbon)
+
+##Nodejs 参考资料：
+1.nodejs 官网中文文档 http://nodejs.cn/api/
 
