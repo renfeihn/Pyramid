@@ -44633,6 +44633,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ exports["default"] = {
     data: function data() {
@@ -53255,13 +53258,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.getAllTables();
       }]
     }
-  }, _vm._l((_vm.systems), function(item, index) {
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.systems), function(item, index) {
     return _c('option', {
       domProps: {
         "value": item.code.toString()
       }
     }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  }))]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', [_vm._v("垂直/水平")]), _vm._v(" "), _c('select', {
     directives: [{
@@ -53283,13 +53286,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.getAllTables();
       }]
     }
-  }, _vm._l((_vm.class1s), function(item, index) {
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class1s), function(item, index) {
     return _c('option', {
       domProps: {
         "value": item.code.toString()
       }
     }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  }))]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', [_vm._v("分类2")]), _vm._v(" "), _c('select', {
     directives: [{
@@ -53311,13 +53314,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.getAllTables();
       }]
     }
-  }, _vm._l((_vm.class2s), function(item, index) {
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class2s), function(item, index) {
     return _c('option', {
       domProps: {
         "value": item.code.toString()
       }
     }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  }))]), _vm._v(" "), _c('div', {
+  })], 2)]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
     directives: [{

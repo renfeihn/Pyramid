@@ -10,6 +10,7 @@
             <div class="form-group">
                 <label>所属系统</label>
                 <select @change="getAllTables();" class="form-control" v-model="system">
+                    <option></option>
                     <option v-for="(item, index) in systems" :value="item.code.toString()">
                         {{item.code}}
                     </option>
@@ -19,6 +20,7 @@
             <div class="form-group">
                 <label>垂直/水平</label>
                 <select @change="getAllTables();" class="form-control" v-model="class1">
+                    <option></option>
                     <option v-for="(item, index) in class1s" :value="item.code.toString()">
                         {{item.code}}
                     </option>
@@ -28,6 +30,7 @@
             <div class="form-group">
                 <label>分类2</label>
                 <select @change="getAllTables();" class="form-control" v-model="class2">
+                    <option></option>
                     <option v-for="(item, index) in class2s" :value="item.code.toString()">
                         {{item.code}}
                     </option>
