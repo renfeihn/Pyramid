@@ -8,6 +8,7 @@ const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
 const util = require('./util/util');
+var urlencode = require('urlencode');
 // 子进程（child_process）
 const exec = require('child_process').exec;
 
@@ -496,6 +497,55 @@ router.post('/deleteTableFile', function (req, res, next) {
     return res.status(301).send(msg).end();
 });
 
+/**
+ * 下载表数据
+ */
+router.post('/downLoad/tableSelect', function (req, res, next) {
+    var data = req.body.data;
+    logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
+    if (!(util.isArray(data) && data.length > 0)) {
+        data = db.readFile(common.table_name);
+    }
+    var rowTemp = new Array();
+    data.forEach(function (table, index, tables) {
+        rowTemp[index] = new Array();
+        (rowTemp[index]).push(util.isNvl(table.system, ''));
+        (rowTemp[index]).push(util.isNvl(table.class1, ''));
+        (rowTemp[index]).push(util.isNvl(table.class2, ''));
+        (rowTemp[index]).push(util.isNvl(table.code, ''));
+        (rowTemp[index]).push(util.isNvl(table.comment, ''));
+        (rowTemp[index]).push(util.isNvl(table.table_space, ''));
+    });
+
+    logger.writeDebug('2down load talbe rowTemp --> ' + rowTemp)
+
+    var conf = {};
+    conf.cols = [
+        {caption: '所属系统', type: 'string'},
+        {caption: '垂直/水平', type: 'string'},
+        {caption: '出厂/业务', type: 'string'},
+        {caption: '表名', type: 'string'},
+        {caption: '描述', type: 'string'},
+        {caption: '表空间', type: 'string'}
+    ];
+    conf.rows = rowTemp;
+
+    const fileName = "表范围.xlsx";
+    const head = excel.createHeader(fileName, req);
+    logger.writeDebug('---------> head: ' + head);
+    res.setHeader('Content-Disposition', head);
+
+    excel.createExcel({
+        data: conf,
+        cb: function (path) {
+            excel.download(path, req, res, false);
+        }
+    });
+
+    // 文件生成成功，未下载
+
+});
+
 
 /**
  * 测试使用：
@@ -513,13 +563,16 @@ router.get('/test', function (req, res, next) {
     ];
     conf.rows = [
         ['pi', '2015-06-29', true, 3.14],
-        ["e", '2015-06-29', false, 2.7182]
+        ["姓名", '2015-06-29', false, 2.7182]
     ];
-    var filename = "导出excel.xlsx";
-    res.setHeader('Content-Disposition', 'attachment; filename=' + encodeURIComponent(filename));
+
+    const fileName = "导出excel.xlsx";
+    const head = excel.createHeader(fileName, req);
+    logger.writeDebug('---------> head: ' + head);
+    res.setHeader('Content-Disposition', head);
+
     excel.createExcel({
         data: conf,
-        savePath: "uploadFile/excel/",
         cb: function (path) {
             excel.download(path, req, res, true);
         }

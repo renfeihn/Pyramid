@@ -20,6 +20,9 @@ const Models = {
     // 生成SQL路径
     targerPath: 'data/target/',
 
+    // 生成EXCEL默认路径
+    EXCEL_PATH:"uploadFile/excel/",
+
 
     // 类型
     TABLE_TYPE: "table",

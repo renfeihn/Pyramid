@@ -3,6 +3,7 @@ var fs = require("fs");
 var excelExport = require('excel-export');
 var logger = require('./logHelper').helper;
 var util = require('./../util/util');
+var common = require('./../common');
 var guid = require('guid');
 var path = require('path');
 var excel = function () {
@@ -14,7 +15,7 @@ var excel = function () {
  * @param params
  */
 excel.prototype.createExcel = function (params) {
-    var setting = {savePath: "uploadFile/excel/"};
+    var setting = {savePath: common.EXCEL_PATH};
     setting = extend({}, setting, params);
     var uuid = guid.create();
     var data = params.data || "";
@@ -116,4 +117,19 @@ excel.prototype.download = function (filePath, req, res, isDeleted) {
         }
     });
 };
+
+excel.prototype.createHeader = function (fileName, req) {
+    var header = '';
+    const userAgent = (req.headers['user-agent'] || '').toLowerCase();
+    if (userAgent.indexOf('msie') >= 0 || userAgent.indexOf('chrome') >= 0) {
+        header = 'attachment; filename=' + encodeURIComponent(fileName);
+    } else if (userAgent.indexOf('firefox') >= 0) {
+        header = 'attachment; filename*="utf8\'\'' + encodeURIComponent(fileName) + '"';
+    } else {
+        /* safari等其他非主流浏览器只能自求多福了 */
+        header = 'attachment; filename=' + new Buffer(fileName).toString('binary');
+    }
+    return header;
+};
+
 module.exports = new excel();

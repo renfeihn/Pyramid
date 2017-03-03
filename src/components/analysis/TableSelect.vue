@@ -47,7 +47,7 @@
             <!--</option>-->
             <!--</select>-->
             <!--</div>-->
-            <a class="btn btn-info" @click="getAllTables();">筛选</a>
+            <a class="btn btn-info" @click="downloadTable();">导出</a>
             <a class="btn btn-info" @click="generatorSql();">生成SQL</a>
         </form>
 
@@ -126,6 +126,29 @@
             handleSelectionChange(val) {
                 console.log(val);
                 this.checkList = val;
+            },
+            downloadTable(){
+                if(!(this.checkList).length > 0){
+                    this.$confirm('没有选择文件，确定要全部导出吗, 是否继续?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                    }).then(() => {
+                        this.$http.post('/downLoad/tableSelect', {
+                            data: this.checkList
+                        }).then(function (res) {
+
+                        }, function (res) {
+                            this.$message.error('TableList 页面 请求 table space 失败： ' + res.status);
+                        });
+                    }).catch(() => {
+                        this.$message.info('已取消删除');
+                    });
+                }else{
+                    this.$http.post('/downLoad/tableSelect', {
+                        data: this.checkList
+                    });
+                }
             },
             getTableSpaces(){
                 this.$http.get('/getAll/table_spaces').then(function (res) {
