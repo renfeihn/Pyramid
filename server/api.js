@@ -222,7 +222,7 @@ router.post('/saveTable', function (req, res, next) {
 router.post('/saveDictionary', function (req, res, next) {
     var errors;
     // 后台接收的参数
-    const data = req.body.data;
+    var data = req.body.data;
     const oldCode = req.body.oldCode;
 
     logger.writeDebug('后台接收的数据  data: ' + JSON.stringify(data) + ' oldCode : ' + oldCode);
@@ -238,6 +238,7 @@ router.post('/saveDictionary', function (req, res, next) {
         logger.writeErr(errors);
         return res.status(301).send(errors).end();
     } else {
+        // data.code = (data.code).toUpperCase();
         db.writeSourceFile('dictionarys', data.code, JSON.stringify(data, null, 4));
         res.status(200).send('保存成功').end();
     }

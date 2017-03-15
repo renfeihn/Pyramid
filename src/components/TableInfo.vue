@@ -41,22 +41,31 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">数据类型</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.dataType" type="text"/>
+                        <select class="form-control" v-model="tableColumns.dataType">
+                            <template v-for="data_type in data_types">
+                                <option :value="data_type" v-if="data_type == tableColumns.dataType" selected>
+                                    {{data_type}}
+                                </option>
+                                <option :value="data_type" v-else>
+                                    {{data_type}}
+                                </option>
+                            </template>
+                        </select>
 
                     </div>
                     <label class="col-sm-2 control-label">长度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.lengths" type="text"/>
+                        <input class="form-control" v-model="tableColumns.lengths" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">精度</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.precision" type="text"/>
+                        <input class="form-control" v-model="tableColumns.precision" type="text"/>
                     </div>
                     <label class="col-sm-2 control-label">默认值</label>
                     <div class="col-sm-4">
-                        <input class="form-control" readonly="isReadOnly" v-model="tableColumns.defaults" type="text"/>
+                        <input class="form-control" v-model="tableColumns.defaults" type="text"/>
                     </div>
                 </div>
                 <div class="form-group">
@@ -248,7 +257,6 @@
 </template>
 
 <script>
-    var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
     function isEmptyObject(obj) {
         for (var key in obj) {
@@ -402,7 +410,9 @@
                 // 所属分类1
                 class1s:[{"code":"upright"},{"code":"level"}],
                 // 所属分类2
-                class2s:[{"code":"init"},{"code":"busi"}]
+                class2s:[{"code":"init"},{"code":"busi"}],
+                // 数据类型
+                data_types: ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob']
             }
         },
         methods: {
@@ -491,9 +501,7 @@
                 this.selectRowNum = index;
                 // 设置高亮
                 var tr = e.currentTarget;
-//                console.lib('tr:  '+tr.innerHTML);
                 var tbd = tr.parentNode;
-//                console.lib(tbd);
                 if (null != tbd.childNodes) {
                     for (var i in tbd.childNodes) {
                         if (!isNaN(i)) {
@@ -632,6 +640,61 @@
             // 确定事件
             columnsButton(){
                 console.log('-----------点击了确定-----------');
+
+                // 如果数据字典不选择，则需要添加当前列为数据字典
+                if(!this.tableColumns.dictionary){
+                    var columnTemp = {
+                        "domain": this.tableColumns.code,
+                        "code": this.tableColumns.code,
+                        "dataType": this.tableColumns.dataType,
+                        "lengths": this.tableColumns.lengths,
+                        "precision": this.tableColumns.precision,
+                        "comment": this.tableColumns.comment,
+                        "defaults": this.tableColumns.defaults,
+                        "scope": this.tableColumns.scope
+                    };
+                    console.log(columnTemp);
+                    // 保存数据字典
+                    this.$http.post('/saveDictionary', {
+                        data: columnTemp,
+                        oldCode: ''
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            console.log('添加dictionary成功');
+                        } else {
+                            console.log('添加dictionary失败');
+                        }
+                    }, function (res) {
+                        console.log('添加dictionary失败，未通过服务端校验' + res.status + '  ' + res.body);
+                    });
+
+                    // 保存domain信息
+                    // 删除 domain 属性、scope 属性
+                    var domainTemp = {
+                        "code": this.tableColumns.code,
+                        "dataType": this.tableColumns.dataType,
+                        "lengths": this.tableColumns.lengths,
+                        "precision": this.tableColumns.precision,
+                        "comment": this.tableColumns.comment,
+                        "defaults": this.tableColumns.defaults
+                    };
+                    console.log(domainTemp);
+                    this.$http.post('/saveDomain', {
+                        data: domainTemp,
+                        oldCode: ''
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            console.log('新增domain成功');
+                        } else {
+                            console.log('新增diomain失败')
+                        }
+                    }, function (res) {
+                        console.log('新增domain失败，未通过服务端校验' + res.status + '  ' + res.body);
+                    });
+
+
+                };
+
                 // 判断数据字典和code不能为空
                 if (!this.tableColumns.dictionary || !this.tableColumns.code) {
                     this.$message.error('请将信息填写完整');
@@ -648,6 +711,8 @@
                     this.tableAttr.splice(this.selectRowNum, 1);
                     this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
                 }
+
+
             },
 
             // 选中的索引行号

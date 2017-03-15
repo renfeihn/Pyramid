@@ -43851,8 +43851,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-var data_types = ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob'];
 
 function isEmptyObject(obj) {
     for (var key in obj) {
@@ -44005,7 +44013,9 @@ function checkColumnVal(tmp) {
             // 所属分类1
             class1s: [{ "code": "upright" }, { "code": "level" }],
             // 所属分类2
-            class2s: [{ "code": "init" }, { "code": "busi" }]
+            class2s: [{ "code": "init" }, { "code": "busi" }],
+            // 数据类型
+            data_types: ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob']
         };
     },
 
@@ -44097,9 +44107,7 @@ function checkColumnVal(tmp) {
             this.selectRowNum = index;
             // 设置高亮
             var tr = e.currentTarget;
-            //                console.lib('tr:  '+tr.innerHTML);
             var tbd = tr.parentNode;
-            //                console.lib(tbd);
             if (null != tbd.childNodes) {
                 for (var i in tbd.childNodes) {
                     if (!isNaN(i)) {
@@ -44244,6 +44252,59 @@ function checkColumnVal(tmp) {
         // 确定事件
         columnsButton: function columnsButton() {
             console.log('-----------点击了确定-----------');
+
+            // 如果数据字典不选择，则需要添加当前列为数据字典
+            if (!this.tableColumns.dictionary) {
+                var columnTemp = {
+                    "domain": this.tableColumns.code,
+                    "code": this.tableColumns.code,
+                    "dataType": this.tableColumns.dataType,
+                    "lengths": this.tableColumns.lengths,
+                    "precision": this.tableColumns.precision,
+                    "comment": this.tableColumns.comment,
+                    "defaults": this.tableColumns.defaults,
+                    "scope": this.tableColumns.scope
+                };
+                console.log(columnTemp);
+                // 保存数据字典
+                this.$http.post('/saveDictionary', {
+                    data: columnTemp,
+                    oldCode: ''
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('添加dictionary成功');
+                    } else {
+                        console.log('添加dictionary失败');
+                    }
+                }, function (res) {
+                    console.log('添加dictionary失败，未通过服务端校验' + res.status + '  ' + res.body);
+                });
+
+                // 保存domain信息
+                // 删除 domain 属性、scope 属性
+                var domainTemp = {
+                    "code": this.tableColumns.code,
+                    "dataType": this.tableColumns.dataType,
+                    "lengths": this.tableColumns.lengths,
+                    "precision": this.tableColumns.precision,
+                    "comment": this.tableColumns.comment,
+                    "defaults": this.tableColumns.defaults
+                };
+                console.log(domainTemp);
+                this.$http.post('/saveDomain', {
+                    data: domainTemp,
+                    oldCode: ''
+                }).then(function (res) {
+                    if (res.status == 200) {
+                        console.log('新增domain成功');
+                    } else {
+                        console.log('新增diomain失败');
+                    }
+                }, function (res) {
+                    console.log('新增domain失败，未通过服务端校验' + res.status + '  ' + res.body);
+                });
+            };
+
             // 判断数据字典和code不能为空
             if (!this.tableColumns.dictionary || !this.tableColumns.code) {
                 this.$message.error('请将信息填写完整');
@@ -45029,6 +45090,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         generatorSql: function generatorSql() {
             this.$http.post('/generatorSql', {
                 type: 'table',
+                system: this.system,
+                class1: this.class1,
+                class2: this.class2,
                 db_type: localStorage.getItem('dbms')
             }).then(function (res) {
                 if (res.status == 200) {
@@ -51751,7 +51815,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('el-table-column', {
     attrs: {
       "prop": "class2",
-      "label": "分类2",
+      "label": "参数/业务",
       "width": "120"
     }
   }), _vm._v(" "), _c('el-table-column', {
@@ -52842,7 +52906,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "col-sm-2 control-label"
   }, [_vm._v("数据类型")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
-  }, [_c('input', {
+  }, [_c('select', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -52850,20 +52914,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "tableColumns.dataType"
     }],
     staticClass: "form-control",
-    attrs: {
-      "readonly": "isReadOnly",
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.tableColumns.dataType)
-    },
     on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.tableColumns.dataType = $event.target.value
+      "change": function($event) {
+        _vm.tableColumns.dataType = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
       }
     }
-  })]), _vm._v(" "), _c('label', {
+  }, [_vm._l((_vm.data_types), function(data_type) {
+    return [(data_type == _vm.tableColumns.dataType) ? _c('option', {
+      attrs: {
+        "selected": ""
+      },
+      domProps: {
+        "value": data_type
+      }
+    }, [_vm._v("\n                                " + _vm._s(data_type) + "\n                            ")]) : _c('option', {
+      domProps: {
+        "value": data_type
+      }
+    }, [_vm._v("\n                                " + _vm._s(data_type) + "\n                            ")])]
+  })], 2)]), _vm._v(" "), _c('label', {
     staticClass: "col-sm-2 control-label"
   }, [_vm._v("长度")]), _vm._v(" "), _c('div', {
     staticClass: "col-sm-4"
@@ -52876,7 +52950,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "readonly": "isReadOnly",
       "type": "text"
     },
     domProps: {
@@ -52903,7 +52976,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "readonly": "isReadOnly",
       "type": "text"
     },
     domProps: {
@@ -52928,7 +53000,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }],
     staticClass: "form-control",
     attrs: {
-      "readonly": "isReadOnly",
       "type": "text"
     },
     domProps: {

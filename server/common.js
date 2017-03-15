@@ -3,7 +3,7 @@
  */
 const Models = {
     // 系统端口 预计上线端口 19919/15816 项目名称 Pyramid 金字塔
-    SERVER_PORT: 8080,
+    SERVER_PORT: 19919,
     // 日志路径 相对于项目跟路径 也可以配置绝对路径 ##必须以斜杠结尾##
     LOG_PATH : 'logs/',
 
