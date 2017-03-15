@@ -13,7 +13,6 @@ const isArray = function (obj) {
 
 
 const isNull = function (obj) {
-    console.log('isNull: ' + obj);
     return isNotNull(obj) ? false : true;
 };
 
@@ -26,7 +25,7 @@ const isNotNull = function (obj) {
 
 };
 
-const isNvl = function (source, target) {
+const nvl = function (source, target) {
     if (isNull(source)) {
         return target;
     }
@@ -55,7 +54,7 @@ const checkAndCreateDir = function (dirname, authNum) {
 
 
 const Models = {
-    isNvl: isNvl,
+    nvl: nvl,
     isNull: isNull,
     isNotNull: isNotNull,
     isObject: isObject,
