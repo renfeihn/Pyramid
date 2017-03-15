@@ -76,7 +76,7 @@
             </el-table-column>
             <el-table-column
                     prop="class2"
-                    label="分类2"
+                    label="参数/业务"
                     width="120">
             </el-table-column>
             <el-table-column
@@ -131,7 +131,7 @@
                 this.checkList = val;
             },
             downloadTable(){
-                if(!(this.checkList).length > 0){
+                if (!(this.checkList).length > 0) {
                     this.$confirm('没有选择文件，确定要全部导出吗, 是否继续?', '提示', {
                         confirmButtonText: '确定',
                         cancelButtonText: '取消',
@@ -147,7 +147,7 @@
                     }).catch(() => {
                         this.$message.info('已取消删除');
                     });
-                }else{
+                } else {
                     this.$http.post('/downLoad/tableSelect', {
                         data: this.checkList
                     });
@@ -208,6 +208,9 @@
             generatorSql(){
                 this.$http.post('/generatorSql', {
                     type: 'table',
+                    system: this.system,
+                    class1: this.class1,
+                    class2: this.class2,
                     db_type: localStorage.getItem('dbms')
                 }).then(function (res) {
                     if (res.status == 200) {

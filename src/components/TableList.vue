@@ -86,7 +86,7 @@
                 <thead>
                 <tr>
                     <th>垂直/水平</th>
-                    <th>分类2</th>
+                    <th>业务/参数</th>
                     <th>表名</th>
                     <th>描述</th>
                     <th>表空间</th>
@@ -189,13 +189,15 @@
             },
             generatorSql(){
                 this.$http.post('/generatorSql', {
-                    type: 'table',
-                    db_type: localStorage.getItem('dbms')
+                    type: 'tables',
+                    db_type: localStorage.getItem('dbms'),
+                    system: this.system
                 }).then(function (res) {
                     if (res.status == 200) {
                         console.log('生成sql成功');
                         // 下载sql
                         var re = res.body;
+                        this.$message.success(re);
                     } else {
                         console.log('生成sql失败');
                         this.$message.error('生成sql失败!');
@@ -207,7 +209,7 @@
             },
             getSql(code){
                 this.$http.post('/showSQL', {
-                    type: 'table',
+                    type: 'tables',
                     db_type: localStorage.getItem('dbms'),
                     code: code
                 }).then(function (res) {

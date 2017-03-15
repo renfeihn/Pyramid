@@ -144,7 +144,7 @@ const writeTableSourceFile = function (table, data) {
     // 目标路径  eg: data/source/tables/Ensemble/upright/init/user.json
     const outPath = sourcePath + table_name + '/' + table.system + '/' + table.class1 + '/' + table.class2;
     logger.writeDebug('save table path: ' + outPath);
-    checkAndCreateDir(outPath);
+    util.checkAndCreateDir(outPath);
     const outFile = outPath + '/' + table.code + '.json';
     logger.writeDebug('要写入的数据： ' + data);
     // 把中文转换成字节数组
@@ -168,7 +168,7 @@ const writeTableSourceFile = function (table, data) {
  */
 const writeSQLFile = function (type, name, data) {
     const outPath = targerPath + type + '/';
-    checkAndCreateDir(outPath);
+    util.checkAndCreateDir(outPath);
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
     const arr = iconv.encode(data, 'gbk');

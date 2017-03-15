@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="sub-header">表信息区域 </h2>
+        <h2 class="sub-header">表详细信息 </h2>
 
         <el-dialog title="SQL脚本" v-model="textshow">
             <textarea v-model="content" v-show="textshow" rows="10" cols="100"></textarea>
@@ -121,7 +121,7 @@
                 </el-select>
             </div>
             <div class="form-group">
-                <label>分类一</label>
+                <label>垂直/水平</label>
                 <el-select v-model="table.class1" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class1s"
@@ -131,7 +131,7 @@
                 </el-select>
             </div>
             <div class="form-group">
-                <label>分类二</label>
+                <label>参数/业务</label>
                 <el-select v-model="table.class2" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class2s"
@@ -792,7 +792,7 @@
                 // 处理数据
                 this.table.attr = this.tableAttr;
                 this.$http.post('/showSQL', {
-                    type: 'table',
+                    type: 'tables',
                     db_type: localStorage.getItem('dbms'),
                     data: this.table
                 }).then(function (res) {

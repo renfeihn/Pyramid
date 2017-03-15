@@ -5,6 +5,28 @@
     "table_space": "test02",
     "code": "TEST",
     "comment": "≤‚ ‘",
-    "attr": [],
-    "indexs": []
+    "attr": [
+        {
+            "code": "BASE_ACCT_NO",
+            "dataType": "Varchar",
+            "lengths": "64",
+            "precision": "",
+            "M": false,
+            "P": false,
+            "comment": "’À∫≈",
+            "defaults": "1",
+            "scope": "A,C",
+            "dictionary": "BASE_ACCT_NO"
+        }
+    ],
+    "indexs": [
+        {
+            "code": "Index_1",
+            "U": true,
+            "columns": [
+                "BASE_ACCT_NO"
+            ],
+            "table_space": "test01"
+        }
+    ]
 }

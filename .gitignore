@@ -4,3 +4,4 @@ src/assets/
 /node_modules
 /data/target/table
 uploadFile/
+data/target/

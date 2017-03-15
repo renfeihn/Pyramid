@@ -432,13 +432,19 @@ router.post('/showSQL', function (req, res, next) {
  * 生成sql
  */
 router.post('/generatorSql', function (req, res, next) {
+    logger.writeDebug('generatorSql start');
     var msg;
-
     const db_type = req.body.db_type;
     const type = req.body.type;
+    const system = req.body.system;
+    const class1 = req.body.class1;
+    const class2 = req.body.class2;
+
+
     logger.writeDebug('db_type: ' + db_type);
+    logger.writeDebug('type: ' + type);
     try {
-        utils.generatorSql(db_type, type);
+        utils.generatorSql(db_type, type, system, class1, class2);
 
         msg = '生成SQL成功,<a>下载</a>';
 
@@ -447,6 +453,7 @@ router.post('/generatorSql', function (req, res, next) {
         logger.writeErr('生成SQL错误: ' + e)
         msg = '生成SQL错误，请重试';
     }
+    logger.writeDebug('generatorSql end');
     return res.status(301).send(msg).end();
 
 });
