@@ -37249,7 +37249,7 @@ var __vue_exports__, __vue_options__
 var __vue_styles__ = {}
 
 /* template */
-var __vue_template__ = __webpack_require__(100)
+var __vue_template__ = __webpack_require__(95)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37261,7 +37261,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\App.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\App.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37272,9 +37272,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-618b432c", __vue_options__)
+    hotAPI.createRecord("data-v-1dbe66ac", __vue_options__)
   } else {
-    hotAPI.reload("data-v-618b432c", __vue_options__)
+    hotAPI.reload("data-v-1dbe66ac", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] App.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37293,7 +37293,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(61)
 
 /* template */
-var __vue_template__ = __webpack_require__(97)
+var __vue_template__ = __webpack_require__(94)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37305,7 +37305,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\DictionaryInfo.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\DictionaryInfo.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37316,9 +37316,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-50cb2716", __vue_options__)
+    hotAPI.createRecord("data-v-07642016", __vue_options__)
   } else {
-    hotAPI.reload("data-v-50cb2716", __vue_options__)
+    hotAPI.reload("data-v-07642016", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] DictionaryInfo.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37337,7 +37337,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(62)
 
 /* template */
-var __vue_template__ = __webpack_require__(95)
+var __vue_template__ = __webpack_require__(101)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37349,7 +37349,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\DictionaryList.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\DictionaryList.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37360,9 +37360,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-1d344065", __vue_options__)
+    hotAPI.createRecord("data-v-41e7c3e5", __vue_options__)
   } else {
-    hotAPI.reload("data-v-1d344065", __vue_options__)
+    hotAPI.reload("data-v-41e7c3e5", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] DictionaryList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37381,7 +37381,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(63)
 
 /* template */
-var __vue_template__ = __webpack_require__(104)
+var __vue_template__ = __webpack_require__(98)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37393,7 +37393,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\DomainInfo.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\DomainInfo.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37404,9 +37404,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-e35731ba", __vue_options__)
+    hotAPI.createRecord("data-v-3754aaba", __vue_options__)
   } else {
-    hotAPI.reload("data-v-e35731ba", __vue_options__)
+    hotAPI.reload("data-v-3754aaba", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] DomainInfo.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37425,7 +37425,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(64)
 
 /* template */
-var __vue_template__ = __webpack_require__(99)
+var __vue_template__ = __webpack_require__(97)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37437,7 +37437,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\DomainList.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\DomainList.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37448,9 +37448,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-582389da", __vue_options__)
+    hotAPI.createRecord("data-v-29ef7e93", __vue_options__)
   } else {
-    hotAPI.reload("data-v-582389da", __vue_options__)
+    hotAPI.reload("data-v-29ef7e93", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] DomainList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37484,10 +37484,10 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\Frame.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\Frame.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-__vue_options__._scopeId = "data-v-b01eb828"
+__vue_options__._scopeId = "data-v-4fd99f28"
 
 /* hot reload */
 if (false) {(function () {
@@ -37496,9 +37496,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b01eb828", __vue_options__)
+    hotAPI.createRecord("data-v-4fd99f28", __vue_options__)
   } else {
-    hotAPI.reload("data-v-b01eb828", __vue_options__)
+    hotAPI.reload("data-v-4fd99f28", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] Frame.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37529,7 +37529,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\TableInfo.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\TableInfo.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37540,9 +37540,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d91185ca", __vue_options__)
+    hotAPI.createRecord("data-v-c300ecca", __vue_options__)
   } else {
-    hotAPI.reload("data-v-d91185ca", __vue_options__)
+    hotAPI.reload("data-v-c300ecca", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] TableInfo.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37561,7 +37561,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(68)
 
 /* template */
-var __vue_template__ = __webpack_require__(96)
+var __vue_template__ = __webpack_require__(99)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37573,7 +37573,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\TableList.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\TableList.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37584,9 +37584,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4dddddea", __vue_options__)
+    hotAPI.createRecord("data-v-37cd44ea", __vue_options__)
   } else {
-    hotAPI.reload("data-v-4dddddea", __vue_options__)
+    hotAPI.reload("data-v-37cd44ea", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] TableList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37605,7 +37605,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(69)
 
 /* template */
-var __vue_template__ = __webpack_require__(101)
+var __vue_template__ = __webpack_require__(100)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37617,7 +37617,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\TableSpaceList.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\TableSpaceList.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37628,9 +37628,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-86f138b2", __vue_options__)
+    hotAPI.createRecord("data-v-3d8a31b2", __vue_options__)
   } else {
-    hotAPI.reload("data-v-86f138b2", __vue_options__)
+    hotAPI.reload("data-v-3d8a31b2", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] TableSpaceList.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -37649,7 +37649,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(70)
 
 /* template */
-var __vue_template__ = __webpack_require__(94)
+var __vue_template__ = __webpack_require__(96)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -37661,7 +37661,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\analysis\\TableSelect.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\analysis\\TableSelect.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -37672,9 +37672,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-18b6417b", __vue_options__)
+    hotAPI.createRecord("data-v-22cdb60a", __vue_options__)
   } else {
-    hotAPI.reload("data-v-18b6417b", __vue_options__)
+    hotAPI.reload("data-v-22cdb60a", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] TableSelect.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -51583,7 +51583,7 @@ var __vue_styles__ = {}
 __vue_exports__ = __webpack_require__(66)
 
 /* template */
-var __vue_template__ = __webpack_require__(98)
+var __vue_template__ = __webpack_require__(104)
 __vue_options__ = __vue_exports__ = __vue_exports__ || {}
 if (
   typeof __vue_exports__.default === "object" ||
@@ -51595,7 +51595,7 @@ __vue_options__ = __vue_exports__ = __vue_exports__.default
 if (typeof __vue_options__ === "function") {
   __vue_options__ = __vue_options__.options
 }
-__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\PowerDesigner\\src\\components\\LeftNav.vue"
+__vue_options__.__file = "G:\\myWork\\XBZX\\Nodejs\\Pyramid\\src\\components\\LeftNav.vue"
 __vue_options__.render = __vue_template__.render
 __vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 
@@ -51606,9 +51606,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-52a1e64a", __vue_options__)
+    hotAPI.createRecord("data-v-ef3f0d4a", __vue_options__)
   } else {
-    hotAPI.reload("data-v-52a1e64a", __vue_options__)
+    hotAPI.reload("data-v-ef3f0d4a", __vue_options__)
   }
 })()}
 if (__vue_options__.functional) {console.error("[vue-loader] LeftNav.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -51618,460 +51618,6 @@ module.exports = __vue_exports__
 
 /***/ }),
 /* 94 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('el-dialog', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.sql_dialog_show),
-      expression: "sql_dialog_show"
-    }],
-    attrs: {
-      "title": "SQL脚本"
-    },
-    domProps: {
-      "value": (_vm.sql_dialog_show)
-    },
-    on: {
-      "input": function($event) {
-        _vm.sql_dialog_show = $event
-      }
-    }
-  }, [_c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.content),
-      expression: "content"
-    }],
-    attrs: {
-      "rows": "10",
-      "cols": "100"
-    },
-    domProps: {
-      "value": _vm._s(_vm.content)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.content = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
-    staticClass: "form-inline form-filter"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("所属系统")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.system),
-      expression: "system"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": [function($event) {
-        _vm.system = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }, function($event) {
-        _vm.getAllTables();
-      }]
-    }
-  }, [_c('option'), _vm._v(" "), _vm._l((_vm.systems), function(item, index) {
-    return _c('option', {
-      domProps: {
-        "value": item.code.toString()
-      }
-    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("垂直/水平")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.class1),
-      expression: "class1"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": [function($event) {
-        _vm.class1 = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }, function($event) {
-        _vm.getAllTables();
-      }]
-    }
-  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class1s), function(item, index) {
-    return _c('option', {
-      domProps: {
-        "value": item.code.toString()
-      }
-    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("分类2")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.class2),
-      expression: "class2"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": [function($event) {
-        _vm.class2 = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }, function($event) {
-        _vm.getAllTables();
-      }]
-    }
-  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class2s), function(item, index) {
-    return _c('option', {
-      domProps: {
-        "value": item.code.toString()
-      }
-    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
-  })], 2)]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.code),
-      expression: "code"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.code)
-    },
-    on: {
-      "change": function($event) {
-        _vm.getAllTables();
-      },
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.code = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.downloadTable();
-      }
-    }
-  }, [_vm._v("导出")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.generatorSql();
-      }
-    }
-  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-table', {
-    staticStyle: {
-      "width": "100%"
-    },
-    attrs: {
-      "data": _vm.tables,
-      "border": ""
-    },
-    on: {
-      "selection-change": _vm.handleSelectionChange
-    }
-  }, [_c('el-table-column', {
-    attrs: {
-      "type": "selection",
-      "width": "55"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "system",
-      "label": "所属系统",
-      "width": "120"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "class1",
-      "label": "垂直/水平",
-      "width": "120"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "class2",
-      "label": "参数/业务",
-      "width": "120"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "code",
-      "label": "表名",
-      "width": "120"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "comment",
-      "label": "描述",
-      "width": "120"
-    }
-  }), _vm._v(" "), _c('el-table-column', {
-    attrs: {
-      "prop": "table_space",
-      "label": "表空间",
-      "show-overflow-tooltip": ""
-    }
-  })], 1)], 1)
-},staticRenderFns: []}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-18b6417b", module.exports)
-  }
-}
-
-/***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('form', {
-    staticClass: "form-inline form-filter"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("数据字典名称")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.code),
-      expression: "code"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.code)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.code = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.getAllDictionarys();
-      }
-    }
-  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    attrs: {
-      "href": "/dictionaryInfo"
-    }
-  }, [_vm._v("新增数据字典")])]), _vm._v(" "), _c('div', {
-    staticClass: "table-responsive articleList"
-  }, [_c('table', {
-    staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.dictionarys), function(dictionary, index) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(dictionary.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.scope))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.defaults))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.domain))]), _vm._v(" "), _c('td', [_c('router-link', {
-      staticClass: "btn btn-sm btn-success",
-      attrs: {
-        "to": {
-          path: '/dictionaryInfo',
-          query: {
-            dictionaryCode: dictionary.code
-          }
-        }
-      }
-    }, [_vm._v("查看\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-sm btn-danger",
-      on: {
-        "click": function($event) {
-          _vm.deleteTable(dictionary.code);
-        }
-      }
-    }, [_vm._v("删除")])], 1)])
-  }))])])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("取值范围")]), _vm._v(" "), _c('th', [_vm._v("默认值")]), _vm._v(" "), _c('th', [_vm._v("数据域")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
-}]}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-1d344065", module.exports)
-  }
-}
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('el-dialog', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.sql_dialog_show),
-      expression: "sql_dialog_show"
-    }],
-    attrs: {
-      "title": "SQL脚本"
-    },
-    domProps: {
-      "value": (_vm.sql_dialog_show)
-    },
-    on: {
-      "input": function($event) {
-        _vm.sql_dialog_show = $event
-      }
-    }
-  }, [_c('textarea', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.content),
-      expression: "content"
-    }],
-    attrs: {
-      "rows": "10",
-      "cols": "100"
-    },
-    domProps: {
-      "value": _vm._s(_vm.content)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.content = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
-    staticClass: "form-inline form-filter"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.code),
-      expression: "code"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.code)
-    },
-    on: {
-      "change": function($event) {
-        _vm.getAllTables();
-      },
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.code = $event.target.value
-      }
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', [_vm._v("表空间")]), _vm._v(" "), _c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.tableSpace),
-      expression: "tableSpace"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": function($event) {
-        _vm.tableSpace = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }
-    }
-  }, _vm._l((_vm.tableSpaces), function(tableSpace, index) {
-    return _c('option', {
-      domProps: {
-        "value": tableSpace.code.toString()
-      }
-    }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
-  }))]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.getAllTables();
-      }
-    }
-  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    attrs: {
-      "href": '/tableInfo?system=' + _vm.system
-    }
-  }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.generatorSql();
-      }
-    }
-  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('div', {
-    staticClass: "table-responsive articleList"
-  }, [_c('table', {
-    staticClass: "table table-striped"
-  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tables), function(table, index) {
-    return _c('tr', [_c('td', [_vm._v(_vm._s(table.class1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.class2))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.table_space))]), _vm._v(" "), _c('td', [_c('router-link', {
-      staticClass: "btn btn-sm btn-success",
-      attrs: {
-        "to": {
-          path: '/tableInfo',
-          query: {
-            system: _vm.system,
-            tableCode: table.code
-          }
-        }
-      }
-    }, [_vm._v("查看\n                    ")]), _vm._v(" "), _c('a', {
-      staticClass: "btn btn-sm btn-danger",
-      on: {
-        "click": function($event) {
-          _vm.deleteTable(table);
-        }
-      }
-    }, [_vm._v("删除")])], 1)])
-  }))])])], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('thead', [_c('tr', [_c('th', [_vm._v("垂直/水平")]), _vm._v(" "), _c('th', [_vm._v("业务/参数")]), _vm._v(" "), _c('th', [_vm._v("表名")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("表空间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
-}]}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-4dddddea", module.exports)
-  }
-}
-
-/***/ }),
-/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -52327,103 +51873,259 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-50cb2716", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-07642016", module.exports)
   }
 }
 
 /***/ }),
-/* 98 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('el-menu', {
-    staticClass: "el-menu-vertical-demo",
+  return _c('div', {
     attrs: {
-      "default-active": "1-1"
+      "id": "app"
     }
-  }, [_c('el-submenu', {
-    attrs: {
-      "index": "1"
-    }
-  }, [_c('template', {
-    slot: "title"
-  }, [_c('i', {
-    staticClass: "el-icon-message"
-  }), _vm._v("数据结构")]), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "/tableList?system=Ensemble"
-    }
-  }, [_c('el-menu-item', {
-    attrs: {
-      "index": "1-1"
-    }
-  }, [_vm._v("核心系统")])], 1), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "/tableList?system=Limarket"
-    }
-  }, [_c('el-menu-item', {
-    attrs: {
-      "index": "1-2"
-    }
-  }, [_vm._v("计价系统")])], 1), _vm._v(" "), _c('a', {
-    attrs: {
-      "href": "/tableList?system=Accounting"
-    }
-  }, [_c('el-menu-item', {
-    attrs: {
-      "index": "1-3"
-    }
-  }, [_vm._v("核算系统")])], 1)], 2), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "2"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/dictionaryList"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-menu"
-  }), _vm._v("数据字典")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "3"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/domainList"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-menu"
-  }), _vm._v("数据域")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "4"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/tableSpaceList"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-setting"
-  }), _vm._v("表空间")])]), _vm._v(" "), _c('el-menu-item', {
-    attrs: {
-      "index": "5"
-    }
-  }, [_c('a', {
-    attrs: {
-      "href": "/tableSelect"
-    }
-  }, [_c('i', {
-    staticClass: "el-icon-setting"
-  }), _vm._v("统计分析")])])], 1)], 1)
+  }, [_c('router-view')], 1)
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-52a1e64a", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-1dbe66ac", module.exports)
   }
 }
 
 /***/ }),
-/* 99 */
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('el-dialog', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.sql_dialog_show),
+      expression: "sql_dialog_show"
+    }],
+    attrs: {
+      "title": "SQL脚本"
+    },
+    domProps: {
+      "value": (_vm.sql_dialog_show)
+    },
+    on: {
+      "input": function($event) {
+        _vm.sql_dialog_show = $event
+      }
+    }
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }],
+    attrs: {
+      "rows": "10",
+      "cols": "100"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("所属系统")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.system),
+      expression: "system"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.system = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.systems), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("垂直/水平")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.class1),
+      expression: "class1"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.class1 = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class1s), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("分类2")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.class2),
+      expression: "class2"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": [function($event) {
+        _vm.class2 = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }, function($event) {
+        _vm.getAllTables();
+      }]
+    }
+  }, [_c('option'), _vm._v(" "), _vm._l((_vm.class2s), function(item, index) {
+    return _c('option', {
+      domProps: {
+        "value": item.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(item.code) + "\n                ")])
+  })], 2)]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.code),
+      expression: "code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.code)
+    },
+    on: {
+      "change": function($event) {
+        _vm.getAllTables();
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.downloadTable();
+      }
+    }
+  }, [_vm._v("导出")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.generatorSql();
+      }
+    }
+  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('br'), _vm._v(" "), _c('el-table', {
+    staticStyle: {
+      "width": "100%"
+    },
+    attrs: {
+      "data": _vm.tables,
+      "border": ""
+    },
+    on: {
+      "selection-change": _vm.handleSelectionChange
+    }
+  }, [_c('el-table-column', {
+    attrs: {
+      "type": "selection",
+      "width": "55"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "system",
+      "label": "所属系统",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "class1",
+      "label": "垂直/水平",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "class2",
+      "label": "参数/业务",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "code",
+      "label": "表名",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "comment",
+      "label": "描述",
+      "width": "120"
+    }
+  }), _vm._v(" "), _c('el-table-column', {
+    attrs: {
+      "prop": "table_space",
+      "label": "表空间",
+      "show-overflow-tooltip": ""
+    }
+  })], 1)], 1)
+},staticRenderFns: []}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-22cdb60a", module.exports)
+  }
+}
+
+/***/ }),
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -52496,30 +52198,371 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-582389da", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-29ef7e93", module.exports)
+  }
+}
+
+/***/ }),
+/* 98 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('h2', {
+    staticClass: "sub-header"
+  }, [_vm._v("数据域相信")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+    staticClass: "form-horizontal"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("名称")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domainCode),
+      expression: "domainCode"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "hidden"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domainCode)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domainCode = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.code),
+      expression: "domain.code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domain.code)
+    },
+    on: {
+      "blur": function($event) {
+        _vm.checkDomainCode(_vm.domain.code);
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domain.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("中文描述")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.comment),
+      expression: "domain.comment"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domain.comment)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domain.comment = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("数据类型")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.dataType),
+      expression: "domain.dataType"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        _vm.domain.dataType = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, [_vm._l((_vm.data_types), function(data_type) {
+    return [(data_type == _vm.domain.dataType) ? _c('option', {
+      attrs: {
+        "selected": ""
+      },
+      domProps: {
+        "value": data_type
+      }
+    }, [_vm._v("\n                            " + _vm._s(data_type) + "\n                        ")]) : _c('option', {
+      domProps: {
+        "value": data_type
+      }
+    }, [_vm._v("\n                            " + _vm._s(data_type) + "\n                        ")])]
+  })], 2)]), _vm._v(" "), _c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("长度")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.lengths),
+      expression: "domain.lengths"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domain.lengths)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domain.lengths = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("精度")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.precision),
+      expression: "domain.precision"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domain.precision)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domain.precision = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('label', {
+    staticClass: "col-sm-2 control-label"
+  }, [_vm._v("默认值")]), _vm._v(" "), _c('div', {
+    staticClass: "col-sm-4"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.domain.defaults),
+      expression: "domain.defaults"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.domain.defaults)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.domain.defaults = $event.target.value
+      }
+    }
+  })])]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.save();
+      }
+    }
+  }, [_vm._v("保存")])])])
+},staticRenderFns: []}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-3754aaba", module.exports)
+  }
+}
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('el-dialog', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.sql_dialog_show),
+      expression: "sql_dialog_show"
+    }],
+    attrs: {
+      "title": "SQL脚本"
+    },
+    domProps: {
+      "value": (_vm.sql_dialog_show)
+    },
+    on: {
+      "input": function($event) {
+        _vm.sql_dialog_show = $event
+      }
+    }
+  }, [_c('textarea', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.content),
+      expression: "content"
+    }],
+    attrs: {
+      "rows": "10",
+      "cols": "100"
+    },
+    domProps: {
+      "value": _vm._s(_vm.content)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.content = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.code),
+      expression: "code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.code)
+    },
+    on: {
+      "change": function($event) {
+        _vm.getAllTables();
+      },
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("表空间")]), _vm._v(" "), _c('select', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.tableSpace),
+      expression: "tableSpace"
+    }],
+    staticClass: "form-control",
+    on: {
+      "change": function($event) {
+        _vm.tableSpace = Array.prototype.filter.call($event.target.options, function(o) {
+          return o.selected
+        }).map(function(o) {
+          var val = "_value" in o ? o._value : o.value;
+          return val
+        })[0]
+      }
+    }
+  }, _vm._l((_vm.tableSpaces), function(tableSpace, index) {
+    return _c('option', {
+      domProps: {
+        "value": tableSpace.code.toString()
+      }
+    }, [_vm._v("\n                    " + _vm._s(tableSpace.code) + "\n                ")])
+  }))]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.getAllTables();
+      }
+    }
+  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    attrs: {
+      "href": '/tableInfo?system=' + _vm.system
+    }
+  }, [_vm._v("新增表")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.generatorSql();
+      }
+    }
+  }, [_vm._v("生成SQL")])]), _vm._v(" "), _c('div', {
+    staticClass: "table-responsive articleList"
+  }, [_c('table', {
+    staticClass: "table table-striped"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.tables), function(table, index) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(table.class1))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.class2))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(table.table_space))]), _vm._v(" "), _c('td', [_c('router-link', {
+      staticClass: "btn btn-sm btn-success",
+      attrs: {
+        "to": {
+          path: '/tableInfo',
+          query: {
+            system: _vm.system,
+            tableCode: table.code
+          }
+        }
+      }
+    }, [_vm._v("查看\n                    ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        "click": function($event) {
+          _vm.deleteTable(table);
+        }
+      }
+    }, [_vm._v("删除")])], 1)])
+  }))])])], 1)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("垂直/水平")]), _vm._v(" "), _c('th', [_vm._v("业务/参数")]), _vm._v(" "), _c('th', [_vm._v("表名")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("表空间")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
+}]}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-37cd44ea", module.exports)
   }
 }
 
 /***/ }),
 /* 100 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    attrs: {
-      "id": "app"
-    }
-  }, [_c('router-view')], 1)
-},staticRenderFns: []}
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-618b432c", module.exports)
-  }
-}
-
-/***/ }),
-/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -52620,7 +52663,82 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-86f138b2", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-3d8a31b2", module.exports)
+  }
+}
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_c('form', {
+    staticClass: "form-inline form-filter"
+  }, [_c('div', {
+    staticClass: "form-group"
+  }, [_c('label', [_vm._v("数据字典名称")]), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.code),
+      expression: "code"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": _vm._s(_vm.code)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.code = $event.target.value
+      }
+    }
+  })]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    on: {
+      "click": function($event) {
+        _vm.getAllDictionarys();
+      }
+    }
+  }, [_vm._v("筛选")]), _vm._v(" "), _c('a', {
+    staticClass: "btn btn-info",
+    attrs: {
+      "href": "/dictionaryInfo"
+    }
+  }, [_vm._v("新增数据字典")])]), _vm._v(" "), _c('div', {
+    staticClass: "table-responsive articleList"
+  }, [_c('table', {
+    staticClass: "table table-striped"
+  }, [_vm._m(0), _vm._v(" "), _c('tbody', _vm._l((_vm.dictionarys), function(dictionary, index) {
+    return _c('tr', [_c('td', [_vm._v(_vm._s(dictionary.code))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.comment))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.scope))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.defaults))]), _vm._v(" "), _c('td', [_vm._v(_vm._s(dictionary.domain))]), _vm._v(" "), _c('td', [_c('router-link', {
+      staticClass: "btn btn-sm btn-success",
+      attrs: {
+        "to": {
+          path: '/dictionaryInfo',
+          query: {
+            dictionaryCode: dictionary.code
+          }
+        }
+      }
+    }, [_vm._v("查看\n                    ")]), _vm._v(" "), _c('a', {
+      staticClass: "btn btn-sm btn-danger",
+      on: {
+        "click": function($event) {
+          _vm.deleteTable(dictionary.code);
+        }
+      }
+    }, [_vm._v("删除")])], 1)])
+  }))])])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('thead', [_c('tr', [_c('th', [_vm._v("名称")]), _vm._v(" "), _c('th', [_vm._v("描述")]), _vm._v(" "), _c('th', [_vm._v("取值范围")]), _vm._v(" "), _c('th', [_vm._v("默认值")]), _vm._v(" "), _c('th', [_vm._v("数据域")]), _vm._v(" "), _c('th', [_vm._v("操作")])])])
+}]}
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-41e7c3e5", module.exports)
   }
 }
 
@@ -52696,7 +52814,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-b01eb828", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-4fd99f28", module.exports)
   }
 }
 
@@ -53565,7 +53683,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-d91185ca", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-c300ecca", module.exports)
   }
 }
 
@@ -53574,207 +53692,89 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_c('h2', {
-    staticClass: "sub-header"
-  }, [_vm._v("数据域相信")]), _vm._v(" "), _c('br'), _vm._v(" "), _c('form', {
-    staticClass: "form-horizontal"
-  }, [_c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("名称")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domainCode),
-      expression: "domainCode"
-    }],
-    staticClass: "form-control",
+  return _c('div', [_c('el-menu', {
+    staticClass: "el-menu-vertical-demo",
     attrs: {
-      "type": "hidden"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domainCode)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domainCode = $event.target.value
-      }
+      "default-active": "1-1"
     }
-  }), _vm._v(" "), _c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.code),
-      expression: "domain.code"
-    }],
-    staticClass: "form-control",
+  }, [_c('el-submenu', {
     attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domain.code)
-    },
-    on: {
-      "blur": function($event) {
-        _vm.checkDomainCode(_vm.domain.code);
-      },
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domain.code = $event.target.value
-      }
+      "index": "1"
     }
-  })]), _vm._v(" "), _c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("中文描述")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.comment),
-      expression: "domain.comment"
-    }],
-    staticClass: "form-control",
+  }, [_c('template', {
+    slot: "title"
+  }, [_c('i', {
+    staticClass: "el-icon-message"
+  }), _vm._v("数据结构")]), _vm._v(" "), _c('a', {
     attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domain.comment)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domain.comment = $event.target.value
-      }
+      "href": "/tableList?system=Ensemble"
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("数据类型")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('select', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.dataType),
-      expression: "domain.dataType"
-    }],
-    staticClass: "form-control",
-    on: {
-      "change": function($event) {
-        _vm.domain.dataType = Array.prototype.filter.call($event.target.options, function(o) {
-          return o.selected
-        }).map(function(o) {
-          var val = "_value" in o ? o._value : o.value;
-          return val
-        })[0]
-      }
-    }
-  }, [_vm._l((_vm.data_types), function(data_type) {
-    return [(data_type == _vm.domain.dataType) ? _c('option', {
-      attrs: {
-        "selected": ""
-      },
-      domProps: {
-        "value": data_type
-      }
-    }, [_vm._v("\n                            " + _vm._s(data_type) + "\n                        ")]) : _c('option', {
-      domProps: {
-        "value": data_type
-      }
-    }, [_vm._v("\n                            " + _vm._s(data_type) + "\n                        ")])]
-  })], 2)]), _vm._v(" "), _c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("长度")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.lengths),
-      expression: "domain.lengths"
-    }],
-    staticClass: "form-control",
+  }, [_c('el-menu-item', {
     attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domain.lengths)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domain.lengths = $event.target.value
-      }
+      "index": "1-1"
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("精度")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.precision),
-      expression: "domain.precision"
-    }],
-    staticClass: "form-control",
+  }, [_vm._v("核心系统")])], 1), _vm._v(" "), _c('a', {
     attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domain.precision)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domain.precision = $event.target.value
-      }
+      "href": "/tableList?system=Limarket"
     }
-  })]), _vm._v(" "), _c('label', {
-    staticClass: "col-sm-2 control-label"
-  }, [_vm._v("默认值")]), _vm._v(" "), _c('div', {
-    staticClass: "col-sm-4"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.domain.defaults),
-      expression: "domain.defaults"
-    }],
-    staticClass: "form-control",
+  }, [_c('el-menu-item', {
     attrs: {
-      "type": "text"
-    },
-    domProps: {
-      "value": _vm._s(_vm.domain.defaults)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.domain.defaults = $event.target.value
-      }
+      "index": "1-2"
     }
-  })])]), _vm._v(" "), _c('a', {
-    staticClass: "btn btn-info",
-    on: {
-      "click": function($event) {
-        _vm.save();
-      }
+  }, [_vm._v("计价系统")])], 1), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "/tableList?system=Accounting"
     }
-  }, [_vm._v("保存")])])])
+  }, [_c('el-menu-item', {
+    attrs: {
+      "index": "1-3"
+    }
+  }, [_vm._v("核算系统")])], 1)], 2), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "2"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "/dictionaryList"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-menu"
+  }), _vm._v("数据字典")])]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "3"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "/domainList"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-menu"
+  }), _vm._v("数据域")])]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "4"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "/tableSpaceList"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-setting"
+  }), _vm._v("表空间")])]), _vm._v(" "), _c('el-menu-item', {
+    attrs: {
+      "index": "5"
+    }
+  }, [_c('a', {
+    attrs: {
+      "href": "/tableSelect"
+    }
+  }, [_c('i', {
+    staticClass: "el-icon-setting"
+  }), _vm._v("统计分析")])])], 1)], 1)
 },staticRenderFns: []}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-e35731ba", module.exports)
+     require("vue-hot-reload-api").rerender("data-v-ef3f0d4a", module.exports)
   }
 }
 

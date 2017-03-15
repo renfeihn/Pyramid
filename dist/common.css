@@ -1,37 +1,37 @@
 
-#Container[data-v-b01eb828] {
+#Container[data-v-4fd99f28] {
     width: 100%;
     margin: 0 auto;
 }
-#Header[data-v-b01eb828] {
+#Header[data-v-4fd99f28] {
     height: 60px;
     background: #20a0ff;
 }
-#logo[data-v-b01eb828] {
+#logo[data-v-4fd99f28] {
     float: right;
     padding-right: 50px;
     padding-top: 20px;
     padding-bottom: 50px;
 }
-#Content[data-v-b01eb828] {
+#Content[data-v-4fd99f28] {
     height: auto;
     margin-top: 3px;
 }
-#Content-Left[data-v-b01eb828] {
+#Content-Left[data-v-4fd99f28] {
     min-height: 400px;
     width: 13%;
     float: left;
 }
-#Content-Main[data-v-b01eb828] {
+#Content-Main[data-v-4fd99f28] {
     min-height: 400px;
     width: 85%;
     padding-left: 10px;
     float: left;
 }
-#Footer[data-v-b01eb828] {
+#Footer[data-v-4fd99f28] {
     height: 40px;
     margin-top: 6px;
 }
-.Clear[data-v-b01eb828] {
+.Clear[data-v-4fd99f28] {
     clear: both;
 }
