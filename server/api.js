@@ -242,7 +242,6 @@ router.post('/saveDictionary', function (req, res, next) {
         db.writeSourceFile('dictionarys', data.code, JSON.stringify(data, null, 4));
         res.status(200).send('保存成功').end();
     }
-
 });
 
 
