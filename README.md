@@ -7,7 +7,7 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空�
 <br/>
 环境需要：git、nodejs 4+ 、npm 2+
 <br/>
-1.git clone： https://github.com/renfeihn/PowerDesigner
+1.git clone： https://github.com/renfeihn/Pyramid
 <br/>
 2.在项目根目录下运行（安装依赖）：npm install
 <br/>
