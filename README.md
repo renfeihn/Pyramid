@@ -1,4 +1,4 @@
-Pyramid
+Pyramid 金字塔
 ===
 Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、domain 域、表空间等
 
