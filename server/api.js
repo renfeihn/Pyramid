@@ -8,7 +8,6 @@ const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
 const util = require('./util/util');
-var urlencode = require('urlencode');
 // 子进程（child_process）
 const exec = require('child_process').exec;
 
@@ -509,12 +508,12 @@ router.post('/downLoad/tableSelect', function (req, res, next) {
     var rowTemp = new Array();
     data.forEach(function (table, index, tables) {
         rowTemp[index] = new Array();
-        (rowTemp[index]).push(util.isNvl(table.system, ''));
-        (rowTemp[index]).push(util.isNvl(table.class1, ''));
-        (rowTemp[index]).push(util.isNvl(table.class2, ''));
-        (rowTemp[index]).push(util.isNvl(table.code, ''));
-        (rowTemp[index]).push(util.isNvl(table.comment, ''));
-        (rowTemp[index]).push(util.isNvl(table.table_space, ''));
+        (rowTemp[index]).push(util.nvl(table.system, ''));
+        (rowTemp[index]).push(util.nvl(table.class1, ''));
+        (rowTemp[index]).push(util.nvl(table.class2, ''));
+        (rowTemp[index]).push(util.nvl(table.code, ''));
+        (rowTemp[index]).push(util.nvl(table.comment, ''));
+        (rowTemp[index]).push(util.nvl(table.table_space, ''));
     });
 
     logger.writeDebug('2down load talbe rowTemp --> ' + rowTemp)
@@ -531,9 +530,9 @@ router.post('/downLoad/tableSelect', function (req, res, next) {
     conf.rows = rowTemp;
 
     const fileName = "表范围.xlsx";
-    const head = excel.createHeader(fileName, req);
-    logger.writeDebug('---------> head: ' + head);
-    res.setHeader('Content-Disposition', head);
+    const headContent = excel.createHeader(fileName, req);
+    logger.writeDebug('---------> headContent: ' + headContent);
+    res.setHeader('Content-Disposition', headContent);
 
     excel.createExcel({
         data: conf,
