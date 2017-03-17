@@ -33,12 +33,12 @@
                 <!--border-->
                 <!--style="width: 100%">-->
             <!--<el-table-column-->
-                    <!--prop="class1"-->
+                    <!--prop="dbType"-->
                     <!--label="垂直/水平"-->
                     <!--width="120">-->
             <!--</el-table-column>-->
             <!--<el-table-column-->
-                    <!--prop="class2"-->
+                    <!--prop="parameter"-->
                     <!--label="分类2"-->
                     <!--width="120">-->
             <!--</el-table-column>-->
@@ -85,18 +85,18 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>垂直/水平</th>
-                    <th>业务/参数</th>
-                    <th>表名</th>
-                    <th>描述</th>
-                    <th>表空间</th>
-                    <th>操作</th>
+                    <th width="10%">垂直/水平</th>
+                    <th width="15%">业务/参数</th>
+                    <th width="15%">表名</th>
+                    <th width="34%">描述</th>
+                    <th width="15%">表空间</th>
+                    <th width="11%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(table,index) in tables">
-                    <td>{{table.class1}}</td>
-                    <td>{{table.class2}}</td>
+                    <td>{{table.dbType}}</td>
+                    <td>{{table.parameter}}</td>
                     <td>{{table.code}}</td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
@@ -122,10 +122,10 @@
             return {
                 // 系统
                 system: '',
-                // class1 垂直、水平
-                class1: '',
-                // class2 init/busi
-                class2: '',
+                // dbType 垂直、水平
+                dbType: '',
+                // parameter init/busi
+                parameter: '',
                 code: '',
                 comment: '',
                 tableSpace: '',
@@ -147,8 +147,8 @@
                 });
             },
             getAllTables(){
-                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&class1=' + this.class1 +
-                    '&class2=' + this.class2 + '&tableSpace=' + this.tableSpace;
+                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&dbType=' + this.dbType +
+                    '&parameter=' + this.parameter + '&tableSpace=' + this.tableSpace;
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;

@@ -29,8 +29,8 @@ var targerPath = common.targerPath;
  * @param type 源文件目录
  * @returns [Array] 返回数据对象数组
  */
-const readFile = function (type, system, class1, class2) {
-    const files = getPatternFiles(type, system, class1, class2);
+const readFile = function (type, system, dbType, parameter) {
+    const files = getPatternFiles(type, system, dbType, parameter);
     return readFiles(files);
 };
 
@@ -38,11 +38,11 @@ const readFile = function (type, system, class1, class2) {
  * 根据规则获取文件全路径列表
  * @param type
  * @param system
- * @param class1
- * @param class2
+ * @param dbType
+ * @param parameter
  * @returns {*}
  */
-const getPatternFiles = function (type, system, class1, class2, code) {
+const getPatternFiles = function (type, system, dbType, parameter, code) {
     var pattern = sourcePath + type;
     if (util.isNotNull(system)) {
         pattern = pattern + '/' + system;
@@ -50,14 +50,14 @@ const getPatternFiles = function (type, system, class1, class2, code) {
         pattern = pattern + '/**';
     }
 
-    if (util.isNotNull(class1)) {
-        pattern = pattern + '/' + class1;
+    if (util.isNotNull(dbType)) {
+        pattern = pattern + '/' + dbType;
     } else {
         pattern = pattern + '/**';
     }
 
-    if (util.isNotNull(class2)) {
-        pattern = pattern + '/' + class2;
+    if (util.isNotNull(parameter)) {
+        pattern = pattern + '/' + parameter;
     } else {
         pattern = pattern + '/**';
     }
@@ -142,7 +142,7 @@ const writeSourceFile = function (type, name, data) {
  */
 const writeTableSourceFile = function (table, data) {
     // 目标路径  eg: data/source/tables/Ensemble/upright/init/user.json
-    const outPath = sourcePath + table_name + '/' + table.system + '/' + table.class1 + '/' + table.class2;
+    const outPath = sourcePath + table_name + '/' + table.system + '/' + table.dbType + '/' + table.parameter;
     logger.writeDebug('save table path: ' + outPath);
     util.checkAndCreateDir(outPath);
     const outFile = outPath + '/' + table.code + '.json';

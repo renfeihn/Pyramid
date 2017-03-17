@@ -15,14 +15,14 @@ const util = require('./util');
  * @param type 脚本类型eg: tables  domains  table_spaces\
  * @param system 系统
  */
-const generatorSql = function (db_type, type, system, class1, class2) {
+const generatorSql = function (db_type, type, system, dbType, parameter) {
     logger.writeDebug('tableUtil generatorSql');
     db_type = db_type.toLowerCase();
     type = type.toLowerCase();
     // const path = 'server/template/table_' + db_type + '.ejs';
     // const str = fs.readFileSync(path, 'utf8');
     // const datas = db.readFile(type);
-    const datas = db.readFile(type, system, class1, class2);
+    const datas = db.readFile(type, system, dbType, parameter);
     datas.forEach(function (data) {
         // 如果表空间为空，获取默认表空间，如果没有默认表空间，则不指定表空间
         if (!(data.table_space)) {

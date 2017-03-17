@@ -131,7 +131,7 @@
             </div>
             <div class="form-group">
                 <label>垂直/水平</label>
-                <el-select v-model="table.class1" size="small" placeholder="请选择">
+                <el-select v-model="table.dbType" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class1s"
                             :label="item.code"
@@ -141,7 +141,7 @@
             </div>
             <div class="form-group">
                 <label>参数/业务</label>
-                <el-select v-model="table.class2" size="small" placeholder="请选择">
+                <el-select v-model="table.parameter" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class2s"
                             :label="item.code"
@@ -275,11 +275,11 @@
             if (null == tmp.system || undefined == tmp.system) {
                 tmp.system = '';
             }
-            if (null == tmp.class1 || undefined == tmp.class1) {
-                tmp.class1 = '';
+            if (null == tmp.dbType || undefined == tmp.dbType) {
+                tmp.dbType = '';
             }
-            if (null == tmp.class2 || undefined == tmp.class2) {
-                tmp.class2 = '';
+            if (null == tmp.parameter || undefined == tmp.parameter) {
+                tmp.parameter = '';
             }
             if (null == tmp.table_space || undefined == tmp.table_space) {
                 tmp.table_space = '';
@@ -300,8 +300,8 @@
         } else {
             newTmp = {
                 "system": system,
-                "class1": "",
-                "class2": "",
+                "dbType": "",
+                "parameter": "",
                 "table_space": "",
                 "code": "",
                 "comment": "",
@@ -410,7 +410,7 @@
                 // 所属分类1
                 class1s:[{"code":"upright"},{"code":"level"}],
                 // 所属分类2
-                class2s:[{"code":"init"},{"code":"busi"}],
+                class2s:[{"code":"init_para"},{"code":"busi_para"}],
                 // 数据类型
                 data_types: ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob']
             }

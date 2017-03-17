@@ -19,7 +19,7 @@
 
             <div class="form-group">
                 <label>垂直/水平</label>
-                <select @change="getAllTables();" class="form-control" v-model="class1">
+                <select @change="getAllTables();" class="form-control" v-model="dbType">
                     <option></option>
                     <option v-for="(item, index) in class1s" :value="item.code.toString()">
                         {{item.code}}
@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label>分类2</label>
-                <select @change="getAllTables();" class="form-control" v-model="class2">
+                <select @change="getAllTables();" class="form-control" v-model="parameter">
                     <option></option>
                     <option v-for="(item, index) in class2s" :value="item.code.toString()">
                         {{item.code}}
@@ -70,12 +70,12 @@
                     width="120">
             </el-table-column>
             <el-table-column
-                    prop="class1"
+                    prop="dbType"
                     label="垂直/水平"
                     width="120">
             </el-table-column>
             <el-table-column
-                    prop="class2"
+                    prop="parameter"
                     label="参数/业务"
                     width="120">
             </el-table-column>
@@ -104,16 +104,16 @@
             return {
                 // 系统
                 system: '',
-                // class1 垂直、水平
-                class1: '',
-                // class2 init/busi
-                class2: '',
+                // dbType 垂直、水平
+                dbType: '',
+                // parameter init/busi
+                parameter: '',
                 // 所属系统
                 systems: [{"code": "Ensemble"}, {"code": "Limarket"}, {"code": "Accounting"}],
                 // 所属分类1
                 class1s: [{"code": "upright"}, {"code": "level"}],
                 // 所属分类2
-                class2s: [{"code": "init"}, {"code": "busi"}],
+                class2s: [{"code": "init_para"}, {"code": "busi_para"},{"code":"tran"}],
                 code: '',
                 comment: '',
                 tableSpace: '',
@@ -164,8 +164,8 @@
                 });
             },
             getAllTables(){
-                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&class1=' + this.class1 +
-                    '&class2=' + this.class2 + '&tableSpace=' + this.tableSpace;
+                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&dbType=' + this.dbType +
+                    '&parameter=' + this.parameter + '&tableSpace=' + this.tableSpace;
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
@@ -209,8 +209,8 @@
                 this.$http.post('/generatorSql', {
                     type: 'table',
                     system: this.system,
-                    class1: this.class1,
-                    class2: this.class2,
+                    dbType: this.dbType,
+                    parameter: this.parameter,
                     db_type: localStorage.getItem('dbms')
                 }).then(function (res) {
                     if (res.status == 200) {

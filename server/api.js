@@ -25,15 +25,15 @@ router.get('/getAll/tables', function (req, res, next) {
     var obj;
     var start = process.uptime();
     const system = req.query.system.trim();
-    const class1 = req.query.class1.trim();
-    const class2 = req.query.class2.trim();
+    const dbType = req.query.dbType.trim();
+    const parameter = req.query.parameter.trim();
     const code = req.query.code.trim();
     const tableSpace = req.query.tableSpace.trim();
 
-    logger.writeDebug('system: ' + system + '  class1: ' + class1 + '   class2: ' + class2
+    logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
         + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
-    var result = db.readFile(common.table_name, system, class1, class2);
+    var result = db.readFile(common.table_name, system, dbType, parameter);
     var tableRes = new Array();
 
     if (util.isArray(result) && result.length > 0) {
@@ -389,7 +389,7 @@ function checkTableCode(table, oldCode) {
     if (oldCode != table.code) {
         // 获取满足条件的table 全路径
         const files = db.getPatternFiles(common.table_name, table.system,
-            table.class1, table.class2);
+            table.dbType, table.parameter);
         if (util.isArray(files) && files.length > 0) {
             flag = true;
         }
@@ -437,14 +437,14 @@ router.post('/generatorSql', function (req, res, next) {
     const db_type = req.body.db_type;
     const type = req.body.type;
     const system = req.body.system;
-    const class1 = req.body.class1;
-    const class2 = req.body.class2;
+    const dbType = req.body.dbType;
+    const parameter = req.body.parameter;
 
 
     logger.writeDebug('db_type: ' + db_type);
     logger.writeDebug('type: ' + type);
     try {
-        utils.generatorSql(db_type, type, system, class1, class2);
+        utils.generatorSql(db_type, type, system, dbType, parameter);
 
         msg = '生成SQL成功,<a>下载</a>';
 
@@ -490,8 +490,8 @@ router.post('/deleteTableFile', function (req, res, next) {
 
     try {
 
-        var filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.class1
-            + '/' + table.class2 + '/' + table.code + '.json';
+        var filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.dbType
+            + '/' + table.parameter + '/' + table.code + '.json';
 
         db.delFile(filePath);
         msg = '表 ' + table.code + ' 删除成功！';
@@ -516,8 +516,8 @@ router.post('/downLoad/tableSelect', function (req, res, next) {
     data.forEach(function (table, index, tables) {
         rowTemp[index] = new Array();
         (rowTemp[index]).push(util.nvl(table.system, ''));
-        (rowTemp[index]).push(util.nvl(table.class1, ''));
-        (rowTemp[index]).push(util.nvl(table.class2, ''));
+        (rowTemp[index]).push(util.nvl(table.dbType, ''));
+        (rowTemp[index]).push(util.nvl(table.parameter, ''));
         (rowTemp[index]).push(util.nvl(table.code, ''));
         (rowTemp[index]).push(util.nvl(table.comment, ''));
         (rowTemp[index]).push(util.nvl(table.table_space, ''));
