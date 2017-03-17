@@ -52,6 +52,47 @@ const checkAndCreateDir = function (dirname, authNum) {
     }
 };
 
+const getRourcePath = function () {
+    const fullPath = common.sourcePath.toLowerCase();
+
+    // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
+    // 以c: d: e: 开头的为windows
+    if (fullPath.startsWith("/") ||
+        fullPath.startsWith("c:") ||
+        fullPath.startsWith("d:") ||
+        fullPath.startsWith("e:") ||
+        fullPath.startsWith("f:") ||
+        fullPath.startsWith("g:") ||
+        fullPath.startsWith("h:") ||
+        fullPath.startsWith("i:")) {
+
+        return common.sourcePath;
+    } else {
+        // 项目内的相对路径
+        return path.join(__dirname, "../../", common.sourcePath);
+    }
+};
+
+const getTargetPath = function () {
+    const fullPath = common.targerPath.toLowerCase();
+
+    // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
+    // 以c: d: e: 开头的为windows
+    if (fullPath.startsWith("/") ||
+        fullPath.startsWith("c:") ||
+        fullPath.startsWith("d:") ||
+        fullPath.startsWith("e:") ||
+        fullPath.startsWith("f:") ||
+        fullPath.startsWith("g:") ||
+        fullPath.startsWith("h:") ||
+        fullPath.startsWith("i:")) {
+
+        return common.targerPath;
+    } else {
+        // 项目内的相对路径
+        return path.join(__dirname, "../../", common.targerPath);
+    }
+};
 
 const Models = {
     nvl: nvl,
@@ -59,6 +100,8 @@ const Models = {
     isNotNull: isNotNull,
     isObject: isObject,
     isArray: isArray,
+    getRourcePath: getRourcePath,
+    getTargetPath: getTargetPath,
     checkAndCreateDir: checkAndCreateDir
 };
 

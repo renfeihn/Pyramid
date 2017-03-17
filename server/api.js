@@ -389,7 +389,7 @@ function checkTableCode(table, oldCode) {
     if (oldCode != table.code) {
         // 获取满足条件的table 全路径
         const files = db.getPatternFiles(common.table_name, table.system,
-            table.dbType, table.parameter);
+            table.dbType, table.parameter, table.code);
         if (util.isArray(files) && files.length > 0) {
             flag = true;
         }
@@ -480,7 +480,7 @@ router.post('/deleteFile', function (req, res, next) {
 });
 
 /**
- * 删除源文件
+ * 删除表源文件（复杂路径）
  */
 router.post('/deleteTableFile', function (req, res, next) {
     var msg;
@@ -490,7 +490,7 @@ router.post('/deleteTableFile', function (req, res, next) {
 
     try {
 
-        var filePath = common.sourcePath + common.table_name + '/' + table.system + '/' + table.dbType
+        var filePath = util.getRourcePath() + common.table_name + '/' + table.system + '/' + table.dbType
             + '/' + table.parameter + '/' + table.code + '.json';
 
         db.delFile(filePath);

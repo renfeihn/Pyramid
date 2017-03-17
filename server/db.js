@@ -19,9 +19,9 @@ const domain_name = common.domain_name;
 const table_space_name = common.table_spaces;
 
 // JSON源数据路径
-var sourcePath = common.sourcePath;
+var sourcePath = util.getRourcePath();
 // 生成SQL路径
-var targerPath = common.targerPath;
+var targerPath = util.getTargetPath();
 
 
 /**
@@ -66,7 +66,7 @@ const getPatternFiles = function (type, system, dbType, parameter, code) {
     } else {
         pattern = pattern + '/*.json';
     }
-    logger.writeInfo('db 读取的 pattern:  ' + pattern);
+    logger.writeInfo('getPatternFiles  db  pattern:  ' + pattern);
     return glob.sync(pattern, {nodir: true});
 };
 
@@ -100,6 +100,7 @@ const delSourceFile = function (type, name) {
     var outPath = sourcePath + type;
     outPath = path.join(__dirname, '../', outPath, '/');
     const outFile = outPath + name + '.json'
+    logger.writeDebug('---------------del path: ' + outFile);
     delFile(outFile);
 
 };

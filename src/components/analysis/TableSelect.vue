@@ -28,7 +28,7 @@
             </div>
 
             <div class="form-group">
-                <label>分类2</label>
+                <label>参数/业务</label>
                 <select @change="getAllTables();" class="form-control" v-model="parameter">
                     <option></option>
                     <option v-for="(item, index) in class2s" :value="item.code.toString()">
