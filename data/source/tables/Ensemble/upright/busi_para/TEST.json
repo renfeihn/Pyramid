@@ -1,7 +1,7 @@
 {
     "system": "Ensemble",
-    "class1": "upright",
-    "class2": "busi",
+    "dbType": "upright",
+    "parameter": "busi_para",
     "table_space": "test02",
     "code": "TEST",
     "comment": "≤‚ ‘",

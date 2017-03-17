@@ -124,7 +124,7 @@
                 system: '',
                 // dbType 垂直、水平
                 dbType: '',
-                // parameter init/busi
+                // parameter init/busi_para
                 parameter: '',
                 code: '',
                 comment: '',

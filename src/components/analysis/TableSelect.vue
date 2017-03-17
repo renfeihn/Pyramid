@@ -106,7 +106,7 @@
                 system: '',
                 // dbType 垂直、水平
                 dbType: '',
-                // parameter init/busi
+                // parameter init/busi_para
                 parameter: '',
                 // 所属系统
                 systems: [{"code": "Ensemble"}, {"code": "Limarket"}, {"code": "Accounting"}],
