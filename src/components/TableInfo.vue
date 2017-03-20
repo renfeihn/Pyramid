@@ -696,7 +696,9 @@
                 };
 
                 // 判断数据字典和code不能为空
-                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
+                // 目前数据字典可为空
+//                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
+                if (!this.tableColumns.code) {
                     this.$message.error('请将信息填写完整');
                     return;
                 }
