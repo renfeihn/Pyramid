@@ -72,27 +72,28 @@
             <el-table-column
                     prop="dbType"
                     label="垂直/水平"
-                    width="120">
+                    width="100">
             </el-table-column>
             <el-table-column
                     prop="parameter"
                     label="参数/业务"
-                    width="120">
-            </el-table-column>
-            <el-table-column
-                    prop="code"
-                    label="表名"
-                    width="120">
-            </el-table-column>
-            <el-table-column
-                    prop="comment"
-                    label="描述"
-                    width="120">
+                    width="100">
             </el-table-column>
             <el-table-column
                     prop="table_space"
                     label="表空间"
-                    show-overflow-tooltip>
+                    width="130">
+            </el-table-column>
+            <el-table-column
+                    prop="code"
+                    label="表名"
+                    width="230">
+            </el-table-column>
+            <el-table-column
+                    prop="comment"
+                    label="描述"
+                    show-overflow-tooltip
+                   >
             </el-table-column>
         </el-table>
     </div>
@@ -207,7 +208,7 @@
             },
             generatorSql(){
                 this.$http.post('/generatorSql', {
-                    type: 'table',
+                    type: 'tables',
                     system: this.system,
                     dbType: this.dbType,
                     parameter: this.parameter,
@@ -217,6 +218,7 @@
                         console.log('生成sql成功');
                         // 下载sql
                         var re = res.body;
+                        this.$message.success(re);
                     } else {
                         console.log('生成sql失败');
                         this.$message.error('生成sql失败!');
@@ -228,7 +230,7 @@
             },
             getSql(code){
                 this.$http.post('/showSQL', {
-                    type: 'table',
+                    type: 'tables',
                     db_type: localStorage.getItem('dbms'),
                     code: code
                 }).then(function (res) {

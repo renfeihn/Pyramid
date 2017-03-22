@@ -43,5 +43,5 @@ app.get('*', function (req, res, next) {
 });
 
 app.listen(app.get('port'), function () {
-    logger.writeInfo('---- Server up: http://localhost:' + app.get('port') + ' ----');
+    logger.writeInfo('-- Server up: http://localhost:' + app.get('port') + ' --');
 });

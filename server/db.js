@@ -29,8 +29,8 @@ var targerPath = util.getTargetPath();
  * @param type 源文件目录
  * @returns [Array] 返回数据对象数组
  */
-const readFile = function (type, system, dbType, parameter) {
-    const files = getPatternFiles(type, system, dbType, parameter);
+const readFile = function (type, system, dbType, parameter, code) {
+    const files = getPatternFiles(type, system, dbType, parameter, code);
     return readFiles(files);
 };
 
@@ -62,7 +62,7 @@ const getPatternFiles = function (type, system, dbType, parameter, code) {
         pattern = pattern + '/**';
     }
     if (util.isNotNull(code)) {
-        pattern = pattern + '/' + code + '.json';
+        pattern = pattern + '/*' + code + '*.json';
     } else {
         pattern = pattern + '/*.json';
     }

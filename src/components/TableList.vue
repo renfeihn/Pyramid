@@ -83,21 +83,23 @@
 
         <div class="table-responsive articleList">
             <table class="table table-striped">
-                <thead>
-                <tr>
+                    <thead>
+                    <tr>
                     <th width="10%">垂直/水平</th>
-                    <th width="15%">业务/参数</th>
+                    <th width="10%">业务/参数</th>
                     <th width="15%">表名</th>
                     <th width="34%">描述</th>
                     <th width="15%">表空间</th>
-                    <th width="11%">操作</th>
+                    <th width="16%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(table,index) in tables">
                     <td>{{table.dbType}}</td>
                     <td>{{table.parameter}}</td>
-                    <td>{{table.code}}</td>
+                    <td>
+                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code}}">{{table.code}}</router-link>
+                    </td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>

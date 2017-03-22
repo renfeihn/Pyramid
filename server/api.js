@@ -33,27 +33,29 @@ router.get('/getAll/tables', function (req, res, next) {
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
         + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
-    var result = db.readFile(common.table_name, system, dbType, parameter);
-    var tableRes = new Array();
+    var result = db.readFile(common.table_name, system, dbType, parameter, code);
+    // var tableRes = new Array();
 
-    if (util.isArray(result) && result.length > 0) {
-        result.forEach(function (table, index, tables) {
-            logger.writeDebug('table:  ' + JSON.stringify(table));
-            if (util.isNotNull(code)) {
-                if ((table.code).indexOf(code) >= 0) {
-                    tableRes.push(table);
-                }
-            }
+    // if (util.isArray(result) && result.length > 0) {
+    //     result.forEach(function (table, index, tables) {
+    //         logger.writeDebug('table:  ' + JSON.stringify(table));
+    //         if (util.isNotNull(code)) {
+    //             if ((table.code).indexOf(code) >= 0) {
+    //                 tableRes.push(table);
+    //             }
+    //         }
+    //
+    //     });
+    // }
+    //
+    // if (tableRes.length > 0) {
+    //     logger.writeDebug('tableRes.length  ' + tableRes.length);
+    //     obj = tableRes;
+    // } else {
+    //     obj = result;
+    // }
 
-        });
-    }
-
-    if (tableRes.length > 0) {
-        logger.writeDebug('tableRes.length  ' + tableRes.length);
-        obj = tableRes;
-    } else {
-        obj = result;
-    }
+    obj = result;
 
     logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     var end = process.uptime();

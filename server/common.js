@@ -20,11 +20,11 @@ const Models = {
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
     // 以c: d: .... h: i: 开头的为windows
     // data/source 项目内的相对路径
-    sourcePath: 'g:/source/',
-    // sourcePath: 'data/source/',
+    //  sourcePath: 'F:/JSON/',
+    sourcePath: 'data/source/',
     // 生成SQL路径
-    targerPath: 'g:/target/',
-    // targerPath: 'data/target/',
+    // targerPath: 'g:/target/',
+    targerPath: 'data/target/',
 
     // 生成EXCEL默认路径
     EXCEL_PATH: "uploadFile/excel/"

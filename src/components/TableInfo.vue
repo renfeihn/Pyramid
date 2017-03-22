@@ -77,7 +77,8 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">取值范围</label>
                     <div class="col-sm-10">
-                        <textarea v-model="tableColumns.scope" placeholder="示例：A:正常,C:销户" class="form-control" rows="4"></textarea>
+                        <textarea v-model="tableColumns.scope" placeholder="示例：A:正常,C:销户" class="form-control"
+                                  rows="4"></textarea>
                     </div>
                 </div>
 
@@ -109,10 +110,7 @@
                 <input v-model="tableCode" type="hidden"/>
                 <input class="form-control" v-model="table.code" @blur="checkTableCode(table.code);" type="text"/>
             </div>
-            <div class="form-group">
-                <label>表中文描述</label>
-                <input class="form-control" v-model="table.comment" type="text"/>
-            </div>
+
 
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
@@ -120,7 +118,7 @@
         <br/>
         <form class="form-inline form-filter">
             <div class="form-group">
-                <label class="control-label">所属系统</label>
+                <label class="control-label" style="margin-top: -22px;">所属系统</label>
                 <el-select v-model="table.system" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in systems"
@@ -130,7 +128,7 @@
                 </el-select>
             </div>
             <div class="form-group">
-                <label>垂直/水平</label>
+                <label class="control-label" style="margin-top: -22px;">垂直/水平</label>
                 <el-select v-model="table.dbType" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class1s"
@@ -139,8 +137,8 @@
                     </el-option>
                 </el-select>
             </div>
-            <div class="form-group">
-                <label>参数/业务</label>
+            <div  class="form-group">
+                <label class="control-label" style="margin-top: -22px;">参数/业务</label>
                 <el-select v-model="table.parameter" size="small" placeholder="请选择">
                     <el-option
                             v-for="item in class2s"
@@ -149,8 +147,17 @@
                     </el-option>
                 </el-select>
             </div>
-        </form>
 
+        </form>
+        <br/>
+        <form class="form-inline form-filter">
+            <div class="form-group">
+                <label>表中文描述</label>
+                <!--<div class="col-sm-4">-->
+                    <textarea class="form-control" v-model="table.comment" cols="102" rows="4"></textarea>
+                <!--</div>-->
+            </div>
+        </form>
 
         <br>
         <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
@@ -406,11 +413,11 @@
                 // option 判断列是新增还是修改 默认0 新增1 修改2
                 option: '0',
                 // 所属系统
-                systems:[{"code":"Ensemble"},{"code":"Limarket"},{"code":"Accounting"}],
+                systems: [{"code": "Ensemble"}, {"code": "Limarket"}, {"code": "Accounting"}],
                 // 所属分类1
-                class1s:[{"code":"upright"},{"code":"level"}],
+                class1s: [{"code": "upright"}, {"code": "level"}],
                 // 所属分类2
-                class2s:[{"code":"init_para"},{"code":"busi_para"}],
+                class2s: [{"code": "init_para"}, {"code": "busi_para"}, {"code": "tran"}],
                 // 数据类型
                 data_types: ['Integer', 'Number', 'Char', 'Varchar', 'Date', 'Timestamp', 'Clob', 'Blob']
             }
@@ -642,7 +649,7 @@
                 console.log('-----------点击了确定-----------');
 
                 // 如果数据字典不选择，则需要添加当前列为数据字典
-                if(!this.tableColumns.dictionary){
+                if (!this.tableColumns.dictionary) {
                     var columnTemp = {
                         "domain": this.tableColumns.code,
                         "code": this.tableColumns.code,
@@ -691,14 +698,12 @@
                     }, function (res) {
                         console.log('新增domain失败，未通过服务端校验' + res.status + '  ' + res.body);
                     });
-
-
                 };
 
                 // 判断数据字典和code不能为空
                 // 目前数据字典可为空
-//                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
-                if (!this.tableColumns.code) {
+                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
+//                if (!this.tableColumns.code) {
                     this.$message.error('请将信息填写完整');
                     return;
                 }
@@ -713,8 +718,6 @@
                     this.tableAttr.splice(this.selectRowNum, 1);
                     this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
                 }
-
-
             },
 
             // 选中的索引行号
@@ -903,7 +906,7 @@
                 this.tableCode = tcode;
                 this.getTable(this.tableCode);
             } else {
-                this.table = checkTableVal('',this.system);
+                this.table = checkTableVal('', this.system);
             }
 
         }

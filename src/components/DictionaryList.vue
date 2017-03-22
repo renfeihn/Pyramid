@@ -14,17 +14,17 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>名称</th>
-                    <th>描述</th>
-                    <th>取值范围</th>
-                    <th>默认值</th>
-                    <th>数据域</th>
-                    <th>操作</th>
+                    <th width="25%">名称</th>
+                    <th width="22%">描述</th>
+                    <th width="23%">取值范围</th>
+                    <th width="10%">默认值</th>
+                    <th width="10%">数据域</th>
+                    <th width="20%">操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="(dictionary,index) in dictionarys">
-                    <td>{{dictionary.code}}</td>
+                    <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}">{{dictionary.code}}</router-link>
                     <td>{{dictionary.comment}}</td>
                     <td>{{dictionary.scope}}</td>
                     <td>{{dictionary.defaults}}</td>
