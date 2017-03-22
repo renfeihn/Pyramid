@@ -26,7 +26,7 @@ const Models = {
     // targerPath: 'g:/target/',
     targerPath: 'data/target/',
 
-    // 生成EXCEL默认路径
+    // 生成EXCEL默认路径(目前是相对项目的路径)
     EXCEL_PATH: "uploadFile/excel/"
 
 };
