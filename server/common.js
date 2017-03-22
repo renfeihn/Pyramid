@@ -18,7 +18,7 @@ const Models = {
 
     // JSON源数据路径
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
-    // 以c: d: .... h: i: 开头的为windows
+    // 以c: d: .... h: i: 开头的(忽略大小写)为windows
     // data/source 项目内的相对路径
     //  sourcePath: 'F:/JSON/',
     sourcePath: 'data/source/',
