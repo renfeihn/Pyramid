@@ -9,9 +9,9 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、domai
 + 1.git clone： https://github.com/renfeihn/Pyramid
 + 2.在项目根目录下运行（安装依赖）：npm install
 + 3.依赖安装完成之后运行（进行前端打包）：npm run build
-+ 运行：npm start  提示 ---- Server up: http://localhost:8080 ---- 即表示运行成功
++ 运行：npm start  提示 ---- Server up: http://localhost:19919 ---- 即表示运行成功
 (如果启动过程中，缺少依赖，请自行安装)
-+ 5.访问 [http://localhost:19919](http://localhost:19919)
++ 5.访问 http://localhost:19919
 
 ## FAQ：
 + 1.common.js 为项目公共配置常量文件，可修改
