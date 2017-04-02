@@ -29,6 +29,7 @@ const Models = {
     // 生成EXCEL默认路径(目前是相对项目的路径)
     EXCEL_PATH: "uploadFile/excel/",
 
+    // 创建文件目录，指定的权限
     AUTH_NUM: "0777"
 
 };
