@@ -3,7 +3,7 @@ Pyramid 金字塔
 Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、domain 域、表空间等
 
 
-##安装步骤：
+## 安装步骤：
 
 环境需要：git、nodejs 4+ 、npm 2+
 + 1.git clone： https://github.com/renfeihn/Pyramid
@@ -11,13 +11,13 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、domai
 + 3.依赖安装完成之后运行（进行前端打包）：npm run build
 + 运行：npm start  提示 ---- Server up: http://localhost:8080 ---- 即表示运行成功
 (如果启动过程中，缺少依赖，请自行安装)
-+ 5.访问 [http://localhost:8080](http://localhost:8080)
++ 5.访问 [http://localhost:19919](http://localhost:19919)
 
-##FAQ：
+## FAQ：
 + 1.common.js 为项目公共配置常量文件，可修改
 + 2.日志输出路径配置，查看common.js，看说明配置，不配置默认为:项目根目录/logs/下
 
-##VUE 资料参考:
+## VUE 资料参考:
 + 官方中文网站
 http://cn.vuejs.org/
 + 简书VUE资料汇总
@@ -33,5 +33,5 @@ PC端 elementUI  [PC官网](http://element.eleme.io)
 + vue-carbon
 web端组件UI库  [网址](https://myronliu347.github.io/vue-carbon)
 
-##Nodejs 参考资料：
+## Nodejs 参考资料：
 + nodejs 官网中文文档 http://nodejs.cn/api/
