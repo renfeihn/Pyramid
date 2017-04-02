@@ -16,7 +16,7 @@ const dictionary_name = common.dictionary_name;
 // 域
 const domain_name = common.domain_name;
 // 表空间
-const table_space_name = common.table_spaces;
+const table_space_name = common.table_space_name;
 
 // JSON源数据路径
 var sourcePath = util.getRourcePath();
