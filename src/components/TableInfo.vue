@@ -140,7 +140,7 @@
                     </el-option>
                 </el-select>
             </div>
-            <div  class="form-group">
+            <div class="form-group">
                 <label class="control-label" style="margin-top: -22px;">参数/业务</label>
                 <el-select v-model="table.parameter" size="small" placeholder="请选择">
                     <el-option
@@ -157,7 +157,7 @@
             <div class="form-group">
                 <label>表中文描述</label>
                 <!--<div class="col-sm-4">-->
-                    <textarea class="form-control" v-model="table.comment" cols="102" rows="4"></textarea>
+                <textarea class="form-control" v-model="table.comment" cols="102" rows="4"></textarea>
                 <!--</div>-->
             </div>
         </form>
@@ -414,7 +414,7 @@
                 // 查询的单个数据字典对象
                 dictionary: {},
                 //返回查询页面的模糊搜索值
-                reCode:'',
+                reCode: '',
                 // option 判断列是新增还是修改 默认0 新增1 修改2
                 option: '0',
                 // 所属系统
@@ -505,8 +505,9 @@
 
                 if (flag) {
                     this.$message.error('列名已存在');
-                    this.tableColumns.code = this.tableColumns.code + '_1';
+                    //this.tableColumns.code = this.tableColumns.code + '_1';
                 }
+                return flag;
             },
             // 选中行
             selectRow(e, index){
@@ -628,6 +629,12 @@
             // 根据选中的code查询数据字典赋值给页面
             selectDictionary(code){
                 console.log('选择了---' + code);
+
+                // 检查该数据字典是否已经被选择，如果已经被选择，提示报错
+                const flag = this.checkColumnCode(code);
+                if(flag){
+                    return;
+                }
 
                 if (null != code && '' != code && undefined != code) {
                     this.$http.get('/getDictionary/' + code).then(function (res) {
@@ -753,8 +760,8 @@
             },
             // 添加一行索引
             addIndexRow(){
-                if(this.tableIndexs===undefined){
-                    this.tableIndexs=[];
+                if (this.tableIndexs === undefined) {
+                    this.tableIndexs = [];
                 }
                 console.log('--- add index row --- ' + (this.tableIndexs).length);
                 const indexSize = (this.tableIndexs).length + 1;
@@ -804,9 +811,9 @@
                 }
             },
             //获取数据字典封装
-            column(code,comment){
-                var commentMin=comment.substr(0,10);
-             return code+'  - '+commentMin;
+            column(code, comment){
+                var commentMin = comment.substr(0, 10);
+                return code + '  - ' + commentMin;
             },
             // 检查新修改的索引名称是否有重复
             checkIndex(code, n){
@@ -865,7 +872,7 @@
                     if (res.status == 200) {
                         console.log('添加表成功');
                         this.$message.success('添加表成功');
-                        this.$router.push('/tableList?system=' + this.system+'&reCode='+this.reCode);
+                        this.$router.push('/tableList?system=' + this.system + '&reCode=' + this.reCode);
                     } else {
                         console.log('添加表失败');
                         this.$message.error('添加表失败');
@@ -915,7 +922,7 @@
                 this.system = '';
             }
             //reCode
-            var moCode=this.$route.query.reCode;
+            var moCode = this.$route.query.reCode;
             if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
                 this.reCode = moCode;
             } else {
