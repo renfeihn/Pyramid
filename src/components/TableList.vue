@@ -103,7 +103,7 @@
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
                     <td>
-                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code}}"
+                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code,reCode:code}}"
                                      class="btn btn-sm btn-success">查看
                         </router-link>
                         <a class="btn btn-sm btn-danger" @click="deleteTable(table);">删除</a>
@@ -242,6 +242,14 @@
             } else {
                 this.system = '';
             }
+            //reCode
+            var moCode=this.$route.query.reCode;
+            if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
+                this.code = moCode;
+            } else {
+                this.code = '';
+            }
+            console.log('system: ' + this.Code);
             console.log('system: ' + this.system);
             this.getTableSpaces();
             this.getAllTables();

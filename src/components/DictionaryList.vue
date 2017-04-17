@@ -3,7 +3,7 @@
         <form class="form-inline form-filter">
             <div class="form-group">
                 <label>数据字典名称</label>
-                <input class="form-control" v-model="code" type="text"/>
+                <input class="form-control" v-model="code" placeholder="@首字母筛选，如@ACC" type="text"/>
             </div>
             <a class="btn btn-info" @click="getAllDictionarys();">筛选</a>
 
@@ -14,9 +14,11 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th width="25%">名称</th>
-                    <th width="22%">描述</th>
-                    <th width="23%">取值范围</th>
+                    <th width="20%">名称</th>
+                    <th width="15%">描述</th>
+                    <th width="10%">长度</th>
+                    <th width="10%">精度</th>
+                    <th width="15%">取值范围</th>
                     <th width="10%">默认值</th>
                     <th width="10%">数据域</th>
                     <th width="20%">操作</th>
@@ -26,14 +28,17 @@
                 <tr v-for="(dictionary,index) in dictionarys">
                     <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}">{{dictionary.code}}</router-link>
                     <td>{{dictionary.comment}}</td>
+                    <td>{{dictionary.lengths}}</td>
+                    <td>{{dictionary.precision}}</td>
                     <td>{{dictionary.scope}}</td>
                     <td>{{dictionary.defaults}}</td>
                     <td>{{dictionary.domain}}</td>
                     <td>
-                        <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code}}"
+                        <router-link :to="{path:'/dictionaryInfo', query:{dictionaryCode:dictionary.code,reCode:code}}"
                                      class="btn btn-sm btn-success">查看
                         </router-link>
-                        <a class="btn btn-sm btn-danger" @click="deleteTable(dictionary.code);">删除</a>
+<!--       暂隐藏删除
+                 <a class="btn btn-sm btn-danger" @click="deleteTable(dictionary.code);">删除</a>-->
                     </td>
                 </tr>
                 </tbody>
@@ -87,6 +92,13 @@
         },
         components: {},
         created(){
+            //reCode
+            var moCode=this.$route.query.reCode;
+            if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
+                this.code = moCode;
+            } else {
+                this.code = '';
+            }
             this.getAllDictionarys();
         }
     }

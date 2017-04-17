@@ -47,7 +47,9 @@ const app = new Vue({
     router,
     render: h => h(App)
 }).$mount('#app');
-
-
+var bodyParser= require('body-parser');
+//设置服务请求的最大值
+app.use(bodyParser.json({limit :'50mb'}));
+app.use(bodyParser.urlencoded({limit:'50mb',extended:true}));
 
 

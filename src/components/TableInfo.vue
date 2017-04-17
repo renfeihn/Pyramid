@@ -16,7 +16,7 @@
                                    filterable placeholder="请选择">
                             <el-option
                                     v-for="item in dictionarys"
-                                    :label="item.code"
+                                    :label=column(item.code,item.comment)
                                     :value="item.code">
                             </el-option>
                         </el-select>
@@ -114,6 +114,9 @@
 
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
+            <router-link :to="{path:'/tableList', query:{reCode:reCode,system:system}}"
+                         class="btn btn-sm btn-success">返回
+            </router-link>
         </form>
         <br/>
         <form class="form-inline form-filter">
@@ -410,6 +413,8 @@
                 dictionarys: [],
                 // 查询的单个数据字典对象
                 dictionary: {},
+                //返回查询页面的模糊搜索值
+                reCode:'',
                 // option 判断列是新增还是修改 默认0 新增1 修改2
                 option: '0',
                 // 所属系统
@@ -634,7 +639,7 @@
                             this.tableColumns.dataType = re.dataType;
                             this.tableColumns.lengths = re.lengths;
                             this.tableColumns.precision = re.precision;
-                            this.tableColumns.comment = re.comment;
+                            this.tableColumns.column = re.comment;
                             this.tableColumns.scope = re.scope;
                             this.tableColumns.defaults = re.defaults;
                         }
@@ -698,12 +703,15 @@
                     }, function (res) {
                         console.log('新增domain失败，未通过服务端校验' + res.status + '  ' + res.body);
                     });
-                };
+
+
+                }
+                ;
 
                 // 判断数据字典和code不能为空
                 // 目前数据字典可为空
-                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
-//                if (!this.tableColumns.code) {
+//                if (!this.tableColumns.dictionary || !this.tableColumns.code) {
+                if (!this.tableColumns.code) {
                     this.$message.error('请将信息填写完整');
                     return;
                 }
@@ -718,6 +726,8 @@
                     this.tableAttr.splice(this.selectRowNum, 1);
                     this.tableAttr.splice(this.selectRowNum, 0, this.tableColumns)
                 }
+
+
             },
 
             // 选中的索引行号
@@ -743,6 +753,9 @@
             },
             // 添加一行索引
             addIndexRow(){
+                if(this.tableIndexs===undefined){
+                    this.tableIndexs=[];
+                }
                 console.log('--- add index row --- ' + (this.tableIndexs).length);
                 const indexSize = (this.tableIndexs).length + 1;
                 const tr = new Object();
@@ -789,6 +802,11 @@
                         }
                     }
                 }
+            },
+            //获取数据字典封装
+            column(code,comment){
+                var commentMin=comment.substr(0,10);
+             return code+'  - '+commentMin;
             },
             // 检查新修改的索引名称是否有重复
             checkIndex(code, n){
@@ -847,7 +865,7 @@
                     if (res.status == 200) {
                         console.log('添加表成功');
                         this.$message.success('添加表成功');
-                        this.$router.push('/tableList?system=' + this.system);
+                        this.$router.push('/tableList?system=' + this.system+'&reCode='+this.reCode);
                     } else {
                         console.log('添加表失败');
                         this.$message.error('添加表失败');
@@ -861,6 +879,8 @@
             showSQL(){
                 // 处理数据
                 this.table.attr = this.tableAttr;
+                // 添加索引
+                this.table.indexs = this.tableIndexs;
                 this.$http.post('/showSQL', {
                     type: 'tables',
                     db_type: localStorage.getItem('dbms'),
@@ -894,7 +914,13 @@
             } else {
                 this.system = '';
             }
-
+            //reCode
+            var moCode=this.$route.query.reCode;
+            if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
+                this.reCode = moCode;
+            } else {
+                this.reCode = '';
+            }
             console.log('system: ' + this.system);
             this.getAllDomains();
             this.getTableSpaces();

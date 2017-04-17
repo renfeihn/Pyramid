@@ -15,18 +15,21 @@ const Models = {
     domain_name: "domains",
     // 表空间（目录名称）
     table_space_name: "table_spaces",
-
+    //生成sql是否带列描述
+    comment:"false",
+    //生成sql是否带表描述
+    commentTable:"false",
     // JSON源数据路径
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
-    // 以c: d: .... h: i: 开头的(忽略大小写)为windows
+    // 以c: d: .... h: i: 开头的为windows
     // data/source 项目内的相对路径
-    //  sourcePath: 'F:/JSON/',
+    //  sourcePath: 'F:/svn/ModelBank/db/dbModel/',
     sourcePath: 'data/source/',
     // 生成SQL路径
-    // targerPath: 'g:/target/',
-    targerPath: 'data/target/',
+    targerPath: 'd:/target/',
+    // targerPath: 'F:/svn/ModelBank/db/3table/',
 
-    // 生成EXCEL默认路径(目前是相对项目的路径)
+    // 生成EXCEL默认路径
     EXCEL_PATH: "uploadFile/excel/",
 
     // 创建文件目录，指定的权限

@@ -1,6 +1,7 @@
 const express = require('express');
 var glob = require('glob');
 // const passport = require('passport');
+
 const logger = require('./lib/logHelper').helper;
 const excel = require('./lib/excel');
 const common = require('./common');
@@ -82,7 +83,11 @@ router.get('/getAll/dictionarys', function (req, res, next) {
         result.forEach(function (domain, index, domains) {
             logger.writeDebug('domain:  ' + JSON.stringify(domain));
             if (util.isNotNull(code)) {
-                if ((domain.code).indexOf(code) >= 0) {
+                if(code.indexOf('@')==0){
+                    if ((domain.code).indexOf(code.substr(1)) == 0) {
+                        dictionaryRes.push(domain);
+                    }
+                }else if ((domain.code).indexOf(code) >= 0) {
                     dictionaryRes.push(domain);
                 }
             }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="sub-header">数据域相信</h2>
+        <h2 class="sub-header">数据域信息</h2>
         <br>
         <form class="form-horizontal">
             <div class="form-group">
@@ -39,11 +39,11 @@
                 <label class="col-sm-2 control-label">精度</label>
                 <div class="col-sm-4">
                     <input class="form-control" v-model="domain.precision" type="text"/>
-                </div>
+                </div><!--默认值暂时不需要
                 <label class="col-sm-2 control-label">默认值</label>
                 <div class="col-sm-4">
                     <input class="form-control" v-model="domain.defaults" type="text"/>
-                </div>
+                </div>-->
             </div>
 
             <a class="btn btn-info" @click="save();">保存</a>

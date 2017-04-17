@@ -16,7 +16,9 @@
                 <tr>
                     <th>名称</th>
                     <th>描述</th>
-                    <th>默认值</th>
+                    <th>数据类型</th>
+                    <th>长度</th>
+                    <th>精度</th>
                     <th>操作</th>
                 </tr>
                 </thead>
@@ -24,12 +26,15 @@
                 <tr v-for="(domain,index) in domains">
                     <td>{{domain.code}}</td>
                     <td>{{domain.comment}}</td>
-                    <td>{{domain.defaults}}</td>
+                    <td>{{domain.dataType}}</td>
+                    <td>{{domain.lengths}}</td>
+                    <td>{{domain.precision}}</td>
                     <td>
                         <router-link :to="{path:'/domainInfo', query:{domainCode:domain.code}}"
                                      class="btn btn-sm btn-success">查看
                         </router-link>
-                        <a class="btn btn-sm btn-danger" @click="deleteTable(domain.code);">删除</a>
+                        <!--暂时去掉删除，留作后期做权限处理
+                        <a class="btn btn-sm btn-danger" @click="deleteTable(domain.code);">删除</a>-->
                     </td>
                 </tr>
                 </tbody>

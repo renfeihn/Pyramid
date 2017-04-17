@@ -14,7 +14,7 @@
                                filterable placeholder="请选择">
                         <el-option
                                 v-for="item in domains"
-                                :label="item.code"
+                                :label=column(item.code,item.comment)
                                 :value="item.code">
                         </el-option>
                     </el-select>
@@ -59,6 +59,9 @@
 
             <div class="form-group text-center">
                 <a class="btn btn-info" @click="save();">保存</a>
+                <router-link :to="{path:'/dictionaryList', query:{reCode:reCode}}"
+                             class="btn btn-sm btn-success">返回
+                </router-link>
             </div>
         </form>
     </div>
@@ -183,7 +186,11 @@
                     this.$message.error(res.body);
                 });
             },
-
+            //获取数据字典封装
+            column(code,comment){
+                var commentMin=comment.substr(0,10);
+                return code+'  - '+commentMin;
+            },
             save(){
                 const newCode = this.dictionary.code;
                 if (null == newCode || undefined == newCode || '' == newCode) {
@@ -200,7 +207,7 @@
                 }).then(function (res) {
                     if (res.status == 200) {
                         this.$message.success('添加dictionary成功');
-                        this.$router.push('/dictionaryList');
+                        this.$router.push('/dictionaryList?reCode='+this.reCode);
                     } else {
                         console.log('添加dictionary失败');
                         this.$message.error('添加dictionary失败');
@@ -214,11 +221,20 @@
         },
         components: {},
         created(){
-            var params = window.location.search.split('=');
-            console.log('params: ' + params);
-
-            if (null != params && undefined != params && '' != params && params.length > 0) {
-                this.dictionaryCode = params[1];
+            // 模块ID
+            var mo = this.$route.query.dictionaryCode;
+            console.log('mo: ' + mo);
+            if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
+                this.dictionaryCode= mo;
+            } else {
+                this.dictionaryCode = '';
+            }
+            //reCode
+            var moCode=this.$route.query.reCode;
+            if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
+                this.reCode = moCode;
+            } else {
+                this.reCode = '';
             }
             console.log('code: ' + this.dictionaryCode);
 

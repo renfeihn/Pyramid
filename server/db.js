@@ -16,7 +16,7 @@ const dictionary_name = common.dictionary_name;
 // 域
 const domain_name = common.domain_name;
 // 表空间
-const table_space_name = common.table_space_name;
+const table_space_name = common.table_spaces;
 
 // JSON源数据路径
 var sourcePath = util.getRourcePath();
@@ -112,7 +112,13 @@ const delFile = function (filePath) {
         fs.unlinkSync(filePath);
     }
 };
+/**
+ * 修改数据域同步到数据字典
+ * @param type 类型:table\domains\table_spaces
+ */
+const updateDomain= function (domain, data) {
 
+}
 /**
  * 保存源数据文件 json 文件
  * @param type 类型:table\domains\table_spaces
@@ -121,9 +127,9 @@ const delFile = function (filePath) {
  */
 const writeSourceFile = function (type, name, data) {
     // 目标路径  eg: data/source/tables/user.json
-    const outPath = sourcePath + type;
+    const outPath = sourcePath ;
     util.checkAndCreateDir(outPath);
-    const outFile = outPath + '/' + name + '.json';
+    const outFile = outPath + '/'+type+'/' + name + '.json';
     logger.writeDebug('要写入的数据： ' + data);
     // 把中文转换成字节数组
     const arr = iconv.encode(data, 'gbk');
@@ -167,11 +173,12 @@ const writeTableSourceFile = function (table, data) {
  * @param name 文件名
  * @param data 文件内容
  */
-const writeSQLFile = function (type, name, data) {
-    const outPath = targerPath + type + '/';
+const writeSQLFile = function (type, name, data,dbType) {
+    const outPath = targerPath  +'/'+dbType+ '/';
     util.checkAndCreateDir(outPath);
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
+
     const arr = iconv.encode(data, 'gbk');
     // 异步写文件 writeFile，如果文件不存在，则创建；如果文件已存在，那么内容会被覆盖
     // writeFileSync 文件同步写接口，是fs.writeFile的同步版本 fs.writeFileSync(filename, data, [options])

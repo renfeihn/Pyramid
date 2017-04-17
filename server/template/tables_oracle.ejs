@@ -1,6 +1,6 @@
 <%
 function isNotNull(str) {
-    if (null != str && undefined != str && str != '' && str.length > 0) {
+    if (null != str && undefined != str && str != '') {
         return true;
     } else {
         return false;
@@ -78,17 +78,23 @@ if (isNotNull(table.code)) {
 
                 // 长度
                 if (isNotNull(attr.lengths)) {
+                    if(attr.dataType!='Blob')
+                    {
                     sql.append('(' + attr.lengths);
+                    }
                 } else {
                     sql.append('(10');
                 }
 
                 if (isNotNull(attr.precision)) {
                     // 精度
-                    sql.append(',' + attr.precision);
+                    if(attr.dataType!='Blob') {
+                        sql.append(',' + attr.precision);
+                    }
                 }
-                sql.append(')');
-
+                if(attr.dataType!='Blob') {
+                    sql.append(')');
+                }
                 // 默认值
                 if (isNotNull(attr.defaults)) {
                     sql.append(space + "default " + attr.defaults);
@@ -109,8 +115,11 @@ if (isNotNull(table.code)) {
                 } else {
                     if (primary_keys.length > 0) {
                         sql.append(',' + nextLine)
-                                .append(tab)
-                                .append('constraint PK_' + (table.code).toUpperCase() + ' (');
+                                .append(tab);
+                        if(table.code.length>27){
+                            sql.append('constraint PK_' + (table.code).toUpperCase().substring(0,27) + ' primary key (');
+                        }else
+                        sql.append('constraint PK_' + (table.code).toUpperCase() + ' primary key (');
 
                         primary_keys.forEach(function (pk, int, pks) {
                             if (int == 0) {

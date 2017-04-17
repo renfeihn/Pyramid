@@ -20,13 +20,18 @@ StringBuffer.prototype.toString = function () {
 
 
 // 数据类型转换
-function dataTypeFactory(dataType) {
+function dataTypeFactory(dataType,precision) {
     var newType = '';
     if (isNotNull(dataType)) {
         dataType = dataType.toLowerCase();
         switch (dataType) {
             case 'number':
-                newType = 'Decimal';
+                if(precision>0)
+                {
+                    newType = 'Decimal';
+                }else{
+                    newType='bigint';
+                }
                 break;
 
             case 'clob':
@@ -69,29 +74,37 @@ if (isNotNull(table.code)) {
     if (isNotNull(table.attr)) {
         var primary_keys = new Array();
         var attrs = table.attr;
+        var mysqlData;
         attrs.forEach(function (attr, index, array) {
             if (isNotNull(attr)) {
                 // 列名
                 sql.append(tab + attr.code);
                 // 数据类型
                 if (isNotNull(attr.dataType)) {
-                    sql.append(space + dataTypeFactory(attr.dataType));
+                    mysqlData= dataTypeFactory(attr.dataType,attr.precision);
+                    sql.append(space +mysqlData);
                 } else {
                     sql.append(space + 'char');
                 }
-
+                if(mysqlData!="bigint"){
                 // 长度
                 if (isNotNull(attr.lengths)) {
-                    sql.append('(' + attr.lengths);
+                    if(attr.dataType!='Blob') {
+                        sql.append('(' + attr.lengths);
+                    }
                 } else {
                     sql.append('(10');
                 }
                 if (isNotNull(attr.precision)) {
-                    // 精度
-                    sql.append(',' + attr.precision);
+                    if(attr.dataType!='Blob') {
+                        // 精度
+                        sql.append(',' + attr.precision);
+                    }
                 }
-                sql.append(')');
-
+                if(attr.dataType!='Blob') {
+                    sql.append(')');
+                }
+                }
                 // 是否不为空
                 if (isNotNull(attr.M) && attr.M) {
                     sql.append(space + 'not null');
@@ -101,12 +114,12 @@ if (isNotNull(table.code)) {
                 if (isNotNull(attr.defaults)) {
                     sql.append(space + "default " + attr.defaults);
                 }
-
                 // 描述
+                if(table.commentIs!='false'){
                 if (isNotNull(attr.comment)) {
                     sql.append(space + "comment \'" + attr.comment + "\'");
                 }
-
+                }
                 // 标记主键
                 if (isNotNull(attr.P) && attr.P) {
                     primary_keys.push(attr.code);
@@ -136,15 +149,15 @@ if (isNotNull(table.code)) {
 
     // create end )
     sql.append(nextLine)
-            .append(');');
-
+            .append(')');
+    sql.append('ENGINE=InnoDB DEFAULT CHARSET=utf8 ');
     // 表说明
-    if (isNotNull(table.comment)) {
-        sql.append(nextLine)
-                .append('alter table ' + table.code + ' comment \'' + table.comment + '\';');
+    if(table.commentTableIs!='false'){
+        if (isNotNull(table.comment)) {
+            sql.append('COMMENT=\'' + table.comment + '\'');
+        }
     }
-
-
+    sql.append(';');
     // 索引 start
     if (isNotNull(table.indexs)) {
         var indexs = table.indexs;
