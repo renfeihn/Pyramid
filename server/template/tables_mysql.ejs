@@ -20,17 +20,16 @@ StringBuffer.prototype.toString = function () {
 
 
 // 数据类型转换
-function dataTypeFactory(dataType,precision) {
+function dataTypeFactory(dataType, precision) {
     var newType = '';
     if (isNotNull(dataType)) {
         dataType = dataType.toLowerCase();
         switch (dataType) {
             case 'number':
-                if(precision>0)
-                {
+                if (precision > 0) {
                     newType = 'Decimal';
-                }else{
-                    newType='bigint';
+                } else {
+                    newType = 'bigint';
                 }
                 break;
 
@@ -81,29 +80,29 @@ if (isNotNull(table.code)) {
                 sql.append(tab + attr.code);
                 // 数据类型
                 if (isNotNull(attr.dataType)) {
-                    mysqlData= dataTypeFactory(attr.dataType,attr.precision);
-                    sql.append(space +mysqlData);
+                    mysqlData = dataTypeFactory(attr.dataType, attr.precision);
+                    sql.append(space + mysqlData);
                 } else {
                     sql.append(space + 'char');
                 }
-                if(mysqlData!="bigint"){
-                // 长度
-                if (isNotNull(attr.lengths)) {
-                    if(attr.dataType!='Blob') {
-                        sql.append('(' + attr.lengths);
+                if (mysqlData != "bigint") {
+                    // 长度
+                    if (isNotNull(attr.lengths)) {
+                        if (attr.dataType != 'Blob') {
+                            sql.append('(' + attr.lengths);
+                        }
+                    } else {
+                        sql.append('(10');
                     }
-                } else {
-                    sql.append('(10');
-                }
-                if (isNotNull(attr.precision)) {
-                    if(attr.dataType!='Blob') {
-                        // 精度
-                        sql.append(',' + attr.precision);
+                    if (isNotNull(attr.precision)) {
+                        if (attr.dataType != 'Blob') {
+                            // 精度
+                            sql.append(',' + attr.precision);
+                        }
                     }
-                }
-                if(attr.dataType!='Blob') {
-                    sql.append(')');
-                }
+                    if (attr.dataType != 'Blob') {
+                        sql.append(')');
+                    }
                 }
                 // 是否不为空
                 if (isNotNull(attr.M) && attr.M) {
@@ -115,10 +114,10 @@ if (isNotNull(table.code)) {
                     sql.append(space + "default " + attr.defaults);
                 }
                 // 描述
-                if(table.commentIs!='false'){
-                if (isNotNull(attr.comment)) {
-                    sql.append(space + "comment \'" + attr.comment + "\'");
-                }
+                if (table.commentIs != 'false') {
+                    if (isNotNull(attr.comment)) {
+                        sql.append(space + "comment \'" + attr.comment + "\'");
+                    }
                 }
                 // 标记主键
                 if (isNotNull(attr.P) && attr.P) {
@@ -152,7 +151,7 @@ if (isNotNull(table.code)) {
             .append(')');
     sql.append('ENGINE=InnoDB DEFAULT CHARSET=utf8 ');
     // 表说明
-    if(table.commentTableIs!='false'){
+    if (table.commentTableIs != 'false') {
         if (isNotNull(table.comment)) {
             sql.append('COMMENT=\'' + table.comment + '\'');
         }
@@ -184,7 +183,7 @@ if (isNotNull(table.code)) {
                         .append(tab);
                 // 索引的列项
                 var icolumns = ind.columns;
-                if(icolumns.length > 0){
+                if (icolumns.length > 0) {
                     icolumns.forEach(function (c, int, ics) {
                         if (int == 0) {
                             sql.append(c);

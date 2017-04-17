@@ -16,9 +16,9 @@ const Models = {
     // 表空间（目录名称）
     table_space_name: "table_spaces",
     //生成sql是否带列描述
-    comment:"false",
+    comment: "false",
     //生成sql是否带表描述
-    commentTable:"false",
+    commentTable: "false",
     // JSON源数据路径
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
     // 以c: d: .... h: i: 开头的为windows

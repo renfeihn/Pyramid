@@ -78,9 +78,8 @@ if (isNotNull(table.code)) {
 
                 // 长度
                 if (isNotNull(attr.lengths)) {
-                    if(attr.dataType!='Blob')
-                    {
-                    sql.append('(' + attr.lengths);
+                    if (attr.dataType != 'Blob') {
+                        sql.append('(' + attr.lengths);
                     }
                 } else {
                     sql.append('(10');
@@ -88,11 +87,11 @@ if (isNotNull(table.code)) {
 
                 if (isNotNull(attr.precision)) {
                     // 精度
-                    if(attr.dataType!='Blob') {
+                    if (attr.dataType != 'Blob') {
                         sql.append(',' + attr.precision);
                     }
                 }
-                if(attr.dataType!='Blob') {
+                if (attr.dataType != 'Blob') {
                     sql.append(')');
                 }
                 // 默认值
@@ -116,10 +115,10 @@ if (isNotNull(table.code)) {
                     if (primary_keys.length > 0) {
                         sql.append(',' + nextLine)
                                 .append(tab);
-                        if(table.code.length>27){
-                            sql.append('constraint PK_' + (table.code).toUpperCase().substring(0,27) + ' primary key (');
-                        }else
-                        sql.append('constraint PK_' + (table.code).toUpperCase() + ' primary key (');
+                        if (table.code.length > 27) {
+                            sql.append('constraint PK_' + (table.code).toUpperCase().substring(0, 27) + ' primary key (');
+                        } else
+                            sql.append('constraint PK_' + (table.code).toUpperCase() + ' primary key (');
 
                         primary_keys.forEach(function (pk, int, pks) {
                             if (int == 0) {
@@ -188,7 +187,7 @@ if (isNotNull(table.code)) {
                         .append(tab);
                 // 索引的列项
                 var icolumns = ind.columns;
-                if(icolumns.length > 0){
+                if (icolumns.length > 0) {
                     icolumns.forEach(function (c, int, ics) {
                         if (int == 0) {
                             sql.append(c);

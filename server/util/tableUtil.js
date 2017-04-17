@@ -23,8 +23,8 @@ const generatorSql = function (db_type, type, system, dbType, parameter) {
     // const str = fs.readFileSync(path, 'utf8');
     // const datas = db.readFile(type);
     const datas = db.readFile(type, system, dbType, parameter);
-    var tables_level="";
-    var tables_upright="";
+    var tables_level = "";
+    var tables_upright = "";
     datas.forEach(function (data) {
         // 如果表空间为空，获取默认表空间，如果没有默认表空间，则不指定表空间
         if (!(data.table_space)) {
@@ -33,17 +33,17 @@ const generatorSql = function (db_type, type, system, dbType, parameter) {
                 data.table_space = defaultTS.code;
             }
         }
-        const dbType=data.dbType;
-        if(data.dbType=='level')
-            tables_level=tables_level+'@@./'+dbType+'/'+data.code+'.sql\r';
-        if(data.dbType=='upright')
-            tables_upright=tables_upright+'@@./'+dbType+'/'+data.code+'.sql\r';
+        const dbType = data.dbType;
+        if (data.dbType == 'level')
+            tables_level = tables_level + '@@./' + dbType + '/' + data.code + '.sql\r';
+        if (data.dbType == 'upright')
+            tables_upright = tables_upright + '@@./' + dbType + '/' + data.code + '.sql\r';
         const ret = generatorSqlOnline(type, db_type, data);
         // 写入到指定路径
-        db.writeSQLFile(type, data.code, ret,dbType);
+        db.writeSQLFile(type, data.code, ret, dbType);
         logger.writeInfo(data.code + ' sql： ' + ret);
     });
-    fs.writeFile( common.targerPath+'/runner_level.sql',tables_level, function (err) {
+    fs.writeFile(common.targerPath + '/runner_level.sql', tables_level, function (err) {
         if (err) {
             logger.writeErr('写入 ' + type + ' runner_level.sql 文件错误:  ' + err);
         } else {
@@ -51,7 +51,7 @@ const generatorSql = function (db_type, type, system, dbType, parameter) {
         }
     });
 
-    fs.writeFile(common.targerPath+'/runner_upright.sql',  tables_upright, function (err) {
+    fs.writeFile(common.targerPath + '/runner_upright.sql', tables_upright, function (err) {
         if (err) {
             logger.writeErr('写入 ' + type + '  runner_upright.sql 文件错误:  ' + err);
         } else {
@@ -71,11 +71,11 @@ const generatorSqlOnline = function (type, db_type, data) {
     const path = 'server/template/' + type + '_' + db_type + '.ejs';
     logger.writeDebug('模板路径： ' + path);
     const str = fs.readFileSync(path, 'utf8');
-    if(common.comment=='false'){
-        data.commentIs='false';
+    if (common.comment == 'false') {
+        data.commentIs = 'false';
     }
-    if(common.commentTable=='false'){
-        data.commentTableIs='false';
+    if (common.commentTable == 'false') {
+        data.commentTableIs = 'false';
     }
     const ret = ejs.render(str, {
         table: data,

@@ -35,8 +35,8 @@ app.use(api);   //最好放在下边
 app.use('/dist', express.static(resolve('../dist')));
 app.get('*', function (req, res, next) {
     // if (req.originalUrl.indexOf('/tableList') != 0) {
-        const html = fs.readFileSync(resolve('../index.html'), 'utf-8');
-        res.send(html);
+    const html = fs.readFileSync(resolve('../index.html'), 'utf-8');
+    res.send(html);
     // } else {
     //     next();
     // }

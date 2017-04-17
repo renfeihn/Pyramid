@@ -116,7 +116,7 @@ const delFile = function (filePath) {
  * 修改数据域同步到数据字典
  * @param type 类型:table\domains\table_spaces
  */
-const updateDomain= function (domain, data) {
+const updateDomain = function (domain, data) {
 
 }
 /**
@@ -127,9 +127,9 @@ const updateDomain= function (domain, data) {
  */
 const writeSourceFile = function (type, name, data) {
     // 目标路径  eg: data/source/tables/user.json
-    const outPath = sourcePath ;
+    const outPath = sourcePath;
     util.checkAndCreateDir(outPath);
-    const outFile = outPath + '/'+type+'/' + name + '.json';
+    const outFile = outPath + '/' + type + '/' + name + '.json';
     logger.writeDebug('要写入的数据： ' + data);
     // 把中文转换成字节数组
     const arr = iconv.encode(data, 'gbk');
@@ -173,8 +173,8 @@ const writeTableSourceFile = function (table, data) {
  * @param name 文件名
  * @param data 文件内容
  */
-const writeSQLFile = function (type, name, data,dbType) {
-    const outPath = targerPath  +'/'+dbType+ '/';
+const writeSQLFile = function (type, name, data, dbType) {
+    const outPath = targerPath + '/' + dbType + '/';
     util.checkAndCreateDir(outPath);
     const outFile = outPath + name + '.sql';
     // 把中文转换成字节数组
