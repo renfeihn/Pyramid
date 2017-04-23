@@ -30,8 +30,26 @@ var targerPath = util.getTargetPath();
  * @returns [Array] 返回数据对象数组
  */
 const readFile = function (type, system, dbType, parameter, code) {
+    const results = new Array();
     const files = getPatternFiles(type, system, dbType, parameter, code);
-    return readFiles(files);
+    // 判断如果是table，则再获取最新table数据
+    var datas = readFiles(files);
+    if(util.isArray(datas) && datas.length > 0){
+        if(type == common.table_name){ // 表
+            datas.forEach(function (table, index, array) {
+                results.push(getTable(table.code));
+            });
+        }else if(type == common.dictionary_name){   // 数据字典
+            datas.forEach(function (dictionary, index, array) {
+                results.push(getDictionary(dictionary.code));
+            });
+        }else{  // 其他
+            datas.forEach(function (data, index, array) {
+                results.push(data);
+            });
+        }
+    }
+    return results;
 };
 
 /**
@@ -228,7 +246,30 @@ const getTable = function (code) {
                 var buf = new Buffer(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 table = JSON.parse(data);
-
+                // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 start
+                if (table) {
+                    const attrs = table.attr;
+                    if (util.isArray(attrs)) {
+                        attrs.forEach(function (attr, index, array) {
+                            if (attr) {
+                                const dictionaryCode = attr.dictionary;
+                                if (util.isNotNull(dictionaryCode)) {
+                                    const dictionary = getDictionary(dictionaryCode);
+                                    if (util.isObject(dictionary)) {
+                                        ((table.attr)[index]).code = dictionary.code;
+                                        ((table.attr)[index]).dataType = dictionary.dataType;
+                                        ((table.attr)[index]).lengths = dictionary.lengths;
+                                        ((table.attr)[index]).precision = dictionary.precision;
+                                        ((table.attr)[index]).column = dictionary.comment;
+                                        ((table.attr)[index]).scope = dictionary.scope;
+                                        ((table.attr)[index]).defaults = dictionary.defaults;
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
+                // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 end
                 // table = JSON.parse(fs.readFileSync(filePath));
             } else {
                 logger.writeErr(filePath + ' 文件不存在');
@@ -251,7 +292,7 @@ const getTable = function (code) {
 const getDictionary = function (code) {
     const filePath = sourcePath + dictionary_name + '/' + code + '.json';
 
-    var domain = {};
+    var dictionary = {};
     try {
         const statFile = fs.statSync(filePath);
 
@@ -263,8 +304,20 @@ const getDictionary = function (code) {
             var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
             var buf = new Buffer(fileStr, 'binary');
             var data = iconv.decode(buf, 'GBK');
-            domain = JSON.parse(data);
-
+            dictionary = JSON.parse(data);
+            // 20170423 新增如果数据字典中有数据域，则获取数据域的最新属性 start
+            if (dictionary) {
+                const domainCode = dictionary.domain;
+                if(util.isNotNull(domainCode)){
+                    const domain = getDomain(domainCode);
+                    if(domain){
+                        dictionary.dataType = domain.dataType;
+                        dictionary.lengths = domain.lengths;
+                        dictionary.precision = domain.precision;
+                    }
+                }
+            }
+            // 20170423 新增如果数据字典中有数据域，则获取数据域的最新属性 end
             // table = JSON.parse(fs.readFileSync(filePath));
         } else {
             logger.writeErr(filePath + ' 文件不存在');
@@ -273,7 +326,7 @@ const getDictionary = function (code) {
         logger.writeErr(filePath + ' 文件不存在');
     }
 
-    return domain;
+    return dictionary;
 };
 
 /**

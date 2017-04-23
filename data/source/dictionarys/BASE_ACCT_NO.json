@@ -1,1 +1,10 @@
-{"domain":"","code":"BASE_ACCT_NO","dataType":"VarChar","lengths":"50","precision":"0","comment":"ук╨е","scope":"","defaults":""}
+{
+  "domain": "ACCT_NO",
+  "code": "BASE_ACCT_NO",
+  "dataType": "VarChar",
+  "lengths": "500",
+  "precision": "0",
+  "comment": "ук╨е",
+  "scope": "",
+  "defaults": ""
+}

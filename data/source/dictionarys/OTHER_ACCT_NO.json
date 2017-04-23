@@ -1,9 +1,0 @@
-{
-    "code": "OTHER_ACCT_NO",
-    "dataType": "Varchar",
-    "lengths": "64",
-    "comment": "∂‘∑Ω’À∫≈",
-    "defaults": "",
-    "scope": "A,C,E",
-    "domain": "ACCT_NO"
-}

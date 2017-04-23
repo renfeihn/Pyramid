@@ -23,7 +23,7 @@ const Models = {
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
     // 以c: d: .... h: i: 开头的为windows
     // data/source 项目内的相对路径
-    //  sourcePath: 'F:/svn/ModelBank/db/dbModel/',
+    //  sourcePath: 'D:/Renfei/Nodejs/20170419-db/dbModel/',
     sourcePath: 'data/source/',
     // 生成SQL路径
     targerPath: 'd:/target/',

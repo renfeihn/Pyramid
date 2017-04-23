@@ -55737,8 +55737,9 @@ function checkColumnVal(tmp) {
 
             if (flag) {
                 this.$message.error('列名已存在');
-                this.tableColumns.code = this.tableColumns.code + '_1';
+                //this.tableColumns.code = this.tableColumns.code + '_1';
             }
+            return flag;
         },
 
         // 选中行
@@ -55867,6 +55868,12 @@ function checkColumnVal(tmp) {
         // 根据选中的code查询数据字典赋值给页面
         selectDictionary: function selectDictionary(code) {
             console.log('选择了---' + code);
+
+            // 检查该数据字典是否已经被选择，如果已经被选择，提示报错
+            var flag = this.checkColumnCode(code);
+            if (flag) {
+                return;
+            }
 
             if (null != code && '' != code && undefined != code) {
                 this.$http.get('/getDictionary/' + code).then(function (res) {
