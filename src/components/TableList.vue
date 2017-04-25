@@ -204,6 +204,8 @@
                         this.tables = re.items;
                         this.page = re.page;
                         this.pages = re.pages;
+                        // 本地缓存当前页
+                        localStorage.setItem('currentPage', this.page);
                     }
                 }, function (res) {
                     this.$message.error('TableList 页面 请求 table 失败： ' + res.status);
@@ -332,6 +334,15 @@
             } else {
                 this.code = '';
             }
+
+            // 当前页记录本地缓存，以便于返回时使用
+            var currentPage = localStorage.getItem('currentPage');
+            if (null != currentPage && undefined != currentPage && '' != currentPage && currentPage.length > 0) {
+                this.page = currentPage;
+            } else {
+                localStorage.setItem('currentPage', this.page);
+            }
+
             console.log('system: ' + this.system);
             this.getTableSpaces();
             this.getAllTables();
