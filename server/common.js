@@ -23,8 +23,8 @@ const Models = {
     // 约定以/开头的为linux/MAC 系统根目录 linux 路径 /home/renfei/...
     // 以c: d: .... h: i: 开头的为windows
     // data/source 项目内的相对路径
-    //  sourcePath: 'D:/Renfei/Nodejs/20170419-db/dbModel/',
-    sourcePath: 'data/source/',
+     sourcePath: 'D:/Renfei/Nodejs/20170419-db/dbModel/',
+    // sourcePath: 'data/source/',
     // 生成SQL路径
     targerPath: 'd:/target/',
     // targerPath: 'F:/svn/ModelBank/db/3table/',
@@ -33,7 +33,10 @@ const Models = {
     EXCEL_PATH: "uploadFile/excel/",
 
     // 创建文件目录，指定的权限
-    AUTH_NUM: "0777"
+    AUTH_NUM: "0777",
+
+    // 分页每页显示数目
+    PAGE_NUM: "10"
 
 };
 

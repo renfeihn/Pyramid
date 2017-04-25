@@ -9,8 +9,10 @@ const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
 const util = require('./util/util');
+const Paginate = require('./Paginate');
 // 子进程（child_process）
 const exec = require('child_process').exec;
+
 
 /**
  * API implacement
@@ -18,49 +20,77 @@ const exec = require('child_process').exec;
  */
 var n = 0;
 
+/**
+ * 分页公共类
+ * @param page  当前页
+ * @param items 数据集合
+ */
+const pageUtils = function (page, total, items) {
+    var paginate = new Paginate(page, common.PAGE_NUM, total, items);
+    logger.writeDebug('page data: ' + JSON.stringify(paginate));
+    return paginate;
+};
+
+/**
+ * 分页设计逻辑：1.根据条件查询出符合条件的数据路径集合，计算出当前页的数据区间集合
+ *             2.在根据数据路径获取真实文件数据
+ * 因为每次全部查询出真实文件数据太消耗时间，所以这样设计
+ * 分页数据过渡公共类：
+ * @param page  当前页
+ * @param items 数据路径集合
+ */
+const pageBeforeUtils = function (page, items) {
+    var resItems = new Array();
+    if (util.isNull(page) || parseInt(page) < 1) {
+        page = 1;
+    }
+
+    logger.writeWarn('page:' + page);
+
+    if (util.isArray(items) && items.length > 0) {
+        items.forEach(function (item, index, array) {
+            // 当前页的开始行数 (page -1) * common.PAGE_NUM
+            const start = (page - 1) * common.PAGE_NUM;
+            // 当前页的结束行数 page * common.PAGE_NUM - 1 或者是最大行数
+            const end = page * common.PAGE_NUM - 1;
+            if (index >= start && index <= end) {
+                resItems.push(item);
+            }
+        });
+    }
+    return resItems;
+}
+
 
 /**
  * 根据name(源文件目录名字)获取对象数据
  */
 router.get('/getAll/tables', function (req, res, next) {
     var obj;
-    var start = process.uptime();
+    const start = process.uptime();
     const system = req.query.system.trim();
     const dbType = req.query.dbType.trim();
     const parameter = req.query.parameter.trim();
     const code = req.query.code.trim();
     const tableSpace = req.query.tableSpace.trim();
 
+    const page = req.query.page;
+
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
         + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
-    var result = db.readFile(common.table_name, system, dbType, parameter, code);
-    // var tableRes = new Array();
-
-    // if (util.isArray(result) && result.length > 0) {
-    //     result.forEach(function (table, index, tables) {
-    //         logger.writeDebug('table:  ' + JSON.stringify(table));
-    //         if (util.isNotNull(code)) {
-    //             if ((table.code).indexOf(code) >= 0) {
-    //                 tableRes.push(table);
-    //             }
-    //         }
-    //
-    //     });
-    // }
-    //
-    // if (tableRes.length > 0) {
-    //     logger.writeDebug('tableRes.length  ' + tableRes.length);
-    //     obj = tableRes;
-    // } else {
-    //     obj = result;
-    // }
-
-    obj = result;
+    // 查询所有符合条件的数据
+    const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
+    // 分页处理
+    const patternFiles = pageBeforeUtils(page, patternAllFiles);
+    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+    const datas = db.readFileByPatternFiles(common.table_name, patternFiles);
+    obj = pageUtils(page, patternAllFiles.length, datas);
 
     logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
-    var end = process.uptime();
+    const end = process.uptime();
     logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+
     res.status(200).send(obj).end();
 });
 
@@ -69,7 +99,7 @@ router.get('/getAll/tables', function (req, res, next) {
  */
 router.get('/getAll/dictionarys', function (req, res, next) {
     var obj;
-    var start = process.uptime();
+    const start = process.uptime();
     const code = req.query.code;
 
     logger.writeDebug('code: ' + code);

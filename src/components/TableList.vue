@@ -29,62 +29,62 @@
 
         <!--<br/>-->
         <!--<el-table-->
-                <!--:data="tables"-->
-                <!--border-->
-                <!--style="width: 100%">-->
-            <!--<el-table-column-->
-                    <!--prop="dbType"-->
-                    <!--label="垂直/水平"-->
-                    <!--width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="parameter"-->
-                    <!--label="分类2"-->
-                    <!--width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="code"-->
-                    <!--label="表名"-->
-                    <!--width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="comment"-->
-                    <!--label="描述"-->
-                    <!--width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--prop="table_space"-->
-                    <!--label="表空间"-->
-                    <!--width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column-->
-                    <!--fixed="right"-->
-                    <!--label="操作"-->
-                    <!--width="120">-->
-                <!--<template scope="scope">-->
+        <!--:data="tables"-->
+        <!--border-->
+        <!--style="width: 100%">-->
+        <!--<el-table-column-->
+        <!--prop="dbType"-->
+        <!--label="垂直/水平"-->
+        <!--width="120">-->
+        <!--</el-table-column>-->
+        <!--<el-table-column-->
+        <!--prop="parameter"-->
+        <!--label="分类2"-->
+        <!--width="120">-->
+        <!--</el-table-column>-->
+        <!--<el-table-column-->
+        <!--prop="code"-->
+        <!--label="表名"-->
+        <!--width="120">-->
+        <!--</el-table-column>-->
+        <!--<el-table-column-->
+        <!--prop="comment"-->
+        <!--label="描述"-->
+        <!--width="120">-->
+        <!--</el-table-column>-->
+        <!--<el-table-column-->
+        <!--prop="table_space"-->
+        <!--label="表空间"-->
+        <!--width="120">-->
+        <!--</el-table-column>-->
+        <!--<el-table-column-->
+        <!--fixed="right"-->
+        <!--label="操作"-->
+        <!--width="120">-->
+        <!--<template scope="scope">-->
 
-                    <!--<el-button-->
-                            <!--@click.native.prevent="deleteRow(scope.$index, tableData4)"-->
-                            <!--type="text"-->
-                            <!--size="small">-->
-                        <!--查看-->
-                    <!--</el-button>-->
+        <!--<el-button-->
+        <!--@click.native.prevent="deleteRow(scope.$index, tableData4)"-->
+        <!--type="text"-->
+        <!--size="small">-->
+        <!--查看-->
+        <!--</el-button>-->
 
-                    <!--<el-button-->
-                            <!--@click.native.prevent="deleteRow(scope.$index, tableData4)"-->
-                            <!--type="text"-->
-                            <!--size="small">-->
-                        <!--移除-->
-                    <!--</el-button>-->
+        <!--<el-button-->
+        <!--@click.native.prevent="deleteRow(scope.$index, tableData4)"-->
+        <!--type="text"-->
+        <!--size="small">-->
+        <!--移除-->
+        <!--</el-button>-->
 
-                <!--</template>-->
-            <!--</el-table-column>-->
+        <!--</template>-->
+        <!--</el-table-column>-->
         <!--</el-table>-->
 
         <div class="table-responsive articleList">
             <table class="table table-striped">
-                    <thead>
-                    <tr>
+                <thead>
+                <tr>
                     <th width="10%">垂直/水平</th>
                     <th width="10%">业务/参数</th>
                     <th width="15%">表名</th>
@@ -98,7 +98,9 @@
                     <td>{{table.dbType}}</td>
                     <td>{{table.parameter}}</td>
                     <td>
-                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code}}">{{table.code}}</router-link>
+                        <router-link :to="{path:'/tableInfo', query:{system:system,tableCode:table.code}}">
+                            {{table.code}}
+                        </router-link>
                     </td>
                     <td>{{table.comment}}</td>
                     <td>{{table.table_space}}</td>
@@ -114,9 +116,21 @@
             </table>
         </div>
 
+        <!-- 分页 -->
+        <div class="page-bar">
+            <ul>
+                <li><a :class="setButtonClass(0)" @click="prvePage(page)">上一页</a></li>
+                <li v-for="index in indexs" :class="{ active: page == index }">
+                    <a @click="btnClick(index)">{{ index < 1 ? "..." : index }}</a>
+                </li>
+                <li><a :class="setButtonClass(1)" @click="nextPage(page)">下一页</a></li>
+            </ul>
+        </div>
 
     </div>
 </template>
+
+<style scoped src="../css/pagination.css"></style>
 
 <script>
     export default{
@@ -134,10 +148,43 @@
                 tables: [],
                 tableSpaces: [],
                 content: '',
-                sql_dialog_show: false
+                sql_dialog_show: false,
+                // 当前页
+                page: 1,
+                // 总页数
+                pages: 1
             }
         },
         methods: {
+            // 分页开始
+            // 页码点击事件
+            btnClick: function (data) {
+                if (data < 1) return;
+                if (data != this.page) {
+                    this.page = data;
+                    this.getAllTables();
+                }
+            },
+            // 下一页
+            nextPage: function (data) {
+                if (this.page >= this.pages) return;
+                this.btnClick(parseInt(this.page) + 1);
+            },
+            // 上一页
+            prvePage: function (data) {
+                if (this.page <= 1) return;
+                this.btnClick(parseInt(this.page) - 1);
+            },
+            // 设置按钮禁用样式
+            setButtonClass: function (isNextButton) {
+                if (isNextButton) {
+                    return this.page >= this.pages ? "page-button-disabled" : ""
+                } else {
+                    return this.page <= 1 ? "page-button-disabled" : ""
+                }
+            },
+            // 分页结束
+
             getTableSpaces(){
                 this.$http.get('/getAll/table_spaces').then(function (res) {
                     if (res.status == 200) {
@@ -149,12 +196,14 @@
                 });
             },
             getAllTables(){
-                let API = '/getAll/tables?system=' + this.system + '&code=' + this.code + '&dbType=' + this.dbType +
+                let API = '/getAll/tables?page=' + this.page + '&system=' + this.system + '&code=' + this.code + '&dbType=' + this.dbType +
                     '&parameter=' + this.parameter + '&tableSpace=' + this.tableSpace;
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
-                        this.tables = re;
+                        this.tables = re.items;
+                        this.page = re.page;
+                        this.pages = re.pages;
                     }
                 }, function (res) {
                     this.$message.error('TableList 页面 请求 table 失败： ' + res.status);
@@ -234,6 +283,40 @@
             }
         },
         components: {},
+        computed: {
+            indexs: function () {
+                var left = 1;
+                var right = this.pages;
+                var ar = [];
+                if (this.pages >= 11) {
+                    if (this.page > 5 && this.page < parseInt(this.pages) - 4) {
+                        left = parseInt(this.page) - 5;
+                        right = parseInt(this.page) + 4;
+                    } else {
+                        if (this.cur <= 5) {
+                            left = 1;
+                            right = 10;
+                        } else {
+                            right = this.pages;
+                            left = parseInt(this.pages) - 9
+                        }
+                    }
+                }
+                while (left <= right) {
+                    ar.push(left);
+                    left++;
+                }
+                if (ar[0] > 1) {
+                    ar[0] = 1;
+                    ar[1] = -1;
+                }
+                if (ar[ar.length - 1] < this.pages) {
+                    ar[ar.length - 1] = this.pages;
+                    ar[ar.length - 2] = 0;
+                }
+                return ar
+            }
+        },
         created(){
             var mo = this.$route.query.system;
             console.log('mo: ' + mo);
@@ -243,13 +326,12 @@
                 this.system = '';
             }
             //reCode
-            var moCode=this.$route.query.reCode;
+            var moCode = this.$route.query.reCode;
             if (null != moCode && undefined != moCode && '' != moCode && moCode.length > 0) {
                 this.code = moCode;
             } else {
                 this.code = '';
             }
-            console.log('system: ' + this.Code);
             console.log('system: ' + this.system);
             this.getTableSpaces();
             this.getAllTables();

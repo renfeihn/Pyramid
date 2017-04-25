@@ -47,6 +47,7 @@
             </div>
 
             <a class="btn btn-info" @click="save();">保存</a>
+            <a class="btn btn-success" href="javascript:history.go(-1);">返回</a>
         </form>
     </div>
 </template>

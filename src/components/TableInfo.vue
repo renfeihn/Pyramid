@@ -114,9 +114,7 @@
 
             <a class="btn btn-info" @click="save();">保存</a>
             <a class="btn btn-info" @click="showSQL();">sql 预览</a>
-            <router-link :to="{path:'/tableList', query:{reCode:reCode,system:system}}"
-                         class="btn btn-sm btn-success">返回
-            </router-link>
+            <a class="btn btn-success" href="javascript:history.go(-1);">返回</a>
         </form>
         <br/>
         <form class="form-inline form-filter">

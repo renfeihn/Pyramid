@@ -59,9 +59,7 @@
 
             <div class="form-group text-center">
                 <a class="btn btn-info" @click="save();">保存</a>
-                <router-link :to="{path:'/dictionaryList', query:{reCode:reCode}}"
-                             class="btn btn-sm btn-success">返回
-                </router-link>
+                <a class="btn btn-success" href="javascript:history.go(-1);">返回</a>
             </div>
         </form>
     </div>
