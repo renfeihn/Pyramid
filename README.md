@@ -1,6 +1,6 @@
 Pyramid 金字塔
 ===
-Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、domain 域、表空间等
+Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、数据域、表空间等
 
 
 ## 安装步骤：
