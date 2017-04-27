@@ -55,7 +55,7 @@ const readFile = function (type, system, dbType, parameter, code) {
     return results;
 };
 
-const readFileByPatternFiles = function (type,patternFiles) {
+const readFileByPatternFiles = function (type, patternFiles) {
     const results = new Array();
     // const files = getPatternFiles(type, system, dbType, parameter, code);
     // logger.writeWarn('files size:' + files.length);

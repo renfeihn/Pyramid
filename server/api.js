@@ -9,7 +9,7 @@ const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
 const util = require('./util/util');
-const Paginate = require('./Paginate');
+const Paginate = require('./lib/Paginate');
 // 子进程（child_process）
 const exec = require('child_process').exec;
 
@@ -45,8 +45,6 @@ const pageBeforeUtils = function (page, items) {
         page = 1;
     }
 
-    logger.writeWarn('page:' + page);
-
     if (util.isArray(items) && items.length > 0) {
         items.forEach(function (item, index, array) {
             // 当前页的开始行数 (page -1) * common.PAGE_NUM
@@ -59,7 +57,7 @@ const pageBeforeUtils = function (page, items) {
         });
     }
     return resItems;
-}
+};
 
 
 /**
@@ -83,11 +81,11 @@ router.get('/getAll/tables', function (req, res, next) {
     const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
     // 分页处理
     const patternFiles = pageBeforeUtils(page, patternAllFiles);
-    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+    // logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
     const datas = db.readFileByPatternFiles(common.table_name, patternFiles);
     obj = pageUtils(page, patternAllFiles.length, datas);
 
-    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+    // logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     const end = process.uptime();
     logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
