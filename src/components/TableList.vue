@@ -295,7 +295,7 @@
                         left = parseInt(this.page) - 5;
                         right = parseInt(this.page) + 4;
                     } else {
-                        if (this.cur <= 5) {
+                        if (this.page <= 5) {
                             left = 1;
                             right = 10;
                         } else {
