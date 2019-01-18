@@ -1,0 +1,44 @@
+{
+    "code": "MB_ACCT",
+    "comment": "账户基本信息表",
+    "attr": [
+        {
+            "code": "BASE_ACCT_NO",
+            "dataType": "VARCHAR",
+            "lengths": "50",
+            "precision": "",
+            "M": true,
+            "P": false,
+            "comment": "账号",
+            "defaults": "",
+            "dictionary": "BASE_ACCT_NO1",
+            "scope": ""
+        },
+        {
+            "code": "BASE_ACCT_NO_TEST",
+            "dataType": "Varchar",
+            "lengths": "50",
+            "precision": "",
+            "M": true,
+            "P": false,
+            "comment": "账号",
+            "defaults": "",
+            "dictionary": "",
+            "scope": ""
+        }
+    ],
+    "indexs": [
+        {
+            "code": "PK_MB_ACCT",
+            "U": false,
+            "columns": [
+                "BASE_ACCT_NO"
+            ],
+            "table_space": "core_index"
+        }
+    ],
+    "table_space": "core_data",
+    "dbType": "level",
+    "parameter": "tran",
+    "system": "Ensemble"
+}
