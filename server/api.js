@@ -78,7 +78,7 @@ router.get('/getAll/tables', function (req, res, next) {
     const page = req.query.page;
 
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
-        + '   code: ' + code + '   tableSpace: ' + tableSpace);
+            + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
     // 查询所有符合条件的数据
     const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
@@ -109,7 +109,7 @@ router.get('/getAll/selectTables', function (req, res, next) {
     const tableSpace = req.query.tableSpace.trim();
 
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
-        + '   code: ' + code + '   tableSpace: ' + tableSpace);
+            + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
     var result = db.readFile(common.table_name, system, dbType, parameter, code);
     obj = result;
@@ -131,12 +131,12 @@ router.get('/getAll/dictionarys', function (req, res, next) {
     // 查询所有符合条件的数据
     const patternAllFiles = db.getPatternFiles(common.dictionary_name, '', '', '', code);
     const patternFiles = pageBeforeUtils(page, patternAllFiles);
-    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+    logger.writeDebug('patternFiles: ' + JSON.stringify(patternFiles));
     const datas = db.readFileByPatternFiles(common.dictionary_name, patternFiles);
-    if(page==''){
-        obj=db.readFileByPatternFiles(common.dictionary_name,patternAllFiles);
-    }else{
-    obj = pageUtils(page, patternAllFiles.length, datas);
+    if (page == '') {
+        obj = db.readFileByPatternFiles(common.dictionary_name, patternAllFiles);
+    } else {
+        obj = pageUtils(page, patternAllFiles.length, datas);
     }
     var dictionaryRes = new Array();
 
@@ -162,7 +162,7 @@ router.get('/getAll/dictionarys', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeDebug('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(obj).end();
 });
@@ -185,11 +185,11 @@ router.get('/getAll/dictionarysNotPage', function (req, res, next) {
         result.forEach(function (domain, index, domains) {
             logger.writeDebug('domain:  ' + JSON.stringify(domain));
             if (util.isNotNull(code)) {
-                if(code.indexOf('@')==0){
+                if (code.indexOf('@') == 0) {
                     if ((domain.code).indexOf(code.substr(1)) == 0) {
                         dictionaryRes.push(domain);
                     }
-                }else if ((domain.code).indexOf(code) >= 0) {
+                } else if ((domain.code).indexOf(code) >= 0) {
                     dictionaryRes.push(domain);
                 }
             }
@@ -204,7 +204,7 @@ router.get('/getAll/dictionarysNotPage', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeDebug('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(obj).end();
 });
@@ -242,7 +242,7 @@ router.get('/getAll/domains', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeDebug('查询 domains 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 domains 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(obj).end();
 });
@@ -259,7 +259,7 @@ router.get('/getAll/table_spaces', function (req, res, next) {
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
     var end = process.uptime();
-    logger.writeDebug('查询 table_spaces  执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 table_spaces  执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(result).end();
 });
@@ -497,7 +497,7 @@ function checkTableCode(table, oldCode) {
     if (oldCode != table.code) {
         // 获取满足条件的table 全路径
         const files = db.getPatternFiles(common.table_name, table.system,
-            table.dbType, table.parameter, table.code);
+                table.dbType, table.parameter, table.code);
         if (util.isArray(files) && files.length > 0) {
             flag = true;
         }
@@ -599,7 +599,7 @@ router.post('/deleteTableFile', function (req, res, next) {
     try {
 
         var filePath = util.getRourcePath() + common.table_name + '/' + table.system + '/' + table.dbType
-            + '/' + table.parameter + '/' + table.code + '.json';
+                + '/' + table.parameter + '/' + table.code + '.json';
 
         db.delFile(filePath);
         msg = '表 ' + table.code + ' 删除成功！';
@@ -667,90 +667,91 @@ router.post('/downLoad/tableSelectInfo', function (req, res, next) {
     if (!(util.isArray(data) && data.length > 0)) {
         data = db.readFile(common.table_name);
     }
-    var dataFile='';
-    var dataTypeFlagU=true;
-    var dataSystemFlag=true;
-    var dataType=null;
-    var dataSystem=null;
+    var dataFile = '';
+    var dataTypeFlagU = true;
+    var dataSystemFlag = true;
+    var dataType = null;
+    var dataSystem = null;
     data.forEach(function (table, index, tables) {
-        var code=table.code;
-        var comment=table.comment;
-        var system=table.system;
-        var dbType=table.parameter;
-        if(system=='Accounting'){
-            system='Accounting-会计核算';
-        }else if(system=='Limarket'){
-            system='Limarket-统一定价';
-        } if(system=='Ensemble'){
-            system='Ensemble-核心';
+        var code = table.code;
+        var comment = table.comment;
+        var system = table.system;
+        var dbType = table.parameter;
+        if (system == 'Accounting') {
+            system = 'Accounting-会计核算';
+        } else if (system == 'Limarket') {
+            system = 'Limarket-统一定价';
         }
-        if(dbType=='busi_para'){
-            dbType='业务参数';
-        }else if(dbType=='init_para'){
-            dbType='出厂参数';
-        } if(dbType=='tran'){
-            dbType='业务数据';
+        if (system == 'Ensemble') {
+            system = 'Ensemble-核心';
+        }
+        if (dbType == 'busi_para') {
+            dbType = '业务参数';
+        } else if (dbType == 'init_para') {
+            dbType = '出厂参数';
+        }
+        if (dbType == 'tran') {
+            dbType = '业务数据';
         }
         var resultTable = db.getTable(code);
-        var num=0;
-        var numFlag=true;
-        if(dataSystem!=system&&dataSystem!=null){
-            dataSystemFlag=true;
+        var num = 0;
+        var numFlag = true;
+        if (dataSystem != system && dataSystem != null) {
+            dataSystemFlag = true;
         }
-        if(dataSystemFlag==true){
-            dataFile=dataFile+'# '+system+'\n[TOC]\n';
-            dataType=dbType;
-            dataSystemFlag=false;
+        if (dataSystemFlag == true) {
+            dataFile = dataFile + '# ' + system + '\n[TOC]\n';
+            dataType = dbType;
+            dataSystemFlag = false;
         }
-        if(dataType!=dbType&&dataType!=null){
-            dataTypeFlagU=true;
+        if (dataType != dbType && dataType != null) {
+            dataTypeFlagU = true;
         }
-        if(dataTypeFlagU==true){
-            dataFile=dataFile+'## '+dbType+'\n';
-            dataType=dbType;
-            dataTypeFlagU=false;
+        if (dataTypeFlagU == true) {
+            dataFile = dataFile + '## ' + dbType + '\n';
+            dataType = dbType;
+            dataTypeFlagU = false;
         }
-        dataFile=dataFile+'### '+(index+1)+'.'+comment+' '+code;
-        dataFile=dataFile+'\n\n';
-        dataFile=dataFile+ util.table('字段名','数据类型','长度','是否为空','主键','描述','取值范围','默认值');
-        resultTable.attr.forEach( function (tableAttr,index,tableAttrs)
-        {
-            if(numFlag==true){
-                dataFile=dataFile+'| ----------- | ------ | ---- | ---------------------------------------- |\n';
-                numFlag=false;
+        dataFile = dataFile + '### ' + (index + 1) + '.' + comment + ' ' + code;
+        dataFile = dataFile + '\n\n';
+        dataFile = dataFile + util.table('字段名', '数据类型', '长度', '是否为空', '主键', '描述', '取值范围', '默认值');
+        resultTable.attr.forEach(function (tableAttr, index, tableAttrs) {
+            if (numFlag == true) {
+                dataFile = dataFile + '| ----------- | ------ | ---- | ---------------------------------------- |\n';
+                numFlag = false;
             }
-            var length='('+util.nvl(tableAttr.lengths);
-            if(util.nvl(tableAttr.precision)){
-                length=length+','+tableAttr.precision;
+            var length = '(' + util.nvl(tableAttr.lengths);
+            if (util.nvl(tableAttr.precision)) {
+                length = length + ',' + tableAttr.precision;
             }
-            length=length+')';
-            var m='Y';
-            if(tableAttr.M==true){
-                m='N'
+            length = length + ')';
+            var m = 'Y';
+            if (tableAttr.M == true) {
+                m = 'N'
             }
-            var p='N';
-            if(tableAttr.P==true){
-                p='Y';
+            var p = 'N';
+            if (tableAttr.P == true) {
+                p = 'Y';
             }
-            dataFile=dataFile+ util.table(util.nvl(tableAttr.code, ''),util.nvl(tableAttr.dataType, ''),length,m,p,util.nvl(tableAttr.comment, ''),util.nvl(tableAttr.scope, ''),util.nvl(tableAttr.defaults, ''));
+            dataFile = dataFile + util.table(util.nvl(tableAttr.code, ''), util.nvl(tableAttr.dataType, ''), length, m, p, util.nvl(tableAttr.comment, ''), util.nvl(tableAttr.scope, ''), util.nvl(tableAttr.defaults, ''));
             num++;
         });
-            dataFile=dataFile+"\n";
+        dataFile = dataFile + "\n";
     });
     const outFile = 'md.md';
     const arr = iconv.encode(dataFile, 'gbk');
-    try{
-    fs.writeFile(outFile, arr, function (err) {
-        if (err) {
-            logger.writeErr('写入 文件错误:  ' + err);
-        } else {
-            logger.writeInfo('写入文件成功');
-        }
-    });
-    return res.status(200).send("成功").end();
-    }catch (e){
+    try {
+        fs.writeFile(outFile, arr, function (err) {
+            if (err) {
+                logger.writeErr('写入 文件错误:  ' + err);
+            } else {
+                logger.writeInfo('写入文件成功');
+            }
+        });
+        return res.status(200).send("成功").end();
+    } catch (e) {
         logger.writeErr('导出文件失败: ' + e);
-        var msg = '导出文件失败，请重试'+e;
+        var msg = '导出文件失败，请重试' + e;
         return res.status(301).send(msg).end();
     }
     // 文件生成成功，未下载
@@ -760,8 +761,8 @@ router.post('/downLoad/tableSelectInfo', function (req, res, next) {
 /**
  * 下载表单元
  *用途：生成re图形文件。
-/*
-router.post('/downLoad/tableSelectRe', function (req, res, next) {
+ /*
+ router.post('/downLoad/tableSelectRe', function (req, res, next) {
     var data = req.body.data;
     logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
     if (!(util.isArray(data) && data.length > 0)) {
@@ -805,78 +806,78 @@ router.post('/downLoad/tableSelectRe', function (req, res, next) {
     // 文件生成成功，未下载
 
 });
-*/
+ */
 /**
  * 下载表的字段  excel格式
  */
 /*router.post('/downLoad/tableSelectInfo', function (req, res, next) {
-    var data = req.body.data;
-    logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
-    if (!(util.isArray(data) && data.length > 0)) {
-        data = db.readFile(common.table_name);
-    }
+ var data = req.body.data;
+ logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
+ if (!(util.isArray(data) && data.length > 0)) {
+ data = db.readFile(common.table_name);
+ }
 
-    var conf = {};
-    conf.cols = [
-        {caption: '所属表', type: 'string'},
-        {caption: '列名', type: 'string'},
-        {caption: '数据类型', type: 'string'},
-        {caption: '长度', type: 'string'},
-        {caption: '精度', type: 'string'},
-        {caption: '是否必填', type: 'bool'},
-        {caption: '是否主键', type: 'bool'},
-        {caption: '描述', type: 'string'},
-        {caption: '取值范围', type: 'string'},
-        {caption: '默认值', type: 'string'},
-        {caption: '数据字典', type: 'string'},
-        {caption: '所属表中文名', type: 'string'}
-    ];
-    var num=0;
-    var rowTemp = new Array();
-    data.forEach(function (table, index, tables) {
-        //
-        var code=table.code;
-        var comment=table.comment;
-        var resultTable = db.getTable(code);
-        resultTable.attr.forEach( function (tableAttr,index,tableAttrs)
-        {
-            rowTemp[num] = new Array();
-            (rowTemp[num]).push(util.nvl(code, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.code, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.dataType, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.lengths, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.precision, ''));
-            (rowTemp[num]).push(tableAttr.M);
-            (rowTemp[num]).push(tableAttr.P);
-            (rowTemp[num]).push(util.nvl(tableAttr.comment, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.scope, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.defaults, ''));
-            (rowTemp[num]).push(util.nvl(tableAttr.dictionary, ''));
-            (rowTemp[num]).push(util.nvl(comment, ''));
-            num++;
-        });
+ var conf = {};
+ conf.cols = [
+ {caption: '所属表', type: 'string'},
+ {caption: '列名', type: 'string'},
+ {caption: '数据类型', type: 'string'},
+ {caption: '长度', type: 'string'},
+ {caption: '精度', type: 'string'},
+ {caption: '是否必填', type: 'bool'},
+ {caption: '是否主键', type: 'bool'},
+ {caption: '描述', type: 'string'},
+ {caption: '取值范围', type: 'string'},
+ {caption: '默认值', type: 'string'},
+ {caption: '数据字典', type: 'string'},
+ {caption: '所属表中文名', type: 'string'}
+ ];
+ var num=0;
+ var rowTemp = new Array();
+ data.forEach(function (table, index, tables) {
+ //
+ var code=table.code;
+ var comment=table.comment;
+ var resultTable = db.getTable(code);
+ resultTable.attr.forEach( function (tableAttr,index,tableAttrs)
+ {
+ rowTemp[num] = new Array();
+ (rowTemp[num]).push(util.nvl(code, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.code, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.dataType, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.lengths, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.precision, ''));
+ (rowTemp[num]).push(tableAttr.M);
+ (rowTemp[num]).push(tableAttr.P);
+ (rowTemp[num]).push(util.nvl(tableAttr.comment, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.scope, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.defaults, ''));
+ (rowTemp[num]).push(util.nvl(tableAttr.dictionary, ''));
+ (rowTemp[num]).push(util.nvl(comment, ''));
+ num++;
+ });
 
-        //
-    });
+ //
+ });
 
-    logger.writeDebug('3down load talbe rowTemp --> ' + rowTemp)
-    conf.rows = rowTemp;
+ logger.writeDebug('3down load talbe rowTemp --> ' + rowTemp)
+ conf.rows = rowTemp;
 
-    const fileName = "表范围.xlsx";
-    const headContent = excel.createHeader(fileName, req);
-    logger.writeDebug('---------> headContent: ' + headContent);
-    res.setHeader('Content-Disposition', headContent);
+ const fileName = "表范围.xlsx";
+ const headContent = excel.createHeader(fileName, req);
+ logger.writeDebug('---------> headContent: ' + headContent);
+ res.setHeader('Content-Disposition', headContent);
 
-    excel.createExcel({
-        data: conf,
-        cb: function (path) {
-            excel.download(path, req, res, false);
-        }
-    });
+ excel.createExcel({
+ data: conf,
+ cb: function (path) {
+ excel.download(path, req, res, false);
+ }
+ });
 
-    // 文件生成成功，未下载
+ // 文件生成成功，未下载
 
-});*/
+ });*/
 /**
  * 下载数据字典数据
  */

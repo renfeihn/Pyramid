@@ -32,7 +32,7 @@ var targerPath = util.getTargetPath();
 const readFile = function (type, system, dbType, parameter, code) {
     const results = new Array();
     const files = getPatternFiles(type, system, dbType, parameter, code);
-    logger.writeWarn('files size:' + files.length);
+    logger.writeDebug('files size:' + files.length);
     // 判断如果是table，则再获取最新table数据
     var datas = readFiles(files);
 /*
@@ -115,7 +115,7 @@ const getPatternFiles = function (type, system, dbType, parameter, code) {
     } else {
         pattern = pattern + '/*.json';
     }
-    logger.writeInfo('getPatternFiles  db  pattern:  ' + pattern);
+    logger.writeDebug('getPatternFiles  db  pattern:  ' + pattern);
     return glob.sync(pattern, {nodir: true});
 };
 
@@ -130,7 +130,7 @@ const readFiles = function (files) {
         files.forEach(function (filePath) {
             const statFile = fs.statSync(filePath);
             if (!statFile.isDirectory()) {
-                logger.writeInfo('db 读取的文件名:  ' + filePath);
+                logger.writeDebug('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
                 var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
                 var buf = new Buffer(fileStr, 'binary');

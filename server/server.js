@@ -10,7 +10,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const api = require('./api');
 const common = require('./common');
-const logger = require("./lib/logHelper").helper;
 const log = require('./lib/logHelper');
 const app = express();
 const resolve = file => path.resolve(__dirname, file);
@@ -43,5 +42,5 @@ app.get('*', function (req, res, next) {
 });
 
 app.listen(app.get('port'), function () {
-    logger.writeInfo('-- Server up: http://localhost:' + app.get('port') + ' --');
+    console.log('-- Server up: http://localhost:' + app.get('port') + ' --');
 });

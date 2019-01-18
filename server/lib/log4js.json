@@ -29,8 +29,8 @@
   "replaceConsole": true,
   "levels": {
     "logDebug": "DEBUG",
-    "logInfo": "DEBUG",
-    "logWarn": "DEBUG",
-    "logErr": "DEBUG"
+    "logInfo": "INFO",
+    "logWarn": "ERROR",
+    "logErr": "ERROR"
   }
 }
