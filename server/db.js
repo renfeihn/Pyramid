@@ -271,7 +271,7 @@ const getTable = function (code) {
             const statFile = fs.statSync(filePath);
             // logger.writeInfo(statFile.isFile());
             if (statFile.isFile()) {
-                logger.writeInfo(filePath + ' 文件存在');
+                logger.writeDebug(filePath + ' 文件存在');
 
                 var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
                 var buf = new Buffer(fileStr, 'binary');
@@ -327,10 +327,10 @@ const getDictionary = function (code) {
     try {
         const statFile = fs.statSync(filePath);
 
-        logger.writeInfo(statFile.isFile())
+        logger.writeDebug(statFile.isFile());
 
         if (statFile.isFile()) {
-            logger.writeInfo(filePath + ' 文件存在');
+            logger.writeDebug(filePath + ' 文件存在');
 
             var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
             var buf = new Buffer(fileStr, 'binary');
@@ -370,10 +370,10 @@ const getDomain = function (code) {
     try {
         const statFile = fs.statSync(filePath);
 
-        logger.writeInfo(statFile.isFile())
+        logger.writeDebug(statFile.isFile())
 
         if (statFile.isFile()) {
-            logger.writeInfo(filePath + ' 文件存在');
+            logger.writeDebug(filePath + ' 文件存在');
 
             var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
             var buf = new Buffer(fileStr, 'binary');

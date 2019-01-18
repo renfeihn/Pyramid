@@ -92,7 +92,7 @@ router.get('/getAll/tables', function (req, res, next) {
 
     logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     const end = process.uptime();
-    logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 tables 执行时间： ' + (end - start));
 
     res.status(200).send(obj).end();
 });
@@ -116,7 +116,7 @@ router.get('/getAll/selectTables', function (req, res, next) {
 
     logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     var end = process.uptime();
-    logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 tables 执行时间： ' + (end - start));
     res.status(200).send(obj).end();
 });
 /**
@@ -162,7 +162,7 @@ router.get('/getAll/dictionarys', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start));
 
     res.status(200).send(obj).end();
 });
@@ -204,7 +204,7 @@ router.get('/getAll/dictionarysNotPage', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start));
 
     res.status(200).send(obj).end();
 });
@@ -242,7 +242,7 @@ router.get('/getAll/domains', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeInfo('查询 domains 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 domains 执行时间： ' + (end - start));
 
     res.status(200).send(obj).end();
 });
@@ -259,7 +259,7 @@ router.get('/getAll/table_spaces', function (req, res, next) {
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
     var end = process.uptime();
-    logger.writeInfo('查询 table_spaces  执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    logger.writeInfo('查询 table_spaces  执行时间： ' + (end - start));
 
     res.status(200).send(result).end();
 });
