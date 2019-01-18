@@ -170,7 +170,8 @@
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
-                        this.tables = re;
+                        console.log(re);
+                        this.tables = re.items;
                     }
                 }, function (res) {
                     this.$message.error('TableList 页面 请求 table 失败： ' + res.status);

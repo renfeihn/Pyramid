@@ -76,6 +76,9 @@ router.get('/getAll/tables', function (req, res, next) {
     const tableSpace = req.query.tableSpace.trim();
 
     const page = req.query.page;
+    // 判断如果没有page信息则不分页
+
+    logger.writeDebug('page:  ' + page);
 
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
             + '   code: ' + code + '   tableSpace: ' + tableSpace);
@@ -84,15 +87,21 @@ router.get('/getAll/tables', function (req, res, next) {
     const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
     logger.writeWarn('patternAllFiles: ' + JSON.stringify(patternAllFiles));
     // 分页处理
-    const patternFiles = pageBeforeUtils(page, patternAllFiles);
+    let patternFiles = '';
+    if (util.isNotNull(page)) {
+        patternFiles = pageBeforeUtils(page, patternAllFiles);
+    } else {
+        patternFiles = patternAllFiles;
+    }
+
     logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
 
     const datas = db.readFileByPatternFiles(common.table_name, patternFiles);
     obj = pageUtils(page, patternAllFiles.length, datas);
 
-    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+    // logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     const end = process.uptime();
-    logger.writeInfo('查询 tables 执行时间： ' + (end - start));
+    logger.writeInfo('查询 tables 执行时间： ' + (end - start) + '总数： ' + obj);
 
     res.status(200).send(obj).end();
 });
@@ -114,9 +123,9 @@ router.get('/getAll/selectTables', function (req, res, next) {
     var result = db.readFile(common.table_name, system, dbType, parameter, code);
     obj = result;
 
-    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+    // logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     var end = process.uptime();
-    logger.writeInfo('查询 tables 执行时间： ' + (end - start));
+    logger.writeInfo('查询 selectTables 执行时间： ' + (end - start) + '总数： ' + obj);
     res.status(200).send(obj).end();
 });
 /**
@@ -177,7 +186,7 @@ router.get('/getAll/dictionarysNotPage', function (req, res, next) {
     logger.writeDebug('code: ' + code);
 
     var result = db.readFile(common.dictionary_name);
-    logger.writeDebug('API JSON:   ' + JSON.stringify(result));
+    // logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
     var dictionaryRes = new Array();
 
@@ -204,7 +213,8 @@ router.get('/getAll/dictionarysNotPage', function (req, res, next) {
     }
 
     var end = process.uptime();
-    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start));
+    logger.writeInfo('查询 dictionarys 执行时间： ' + (end - start) + '总数： ' + obj);
+
 
     res.status(200).send(obj).end();
 });
