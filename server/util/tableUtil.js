@@ -43,7 +43,7 @@ const generatorSql = function (db_type, type, system, dbType, parameter) {
         db.writeSQLFile(type, data.code, ret, dbType);
         logger.writeInfo(data.code + ' sql： ' + ret);
     });
-    fs.writeFile(common.targerPath + '/runner_level.sql', tables_level, function (err) {
+    fs.writeFile(common.targerPath + '/' +system + '_runner_level.sql', tables_level, function (err) {
         if (err) {
             logger.writeErr('写入 ' + type + ' runner_level.sql 文件错误:  ' + err);
         } else {
@@ -51,7 +51,7 @@ const generatorSql = function (db_type, type, system, dbType, parameter) {
         }
     });
 
-    fs.writeFile(common.targerPath + '/runner_upright.sql', tables_upright, function (err) {
+    fs.writeFile(common.targerPath + '/' +system + '_runner_upright.sql', tables_upright, function (err) {
         if (err) {
             logger.writeErr('写入 ' + type + '  runner_upright.sql 文件错误:  ' + err);
         } else {

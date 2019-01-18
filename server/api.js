@@ -1,7 +1,8 @@
 const express = require('express');
 var glob = require('glob');
 // const passport = require('passport');
-
+const iconv = require('iconv-lite');
+const fs = require("fs");
 const logger = require('./lib/logHelper').helper;
 const excel = require('./lib/excel');
 const common = require('./common');
@@ -9,7 +10,7 @@ const router = express.Router();
 const db = require('./db');
 const utils = require('./util/tableUtil');
 const util = require('./util/util');
-const Paginate = require('./lib/Paginate');
+const Paginate = require('./util/paginate');
 // 子进程（child_process）
 const exec = require('child_process').exec;
 
@@ -45,6 +46,8 @@ const pageBeforeUtils = function (page, items) {
         page = 1;
     }
 
+    logger.writeWarn('page:' + page);
+
     if (util.isArray(items) && items.length > 0) {
         items.forEach(function (item, index, array) {
             // 当前页的开始行数 (page -1) * common.PAGE_NUM
@@ -57,7 +60,7 @@ const pageBeforeUtils = function (page, items) {
         });
     }
     return resItems;
-};
+}
 
 
 /**
@@ -69,7 +72,7 @@ router.get('/getAll/tables', function (req, res, next) {
     const system = req.query.system.trim();
     const dbType = req.query.dbType.trim();
     const parameter = req.query.parameter.trim();
-    const code = req.query.code.trim();
+    const code = req.query.code.trim().toLocaleUpperCase();
     const tableSpace = req.query.tableSpace.trim();
 
     const page = req.query.page;
@@ -79,26 +82,97 @@ router.get('/getAll/tables', function (req, res, next) {
 
     // 查询所有符合条件的数据
     const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
+    logger.writeWarn('patternAllFiles: ' + JSON.stringify(patternAllFiles));
     // 分页处理
     const patternFiles = pageBeforeUtils(page, patternAllFiles);
-    // logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+
     const datas = db.readFileByPatternFiles(common.table_name, patternFiles);
     obj = pageUtils(page, patternAllFiles.length, datas);
 
-    // logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     const end = process.uptime();
     logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
 
     res.status(200).send(obj).end();
 });
+/**
+ * 根据name(源文件目录名字)获取对象数据
+ */
+router.get('/getAll/selectTables', function (req, res, next) {
+    var obj;
+    var start = process.uptime();
+    const system = req.query.system.trim();
+    const dbType = req.query.dbType.trim();
+    const parameter = req.query.parameter.trim();
+    const code = req.query.code.trim().toLocaleUpperCase();
+    const tableSpace = req.query.tableSpace.trim();
 
+    logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
+        + '   code: ' + code + '   tableSpace: ' + tableSpace);
+
+    var result = db.readFile(common.table_name, system, dbType, parameter, code);
+    obj = result;
+
+    logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
+    var end = process.uptime();
+    logger.writeDebug('查询 tables 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+    res.status(200).send(obj).end();
+});
 /**
  * 获取dictionarys
  */
 router.get('/getAll/dictionarys', function (req, res, next) {
     var obj;
     const start = process.uptime();
-    const code = req.query.code;
+    const code = req.query.code.toLocaleUpperCase();
+    const page = req.query.page;
+    logger.writeDebug('code: ' + code);
+    // 查询所有符合条件的数据
+    const patternAllFiles = db.getPatternFiles(common.dictionary_name, '', '', '', code);
+    const patternFiles = pageBeforeUtils(page, patternAllFiles);
+    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
+    const datas = db.readFileByPatternFiles(common.dictionary_name, patternFiles);
+    if(page==''){
+        obj=db.readFileByPatternFiles(common.dictionary_name,patternAllFiles);
+    }else{
+    obj = pageUtils(page, patternAllFiles.length, datas);
+    }
+    var dictionaryRes = new Array();
+
+    if (util.isArray(obj) && obj.length > 0) {
+        obj.forEach(function (domain, index, domains) {
+            logger.writeDebug('domain:  ' + JSON.stringify(domain));
+            if (util.isNotNull(code)) {
+                if (code.indexOf('@') == 0) {
+                    if ((domain.code).indexOf(code.substr(1)) == 0) {
+                        dictionaryRes.push(domain);
+                    }
+                } else if ((domain.code).indexOf(code) >= 0) {
+                    dictionaryRes.push(domain);
+                }
+            }
+        });
+    }
+
+    if (dictionaryRes.length > 0) {
+        logger.writeDebug('dictionaryRes.length  ' + dictionaryRes.length);
+        obj = dictionaryRes;
+    } else {
+    }
+
+    var end = process.uptime();
+    logger.writeDebug('查询 dictionarys 执行时间： ' + (end - start) + '  start: ' + start + ' end: ' + end);
+
+    res.status(200).send(obj).end();
+});
+/**
+ * 获取dictionarys  不分页
+ */
+router.get('/getAll/dictionarysNotPage', function (req, res, next) {
+    var obj;
+    var start = process.uptime();
+    const code = req.query.code.toUpperCase();
 
     logger.writeDebug('code: ' + code);
 
@@ -111,11 +185,11 @@ router.get('/getAll/dictionarys', function (req, res, next) {
         result.forEach(function (domain, index, domains) {
             logger.writeDebug('domain:  ' + JSON.stringify(domain));
             if (util.isNotNull(code)) {
-                if (code.indexOf('@') == 0) {
+                if(code.indexOf('@')==0){
                     if ((domain.code).indexOf(code.substr(1)) == 0) {
                         dictionaryRes.push(domain);
                     }
-                } else if ((domain.code).indexOf(code) >= 0) {
+                }else if ((domain.code).indexOf(code) >= 0) {
                     dictionaryRes.push(domain);
                 }
             }
@@ -134,7 +208,6 @@ router.get('/getAll/dictionarys', function (req, res, next) {
 
     res.status(200).send(obj).end();
 });
-
 /**
  * 获取domains
  */
@@ -586,7 +659,273 @@ router.post('/downLoad/tableSelect', function (req, res, next) {
     // 文件生成成功，未下载
 
 });
+/**
+ * 下载表的字段数据格式为md格式*/
+router.post('/downLoad/tableSelectInfo', function (req, res, next) {
+    var data = req.body.data;
+    logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
+    if (!(util.isArray(data) && data.length > 0)) {
+        data = db.readFile(common.table_name);
+    }
+    var dataFile='';
+    var dataTypeFlagU=true;
+    var dataSystemFlag=true;
+    var dataType=null;
+    var dataSystem=null;
+    data.forEach(function (table, index, tables) {
+        var code=table.code;
+        var comment=table.comment;
+        var system=table.system;
+        var dbType=table.parameter;
+        if(system=='Accounting'){
+            system='Accounting-会计核算';
+        }else if(system=='Limarket'){
+            system='Limarket-统一定价';
+        } if(system=='Ensemble'){
+            system='Ensemble-核心';
+        }
+        if(dbType=='busi_para'){
+            dbType='业务参数';
+        }else if(dbType=='init_para'){
+            dbType='出厂参数';
+        } if(dbType=='tran'){
+            dbType='业务数据';
+        }
+        var resultTable = db.getTable(code);
+        var num=0;
+        var numFlag=true;
+        if(dataSystem!=system&&dataSystem!=null){
+            dataSystemFlag=true;
+        }
+        if(dataSystemFlag==true){
+            dataFile=dataFile+'# '+system+'\n[TOC]\n';
+            dataType=dbType;
+            dataSystemFlag=false;
+        }
+        if(dataType!=dbType&&dataType!=null){
+            dataTypeFlagU=true;
+        }
+        if(dataTypeFlagU==true){
+            dataFile=dataFile+'## '+dbType+'\n';
+            dataType=dbType;
+            dataTypeFlagU=false;
+        }
+        dataFile=dataFile+'### '+(index+1)+'.'+comment+' '+code;
+        dataFile=dataFile+'\n\n';
+        dataFile=dataFile+ util.table('字段名','数据类型','长度','是否为空','主键','描述','取值范围','默认值');
+        resultTable.attr.forEach( function (tableAttr,index,tableAttrs)
+        {
+            if(numFlag==true){
+                dataFile=dataFile+'| ----------- | ------ | ---- | ---------------------------------------- |\n';
+                numFlag=false;
+            }
+            var length='('+util.nvl(tableAttr.lengths);
+            if(util.nvl(tableAttr.precision)){
+                length=length+','+tableAttr.precision;
+            }
+            length=length+')';
+            var m='Y';
+            if(tableAttr.M==true){
+                m='N'
+            }
+            var p='N';
+            if(tableAttr.P==true){
+                p='Y';
+            }
+            dataFile=dataFile+ util.table(util.nvl(tableAttr.code, ''),util.nvl(tableAttr.dataType, ''),length,m,p,util.nvl(tableAttr.comment, ''),util.nvl(tableAttr.scope, ''),util.nvl(tableAttr.defaults, ''));
+            num++;
+        });
+            dataFile=dataFile+"\n";
+    });
+    const outFile = 'md.md';
+    const arr = iconv.encode(dataFile, 'gbk');
+    try{
+    fs.writeFile(outFile, arr, function (err) {
+        if (err) {
+            logger.writeErr('写入 文件错误:  ' + err);
+        } else {
+            logger.writeInfo('写入文件成功');
+        }
+    });
+    return res.status(200).send("成功").end();
+    }catch (e){
+        logger.writeErr('导出文件失败: ' + e);
+        var msg = '导出文件失败，请重试'+e;
+        return res.status(301).send(msg).end();
+    }
+    // 文件生成成功，未下载
 
+});
+
+/**
+ * 下载表单元
+ *用途：生成re图形文件。
+/*
+router.post('/downLoad/tableSelectRe', function (req, res, next) {
+    var data = req.body.data;
+    logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
+    if (!(util.isArray(data) && data.length > 0)) {
+        data = db.readFile(common.table_name);
+    }
+    var dataFile='';
+    var tableList='';
+    data.forEach(function (table, index, tables) {
+        //
+        var code=table.code;
+        var resultTable = db.getTable(code);
+        tableList=tableList+table.code+'\n';
+// dataFile=dataFile+ util.table('字段名','数据类型','长度','是否为空','主键','描述','取值范围','默认值');
+        dataFile=dataFile+'['+code+']'+' {bgcolor: \"#fcecec\"}\n';
+        resultTable.attr.forEach( function (tableAttr,index1,tableAttrs)
+        {
+            if(index1<5){
+                dataFile=dataFile+ util.erColumn(util.nvl(tableAttr.code, ''),tableAttr.M,tableAttr.P,util.nvl(tableAttr.comment, ''));
+            }
+        });
+        dataFile=dataFile+"\n";
+        //
+    });
+    dataFile=dataFile+"\n"+tableList;
+    const outFile = 'nfldb.re';
+    const arr = iconv.encode(dataFile, 'gbk');
+    try{
+        fs.writeFile(outFile, arr, function (err) {
+            if (err) {
+                logger.writeErr('写入 文件错误:  ' + err);
+            } else {
+                logger.writeInfo('写入文件成功');
+            }
+        });
+        return res.status(200).send("成功").end();
+    }catch (e){
+        logger.writeErr('导出文件失败: ' + e);
+        var msg = '导出文件失败，请重试'+e;
+        return res.status(301).send(msg).end();
+    }
+    // 文件生成成功，未下载
+
+});
+*/
+/**
+ * 下载表的字段  excel格式
+ */
+/*router.post('/downLoad/tableSelectInfo', function (req, res, next) {
+    var data = req.body.data;
+    logger.writeDebug('1down load talbe data --> ' + JSON.stringify(data, null, 4))
+    if (!(util.isArray(data) && data.length > 0)) {
+        data = db.readFile(common.table_name);
+    }
+
+    var conf = {};
+    conf.cols = [
+        {caption: '所属表', type: 'string'},
+        {caption: '列名', type: 'string'},
+        {caption: '数据类型', type: 'string'},
+        {caption: '长度', type: 'string'},
+        {caption: '精度', type: 'string'},
+        {caption: '是否必填', type: 'bool'},
+        {caption: '是否主键', type: 'bool'},
+        {caption: '描述', type: 'string'},
+        {caption: '取值范围', type: 'string'},
+        {caption: '默认值', type: 'string'},
+        {caption: '数据字典', type: 'string'},
+        {caption: '所属表中文名', type: 'string'}
+    ];
+    var num=0;
+    var rowTemp = new Array();
+    data.forEach(function (table, index, tables) {
+        //
+        var code=table.code;
+        var comment=table.comment;
+        var resultTable = db.getTable(code);
+        resultTable.attr.forEach( function (tableAttr,index,tableAttrs)
+        {
+            rowTemp[num] = new Array();
+            (rowTemp[num]).push(util.nvl(code, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.code, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.dataType, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.lengths, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.precision, ''));
+            (rowTemp[num]).push(tableAttr.M);
+            (rowTemp[num]).push(tableAttr.P);
+            (rowTemp[num]).push(util.nvl(tableAttr.comment, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.scope, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.defaults, ''));
+            (rowTemp[num]).push(util.nvl(tableAttr.dictionary, ''));
+            (rowTemp[num]).push(util.nvl(comment, ''));
+            num++;
+        });
+
+        //
+    });
+
+    logger.writeDebug('3down load talbe rowTemp --> ' + rowTemp)
+    conf.rows = rowTemp;
+
+    const fileName = "表范围.xlsx";
+    const headContent = excel.createHeader(fileName, req);
+    logger.writeDebug('---------> headContent: ' + headContent);
+    res.setHeader('Content-Disposition', headContent);
+
+    excel.createExcel({
+        data: conf,
+        cb: function (path) {
+            excel.download(path, req, res, false);
+        }
+    });
+
+    // 文件生成成功，未下载
+
+});*/
+/**
+ * 下载数据字典数据
+ */
+router.post('/downLoad/dictionarySelect', function (req, res, next) {
+    var data = req.body.data;
+    logger.writeDebug('1down load dictionary data --> ' + JSON.stringify(data, null, 4))
+    if (!(util.isArray(data) && data.length > 0)) {
+        data = db.readFile(common.table_name);
+    }
+    var rowTemp = new Array();
+    data.forEach(function (table, index, tables) {
+        rowTemp[index] = new Array();
+        (rowTemp[index]).push(util.nvl(table.code, ''));
+        (rowTemp[index]).push(util.nvl(table.comment, ''));
+        (rowTemp[index]).push(util.nvl(table.scope, ''));
+        (rowTemp[index]).push(util.nvl(table.lengths, ''));
+        (rowTemp[index]).push(util.nvl(table.precision, ''));
+        (rowTemp[index]).push(util.nvl(table.defaults, ''));
+        (rowTemp[index]).push(util.nvl(table.domain, ''));
+    });
+
+    logger.writeDebug('2down load talbe rowTemp --> ' + rowTemp)
+
+    var conf = {};
+    conf.cols = [
+        {caption: '名称', type: 'string'},
+        {caption: '描述', type: 'string'},
+        {caption: '取值范围', type: 'string'},
+        {caption: '长度', type: 'string'},
+        {caption: '精度', type: 'string'},
+        {caption: '数据域', type: 'string'}
+    ];
+    conf.rows = rowTemp;
+
+    const fileName = "表范围.xlsx";
+    const headContent = excel.createHeader(fileName, req);
+    logger.writeDebug('---------> headContent: ' + headContent);
+    res.setHeader('Content-Disposition', headContent);
+
+    excel.createExcel({
+        data: conf,
+        cb: function (path) {
+            excel.download(path, req, res, false);
+        }
+    });
+
+    // 文件生成成功，未下载
+
+});
 
 /**
  * 测试使用：

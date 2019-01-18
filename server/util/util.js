@@ -32,6 +32,23 @@ const nvl = function (source, target) {
     return source;
 };
 
+const table=function (columnName,type,lenth,isNull,pk,comment,scop,define) {
+   var column='| '+columnName+' | '+type+' | '+lenth+'|'+isNull+'|'+pk+'|'+comment+'|'+scop+'|'+define+'|\n';
+   return column;
+}
+const erColumn=function (columnName,isNull,pk,comment) {
+    var column='';
+    if(pk==true){
+        column=column+'*';
+    }
+    if(isNull==true){
+        isNull=' not null';
+    }else{
+        isNull='null';
+    }
+    column=column+columnName+' {label: \"'+comment+", "+isNull+"\",font: \"YaHei\"}\n";
+    return column;
+}
 /**
  * 判断日志目录是否存在，不存在时创建日志目录
  * fs.mkdirSync('creatdir2', 0777); 目录权限（读写权限），默认0777
@@ -96,13 +113,15 @@ const getTargetPath = function () {
 
 const Models = {
     nvl: nvl,
+    table:table,
     isNull: isNull,
     isNotNull: isNotNull,
     isObject: isObject,
     isArray: isArray,
     getRourcePath: getRourcePath,
     getTargetPath: getTargetPath,
-    checkAndCreateDir: checkAndCreateDir
+    checkAndCreateDir: checkAndCreateDir,
+    erColumn:erColumn
 };
 
 module.exports = Models;

@@ -35,6 +35,7 @@ const readFile = function (type, system, dbType, parameter, code) {
     logger.writeWarn('files size:' + files.length);
     // 判断如果是table，则再获取最新table数据
     var datas = readFiles(files);
+/*
     logger.writeWarn('datas size:' + datas.length);
     if (util.isArray(datas) && datas.length > 0) {
         logger.writeDebug('----type: ' + type);
@@ -53,9 +54,11 @@ const readFile = function (type, system, dbType, parameter, code) {
         }
     }
     return results;
+*/
+    return datas;
 };
 
-const readFileByPatternFiles = function (type, patternFiles) {
+const readFileByPatternFiles = function (type,patternFiles) {
     const results = new Array();
     // const files = getPatternFiles(type, system, dbType, parameter, code);
     // logger.writeWarn('files size:' + files.length);
@@ -275,7 +278,7 @@ const getTable = function (code) {
                 var data = iconv.decode(buf, 'GBK');
                 table = JSON.parse(data);
                 // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 start
-                if (table) {
+/*             if (table) {
                     const attrs = table.attr;
                     if (util.isArray(attrs)) {
                         attrs.forEach(function (attr, index, array) {
@@ -296,7 +299,7 @@ const getTable = function (code) {
                             }
                         })
                     }
-                }
+                }*/
                 // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 end
                 // table = JSON.parse(fs.readFileSync(filePath));
             } else {

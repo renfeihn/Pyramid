@@ -45,18 +45,7 @@ var space = ' ';
 // 缩进tab（4个空格）
 var tab = '    ';
 if (isNotNull(table.code)) {
-    sql.append('drop table ')
-            .append(table.code + ' cascade constraints;')
-            .append(nextLine)
-            .append(nextLine)
-            .append('/*==============================================================*/')
-            .append(nextLine)
-            .append('/* Table: ' + table.code + '                                           */')
-            .append(nextLine)
-            .append('/*==============================================================*/')
-            .append(nextLine)
-            .append(nextLine)
-            .append('create table ' + table.code)
+    sql.append('create table ' + table.code)
             .append(nextLine)
             .append('(')
             .append(nextLine);
@@ -78,24 +67,27 @@ if (isNotNull(table.code)) {
 
                 // 长度
                 if (isNotNull(attr.lengths)) {
-                    if (attr.dataType != 'Blob') {
-                        sql.append('(' + attr.lengths);
+                    if(attr.dataType!='Blob' && attr.dataType!='Clob' && attr.dataType!='Date' && attr.dataType!='Timestamp')
+                    {
+                    sql.append('(' + attr.lengths);
                     }
                 } else {
+                    if(attr.dataType!='Blob' && attr.dataType!='Clob' && attr.dataType!='Date' && attr.dataType!='Timestamp' )
                     sql.append('(10');
                 }
 
                 if (isNotNull(attr.precision)) {
                     // 精度
-                    if (attr.dataType != 'Blob') {
+                    if(attr.dataType!='Blob') {
                         sql.append(',' + attr.precision);
                     }
                 }
-                if (attr.dataType != 'Blob') {
+                if(attr.dataType!='Blob' && attr.dataType!='Clob'  && attr.dataType!='Date' && attr.dataType!='Timestamp') {
                     sql.append(')');
                 }
                 // 默认值
                 if (isNotNull(attr.defaults)) {
+
                     sql.append(space + "default " + attr.defaults);
                 }
 
@@ -115,10 +107,10 @@ if (isNotNull(table.code)) {
                     if (primary_keys.length > 0) {
                         sql.append(',' + nextLine)
                                 .append(tab);
-                        if (table.code.length > 27) {
-                            sql.append('constraint PK_' + (table.code).toUpperCase().substring(0, 27) + ' primary key (');
-                        } else
-                            sql.append('constraint PK_' + (table.code).toUpperCase() + ' primary key (');
+                        if(table.code.length>27){
+                            sql.append('constraint PK_' + (table.code).toUpperCase().substring(0,27) + ' primary key (');
+                        }else
+                        sql.append('constraint PK_' + (table.code).toUpperCase() + ' primary key (');
 
                         primary_keys.forEach(function (pk, int, pks) {
                             if (int == 0) {
@@ -169,15 +161,6 @@ if (isNotNull(table.code)) {
 
             // 列名，数据类型
             if (ind) {
-                sql.append('drop index ' + ind.code + ';')
-                        .append(nextLine)
-                        .append('/*==============================================================*/')
-                        .append(nextLine)
-                        .append('/* Index: ' + ind.code + '                                           */')
-                        .append(nextLine)
-                        .append('/*==============================================================*/')
-                        .append(nextLine);
-
                 sql.append('create ');
                 if (isNotNull(ind.U) && (ind.U)) {
                     sql.append('unique ');
@@ -187,7 +170,7 @@ if (isNotNull(table.code)) {
                         .append(tab);
                 // 索引的列项
                 var icolumns = ind.columns;
-                if (icolumns.length > 0) {
+                if(icolumns.length > 0){
                     icolumns.forEach(function (c, int, ics) {
                         if (int == 0) {
                             sql.append(c);
