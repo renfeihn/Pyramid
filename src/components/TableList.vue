@@ -321,7 +321,7 @@
         },
         created(){
             var mo = this.$route.query.system;
-            console.log('mo: ' + mo);
+            // console.log('mo: ' + mo);
             if (null != mo && undefined != mo && '' != mo && mo.length > 0) {
                 this.system = mo;
             } else {
@@ -343,7 +343,7 @@
                 localStorage.setItem('currentPage', this.page);
             }
 
-            console.log('system: ' + this.system);
+            // console.log('system: ' + this.system);
             this.getTableSpaces();
             this.getAllTables();
         }

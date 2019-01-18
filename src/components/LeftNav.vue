@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <el-menu default-active="1-1" class="el-menu-vertical-demo">
+        <el-menu :default-active="navselected" class="el-menu-vertical-demo">
             <el-submenu index="1">
                 <template slot="title"><i class="el-icon-message"></i>数据结构</template>
 
@@ -29,10 +29,33 @@
             return {
                 tables: [],
                 domains: [],
-                tableSpaces: []
+                tableSpaces: [],
+                navselected:'1-1'
             }
         },
         methods: {
+
+            // 根据URL判断当前激活标签
+            initActive(){
+                var system = this.$route.query.system;
+                // console.log('system: ' + system);
+                if (null != system && undefined != system && '' != system && system.length > 0) {
+                    switch(system){
+                    case 'Ensemble':
+                      this.navselected = '1-1';
+                      break;
+                    case 'Limarket':
+                      this.navselected = '1-2';
+                      break;
+                    case 'Accounting':
+                      this.navselected = '1-3';
+                      break;
+                    default:
+                      this.navselected = '1-1';
+                    }
+                }
+            },
+
             getAllTables(){
                 this.$http.get('/getAll/tables').then(function (res) {
                     if (res.status == 200) {
@@ -66,6 +89,7 @@
             }
         },
         created(){
+            this.initActive();
             //this.getAllTables();
             //this.getAllDomains();
             //this.getAllTableSpaces();

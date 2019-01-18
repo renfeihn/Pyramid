@@ -30,8 +30,6 @@ if (objConfig.appenders) {
         }
     }
 
-    // console.log('..................' + baseDir);
-
     var defaultAtt = objConfig["customDefaultAtt"];
 
     for (var i = 0, j = objConfig.appenders.length; i < j; i++) {
