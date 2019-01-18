@@ -30,7 +30,7 @@
                 tables: [],
                 domains: [],
                 tableSpaces: [],
-                navselected:'1-1'
+                navselected:''
             }
         },
         methods: {
