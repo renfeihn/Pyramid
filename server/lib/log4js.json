@@ -10,19 +10,19 @@
       "type": "console"
     },
     {
-      "pattern": "debug/yyyyMMddhh.txt",
+      "pattern": "debug/yyyyMMddhh.log",
       "category": "logDebug"
     },
     {
-      "pattern": "info/yyyyMMddhh.txt",
+      "pattern": "info/yyyyMMddhh.log",
       "category": "logInfo"
     },
     {
-      "pattern": "warn/yyyyMMddhh.txt",
+      "pattern": "warn/yyyyMMddhh.log",
       "category": "logWarn"
     },
     {
-      "pattern": "err/yyyyMMddhh.txt",
+      "pattern": "error/yyyyMMddhh.log",
       "category": "logErr"
     }
   ],
@@ -30,7 +30,7 @@
   "levels": {
     "logDebug": "DEBUG",
     "logInfo": "INFO",
-    "logWarn": "ERROR",
+    "logWarn": "WARN",
     "logErr": "ERROR"
   }
 }
