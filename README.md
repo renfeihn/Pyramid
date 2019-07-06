@@ -13,7 +13,7 @@ Vue+Nodejs+Webpack  类似Powerdesigner功能，管理表、数据字典、数�
 (如果启动过程中，缺少依赖，请自行安装)
 + 5.访问 http://localhost:19919
 
-## FAQ：
+## 配置：
 + 1.common.js 为项目公共配置常量文件，可修改
 + 2.日志输出路径配置，查看common.js，看说明配置，不配置默认为:项目根目录/logs/下
 
