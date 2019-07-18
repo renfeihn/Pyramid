@@ -35,3 +35,9 @@ web端组件UI库  [网址](https://myronliu347.github.io/vue-carbon)
 
 ## Nodejs 参考资料：
 + nodejs 官网中文文档 http://nodejs.cn/api/
+
+## 预计新功能介绍
+#### 计划设计开发单机版本、共享版
++ 1. 单机版介绍：目前现有功能满足
++ 2. 共享版：由redis存储、序列化。引入单文件version控制。
+        启动时由redis读取本地文件，然后访问时从redis取，最后由redis定时序列化本地。
