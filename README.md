@@ -42,3 +42,9 @@ web端组件UI库  [网址](https://myronliu347.github.io/vue-carbon)
 1. 单机版介绍：目前现有功能满足
 2. 共享版：由redis存储、序列化。引入单文件version控制。
         启动时由redis读取本地文件，然后访问时从redis取，最后由redis定时序列化本地。
+        
+        
+        
+## 问题汇总
+
+8.6.1 : 'TypeError: loader.charAt is not a function' in webpack 2.2.1 #624 https://github.com/vuejs/vue-loader/issues/624        
