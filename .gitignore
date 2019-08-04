@@ -1,6 +1,6 @@
 logs/
 src/assets/
-/.idea/
+.idea
 /node_modules
 /data/target/table
 uploadFile/
