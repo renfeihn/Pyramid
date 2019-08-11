@@ -35,7 +35,12 @@ const Models = {
     AUTH_NUM: "0777",
 
     // 分页每页显示数目
-    PAGE_NUM: "10"
+    PAGE_NUM: "10",
+
+
+    // redis 服务配置
+    REDIS_SERVER_IP: "192.168.2.3",
+    REDIS_SERCER_PORT: "6379"
 
 };
 
