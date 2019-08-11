@@ -20979,7 +20979,7 @@ function checkObjectVal(tmp) {
     data: function data() {
         return {
             db_type: 'oracle',
-            options: [{ text: 'ORACLE', value: 'oracle' }, { text: 'MYSQL', value: 'mysql' }]
+            options: [{ text: 'MYSQL', value: 'mysql' }, { text: 'ORACLE', value: 'oracle' }, { text: 'DB2', value: 'db2' }]
         };
     },
 
@@ -20993,7 +20993,7 @@ function checkObjectVal(tmp) {
     },
     created: function created() {
         var db = localStorage.getItem('dbms');
-        if (null != db && undefined != db && '' != db && db.length > 0) {
+        if (!db) {
             this.db_type = db;
         } else {
             localStorage.setItem('dbms', this.db_type);
@@ -21063,44 +21063,13 @@ function checkObjectVal(tmp) {
                         this.navselected = '1-1';
                 }
             }
-        },
-        getAllTables: function getAllTables() {
-            this.$http.get('/getAll/tables').then(function (res) {
-                if (res.status == 200) {
-                    var re = res.body;
-                    this.tables = re;
-                }
-            }, function (res) {
-                alert('LeftNav 页面 请求table失败： ' + res.status);
-            });
-        },
-        getAllDomains: function getAllDomains() {
-            this.$http.get('/getAll/domains').then(function (res) {
-                if (res.status == 200) {
-                    var re = res.body;
-                    this.domains = re;
-                }
-            }, function (res) {
-                alert('LeftNav 页面 请求domain失败： ' + res.status);
-            });
-        },
-        getAllTableSpaces: function getAllTableSpaces() {
-            this.$http.get('/getAll/table_spaces').then(function (res) {
-                if (res.status == 200) {
-                    var re = res.body;
-                    //console.lib('tableSpaces:  '+re);
-                    this.tableSpaces = re;
-                }
-            }, function (res) {
-                alert('LeftNav 页面 请求table space失败： ' + res.status);
-            });
         }
     },
     created: function created() {
         this.initActive();
-        //this.getAllTables();
-        //this.getAllDomains();
-        //this.getAllTableSpaces();
+        // this.getAllTables();
+        // this.getAllDomains();
+        // this.getAllTableSpaces();
     },
 
     components: {}

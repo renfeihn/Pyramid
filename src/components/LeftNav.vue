@@ -37,7 +37,7 @@
 
             // 根据URL判断当前激活标签
             initActive(){
-                var system = this.$route.query.system;
+                const system = this.$route.query.system;
                 // console.log('system: ' + system);
                 if (null != system && undefined != system && '' != system && system.length > 0) {
                     switch(system){
@@ -56,43 +56,43 @@
                 }
             },
 
-            getAllTables(){
-                this.$http.get('/getAll/tables').then(function (res) {
-                    if (res.status == 200) {
-                        var re = res.body;
-                        this.tables = re;
-                    }
-                }, function (res) {
-                    alert('LeftNav 页面 请求table失败： ' + res.status);
-                });
-            },
-            getAllDomains(){
-                this.$http.get('/getAll/domains').then(function (res) {
-                    if (res.status == 200) {
-                        var re = res.body;
-                        this.domains = re;
-                    }
-                }, function (res) {
-                    alert('LeftNav 页面 请求domain失败： ' + res.status);
-                });
-            },
-            getAllTableSpaces(){
-                this.$http.get('/getAll/table_spaces').then(function (res) {
-                    if (res.status == 200) {
-                        var re = res.body;
-                        //console.lib('tableSpaces:  '+re);
-                        this.tableSpaces = re;
-                    }
-                }, function (res) {
-                    alert('LeftNav 页面 请求table space失败： ' + res.status);
-                });
-            }
+            // getAllTables(){
+            //     this.$http.get('/getAll/tables').then(function (res) {
+            //         if (res.status == 200) {
+            //             const re = res.body;
+            //             this.tables = re;
+            //         }
+            //     }, function (res) {
+            //         alert('LeftNav 页面 请求table失败： ' + res.status);
+            //     });
+            // },
+            // getAllDomains(){
+            //     this.$http.get('/getAll/domains').then(function (res) {
+            //         if (res.status == 200) {
+            //             const re = res.body;
+            //             this.domains = re;
+            //         }
+            //     }, function (res) {
+            //         alert('LeftNav 页面 请求domain失败： ' + res.status);
+            //     });
+            // },
+            // getAllTableSpaces(){
+            //     this.$http.get('/getAll/table_spaces').then(function (res) {
+            //         if (res.status == 200) {
+            //             const re = res.body;
+            //             //console.lib('tableSpaces:  '+re);
+            //             this.tableSpaces = re;
+            //         }
+            //     }, function (res) {
+            //         alert('LeftNav 页面 请求table space失败： ' + res.status);
+            //     });
+            // }
         },
         created(){
             this.initActive();
-            //this.getAllTables();
-            //this.getAllDomains();
-            //this.getAllTableSpaces();
+            // this.getAllTables();
+            // this.getAllDomains();
+            // this.getAllTableSpaces();
         },
         components: {}
     }

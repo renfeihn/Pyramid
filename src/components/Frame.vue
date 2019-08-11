@@ -37,8 +37,9 @@
             return {
                 db_type: 'oracle',
                 options: [
+                    {text: 'MYSQL', value: 'mysql'},
                     {text: 'ORACLE', value: 'oracle'},
-                    {text: 'MYSQL', value: 'mysql'}
+                    {text: 'DB2', value: 'db2'}
                 ]
             }
         },
@@ -52,7 +53,7 @@
         },
         created(){
             var db = localStorage.getItem('dbms');
-            if (null != db && undefined != db && '' != db && db.length > 0) {
+            if (!db) {
                 this.db_type = db;
             } else {
                 localStorage.setItem('dbms', this.db_type);

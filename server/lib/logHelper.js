@@ -18,7 +18,7 @@ if (objConfig.appenders) {
         baseDir = path.resolve(__dirname, '../../');
         if (util.isNotNull(common.LOG_PATH)) {
             if ((common.LOG_PATH).substr(0, 1) == '/'
-                || ((common.LOG_PATH).substr(0, 2)).toUpperCase() == 'C:') {
+                || ((common.LOG_PATH).substr(1, 2)).toUpperCase() == ':') {
                 // 绝对路径
 
             } else {
@@ -30,7 +30,7 @@ if (objConfig.appenders) {
         }
     }
 
-    var defaultAtt = objConfig["customDefaultAtt"];
+    let defaultAtt = objConfig["customDefaultAtt"];
 
     for (var i = 0, j = objConfig.appenders.length; i < j; i++) {
         var item = objConfig.appenders[i];
@@ -127,9 +127,9 @@ function checkAndCreateDir(dirname) {
 function isAbsoluteDir(path) {
     if (path == null)
         return false;
-    var len = path.length;
+    let len = path.length;
 
-    var isWindows = process.platform === 'win32';
+    let isWindows = process.platform === 'win32';
     if (isWindows) {
         if (len <= 1)
             return false;
