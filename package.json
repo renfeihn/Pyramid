@@ -53,6 +53,6 @@
         "webpack": "^2.6.1",
         "webpack-dev-server": "^3.1.11",
         "vue-template-compiler": "^2.0.0",
-        "redis": "^2.8.0"
+        "redis": "^3.1.1"
     }
 }
