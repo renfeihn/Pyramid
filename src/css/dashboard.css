@@ -1,3 +1,4 @@
+
 #Container {
     width: 100%;
     margin: 0 auto;
@@ -8,7 +9,21 @@
     background: #20a0ff;
 }
 
-#logo {
+#Header H2{
+    width: 300px;
+    color: white;
+    float: left;
+    font-size: 22px;
+}
+
+#logo1 {
+    float: left;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+#dbms {
     float: right;
     padding-right: 50px;
     padding-top: 20px;
@@ -16,27 +31,26 @@
 }
 
 #Content {
-    height: auto;
-    margin-top: 3px;
+    height: calc(100vh - 60px);
 
 }
 
 #Content-Left {
-    min-height: 400px;
-    width: 13%;
+    width: 210px;
     float: left;
+    height:100%;
 }
 
 #Content-Main {
-    min-height: 400px;
-    width: 85%;
-    padding-left: 10px;
-    float: left;
+    overflow: auto;
+    width:calc(100% - 220px);
+    float: right;
+    height: 100%;
+    padding: 20px;
 }
 
 #Footer {
     height: 40px;
-    margin-top: 6px;
 }
 
 .Clear {

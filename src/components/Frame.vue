@@ -1,18 +1,21 @@
 <template>
     <div id="Container">
         <div id="Header">
-
-            <div id="logo">
-                <select @change="dbmsChange();" v-model="db_type">
-                    <template v-for="option in options">
-                        <option :value="option.value" v-if="option.value == db_type" selected>
-                            {{option.text}}
-                        </option>
-                        <option :value="option.value" v-else>
-                            {{option.text}}
-                        </option>
-                    </template>
-                </select>
+            <div>
+                <h2 style="">web数据建模系统</h2>
+                <span id="dbms">
+                    <p style="float: left">目标数据库选择：</p>
+                    <select @change="dbmsChange();" v-model="db_type">
+                        <template v-for="option in options">
+                            <option :value="option.value" v-if="option.value == db_type" selected>
+                                {{option.text}}
+                            </option>
+                            <option :value="option.value" v-else>
+                                {{option.text}}
+                            </option>
+                        </template>
+                    </select>
+                </span>
             </div>
         </div>
         <div id="Content">
@@ -23,8 +26,7 @@
                 <router-view></router-view>
             </div>
         </div>
-        <div class="Clear"></div>
-        <div id="Footer"></div>
+
     </div>
 
 

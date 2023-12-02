@@ -1,5 +1,4 @@
 <template>
-    <div>
 
         <el-menu :default-active="navselected" class="el-menu-vertical-demo">
             <el-submenu index="1">
@@ -21,8 +20,11 @@
             <el-menu-item index="5"><a href="/tableSelect"><i class="el-icon-setting"></i>统计分析</a></el-menu-item>
         </el-menu>
 
-    </div>
+
 </template>
+<style scoped>
+    .el-menu-vertical-demo{ height: 100%;}
+</style>
 <script>
     export default{
         data(){
