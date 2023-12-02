@@ -78,6 +78,11 @@ function updatelist(dbname, dbdataindex, newinfo) {
 
 
 const Models = {
+    querylistdata: querylistdata,
+    getdbnamelist: getdbnamelist,
+    insertListInDB: insertListInDB,
+    updatelist: updatelist,
+    deletelistdata: deletelistdata,
     get: get,
     set: set
 };
