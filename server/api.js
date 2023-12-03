@@ -228,7 +228,7 @@ router.get('/getAll/domains', function (req, res, next) {
 
     logger.writeDebug('code: ' + code);
 
-    var result = db.readFile(common.domain_name);
+    var result = db.getAllDomains();
     logger.writeDebug('API JSON:   ' + JSON.stringify(result));
 
     var domainRes = new Array();

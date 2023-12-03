@@ -39,7 +39,7 @@ const Models = {
 
 
     // redis 服务配置
-    REDIS_SERVER_IP: "192.168.2.3",
+    REDIS_SERVER_IP: "47.116.125.203",
     REDIS_SERCER_PORT: "6379"
 
 };

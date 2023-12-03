@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const api = require('./api');
 const common = require('./common');
 const redis = require('./util/redis');
+const redis_db = require('./redis_db');
 const log = require('./lib/logHelper');
 
 const app = express();
@@ -45,5 +46,6 @@ app.get('*', function (req, res, next) {
 
 app.listen(app.get('port'), function () {
     redis.set("app", app.get('port'));
+    redis_db.init_data();
     console.log('-- Server up: http://localhost:' + app.get('port') + ' --');
 });
