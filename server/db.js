@@ -423,7 +423,7 @@ const getTableBySystem = function (system) {
 const getAllDomains = function () {
     return this.readFile(domain_name);
 
-    // 从redis中获取  此刻从redis 同步取值问题未解决
+    // TODO 从redis中获取  此刻从redis 同步取值问题未解决
     // let domains_data = redisCli.getSync("domains");
     // logger.writeDebug('domains_data11111:  ' + domains_data);
     // return JSON.parse(domains_data);
