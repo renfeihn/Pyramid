@@ -2,7 +2,7 @@
     <div id="Container">
         <div id="Header">
             <div>
-                <h2 style="">web数据建模系统</h2>
+                <h2 style="margin-left: 8px;">web数据建模系统</h2>
                 <span id="dbms">
                     <p style="float: left">目标数据库选择：</p>
                     <select @change="dbmsChange();" v-model="db_type">
