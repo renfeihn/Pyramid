@@ -1,8 +1,11 @@
 // redis.js
 var redis = require('redis')
-const port = 6379
+var common = require('../common');
+
+const port = common.REDIS_SERCER_PORT
+const ip = common.REDIS_SERVER_IP
 const pwd = '' // 连接密码
-var client = redis.createClient(port, '47.116.125.203', {
+var client = redis.createClient(port, ip, {
     auth_pass: pwd
 }) //端口号、主机
 
