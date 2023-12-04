@@ -47,5 +47,5 @@ app.get('*', function (req, res, next) {
 app.listen(app.get('port'), function () {
     redis.set("app", app.get('port'));
     redis_db.init_data();
-    console.log('-- Server up: http://localhost:' + app.get('port') + ' --');
+    console.log('-- Server up: http://localhost:' + app.get('port'));
 });
