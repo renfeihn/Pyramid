@@ -1,4 +1,4 @@
-/*
+ /*
  *  载入依赖项
  *  fs：文件系统； path：href解决文案；
  *  body-parser：解析Request body和处理req
@@ -45,7 +45,7 @@ app.get('*', function (req, res, next) {
 });
 
 app.listen(app.get('port'), function () {
-    redis.set("app", app.get('port'));
+    // redis.set("app", app.get('port'));
     redis_db.init_data();
     console.log('-- Server up: http://localhost:' + app.get('port'));
 });
