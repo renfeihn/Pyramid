@@ -882,13 +882,20 @@
 
             },
             showSQL(){
+                // 判断是否选择目标数据库
+                let db_type = localStorage.getItem('dbms');
+                if(!db_type){
+                    this.$message.error('请先选择目标数据库！');
+                    return ;
+                }
+
                 // 处理数据
                 this.table.attr = this.tableAttr;
                 // 添加索引
                 this.table.indexs = this.tableIndexs;
                 this.$http.post('/showSQL', {
                     type: 'tables',
-                    db_type: localStorage.getItem('dbms'),
+                    db_type: db_type,
                     data: this.table
                 }).then(function (res) {
                     if (res.status == 200) {
