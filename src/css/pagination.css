@@ -55,3 +55,9 @@ ul, li {
     margin: 0px 4px;
     font-size: 12px;
 }
+
+.page-bar {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}

@@ -45,8 +45,21 @@
             </table>
         </div>
 
+        <!-- 分页 -->
+        <div class="page-bar">
+            <ul>
+                <li><a :class="setButtonClass(0)" @click="prvePage(page)">上一页</a></li>
+                <li v-for="index in indexs" :class="{ active: page == index }">
+                    <a @click="btnClick(index)">{{ index < 1 ? "..." : index }}</a>
+                </li>
+                <li><a :class="setButtonClass(1)" @click="nextPage(page)">下一页</a></li>
+            </ul>
+        </div>
     </div>
 </template>
+
+<style scoped src="../css/pagination.css"></style>
+
 <script>
 
     export default{
@@ -55,16 +68,58 @@
                 //
                 code: '',
                 comment: '',
-                dictionarys: []
+                dictionarys: [],
+                // 当前页
+                page: 1,
+                // 总页数
+                pages: 1
             }
         },
         methods: {
+            // 分页开始
+            // 页码点击事件
+            btnClick: function (data) {
+                if (data < 1) return;
+                if (data != this.page) {
+                    this.page = data;
+                    this.getAllDictionarys();
+                }
+            },
+            // 下一页
+            nextPage: function (data) {
+                if (this.page >= this.pages) return;
+                this.btnClick(parseInt(this.page) + 1);
+            },
+            // 上一页
+            prvePage: function (data) {
+                if (this.page <= 1) return;
+                this.btnClick(parseInt(this.page) - 1);
+            },
+            // 设置按钮禁用样式
+            setButtonClass: function (isNextButton) {
+                if (isNextButton) {
+                    return this.page >= this.pages ? "page-button-disabled" : ""
+                } else {
+                    return this.page <= 1 ? "page-button-disabled" : ""
+                }
+            },
+            // 分页结束
+
             getAllDictionarys(){
-                let API = '/getAll/dictionarys?page=' + '&code=' + this.code + '&comment=' + this.comment;
+                // let API = '/getAll/tables?page=' + this.page + '&system=' + this.system + '&code=' + this.code + '&dbType=' + this.dbType +
+                //     '&parameter=' + this.parameter + '&tableSpace=' + this.tableSpace;
+                let API = '/getAll/dictionarys?page=' + this.page + '&code=' + this.code + '&comment=' + this.comment;
                 this.$http.get(API).then(function (res) {
                     if (res.status == 200) {
                         var re = res.body;
-                        this.dictionarys = re;
+                        // this.dictionarys = re;
+
+                        this.dictionarys = re.items;
+                        this.page = re.page;
+                        this.pages = re.pages;
+                        // 本地缓存当前页
+                        localStorage.setItem('currentPage_dict', this.page);
+
                     }
                 }, function (res) {
                     this.$message.error('DictionaryList 页面 请求 dictionary 失败： ' + res.status);
@@ -91,6 +146,40 @@
             }
         },
         components: {},
+        computed: {
+            indexs: function () {
+                var left = 1;
+                var right = this.pages;
+                var ar = [];
+                if (this.pages >= 11) {
+                    if (this.page > 5 && this.page < parseInt(this.pages) - 4) {
+                        left = parseInt(this.page) - 5;
+                        right = parseInt(this.page) + 4;
+                    } else {
+                        if (this.page <= 5) {
+                            left = 1;
+                            right = 10;
+                        } else {
+                            right = this.pages;
+                            left = parseInt(this.pages) - 9
+                        }
+                    }
+                }
+                while (left <= right) {
+                    ar.push(left);
+                    left++;
+                }
+                if (ar[0] > 1) {
+                    ar[0] = 1;
+                    ar[1] = -1;
+                }
+                if (ar[ar.length - 1] < this.pages) {
+                    ar[ar.length - 1] = this.pages;
+                    ar[ar.length - 2] = 0;
+                }
+                return ar
+            }
+        },
         created(){
             //reCode
             var moCode=this.$route.query.reCode;
@@ -99,6 +188,16 @@
             } else {
                 this.code = '';
             }
+
+
+            // 当前页记录本地缓存，以便于返回时使用
+            let currentPage = localStorage.getItem('currentPage_dict');
+            if (null != currentPage && undefined != currentPage && '' != currentPage && currentPage.length > 0) {
+                this.page = currentPage;
+            } else {
+                localStorage.setItem('currentPage_dict', this.page);
+            }
+
             this.getAllDictionarys();
         }
     }
