@@ -138,7 +138,7 @@ const readFiles = function (files) {
                 logger.writeDebug('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
                 var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-                var buf = new Buffer(fileStr, 'binary');
+                var buf = new Buffer.from(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 const json = JSON.parse(data);
                 objs.push(json);
@@ -279,7 +279,7 @@ const getTable = function (code) {
                 logger.writeDebug(filePath + ' 文件存在');
 
                 var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-                var buf = new Buffer(fileStr, 'binary');
+                var buf = new Buffer.from(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 table = JSON.parse(data);
                 // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 start
@@ -338,7 +338,7 @@ const getDictionary = function (code) {
             logger.writeDebug(filePath + ' 文件存在');
 
             var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-            var buf = new Buffer(fileStr, 'binary');
+            var buf = new Buffer.from(fileStr, 'binary');
             var data = iconv.decode(buf, 'GBK');
             dictionary = JSON.parse(data);
             // 20170423 新增如果数据字典中有数据域，则获取数据域的最新属性 start
