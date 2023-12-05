@@ -6,7 +6,7 @@
     "scripts": {
         "build": "webpack",
         "devc": "cross-env NODE_ENV=development webpack-dev-server --inline --hot --port 8080",
-        "dev": "supervisor -w server ./server/server.js",
+        "dev": "webpack & supervisor -w server ./server/server.js",
         "start": "node ./server/server"
     },
     "author": "renfei",
