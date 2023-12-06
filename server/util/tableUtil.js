@@ -16,7 +16,7 @@ const util = require('./util');
  * @param system 系统
  */
 const generatorSql = function (db_type, type, system, dbType, parameter) {
-    logger.writeDebug('tableUtil generatorSql');
+    logger.writeDebug('tableUtil generatorSql  db_type：'+db_type   );
     db_type = db_type.toLowerCase();
     type = type.toLowerCase();
     // const path = 'server/template/table_' + db_type + '.ejs';

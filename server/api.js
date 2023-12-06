@@ -27,8 +27,8 @@ var n = 0;
  * @param items 数据集合
  */
 const pageUtils = function (page, total, items) {
-    var paginate = new Paginate(page, common.PAGE_NUM, total, items);
-    logger.writeDebug('page data: ' + JSON.stringify(paginate));
+    let paginate = new Paginate(page, common.PAGE_NUM, total, items);
+    // logger.writeDebug('page data: ' + JSON.stringify(paginate));
     return paginate;
 };
 
@@ -81,11 +81,11 @@ router.get('/getAll/tables', function (req, res, next) {
     logger.writeDebug('page:  ' + page);
 
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
-            + '   code: ' + code + '   tableSpace: ' + tableSpace);
+        + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
     // 查询所有符合条件的数据
     const patternAllFiles = db.getPatternFiles(common.table_name, system, dbType, parameter, code);
-    logger.writeWarn('patternAllFiles: ' + JSON.stringify(patternAllFiles));
+    logger.writeWarn('patternAllFiles: ' + patternAllFiles.length);
     // 分页处理
     let patternFiles = '';
     if (util.isNotNull(page)) {
@@ -94,14 +94,13 @@ router.get('/getAll/tables', function (req, res, next) {
         patternFiles = patternAllFiles;
     }
 
-    logger.writeWarn('patternFiles: ' + JSON.stringify(patternFiles));
-
     const datas = db.readFileByPatternFiles(common.table_name, patternFiles);
+
     obj = pageUtils(page, patternAllFiles.length, datas);
 
     // logger.writeDebug('API JSON:   ' + JSON.stringify(obj));
     const end = process.uptime();
-    logger.writeInfo('查询 tables 执行时间： ' + (end - start) + '总数： ' + obj);
+    logger.writeInfo('查询 tables 执行时间： ' + (end - start) + '总数： ' + obj.items.length);
 
     res.status(200).send(obj).end();
 });
@@ -118,7 +117,7 @@ router.get('/getAll/selectTables', function (req, res, next) {
     const tableSpace = req.query.tableSpace.trim();
 
     logger.writeDebug('system: ' + system + '  dbType: ' + dbType + '   parameter: ' + parameter
-            + '   code: ' + code + '   tableSpace: ' + tableSpace);
+        + '   code: ' + code + '   tableSpace: ' + tableSpace);
 
     var result = db.readFile(common.table_name, system, dbType, parameter, code);
     obj = result;
@@ -136,11 +135,12 @@ router.get('/getAll/dictionarys', function (req, res, next) {
     const start = process.uptime();
     const code = req.query.code.toLocaleUpperCase();
     const page = req.query.page;
-    logger.writeDebug('code: ' + code);
+    logger.writeDebug('code: ' + code + '  page: ' + page);
     // 查询所有符合条件的数据
     const patternAllFiles = db.getPatternFiles(common.dictionary_name, '', '', '', code);
+    logger.writeDebug('patternAllFiles length: ' + patternAllFiles.length);
     const patternFiles = pageBeforeUtils(page, patternAllFiles);
-    logger.writeDebug('patternFiles: ' + JSON.stringify(patternFiles));
+    // logger.writeDebug('patternFiles: ' + JSON.stringify(patternFiles));
     const datas = db.readFileByPatternFiles(common.dictionary_name, patternFiles);
     if (page == '') {
         obj = db.readFileByPatternFiles(common.dictionary_name, patternAllFiles);
@@ -167,7 +167,6 @@ router.get('/getAll/dictionarys', function (req, res, next) {
     if (dictionaryRes.length > 0) {
         logger.writeDebug('dictionaryRes.length  ' + dictionaryRes.length);
         obj = dictionaryRes;
-    } else {
     }
 
     var end = process.uptime();
@@ -507,7 +506,7 @@ function checkTableCode(table, oldCode) {
     if (oldCode != table.code) {
         // 获取满足条件的table 全路径
         const files = db.getPatternFiles(common.table_name, table.system,
-                table.dbType, table.parameter, table.code);
+            table.dbType, table.parameter, table.code);
         if (util.isArray(files) && files.length > 0) {
             flag = true;
         }
@@ -538,8 +537,8 @@ router.post('/showSQL', function (req, res, next) {
         const sql = utils.generatorSqlOnline(type, db_type, data);
         return res.status(200).send(sql).end();
     } catch (e) {
-        logger.writeErr('生成SQL错误: ' + e)
-        errors = '生成SQL错误，请重试';
+        logger.writeErr('单表view错误: ' + e)
+        errors = '单表view错误，请重试';
     }
     return res.status(301).send(errors).end();
 
@@ -609,7 +608,7 @@ router.post('/deleteTableFile', function (req, res, next) {
     try {
 
         var filePath = util.getRourcePath() + common.table_name + '/' + table.system + '/' + table.dbType
-                + '/' + table.parameter + '/' + table.code + '.json';
+            + '/' + table.parameter + '/' + table.code + '.json';
 
         db.delFile(filePath);
         msg = '表 ' + table.code + ' 删除成功！';

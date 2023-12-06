@@ -12,6 +12,21 @@ function init_data() {
     // redis.deletelistdata(common.domain_name);
     redisCli.set(common.domain_name, domains);
 
+    // let table_spaces = JSON.stringify(db.readFile(common.table_spaces));
+    // logger.writeDebug("table_spaces   " + table_spaces)
+    // // redis.deletelistdata(common.domain_name);
+    // redisCli.set(common.table_spaces, table_spaces);
+    //
+    // let dictionary_name = JSON.stringify(db.readFile(common.dictionary_name));
+    // logger.writeDebug("dictionary_name   " + dictionary_name)
+    // // redis.deletelistdata(common.domain_name);
+    // redisCli.set(common.dictionary_name, dictionary_name);
+    //
+    // let table_name = JSON.stringify(db.readFile(common.table_name));
+    // logger.writeDebug("table_name   " + table_name)
+    // // redis.deletelistdata(common.table_name);
+    // redisCli.set(common.table_name, table_name);
+
 
     logger.writeDebug("初始化redis数据 end");
 }

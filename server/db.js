@@ -11,7 +11,6 @@ const util = require('./util/util');
 const redisCli = require('./redis/redis-client');
 
 
-
 // const validator = require('validator');
 // 表
 const table_name = common.table_name;
@@ -44,26 +43,33 @@ const readFile = function (type, system, dbType, parameter, code) {
 const readFileByPatternFiles = function (type, patternFiles) {
     const results = new Array();
     // const files = getPatternFiles(type, system, dbType, parameter, code);
-    // logger.writeWarn('files size:' + files.length);
+    // logger.writeWarn('......patternFiles :' + patternFiles);
     // 判断如果是table，则再获取最新table数据
     let datas = readFiles(patternFiles);
-    if (util.isArray(datas) && datas.length > 0) {
-        logger.writeDebug('----type: ' + type);
-        if (type == common.table_name) { // 表
-            datas.forEach(function (table, index, array) {
-                results.push(getTable(table.code));
-            });
-        } else if (type == common.dictionary_name) {   // 数据字典
-            datas.forEach(function (dictionary, index, array) {
-                results.push(getDictionary(dictionary.code));
-            });
-        } else {  // 其他
-            datas.forEach(function (data, index, array) {
-                results.push(data);
-            });
-        }
-    }
-    logger.writeDebug('----datas: ' + datas.length);
+    // logger.writeDebug('----datas: ' + datas);
+    // 20231206 发现统计分析模块很慢，此处重复获取文件数据导致 故注释此处 start
+    // if (util.isArray(datas) && datas.length > 0) {
+    //     logger.writeDebug('----type: ' + type);
+    //     if (type == common.table_name) { // 表
+    //         datas.forEach(function (table, index, array) {
+    //             results.push(getTable(table.code));
+    //         });
+    //     } else if (type == common.dictionary_name) {   // 数据字典
+    //         datas.forEach(function (dictionary, index, array) {
+    //             results.push(getDictionary(dictionary.code));
+    //         });
+    //     } else {  // 其他
+    //         datas.forEach(function (data, index, array) {
+    //             results.push(data);
+    //         });
+    //     }
+    // }
+    // 20231206 发现统计分析模块很慢，此处重复获取文件数据导致 故注释此处 end
+
+    datas.forEach(function (data, index, array) {
+        results.push(data);
+    });
+    logger.writeDebug('----results: ' + results.length);
     return results;
 };
 
@@ -257,9 +263,9 @@ const getTable = function (code) {
             if (statFile.isFile()) {
                 // logger.writeDebug(filePath + ' 文件存在');
 
-                var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-                var buf = new Buffer.from(fileStr, 'binary');
-                var data = iconv.decode(buf, 'GBK');
+                let fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+                let buf = new Buffer.from(fileStr, 'binary');
+                let data = iconv.decode(buf, 'GBK');
                 table = JSON.parse(data);
             } else {
                 logger.writeErr(filePath + ' 文件不存在');
