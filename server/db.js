@@ -34,31 +34,10 @@ var targerPath = util.getTargetPath();
  * @returns [Array] 返回数据对象数组
  */
 const readFile = function (type, system, dbType, parameter, code) {
-    const results = new Array();
     const files = getPatternFiles(type, system, dbType, parameter, code);
     logger.writeDebug('files size:' + files.length);
     // 判断如果是table，则再获取最新table数据
-    var datas = readFiles(files);
-    /*
-     logger.writeWarn('datas size:' + datas.length);
-     if (util.isArray(datas) && datas.length > 0) {
-     logger.writeDebug('----type: ' + type);
-     if (type == common.table_name) { // 表
-     datas.forEach(function (table, index, array) {
-     results.push(getTable(table.code));
-     });
-     } else if (type == common.dictionary_name) {   // 数据字典
-     datas.forEach(function (dictionary, index, array) {
-     results.push(getDictionary(dictionary.code));
-     });
-     } else {  // 其他
-     datas.forEach(function (data, index, array) {
-     results.push(data);
-     });
-     }
-     }
-     return results;
-     */
+    let datas = readFiles(files);
     return datas;
 };
 
@@ -67,7 +46,7 @@ const readFileByPatternFiles = function (type, patternFiles) {
     // const files = getPatternFiles(type, system, dbType, parameter, code);
     // logger.writeWarn('files size:' + files.length);
     // 判断如果是table，则再获取最新table数据
-    var datas = readFiles(patternFiles);
+    let datas = readFiles(patternFiles);
     if (util.isArray(datas) && datas.length > 0) {
         logger.writeDebug('----type: ' + type);
         if (type == common.table_name) { // 表
@@ -135,12 +114,12 @@ const readFiles = function (files) {
         files.forEach(function (filePath) {
             const statFile = fs.statSync(filePath);
             if (!statFile.isDirectory()) {
-                logger.writeDebug('db 读取的文件名:  ' + filePath);
+                // logger.writeDebug('db 读取的文件名:  ' + filePath);
                 // 如果是文件，读取文件
-                var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-                var buf = new Buffer.from(fileStr, 'binary');
-                var data = iconv.decode(buf, 'GBK');
-                const json = JSON.parse(data);
+                let fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+                let buf = new Buffer.from(fileStr, 'binary');
+                let data = iconv.decode(buf, 'GBK');
+                let json = JSON.parse(data);
                 objs.push(json);
             }
         });
@@ -151,7 +130,7 @@ const readFiles = function (files) {
 
 const delSourceFile = function (type, name) {
     // 目标路径  eg: data/source/tables/user.json
-    var outPath = sourcePath + type;
+    let outPath = sourcePath + type;
     outPath = path.join(__dirname, '../', outPath, '/');
     const outFile = outPath + name + '.json'
     logger.writeDebug('---------------del path: ' + outFile);
@@ -276,37 +255,12 @@ const getTable = function (code) {
             const statFile = fs.statSync(filePath);
             // logger.writeInfo(statFile.isFile());
             if (statFile.isFile()) {
-                logger.writeDebug(filePath + ' 文件存在');
+                // logger.writeDebug(filePath + ' 文件存在');
 
                 var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
                 var buf = new Buffer.from(fileStr, 'binary');
                 var data = iconv.decode(buf, 'GBK');
                 table = JSON.parse(data);
-                // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 start
-                /*             if (table) {
-                 const attrs = table.attr;
-                 if (util.isArray(attrs)) {
-                 attrs.forEach(function (attr, index, array) {
-                 if (attr) {
-                 const dictionaryCode = attr.dictionary;
-                 if (util.isNotNull(dictionaryCode)) {
-                 const dictionary = getDictionary(dictionaryCode);
-                 if (util.isObject(dictionary)) {
-                 ((table.attr)[index]).code = dictionary.code;
-                 ((table.attr)[index]).dataType = dictionary.dataType;
-                 ((table.attr)[index]).lengths = dictionary.lengths;
-                 ((table.attr)[index]).precision = dictionary.precision;
-                 ((table.attr)[index]).column = dictionary.comment;
-                 ((table.attr)[index]).scope = dictionary.scope;
-                 ((table.attr)[index]).defaults = dictionary.defaults;
-                 }
-                 }
-                 }
-                 })
-                 }
-                 }*/
-                // 20170423 新增如果表中列有数据字典，则获取数据字典的最新属性 end
-                // table = JSON.parse(fs.readFileSync(filePath));
             } else {
                 logger.writeErr(filePath + ' 文件不存在');
             }
@@ -328,18 +282,18 @@ const getTable = function (code) {
 const getDictionary = function (code) {
     const filePath = sourcePath + dictionary_name + '/' + code + '.json';
 
-    var dictionary = {};
+    let dictionary = {};
     try {
         const statFile = fs.statSync(filePath);
 
-        logger.writeDebug(statFile.isFile());
+        // logger.writeDebug(statFile.isFile());
 
         if (statFile.isFile()) {
-            logger.writeDebug(filePath + ' 文件存在');
+            // logger.writeDebug(filePath + ' 文件存在');
 
-            var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-            var buf = new Buffer.from(fileStr, 'binary');
-            var data = iconv.decode(buf, 'GBK');
+            let fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+            let buf = new Buffer.from(fileStr, 'binary');
+            let data = iconv.decode(buf, 'GBK');
             dictionary = JSON.parse(data);
             // 20170423 新增如果数据字典中有数据域，则获取数据域的最新属性 start
             if (dictionary) {
@@ -371,21 +325,17 @@ const getDictionary = function (code) {
 const getDomain = function (code) {
     const filePath = sourcePath + 'domains/' + code + '.json';
 
-    var domain = {};
+    let domain = {};
     try {
         const statFile = fs.statSync(filePath);
 
-        logger.writeDebug(statFile.isFile())
-
         if (statFile.isFile()) {
-            logger.writeDebug(filePath + ' 文件存在');
+            // logger.writeDebug(filePath + ' 文件存在');
 
-            var fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
-            var buf = new Buffer(fileStr, 'binary');
-            var data = iconv.decode(buf, 'GBK');
+            let fileStr = fs.readFileSync(filePath, {encoding: 'binary'});
+            let buf = new Buffer(fileStr, 'binary');
+            let data = iconv.decode(buf, 'GBK');
             domain = JSON.parse(data);
-
-            // table = JSON.parse(fs.readFileSync(filePath));
         } else {
             logger.writeErr(filePath + ' 文件不存在');
         }
@@ -440,7 +390,7 @@ const getAllTableSpaces = function () {
  * 获取默认的表空间
  */
 const getDefaultTableSpace = function () {
-    var defauleTableSpace;
+    let defauleTableSpace;
     const allTableSpaces = this.getAllTableSpaces();
     allTableSpaces.forEach(function (tableSpace, index, array) {
         if (tableSpace.D == 'Y') {
